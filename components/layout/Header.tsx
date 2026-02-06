@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Search, Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { SITE_NAME, CATEGORIES } from '@/lib/constants';
+import SearchBar from '@/components/search/SearchBar';
 import MobileNav from './MobileNav';
 
 export default function Header() {
@@ -55,16 +56,12 @@ export default function Header() {
           <Link href="/education" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
             학년별
           </Link>
+          <Link href="/recommend" className="text-sm font-medium text-primary hover:text-primary-hover transition-colors">
+            AI 추천
+          </Link>
 
           {/* 검색창 */}
-          <div className="relative">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-            <input
-              type="text"
-              placeholder="AI 서비스 검색..."
-              className="w-52 rounded-lg border border-border bg-surface py-2 pl-10 pr-4 text-sm placeholder:text-gray-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors"
-            />
-          </div>
+          <SearchBar className="w-52" />
         </nav>
 
         {/* 데스크탑 우측 버튼 */}

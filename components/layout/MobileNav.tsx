@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Search } from 'lucide-react';
 import { CATEGORIES } from '@/lib/constants';
+import SearchBar from '@/components/search/SearchBar';
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -24,14 +24,25 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
       <div className="fixed inset-y-0 right-0 z-50 w-72 bg-white shadow-xl md:hidden">
         <div className="flex flex-col h-full p-6">
           {/* 검색 */}
-          <div className="relative mb-6">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-            <input
-              type="text"
-              placeholder="AI 서비스 검색..."
-              className="w-full rounded-lg border border-border bg-surface py-2.5 pl-10 pr-4 text-sm placeholder:text-gray-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-            />
+          <div className="mb-6">
+            <SearchBar className="w-full" placeholder="AI 서비스 검색..." />
           </div>
+
+          {/* 주요 메뉴 */}
+          <nav className="flex flex-col gap-1 mb-6">
+            <Link href="/rankings" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
+              랭킹
+            </Link>
+            <Link href="/jobs" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
+              직군별
+            </Link>
+            <Link href="/education" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
+              학년별
+            </Link>
+            <Link href="/recommend" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-semibold text-primary hover:bg-primary/5 transition-colors">
+              AI 추천
+            </Link>
+          </nav>
 
           {/* 카테고리 */}
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">

@@ -144,6 +144,111 @@ export function getEduRecommendations(levelSlug: string): EduToolRecommendation[
 }
 
 // ==========================================
+// 검색 + 필터
+// ==========================================
+export interface SearchFilters {
+  query?: string;
+  pricing?: string[];
+  category?: string[];
+  supports_korean?: boolean;
+  min_rating?: number;
+  job?: string;
+  edu?: string;
+  sort?: 'popular' | 'rating' | 'latest' | 'free_first';
+}
+
+export function searchTools(filters: SearchFilters): Tool[] {
+  let results = [...seed.tools];
+
+  // 텍스트 검색
+  if (filters.query) {
+    const q = filters.query.toLowerCase();
+    results = results.filter(
+      (t) =>
+        t.name.toLowerCase().includes(q) ||
+        t.description.toLowerCase().includes(q) ||
+        t.tags.some((tag) => tag.toLowerCase().includes(q))
+    );
+  }
+
+  // 가격 필터
+  if (filters.pricing && filters.pricing.length > 0) {
+    results = results.filter((t) =>
+      filters.pricing!.some((p) => t.pricing_type.toLowerCase() === p.toLowerCase())
+    );
+  }
+
+  // 카테고리 필터
+  if (filters.category && filters.category.length > 0) {
+    const catIds = filters.category
+      .map((slug) => getCategoryBySlug(slug)?.id)
+      .filter(Boolean);
+    results = results.filter((t) => catIds.includes(t.category_id));
+  }
+
+  // 한국어 지원 필터
+  if (filters.supports_korean) {
+    results = results.filter((t) => t.supports_korean);
+  }
+
+  // 최소 평점 필터
+  if (filters.min_rating) {
+    results = results.filter((t) => t.rating_avg >= filters.min_rating!);
+  }
+
+  // 직군 필터
+  if (filters.job) {
+    const job = getJobCategoryBySlug(filters.job);
+    if (job) {
+      const jobToolIds = (seed.job_tool_recommendations || [])
+        .filter((r) => r.job_category_id === job.id)
+        .map((r) => r.tool_id);
+      results = results.filter((t) => jobToolIds.includes(t.id));
+    }
+  }
+
+  // 학년 필터
+  if (filters.edu) {
+    const eduLevel = getEduLevelBySlug(filters.edu);
+    if (eduLevel) {
+      const eduToolIds = (seed.edu_tool_recommendations || [])
+        .filter((r) => r.edu_level_id === eduLevel.id)
+        .map((r) => r.tool_id);
+      results = results.filter((t) => eduToolIds.includes(t.id));
+    }
+  }
+
+  // 정렬
+  switch (filters.sort) {
+    case 'rating':
+      results.sort((a, b) => b.rating_avg - a.rating_avg);
+      break;
+    case 'latest':
+      results.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      break;
+    case 'free_first':
+      results.sort((a, b) => {
+        const order = { Free: 0, Freemium: 1, Paid: 2 };
+        return order[a.pricing_type] - order[b.pricing_type] || b.ranking_score - a.ranking_score;
+      });
+      break;
+    default: // popular
+      results.sort((a, b) => (b.ranking_score || b.visit_count) - (a.ranking_score || a.visit_count));
+  }
+
+  return results;
+}
+
+export function getAutocompleteSuggestions(query: string, limit = 5): Tool[] {
+  if (!query || query.length < 1) return [];
+  const q = query.toLowerCase();
+  return seed.tools
+    .filter((t) => t.name.toLowerCase().includes(q) || t.tags.some((tag) => tag.toLowerCase().includes(q)))
+    .sort((a, b) => b.visit_count - a.visit_count)
+    .slice(0, limit);
+}
+
+// ==========================================
 // 뉴스
 // ==========================================
 export function getNews(limit?: number): News[] {
