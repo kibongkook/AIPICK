@@ -1,13 +1,14 @@
 import Link from 'next/link';
-import { ArrowRight, Trophy, Briefcase, GraduationCap } from 'lucide-react';
+import { ArrowRight, Trophy, Briefcase, GraduationCap, Newspaper } from 'lucide-react';
 import { HERO_QUICK_BUTTONS, EDITOR_PICKS_COUNT, CATEGORY_PREVIEW_COUNT } from '@/lib/constants';
-import type { Tool, Category } from '@/types';
+import type { Tool, Category, News } from '@/types';
 import DynamicIcon from '@/components/ui/DynamicIcon';
 import ServiceCard from '@/components/service/ServiceCard';
 import ServiceGrid from '@/components/service/ServiceGrid';
+import NewsCard from '@/components/news/NewsCard';
 import {
   getTools, getCategories, getEditorPicks, getLatestTools,
-  getRankings, getJobCategories, getEduLevels,
+  getRankings, getJobCategories, getEduLevels, getNews,
 } from '@/lib/supabase/queries';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
   const topRanked = getRankings().slice(0, 5);
   const jobCategories = getJobCategories();
   const eduLevels = getEduLevels();
+  const latestNews = getNews(3);
 
   return (
     <>
@@ -29,6 +31,9 @@ export default function Home() {
 
         {/* 종합 랭킹 TOP 5 */}
         <RankingWidgetSection tools={topRanked} />
+
+        {/* 최신 AI 소식 */}
+        {latestNews.length > 0 && <NewsWidgetSection news={latestNews} />}
 
         {/* 직군별 퀵 네비게이션 */}
         {jobCategories.length > 0 && <JobNavSection jobs={jobCategories} />}
@@ -223,6 +228,31 @@ function EduNavSection({ levels }: { levels: { name: string; slug: string; age_r
               <span className="text-[10px] text-gray-400">{level.age_range}</span>
             )}
           </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function NewsWidgetSection({ news }: { news: News[] }) {
+  return (
+    <section className="mb-16">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2">
+          <Newspaper className="h-5 w-5 text-primary" />
+          <h2 className="text-xl font-bold text-foreground sm:text-2xl">최신 AI 소식</h2>
+        </div>
+        <Link
+          href="/news"
+          className="flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-hover transition-colors"
+        >
+          전체 뉴스 보기
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {news.map((item) => (
+          <NewsCard key={item.id} news={item} />
         ))}
       </div>
     </section>

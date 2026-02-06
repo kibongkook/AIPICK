@@ -5,9 +5,23 @@
 
 import type {
   Tool, Category, JobCategory, EduLevel,
-  JobToolRecommendation, EduToolRecommendation, News,
+  JobToolRecommendation, EduToolRecommendation, News, Guide, NewsCategory,
 } from '@/types';
 import seedData from '@/data/seed.json';
+
+// 컬렉션 시드 타입 (seed.json 전용, tool_ids 배열 사용)
+export interface SeedCollection {
+  id: string;
+  user_id: string;
+  user_name: string;
+  title: string;
+  description: string | null;
+  is_public: boolean;
+  like_count: number;
+  tool_ids: string[];
+  created_at: string;
+  updated_at: string;
+}
 
 // seed.json 데이터 캐스팅
 const seed = {
@@ -18,6 +32,8 @@ const seed = {
   job_tool_recommendations: (seedData as Record<string, unknown>).job_tool_recommendations as JobToolRecommendation[] | undefined,
   edu_tool_recommendations: (seedData as Record<string, unknown>).edu_tool_recommendations as EduToolRecommendation[] | undefined,
   news: (seedData as Record<string, unknown>).news as News[] | undefined,
+  guides: (seedData as Record<string, unknown>).guides as Guide[] | undefined,
+  collections: (seedData as Record<string, unknown>).collections as SeedCollection[] | undefined,
 };
 
 // ==========================================
@@ -36,6 +52,10 @@ export function getCategoryBySlug(slug: string): Category | undefined {
 // ==========================================
 export function getTools(): Tool[] {
   return seed.tools;
+}
+
+export function getToolById(id: string): Tool | undefined {
+  return seed.tools.find((t) => t.id === id);
 }
 
 export function getToolBySlug(slug: string): Tool | undefined {
@@ -251,12 +271,66 @@ export function getAutocompleteSuggestions(query: string, limit = 5): Tool[] {
 // ==========================================
 // 뉴스
 // ==========================================
-export function getNews(limit?: number): News[] {
-  const news = (seed.news || [])
+export function getNews(limit?: number, category?: NewsCategory): News[] {
+  let news = [...(seed.news || [])]
     .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+  if (category) {
+    news = news.filter((n) => n.category === category);
+  }
   return limit ? news.slice(0, limit) : news;
 }
 
 export function getNewsById(id: string): News | undefined {
   return (seed.news || []).find((n) => n.id === id);
+}
+
+export function getHotNews(limit = 5): News[] {
+  return [...(seed.news || [])]
+    .sort((a, b) => b.view_count - a.view_count)
+    .slice(0, limit);
+}
+
+// ==========================================
+// 가이드
+// ==========================================
+export function getGuides(category?: string): Guide[] {
+  let guides = [...(seed.guides || [])];
+  if (category) {
+    guides = guides.filter((g) => g.category === category);
+  }
+  return guides.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+}
+
+export function getGuideBySlug(slug: string): Guide | undefined {
+  return (seed.guides || []).find((g) => g.slug === slug);
+}
+
+export function getGuidesByJob(jobId: string): Guide[] {
+  return (seed.guides || []).filter((g) => g.related_job_id === jobId);
+}
+
+export function getGuidesByEdu(eduId: string): Guide[] {
+  return (seed.guides || []).filter((g) => g.related_edu_id === eduId);
+}
+
+// ==========================================
+// 컬렉션
+// ==========================================
+export function getCollections(): (SeedCollection & { tools: Tool[] })[] {
+  return (seed.collections || [])
+    .filter((c) => c.is_public)
+    .sort((a, b) => b.like_count - a.like_count)
+    .map((c) => ({
+      ...c,
+      tools: c.tool_ids.map((id) => seed.tools.find((t) => t.id === id)).filter(Boolean) as Tool[],
+    }));
+}
+
+export function getCollectionById(id: string): (SeedCollection & { tools: Tool[] }) | undefined {
+  const c = (seed.collections || []).find((col) => col.id === id);
+  if (!c) return undefined;
+  return {
+    ...c,
+    tools: c.tool_ids.map((tid) => seed.tools.find((t) => t.id === tid)).filter(Boolean) as Tool[],
+  };
 }

@@ -57,6 +57,12 @@ export default function Header() {
           <Link href="/education" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
             학년별
           </Link>
+          <Link href="/news" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
+            뉴스
+          </Link>
+          <Link href="/guides" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
+            가이드
+          </Link>
           <Link href="/recommend" className="text-sm font-medium text-primary hover:text-primary-hover transition-colors">
             AI 추천
           </Link>

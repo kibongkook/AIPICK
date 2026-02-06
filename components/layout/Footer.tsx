@@ -47,6 +47,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/trending" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  주간 트렌딩
+                </Link>
+              </li>
+              <li>
                 <Link href="/jobs" className="text-sm text-gray-500 hover:text-primary transition-colors">
                   직군별 추천
                 </Link>
@@ -64,10 +69,25 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* 정보 */}
+          {/* 콘텐츠 */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground">정보</h3>
+            <h3 className="text-sm font-semibold text-foreground">콘텐츠</h3>
             <ul className="mt-3 space-y-2">
+              <li>
+                <Link href="/news" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  AI 뉴스
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  활용 가이드
+                </Link>
+              </li>
+              <li>
+                <Link href="/collections" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  컬렉션
+                </Link>
+              </li>
               <li>
                 <span className="text-sm text-gray-500">문의: contact@aipick.kr</span>
               </li>

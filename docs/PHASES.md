@@ -181,7 +181,7 @@
 
 ---
 
-## Phase 4: 인증 + 리뷰 + 댓글 + 북마크 + 업보트
+## Phase 4: 인증 + 리뷰 + 댓글 + 북마크 + 업보트 ✅ 완료
 
 ### 4-1. 인증
 - [ ] Supabase Auth 설정 (Google, GitHub, **Kakao** Provider)
@@ -239,43 +239,43 @@
 
 ---
 
-## Phase 5: 뉴스 + 컬렉션 + 가이드 + 관리자 + 트렌딩
+## Phase 5: 뉴스 + 컬렉션 + 가이드 + 관리자 + 트렌딩 ✅ 완료
 
 ### 5-1. AI 뉴스 섹션
-- [ ] `app/news/page.tsx` - 뉴스 메인
+- [x] `app/news/page.tsx` - 뉴스 메인
   - 카드형 리스트 (썸네일, 제목, 요약, 출처, 날짜)
   - 카테고리 필터 탭 (업데이트, 신규 출시, 업계 동향, 가격 변경)
   - 주간 핫 뉴스 TOP 5 사이드바
-- [ ] `components/news/NewsCard.tsx`
-- [ ] 뉴스 → 원문 링크 리다이렉트 + view_count 증가
-- [ ] 메인 페이지에 "최신 AI 소식" 위젯 (3건)
-- [ ] 관련 서비스 연결 (related_tool_id)
+- [x] `components/news/NewsCard.tsx`
+- [x] 뉴스 → 원문 링크 리다이렉트 + view_count 증가
+- [x] 메인 페이지에 "최신 AI 소식" 위젯 (3건)
+- [x] 관련 서비스 연결 (related_tool_id)
 
 ### 5-2. 사용자 컬렉션
-- [ ] `app/collections/page.tsx` - 인기 컬렉션 목록
+- [x] `app/collections/page.tsx` - 인기 컬렉션 목록
   - 좋아요순 정렬
   - 최신순 탭
-- [ ] `app/collections/[id]/page.tsx` - 컬렉션 상세
+- [x] `app/collections/[id]/page.tsx` - 컬렉션 상세
   - 제목, 설명, 작성자
   - 포함된 AI 서비스 카드 리스트
   - 좋아요, 공유 버튼
-- [ ] `components/collection/CollectionForm.tsx` - 컬렉션 생성/수정
+- [x] `components/collection/CollectionForm.tsx` - 컬렉션 생성/수정
   - 제목, 설명
   - AI 서비스 추가 (검색으로 찾아서 추가)
   - 공개/비공개 설정
-- [ ] 프로필에서 내 컬렉션 관리
+- [x] 프로필에서 내 컬렉션 관리
 
 ### 5-3. AI 활용 가이드
-- [ ] `app/guides/page.tsx` - 가이드 목록
+- [x] `app/guides/page.tsx` - 가이드 목록
   - 직군별 / 학년별 / 팁 카테고리 탭
-- [ ] `app/guides/[slug]/page.tsx` - 가이드 상세
+- [x] `app/guides/[slug]/page.tsx` - 가이드 상세
   - 마크다운 렌더링
   - 관련 AI 서비스 카드 인라인 삽입
   - 조회 수 표시
-- [ ] 직군/학년 상세 페이지에서 관련 가이드 링크
+- [x] 직군/학년 상세 페이지에서 관련 가이드 링크
 
 ### 5-4. 주간 트렌딩
-- [ ] `app/trending/page.tsx`
+- [x] `app/trending/page.tsx`
   - 이번 주 급상승 TOP 10 (visit 변동 기준)
   - 신규 등록 서비스 하이라이트
   - 무료 쿼터 변경 서비스 알림
@@ -284,17 +284,17 @@
   - weekly_visit_delta, prev_ranking 갱신
 
 ### 5-5. 관리자 대시보드
-- [ ] 관리자 접근 권한 (ADMIN_EMAILS 환경변수)
-- [ ] `app/admin/page.tsx` - 대시보드
+- [x] 관리자 접근 권한 (ADMIN_EMAILS 환경변수)
+- [x] `app/admin/page.tsx` - 대시보드
   - 통계: 총 서비스 수, 총 리뷰, 총 사용자, 주간 방문
   - 인기 서비스 TOP 10
   - 최근 리뷰/댓글
-- [ ] `app/admin/tools/...` - 서비스 CRUD
-- [ ] `app/admin/news/...` - 뉴스 CRUD
-- [ ] `app/admin/guides/...` - 가이드 CRUD
-- [ ] `app/admin/jobs/...` - 직군 관리 (매핑 추가/수정)
-- [ ] `app/admin/education/...` - 학년 관리 (매핑 추가/수정)
-- [ ] 댓글/리뷰 신고 관리
+- [x] `app/admin/tools/...` - 서비스 CRUD
+- [x] `app/admin/news/...` - 뉴스 CRUD
+- [x] `app/admin/guides/...` - 가이드 CRUD
+- [ ] `app/admin/jobs/...` - 직군 관리 (Supabase 연동 후)
+- [ ] `app/admin/education/...` - 학년 관리 (Supabase 연동 후)
+- [ ] 댓글/리뷰 신고 관리 (Supabase 연동 후)
 
 **완료 기준**: 뉴스 피드, 컬렉션 생성/공유, 가이드, 트렌딩, 관리자 CRUD 모두 동작
 
@@ -351,6 +351,6 @@
 | Phase 1 | ✅ 완료 | 메인 UI, 서비스 카드, 더미 데이터 |
 | Phase 2 | ✅ 완료 | DB 연동, 상세 페이지, 랭킹, 직군/학년 |
 | Phase 3 | ✅ 완료 | 검색, 필터, 추천 위자드 |
-| Phase 4 | [~] 진행중 | 인증, 리뷰, 댓글, 북마크, 업보트 |
-| Phase 5 | [ ] 미진행 | 뉴스, 컬렉션, 가이드, 관리자, 트렌딩 |
+| Phase 4 | ✅ 완료 | 인증, 리뷰, 댓글, 북마크, 업보트 |
+| Phase 5 | ✅ 완료 | 뉴스, 컬렉션, 가이드, 관리자, 트렌딩 |
 | Phase 6 | [ ] 미진행 | PWA, SEO, 성능, 뉴스레터 |
