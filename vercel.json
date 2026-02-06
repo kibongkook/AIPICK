@@ -1,0 +1,16 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/ranking",
+      "schedule": "0 3 * * 1"
+    },
+    {
+      "path": "/api/cron/news-fetch",
+      "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/cron/github-stats",
+      "schedule": "0 4 * * 0"
+    }
+  ]
+}
