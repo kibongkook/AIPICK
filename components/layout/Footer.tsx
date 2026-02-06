@@ -42,13 +42,23 @@ export default function Footer() {
             <h3 className="text-sm font-semibold text-foreground">서비스</h3>
             <ul className="mt-3 space-y-2">
               <li>
-                <Link href="/recommend" className="text-sm text-gray-500 hover:text-primary transition-colors">
-                  AI 추천받기
+                <Link href="/rankings" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  AI 랭킹
                 </Link>
               </li>
               <li>
-                <Link href="/news" className="text-sm text-gray-500 hover:text-primary transition-colors">
-                  AI 뉴스
+                <Link href="/jobs" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  직군별 추천
+                </Link>
+              </li>
+              <li>
+                <Link href="/education" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  학년별 추천
+                </Link>
+              </li>
+              <li>
+                <Link href="/recommend" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  AI 추천받기
                 </Link>
               </li>
             </ul>

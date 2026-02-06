@@ -1,5 +1,8 @@
 import {
   PenTool, Image, Video, Code, Music, BarChart3, Languages, Sparkles,
+  Layout, Palette, Megaphone, Briefcase, Target,
+  Baby, Smile, BookOpen, GraduationCap, School, Users,
+  Trophy, TrendingUp, ArrowUp, ArrowDown, Minus,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -12,6 +15,22 @@ const ICON_MAP: Record<string, LucideIcon> = {
   BarChart3,
   Languages,
   Sparkles,
+  Layout,
+  Palette,
+  Megaphone,
+  Briefcase,
+  Target,
+  Baby,
+  Smile,
+  BookOpen,
+  GraduationCap,
+  School,
+  Users,
+  Trophy,
+  TrendingUp,
+  ArrowUp,
+  ArrowDown,
+  Minus,
 };
 
 interface DynamicIconProps {

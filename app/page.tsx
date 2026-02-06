@@ -1,22 +1,22 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Trophy, Briefcase, GraduationCap } from 'lucide-react';
 import { HERO_QUICK_BUTTONS, EDITOR_PICKS_COUNT, CATEGORY_PREVIEW_COUNT } from '@/lib/constants';
 import type { Tool, Category } from '@/types';
 import DynamicIcon from '@/components/ui/DynamicIcon';
 import ServiceCard from '@/components/service/ServiceCard';
 import ServiceGrid from '@/components/service/ServiceGrid';
-import seedData from '@/data/seed.json';
-
-// Phase 2에서 Supabase 쿼리로 교체 예정
-function getToolsData() {
-  const tools = seedData.tools as unknown as Tool[];
-  const categories = seedData.categories as unknown as Category[];
-  return { tools, categories };
-}
+import {
+  getTools, getCategories, getEditorPicks, getLatestTools,
+  getRankings, getJobCategories, getEduLevels,
+} from '@/lib/supabase/queries';
 
 export default function Home() {
-  const { tools, categories } = getToolsData();
-  const editorPicks = tools.filter((t) => t.is_editor_pick).slice(0, EDITOR_PICKS_COUNT);
+  const tools = getTools();
+  const categories = getCategories();
+  const editorPicks = getEditorPicks(EDITOR_PICKS_COUNT);
+  const topRanked = getRankings().slice(0, 5);
+  const jobCategories = getJobCategories();
+  const eduLevels = getEduLevels();
 
   return (
     <>
@@ -27,11 +27,20 @@ export default function Home() {
         {/* 에디터 추천 */}
         <EditorPicksSection tools={editorPicks} />
 
+        {/* 종합 랭킹 TOP 5 */}
+        <RankingWidgetSection tools={topRanked} />
+
+        {/* 직군별 퀵 네비게이션 */}
+        {jobCategories.length > 0 && <JobNavSection jobs={jobCategories} />}
+
+        {/* 학년별 퀵 네비게이션 */}
+        {eduLevels.length > 0 && <EduNavSection levels={eduLevels} />}
+
         {/* 카테고리별 서비스 */}
         <CategorySections tools={tools} categories={categories} />
 
         {/* 최신 등록 */}
-        <LatestSection tools={tools} />
+        <LatestSection tools={getLatestTools(CATEGORY_PREVIEW_COUNT)} />
       </div>
     </>
   );
@@ -64,6 +73,22 @@ function HeroSection() {
               </Link>
             ))}
           </div>
+
+          {/* 빠른 탐색 링크 */}
+          <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm">
+            <Link href="/jobs" className="flex items-center gap-1 text-gray-500 hover:text-primary transition-colors">
+              <Briefcase className="h-4 w-4" />
+              직군별 추천
+            </Link>
+            <Link href="/education" className="flex items-center gap-1 text-gray-500 hover:text-primary transition-colors">
+              <GraduationCap className="h-4 w-4" />
+              학년별 추천
+            </Link>
+            <Link href="/rankings" className="flex items-center gap-1 text-gray-500 hover:text-primary transition-colors">
+              <Trophy className="h-4 w-4" />
+              AI 랭킹
+            </Link>
+          </div>
         </div>
       </div>
     </section>
@@ -85,6 +110,119 @@ function EditorPicksSection({ tools }: { tools: Tool[] }) {
           <div key={tool.id} className="min-w-[280px] max-w-[320px] flex-shrink-0">
             <ServiceCard tool={tool} />
           </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function RankingWidgetSection({ tools }: { tools: (Tool & { ranking: number })[] }) {
+  if (tools.length === 0) return null;
+
+  return (
+    <section className="mb-16">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2">
+          <Trophy className="h-5 w-5 text-yellow-500" />
+          <h2 className="text-xl font-bold text-foreground sm:text-2xl">종합 랭킹 TOP 5</h2>
+        </div>
+        <Link
+          href="/rankings"
+          className="flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-hover transition-colors"
+        >
+          전체 랭킹 보기
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+      <div className="rounded-xl border border-border bg-white divide-y divide-border/50">
+        {tools.map((tool) => (
+          <Link
+            key={tool.id}
+            href={`/tools/${tool.slug}`}
+            className="flex items-center gap-4 px-5 py-3.5 hover:bg-blue-50/50 transition-colors"
+          >
+            <span className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold text-white ${
+              tool.ranking === 1 ? 'bg-yellow-400' : tool.ranking === 2 ? 'bg-gray-300' : tool.ranking === 3 ? 'bg-amber-600' : 'bg-gray-200 text-gray-600'
+            }`}>
+              {tool.ranking}
+            </span>
+            <div className="flex-1 min-w-0">
+              <span className="text-sm font-semibold text-foreground">{tool.name}</span>
+              <span className="ml-2 text-xs text-gray-400 hidden sm:inline">{tool.description.slice(0, 40)}...</span>
+            </div>
+            <span className="text-xs text-gray-500">{tool.rating_avg.toFixed(1)}</span>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function JobNavSection({ jobs }: { jobs: { name: string; slug: string; icon: string | null }[] }) {
+  return (
+    <section className="mb-16">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2">
+          <Briefcase className="h-5 w-5 text-primary" />
+          <h2 className="text-xl font-bold text-foreground sm:text-2xl">당신의 직업은?</h2>
+        </div>
+        <Link
+          href="/jobs"
+          className="flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-hover transition-colors"
+        >
+          전체 보기
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+      <div className="flex gap-3 overflow-x-auto pb-2">
+        {jobs.map((job) => (
+          <Link
+            key={job.slug}
+            href={`/jobs/${job.slug}`}
+            className="flex shrink-0 flex-col items-center gap-2 rounded-xl border border-border bg-white px-5 py-4 shadow-sm hover:border-primary hover:shadow-md transition-all min-w-[100px]"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+              <DynamicIcon name={job.icon || 'Briefcase'} className="h-5 w-5 text-primary" />
+            </div>
+            <span className="text-xs font-medium text-gray-700 whitespace-nowrap">{job.name}</span>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function EduNavSection({ levels }: { levels: { name: string; slug: string; age_range: string | null; icon: string | null }[] }) {
+  return (
+    <section className="mb-16">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2">
+          <GraduationCap className="h-5 w-5 text-primary" />
+          <h2 className="text-xl font-bold text-foreground sm:text-2xl">학생이신가요?</h2>
+        </div>
+        <Link
+          href="/education"
+          className="flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-hover transition-colors"
+        >
+          전체 보기
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+      <div className="flex gap-3 overflow-x-auto pb-2">
+        {levels.map((level) => (
+          <Link
+            key={level.slug}
+            href={`/education/${level.slug}`}
+            className="flex shrink-0 flex-col items-center gap-2 rounded-xl border border-border bg-white px-5 py-4 shadow-sm hover:border-primary hover:shadow-md transition-all min-w-[100px]"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+              <DynamicIcon name={level.icon || 'GraduationCap'} className="h-5 w-5 text-primary" />
+            </div>
+            <span className="text-xs font-medium text-gray-700 whitespace-nowrap">{level.name}</span>
+            {level.age_range && (
+              <span className="text-[10px] text-gray-400">{level.age_range}</span>
+            )}
+          </Link>
         ))}
       </div>
     </section>
@@ -125,10 +263,6 @@ function CategorySections({ tools, categories }: { tools: Tool[]; categories: Ca
 }
 
 function LatestSection({ tools }: { tools: Tool[] }) {
-  const latest = [...tools]
-    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-    .slice(0, CATEGORY_PREVIEW_COUNT);
-
   return (
     <section className="mb-16">
       <div className="flex items-center justify-between mb-6">
@@ -136,7 +270,7 @@ function LatestSection({ tools }: { tools: Tool[] }) {
           최근 등록된 서비스
         </h2>
       </div>
-      <ServiceGrid tools={latest} />
+      <ServiceGrid tools={tools} />
     </section>
   );
 }

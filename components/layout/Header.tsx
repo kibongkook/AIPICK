@@ -20,7 +20,7 @@ export default function Header() {
         </Link>
 
         {/* 데스크탑 네비게이션 */}
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-5 md:flex">
           {/* 카테고리 드롭다운 */}
           <div className="relative">
             <button
@@ -46,13 +46,23 @@ export default function Header() {
             )}
           </div>
 
+          <Link href="/rankings" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
+            랭킹
+          </Link>
+          <Link href="/jobs" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
+            직군별
+          </Link>
+          <Link href="/education" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
+            학년별
+          </Link>
+
           {/* 검색창 */}
           <div className="relative">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="AI 서비스 검색..."
-              className="w-64 rounded-lg border border-border bg-surface py-2 pl-10 pr-4 text-sm placeholder:text-gray-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors"
+              className="w-52 rounded-lg border border-border bg-surface py-2 pl-10 pr-4 text-sm placeholder:text-gray-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors"
             />
           </div>
         </nav>

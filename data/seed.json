@@ -93,6 +93,10 @@
         "무료 플랜의 GPT-4o 사용 횟수 제한",
         "실시간 정보 검색 정확도가 가끔 떨어짐"
       ],
+      "upvote_count": 28450,
+      "ranking_score": 92.5,
+      "weekly_visit_delta": 12300,
+      "prev_ranking": 4,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -123,6 +127,10 @@
         "무료 플랜 일일 사용량 제한이 빡빡함",
         "이미지 생성 기능 없음"
       ],
+      "upvote_count": 15840,
+      "ranking_score": 82.3,
+      "weekly_visit_delta": 8900,
+      "prev_ranking": 11,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -153,6 +161,10 @@
         "한국어 응답 품질이 ChatGPT·Claude 대비 다소 부족",
         "창의적 글쓰기 능력이 상대적으로 약함"
       ],
+      "upvote_count": 18230,
+      "ranking_score": 78.6,
+      "weekly_visit_delta": 5400,
+      "prev_ranking": 10,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -183,6 +195,10 @@
         "Pro 검색 무료 횟수가 하루 5회로 적음",
         "심층 분석보다는 간결한 요약에 특화"
       ],
+      "upvote_count": 11200,
+      "ranking_score": 71.8,
+      "weekly_visit_delta": 9800,
+      "prev_ranking": 17,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -214,6 +230,10 @@
         "무료 사용 횟수가 월 20회로 매우 적음",
         "독립적인 AI 도구 대비 성능이 제한적"
       ],
+      "upvote_count": 5840,
+      "ranking_score": 52.1,
+      "weekly_visit_delta": -1200,
+      "prev_ranking": 21,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -245,6 +265,10 @@
         "한국어 프롬프트 지원이 미흡함",
         "디스코드 기반 인터페이스가 초보자에게 불편"
       ],
+      "upvote_count": 24670,
+      "ranking_score": 89.7,
+      "weekly_visit_delta": 7200,
+      "prev_ranking": 8,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -276,6 +300,10 @@
         "Midjourney 대비 예술적 스타일이 제한적",
         "생성 속도가 상대적으로 느림"
       ],
+      "upvote_count": 16730,
+      "ranking_score": 79.2,
+      "weekly_visit_delta": 3100,
+      "prev_ranking": 12,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -307,6 +335,10 @@
         "설치 및 설정이 비개발자에게 어려움",
         "프롬프트 엔지니어링 학습 곡선이 높음"
       ],
+      "upvote_count": 12450,
+      "ranking_score": 73.4,
+      "weekly_visit_delta": -2300,
+      "prev_ranking": 12,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -338,6 +370,10 @@
         "유료 플랜도 크레딧 제한이 있어 비용이 빠르게 증가",
         "한국어 프롬프트 지원이 미흡함"
       ],
+      "upvote_count": 9870,
+      "ranking_score": 68.5,
+      "weekly_visit_delta": 4500,
+      "prev_ranking": 18,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -369,6 +405,10 @@
         "전문 영상 편집 소프트웨어 대비 기능 제한",
         "내보내기 시 워터마크 (일부 기능)"
       ],
+      "upvote_count": 34520,
+      "ranking_score": 86.3,
+      "weekly_visit_delta": 11200,
+      "prev_ranking": 4,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -400,6 +440,10 @@
         "대용량 파일 처리 시 속도가 느림",
         "해외 서비스 대비 AI 영상 생성 기능 미흡"
       ],
+      "upvote_count": 7230,
+      "ranking_score": 57.8,
+      "weekly_visit_delta": 1800,
+      "prev_ranking": 22,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -431,6 +475,10 @@
         "가끔 부정확한 코드를 자신 있게 제안함",
         "한국어 주석 기반 코드 생성이 다소 약함"
       ],
+      "upvote_count": 21340,
+      "ranking_score": 86.1,
+      "weekly_visit_delta": 6700,
+      "prev_ranking": 7,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -462,6 +510,10 @@
         "VS Code 대비 가끔 안정성 이슈 발생",
         "대규모 프로젝트에서 인덱싱 시간이 소요됨"
       ],
+      "upvote_count": 14560,
+      "ranking_score": 76.9,
+      "weekly_visit_delta": 14200,
+      "prev_ranking": 15,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -493,6 +545,10 @@
         "대규모 프로젝트에서 속도가 느림",
         "로컬 IDE 대비 확장 생태계가 부족함"
       ],
+      "upvote_count": 8920,
+      "ranking_score": 64.2,
+      "weekly_visit_delta": 2100,
+      "prev_ranking": 17,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -524,6 +580,10 @@
         "곡의 구조적 반복이 단조로울 수 있음",
         "특정 아티스트 스타일 모방에 윤리적 논란"
       ],
+      "upvote_count": 10450,
+      "ranking_score": 70.3,
+      "weekly_visit_delta": 8300,
+      "prev_ranking": 16,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -555,6 +615,10 @@
         "가끔 보컬 발음이 부자연스러움",
         "세밀한 음악 구조 제어가 어려움"
       ],
+      "upvote_count": 5670,
+      "ranking_score": 53.6,
+      "weekly_visit_delta": 3400,
+      "prev_ranking": 24,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -586,6 +650,10 @@
         "보컬 생성 기능 없음 (악기만 지원)",
         "Suno·Udio 대비 대중음악 장르가 약함"
       ],
+      "upvote_count": 2340,
+      "ranking_score": 35.2,
+      "weekly_visit_delta": -890,
+      "prev_ranking": 25,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -617,6 +685,10 @@
         "복잡한 통계 분석은 정확도가 떨어질 수 있음",
         "대용량 데이터셋 처리에 제한"
       ],
+      "upvote_count": 4120,
+      "ranking_score": 45.8,
+      "weekly_visit_delta": 2700,
+      "prev_ranking": 23,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -648,6 +720,10 @@
         "세밀한 레이아웃 커스터마이징이 제한적",
         "PowerPoint 내보내기 시 서식이 깨질 수 있음"
       ],
+      "upvote_count": 7650,
+      "ranking_score": 60.4,
+      "weekly_visit_delta": 4100,
+      "prev_ranking": 19,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -679,6 +755,10 @@
         "학습 곡선이 높고 초기 설정이 복잡함",
         "AI 기능이 아직 기본적인 수준"
       ],
+      "upvote_count": 3780,
+      "ranking_score": 42.5,
+      "weekly_visit_delta": -1500,
+      "prev_ranking": 26,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -710,6 +790,10 @@
         "무료 문서 번역이 월 3건으로 제한",
         "아시아 언어 지원이 상대적으로 늦게 추가됨"
       ],
+      "upvote_count": 18920,
+      "ranking_score": 83.1,
+      "weekly_visit_delta": 3800,
+      "prev_ranking": 9,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -741,6 +825,10 @@
         "전문 분야(법률·의학) 번역 정확도가 떨어짐",
         "문서 파일 번역 기능이 제한적"
       ],
+      "upvote_count": 32100,
+      "ranking_score": 84.7,
+      "weekly_visit_delta": 5200,
+      "prev_ranking": 3,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -772,6 +860,10 @@
         "긴 문장에서 문맥을 놓치는 경우 있음",
         "전문 용어 번역 정확도가 일관적이지 않음"
       ],
+      "upvote_count": 56780,
+      "ranking_score": 91.2,
+      "weekly_visit_delta": 8900,
+      "prev_ranking": 1,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -803,6 +895,10 @@
         "독자 모델이 아닌 OpenAI API 의존",
         "전문적인 기능은 ChatGPT 직접 사용 대비 제한적"
       ],
+      "upvote_count": 25340,
+      "ranking_score": 81.4,
+      "weekly_visit_delta": -3200,
+      "prev_ranking": 5,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -834,6 +930,10 @@
         "무료 플랜에서 배경 제거 등 핵심 AI 기능 제한",
         "프리미엄 에셋 접근에 Pro 구독 필요"
       ],
+      "upvote_count": 43210,
+      "ranking_score": 88.9,
+      "weekly_visit_delta": 15000,
+      "prev_ranking": 3,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
     },
@@ -865,8 +965,1056 @@
         "복잡한 워크플로우는 유료 플랜 필수",
         "한국어 지원이 미흡함"
       ],
+      "upvote_count": 7890,
+      "ranking_score": 61.3,
+      "weekly_visit_delta": -450,
+      "prev_ranking": 20,
       "created_at": "2026-01-15T00:00:00Z",
       "updated_at": "2026-01-15T00:00:00Z"
+    }
+  ],
+  "job_categories": [
+    {
+      "id": "job-ai-dev",
+      "name": "AI 개발자",
+      "slug": "ai-developer",
+      "description": "AI/ML 모델 개발 및 소프트웨어 엔지니어링",
+      "icon": "Code",
+      "sort_order": 1
+    },
+    {
+      "id": "job-uiux",
+      "name": "UI/UX 디자이너",
+      "slug": "uiux-designer",
+      "description": "사용자 경험 및 인터페이스 디자인",
+      "icon": "Layout",
+      "sort_order": 2
+    },
+    {
+      "id": "job-graphic",
+      "name": "그래픽 디자이너",
+      "slug": "graphic-designer",
+      "description": "시각 디자인 및 브랜딩",
+      "icon": "Palette",
+      "sort_order": 3
+    },
+    {
+      "id": "job-marketer",
+      "name": "마케터",
+      "slug": "marketer",
+      "description": "디지털 마케팅 및 콘텐츠 전략",
+      "icon": "Megaphone",
+      "sort_order": 4
+    },
+    {
+      "id": "job-video",
+      "name": "영상 크리에이터",
+      "slug": "video-creator",
+      "description": "영상 제작 및 편집",
+      "icon": "Video",
+      "sort_order": 5
+    },
+    {
+      "id": "job-writer",
+      "name": "작가/블로거",
+      "slug": "writer",
+      "description": "글쓰기 및 콘텐츠 제작",
+      "icon": "PenTool",
+      "sort_order": 6
+    },
+    {
+      "id": "job-data",
+      "name": "데이터 분석가",
+      "slug": "data-analyst",
+      "description": "데이터 분석 및 인사이트 도출",
+      "icon": "BarChart3",
+      "sort_order": 7
+    },
+    {
+      "id": "job-biz",
+      "name": "사업가/창업자",
+      "slug": "entrepreneur",
+      "description": "비즈니스 기획 및 경영",
+      "icon": "Briefcase",
+      "sort_order": 8
+    },
+    {
+      "id": "job-music",
+      "name": "음악가/작곡가",
+      "slug": "musician",
+      "description": "음악 제작 및 작곡",
+      "icon": "Music",
+      "sort_order": 9
+    },
+    {
+      "id": "job-pm",
+      "name": "PM/기획자",
+      "slug": "product-manager",
+      "description": "제품 기획 및 프로젝트 관리",
+      "icon": "Target",
+      "sort_order": 10
+    }
+  ],
+  "edu_levels": [
+    {
+      "id": "edu-elementary-low",
+      "name": "초등 저학년",
+      "slug": "elementary-low",
+      "description": "초등학교 1~3학년",
+      "age_range": "7-9세",
+      "icon": "Baby",
+      "sort_order": 1
+    },
+    {
+      "id": "edu-elementary-high",
+      "name": "초등 고학년",
+      "slug": "elementary-high",
+      "description": "초등학교 4~6학년",
+      "age_range": "10-12세",
+      "icon": "Smile",
+      "sort_order": 2
+    },
+    {
+      "id": "edu-middle",
+      "name": "중학생",
+      "slug": "middle-school",
+      "description": "중학교 1~3학년",
+      "age_range": "13-15세",
+      "icon": "BookOpen",
+      "sort_order": 3
+    },
+    {
+      "id": "edu-high",
+      "name": "고등학생",
+      "slug": "high-school",
+      "description": "고등학교 1~3학년",
+      "age_range": "16-18세",
+      "icon": "GraduationCap",
+      "sort_order": 4
+    },
+    {
+      "id": "edu-college",
+      "name": "대학생",
+      "slug": "college",
+      "description": "대학생 및 취업 준비생",
+      "age_range": "19세+",
+      "icon": "School",
+      "sort_order": 5
+    },
+    {
+      "id": "edu-teacher",
+      "name": "교사/교수",
+      "slug": "teacher",
+      "description": "초중고 교사 및 대학 교수",
+      "age_range": null,
+      "icon": "Users",
+      "sort_order": 6
+    }
+  ],
+  "job_tool_recommendations": [
+    {
+      "id": "jtr-001",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "recommendation_level": "essential",
+      "reason": "AI 개발 시 프롬프트 테스트, 코드 디버깅, API 문서 분석에 필수적으로 활용",
+      "sort_order": 1
+    },
+    {
+      "id": "jtr-002",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440002",
+      "recommendation_level": "essential",
+      "reason": "긴 코드베이스 분석과 정교한 코드 리뷰에 200K 컨텍스트가 매우 유용",
+      "sort_order": 2
+    },
+    {
+      "id": "jtr-003",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440030",
+      "recommendation_level": "essential",
+      "reason": "IDE에서 실시간 코드 자동완성으로 개발 생산성을 크게 향상",
+      "sort_order": 3
+    },
+    {
+      "id": "jtr-004",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440031",
+      "recommendation_level": "recommended",
+      "reason": "코드베이스 전체를 이해하는 AI IDE로 복잡한 리팩토링에 효과적",
+      "sort_order": 4
+    },
+    {
+      "id": "jtr-005",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440032",
+      "recommendation_level": "optional",
+      "reason": "빠른 프로토타이핑과 클라우드 환경 테스트에 편리",
+      "sort_order": 5
+    },
+    {
+      "id": "jtr-006",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "recommendation_level": "optional",
+      "reason": "최신 AI 논문과 기술 트렌드 리서치에 출처 기반 검색이 유용",
+      "sort_order": 6
+    },
+    {
+      "id": "jtr-010",
+      "job_category_id": "job-uiux",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "recommendation_level": "essential",
+      "reason": "와이어프레임, 목업, UI 에셋 제작에 AI 디자인 기능이 필수적",
+      "sort_order": 1
+    },
+    {
+      "id": "jtr-011",
+      "job_category_id": "job-uiux",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440010",
+      "recommendation_level": "recommended",
+      "reason": "UI 컨셉 이미지와 디자인 레퍼런스 생성에 활용",
+      "sort_order": 2
+    },
+    {
+      "id": "jtr-012",
+      "job_category_id": "job-uiux",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440011",
+      "recommendation_level": "recommended",
+      "reason": "한국어 프롬프트로 UI 일러스트와 아이콘 컨셉 빠르게 생성",
+      "sort_order": 3
+    },
+    {
+      "id": "jtr-013",
+      "job_category_id": "job-uiux",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "recommendation_level": "recommended",
+      "reason": "UX 리서치 요약, 사용자 페르소나 작성, 카피라이팅에 활용",
+      "sort_order": 4
+    },
+    {
+      "id": "jtr-014",
+      "job_category_id": "job-uiux",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "recommendation_level": "optional",
+      "reason": "디자인 프레젠테이션과 포트폴리오 슬라이드 빠르게 제작",
+      "sort_order": 5
+    },
+    {
+      "id": "jtr-020",
+      "job_category_id": "job-graphic",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440010",
+      "recommendation_level": "essential",
+      "reason": "고품질 아트워크와 일러스트 생성에 업계 최고 수준의 도구",
+      "sort_order": 1
+    },
+    {
+      "id": "jtr-021",
+      "job_category_id": "job-graphic",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "recommendation_level": "essential",
+      "reason": "소셜 미디어 그래픽, 배너, 브랜딩 에셋 제작의 핵심 도구",
+      "sort_order": 2
+    },
+    {
+      "id": "jtr-022",
+      "job_category_id": "job-graphic",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440011",
+      "recommendation_level": "recommended",
+      "reason": "빠른 컨셉 아트와 시안 제작에 ChatGPT 연동으로 편리",
+      "sort_order": 3
+    },
+    {
+      "id": "jtr-023",
+      "job_category_id": "job-graphic",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440012",
+      "recommendation_level": "recommended",
+      "reason": "LoRA 커스텀 모델로 브랜드 일관성 있는 이미지 대량 생성",
+      "sort_order": 4
+    },
+    {
+      "id": "jtr-024",
+      "job_category_id": "job-graphic",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "recommendation_level": "optional",
+      "reason": "디자인 브리프 작성과 클라이언트 커뮤니케이션 초안 작성",
+      "sort_order": 5
+    },
+    {
+      "id": "jtr-030",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "recommendation_level": "essential",
+      "reason": "광고 카피, 블로그 포스트, 이메일 마케팅 문구 작성의 핵심 도구",
+      "sort_order": 1
+    },
+    {
+      "id": "jtr-031",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "recommendation_level": "essential",
+      "reason": "SNS 콘텐츠, 배너 광고, 마케팅 시각물 제작에 필수",
+      "sort_order": 2
+    },
+    {
+      "id": "jtr-032",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440010",
+      "recommendation_level": "recommended",
+      "reason": "시선을 사로잡는 고품질 마케팅 이미지 생성에 활용",
+      "sort_order": 3
+    },
+    {
+      "id": "jtr-033",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440011",
+      "recommendation_level": "recommended",
+      "reason": "한국어 프롬프트로 마케팅용 이미지를 빠르게 생성",
+      "sort_order": 4
+    },
+    {
+      "id": "jtr-034",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "recommendation_level": "recommended",
+      "reason": "마케팅 보고서와 프레젠테이션을 AI로 빠르게 제작",
+      "sort_order": 5
+    },
+    {
+      "id": "jtr-035",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "recommendation_level": "optional",
+      "reason": "경쟁사 분석과 시장 트렌드 리서치에 출처 기반 검색 활용",
+      "sort_order": 6
+    },
+    {
+      "id": "jtr-036",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440072",
+      "recommendation_level": "optional",
+      "reason": "마케팅 워크플로우 자동화 (이메일 발송, SNS 포스팅 등)",
+      "sort_order": 7
+    },
+    {
+      "id": "jtr-040",
+      "job_category_id": "job-video",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440021",
+      "recommendation_level": "essential",
+      "reason": "영상 편집과 AI 자막 생성을 무료로 제공하는 크리에이터 필수 도구",
+      "sort_order": 1
+    },
+    {
+      "id": "jtr-041",
+      "job_category_id": "job-video",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440020",
+      "recommendation_level": "essential",
+      "reason": "텍스트/이미지에서 영상 클립 생성으로 콘텐츠 제작 혁신",
+      "sort_order": 2
+    },
+    {
+      "id": "jtr-042",
+      "job_category_id": "job-video",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440022",
+      "recommendation_level": "recommended",
+      "reason": "한국어 자막 자동 생성에 특화되어 국내 크리에이터에게 필수",
+      "sort_order": 3
+    },
+    {
+      "id": "jtr-043",
+      "job_category_id": "job-video",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440010",
+      "recommendation_level": "recommended",
+      "reason": "영상 썸네일과 시각 에셋 제작에 고품질 이미지 생성 활용",
+      "sort_order": 4
+    },
+    {
+      "id": "jtr-044",
+      "job_category_id": "job-video",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440040",
+      "recommendation_level": "optional",
+      "reason": "영상 배경음악과 인트로 음악을 AI로 직접 제작",
+      "sort_order": 5
+    },
+    {
+      "id": "jtr-045",
+      "job_category_id": "job-video",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "recommendation_level": "optional",
+      "reason": "영상 스크립트 작성과 기획안 초안 작성에 활용",
+      "sort_order": 6
+    },
+    {
+      "id": "jtr-050",
+      "job_category_id": "job-writer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "recommendation_level": "essential",
+      "reason": "글 구조 기획, 초안 작성, 퇴고 및 문체 개선에 가장 범용적인 도구",
+      "sort_order": 1
+    },
+    {
+      "id": "jtr-051",
+      "job_category_id": "job-writer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440002",
+      "recommendation_level": "essential",
+      "reason": "긴 원고 분석, 정교한 문장 다듬기, 논리적 글쓰기에 최적화",
+      "sort_order": 2
+    },
+    {
+      "id": "jtr-052",
+      "job_category_id": "job-writer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440070",
+      "recommendation_level": "recommended",
+      "reason": "무료로 GPT-4o를 활용한 한국어 글쓰기와 템플릿 제공",
+      "sort_order": 3
+    },
+    {
+      "id": "jtr-053",
+      "job_category_id": "job-writer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440005",
+      "recommendation_level": "recommended",
+      "reason": "글 작성 워크스페이스 안에서 AI 요약·개선 기능으로 원고 관리",
+      "sort_order": 4
+    },
+    {
+      "id": "jtr-054",
+      "job_category_id": "job-writer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "recommendation_level": "optional",
+      "reason": "팩트체크와 자료 조사에 출처 명시 검색이 유용",
+      "sort_order": 5
+    },
+    {
+      "id": "jtr-055",
+      "job_category_id": "job-writer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440060",
+      "recommendation_level": "optional",
+      "reason": "해외 자료 번역과 다국어 콘텐츠 제작에 활용",
+      "sort_order": 6
+    },
+    {
+      "id": "jtr-060",
+      "job_category_id": "job-data",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440050",
+      "recommendation_level": "essential",
+      "reason": "자연어로 데이터 분석 요청이 가능한 전문 데이터 분석 도구",
+      "sort_order": 1
+    },
+    {
+      "id": "jtr-061",
+      "job_category_id": "job-data",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "recommendation_level": "essential",
+      "reason": "코드 인터프리터로 Python 기반 데이터 분석과 시각화 수행",
+      "sort_order": 2
+    },
+    {
+      "id": "jtr-062",
+      "job_category_id": "job-data",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440052",
+      "recommendation_level": "recommended",
+      "reason": "엔터프라이즈급 데이터 시각화와 대시보드 제작의 업계 표준",
+      "sort_order": 3
+    },
+    {
+      "id": "jtr-063",
+      "job_category_id": "job-data",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "recommendation_level": "recommended",
+      "reason": "분석 결과를 프레젠테이션으로 빠르게 변환하여 공유",
+      "sort_order": 4
+    },
+    {
+      "id": "jtr-064",
+      "job_category_id": "job-data",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440002",
+      "recommendation_level": "optional",
+      "reason": "긴 데이터 보고서 분석과 인사이트 요약에 긴 컨텍스트 활용",
+      "sort_order": 5
+    },
+    {
+      "id": "jtr-065",
+      "job_category_id": "job-data",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440030",
+      "recommendation_level": "optional",
+      "reason": "Python/R 데이터 분석 코드 작성 시 AI 코드 자동완성 활용",
+      "sort_order": 6
+    },
+    {
+      "id": "jtr-070",
+      "job_category_id": "job-biz",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "recommendation_level": "essential",
+      "reason": "사업 계획서 작성, 시장 분석, 이메일 커뮤니케이션의 만능 도구",
+      "sort_order": 1
+    },
+    {
+      "id": "jtr-071",
+      "job_category_id": "job-biz",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "recommendation_level": "essential",
+      "reason": "시장 조사와 경쟁사 분석에 출처 기반 AI 검색이 핵심적",
+      "sort_order": 2
+    },
+    {
+      "id": "jtr-072",
+      "job_category_id": "job-biz",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "recommendation_level": "recommended",
+      "reason": "투자자 발표 자료와 사업 제안서를 AI로 빠르게 제작",
+      "sort_order": 3
+    },
+    {
+      "id": "jtr-073",
+      "job_category_id": "job-biz",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "recommendation_level": "recommended",
+      "reason": "마케팅 시각물과 브랜딩 에셋을 직접 제작하여 비용 절감",
+      "sort_order": 4
+    },
+    {
+      "id": "jtr-074",
+      "job_category_id": "job-biz",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440005",
+      "recommendation_level": "recommended",
+      "reason": "팀 지식 관리와 문서 작성을 AI가 보조하는 워크스페이스",
+      "sort_order": 5
+    },
+    {
+      "id": "jtr-075",
+      "job_category_id": "job-biz",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440072",
+      "recommendation_level": "optional",
+      "reason": "반복 업무 자동화로 소규모 팀의 운영 효율 극대화",
+      "sort_order": 6
+    },
+    {
+      "id": "jtr-076",
+      "job_category_id": "job-biz",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440050",
+      "recommendation_level": "optional",
+      "reason": "매출·재무 데이터를 자연어로 분석하여 의사결정 지원",
+      "sort_order": 7
+    },
+    {
+      "id": "jtr-080",
+      "job_category_id": "job-music",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440040",
+      "recommendation_level": "essential",
+      "reason": "AI로 보컬 포함 완성곡을 빠르게 프로토타이핑하는 핵심 도구",
+      "sort_order": 1
+    },
+    {
+      "id": "jtr-081",
+      "job_category_id": "job-music",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440041",
+      "recommendation_level": "essential",
+      "reason": "고품질 음악 생성과 곡 확장 기능으로 창작 영감 제공",
+      "sort_order": 2
+    },
+    {
+      "id": "jtr-082",
+      "job_category_id": "job-music",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440042",
+      "recommendation_level": "recommended",
+      "reason": "클래식·영화 음악 등 기악곡 작편곡에 특화된 AI 작곡 도구",
+      "sort_order": 3
+    },
+    {
+      "id": "jtr-083",
+      "job_category_id": "job-music",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "recommendation_level": "optional",
+      "reason": "가사 작성, 음악 이론 질문, 마케팅 전략 수립에 활용",
+      "sort_order": 4
+    },
+    {
+      "id": "jtr-090",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "recommendation_level": "essential",
+      "reason": "PRD 작성, 요구사항 정리, 미팅 노트 요약 등 기획 업무의 핵심",
+      "sort_order": 1
+    },
+    {
+      "id": "jtr-091",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440005",
+      "recommendation_level": "essential",
+      "reason": "제품 문서 관리와 AI 기반 지식 검색으로 팀 협업 강화",
+      "sort_order": 2
+    },
+    {
+      "id": "jtr-092",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "recommendation_level": "recommended",
+      "reason": "제품 로드맵과 스프린트 회고 프레젠테이션 빠르게 제작",
+      "sort_order": 3
+    },
+    {
+      "id": "jtr-093",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440002",
+      "recommendation_level": "recommended",
+      "reason": "긴 기획 문서 분석과 정교한 피드백 작성에 탁월",
+      "sort_order": 4
+    },
+    {
+      "id": "jtr-094",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "recommendation_level": "optional",
+      "reason": "경쟁 제품 리서치와 시장 동향 파악에 출처 기반 검색 활용",
+      "sort_order": 5
+    },
+    {
+      "id": "jtr-095",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440072",
+      "recommendation_level": "optional",
+      "reason": "팀 간 알림, 보고서 자동 생성 등 운영 워크플로우 자동화",
+      "sort_order": 6
+    },
+    {
+      "id": "jtr-096",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440050",
+      "recommendation_level": "optional",
+      "reason": "제품 KPI 데이터 분석과 시각화로 데이터 기반 의사결정",
+      "sort_order": 7
+    }
+  ],
+  "edu_tool_recommendations": [
+    {
+      "id": "etr-001",
+      "edu_level_id": "edu-elementary-low",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440062",
+      "safety_level": "safe",
+      "use_case": "영어 단어 뜻 찾기와 간단한 문장 번역 학습",
+      "sort_order": 1
+    },
+    {
+      "id": "etr-002",
+      "edu_level_id": "edu-elementary-low",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440061",
+      "safety_level": "safe",
+      "use_case": "한국어-영어 단어 학습과 이미지 번역으로 학습 흥미 유발",
+      "sort_order": 2
+    },
+    {
+      "id": "etr-003",
+      "edu_level_id": "edu-elementary-low",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440070",
+      "safety_level": "guided",
+      "use_case": "부모님과 함께 동화 만들기, 간단한 질문 답변 (보호자 감독 필요)",
+      "sort_order": 3
+    },
+    {
+      "id": "etr-010",
+      "edu_level_id": "edu-elementary-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440062",
+      "safety_level": "safe",
+      "use_case": "영어 문장 번역과 독해 학습 보조",
+      "sort_order": 1
+    },
+    {
+      "id": "etr-011",
+      "edu_level_id": "edu-elementary-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440061",
+      "safety_level": "safe",
+      "use_case": "영어 숙제 도움과 외국어 학습 보조 도구",
+      "sort_order": 2
+    },
+    {
+      "id": "etr-012",
+      "edu_level_id": "edu-elementary-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440070",
+      "safety_level": "guided",
+      "use_case": "독후감 아이디어 잡기, 학습 질문 답변 (교사/보호자 가이드 하에)",
+      "sort_order": 3
+    },
+    {
+      "id": "etr-013",
+      "edu_level_id": "edu-elementary-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "safety_level": "safe",
+      "use_case": "학교 발표 자료 포스터와 그림 만들기",
+      "sort_order": 4
+    },
+    {
+      "id": "etr-014",
+      "edu_level_id": "edu-elementary-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440040",
+      "safety_level": "guided",
+      "use_case": "음악 수업에서 간단한 멜로디 만들어보기 체험 (교사 지도 하에)",
+      "sort_order": 5
+    },
+    {
+      "id": "etr-020",
+      "edu_level_id": "edu-middle",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440062",
+      "safety_level": "safe",
+      "use_case": "영어 독해와 작문 학습 보조, 다국어 자료 번역",
+      "sort_order": 1
+    },
+    {
+      "id": "etr-021",
+      "edu_level_id": "edu-middle",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440061",
+      "safety_level": "safe",
+      "use_case": "영어 에세이 번역 참고와 다국어 학습 보조",
+      "sort_order": 2
+    },
+    {
+      "id": "etr-022",
+      "edu_level_id": "edu-middle",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440070",
+      "safety_level": "guided",
+      "use_case": "학습 질문, 수행평가 아이디어 브레인스토밍, 글쓰기 연습",
+      "sort_order": 3
+    },
+    {
+      "id": "etr-023",
+      "edu_level_id": "edu-middle",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "safety_level": "guided",
+      "use_case": "과학·사회 탐구 보고서 자료 조사와 구조화 (비판적 사고 병행)",
+      "sort_order": 4
+    },
+    {
+      "id": "etr-024",
+      "edu_level_id": "edu-middle",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "safety_level": "safe",
+      "use_case": "발표 자료와 포스터 디자인 제작",
+      "sort_order": 5
+    },
+    {
+      "id": "etr-025",
+      "edu_level_id": "edu-middle",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "safety_level": "guided",
+      "use_case": "수행평가 프레젠테이션 자동 생성으로 발표 준비",
+      "sort_order": 6
+    },
+    {
+      "id": "etr-026",
+      "edu_level_id": "edu-middle",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440040",
+      "safety_level": "guided",
+      "use_case": "음악 수업 프로젝트로 AI 작곡 체험 학습",
+      "sort_order": 7
+    },
+    {
+      "id": "etr-030",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "safety_level": "guided",
+      "use_case": "논술 준비, 자기소개서 작성 연습, 학습 질문 해결",
+      "sort_order": 1
+    },
+    {
+      "id": "etr-031",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440002",
+      "safety_level": "guided",
+      "use_case": "긴 지문 분석, 논술 첨삭, 독서 토론 준비",
+      "sort_order": 2
+    },
+    {
+      "id": "etr-032",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "safety_level": "guided",
+      "use_case": "탐구 보고서 자료 조사에 출처 기반 검색 활용",
+      "sort_order": 3
+    },
+    {
+      "id": "etr-033",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440060",
+      "safety_level": "safe",
+      "use_case": "영어 원서 독해와 해외 논문 번역 보조",
+      "sort_order": 4
+    },
+    {
+      "id": "etr-034",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440062",
+      "safety_level": "safe",
+      "use_case": "다국어 자료 번역과 영어 작문 참고",
+      "sort_order": 5
+    },
+    {
+      "id": "etr-035",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "safety_level": "safe",
+      "use_case": "학교 발표 자료와 동아리 홍보물 디자인",
+      "sort_order": 6
+    },
+    {
+      "id": "etr-036",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "safety_level": "guided",
+      "use_case": "탐구 발표와 수행평가 프레젠테이션 제작",
+      "sort_order": 7
+    },
+    {
+      "id": "etr-037",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440070",
+      "safety_level": "guided",
+      "use_case": "자기소개서 초안 작성과 학습 보조 (무료 활용)",
+      "sort_order": 8
+    },
+    {
+      "id": "etr-038",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440032",
+      "safety_level": "advanced",
+      "use_case": "정보 과목 코딩 실습에 브라우저 기반 IDE 활용",
+      "sort_order": 9
+    },
+    {
+      "id": "etr-040",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "safety_level": "advanced",
+      "use_case": "논문 초안 작성, 코딩 과제, 데이터 분석, 취업 준비",
+      "sort_order": 1
+    },
+    {
+      "id": "etr-041",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440002",
+      "safety_level": "advanced",
+      "use_case": "논문 분석, 코드 리뷰, 장문 보고서 작성 및 첨삭",
+      "sort_order": 2
+    },
+    {
+      "id": "etr-042",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440003",
+      "safety_level": "advanced",
+      "use_case": "Google 서비스 연동 리서치와 멀티모달 과제 수행",
+      "sort_order": 3
+    },
+    {
+      "id": "etr-043",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "safety_level": "advanced",
+      "use_case": "학술 리서치와 논문 자료 조사에 출처 기반 검색",
+      "sort_order": 4
+    },
+    {
+      "id": "etr-044",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440030",
+      "safety_level": "advanced",
+      "use_case": "컴퓨터공학 전공 코딩 과제와 프로젝트 개발 보조",
+      "sort_order": 5
+    },
+    {
+      "id": "etr-045",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440031",
+      "safety_level": "advanced",
+      "use_case": "대규모 프로젝트 코딩과 졸업 작품 개발에 AI IDE 활용",
+      "sort_order": 6
+    },
+    {
+      "id": "etr-046",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440060",
+      "safety_level": "safe",
+      "use_case": "해외 논문 번역과 영어 레포트 작성 참고",
+      "sort_order": 7
+    },
+    {
+      "id": "etr-047",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440050",
+      "safety_level": "advanced",
+      "use_case": "통계학·데이터사이언스 과제에서 데이터 분석 및 시각화",
+      "sort_order": 8
+    },
+    {
+      "id": "etr-048",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "safety_level": "advanced",
+      "use_case": "팀 프로젝트 발표 자료와 포트폴리오 프레젠테이션 제작",
+      "sort_order": 9
+    },
+    {
+      "id": "etr-049",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440010",
+      "safety_level": "advanced",
+      "use_case": "디자인 전공 시각 작품 제작과 컨셉 아트 생성",
+      "sort_order": 10
+    },
+    {
+      "id": "etr-04a",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "safety_level": "safe",
+      "use_case": "동아리 홍보물, 발표 자료, 취업용 디자인 포트폴리오 제작",
+      "sort_order": 11
+    },
+    {
+      "id": "etr-04b",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440032",
+      "safety_level": "advanced",
+      "use_case": "실습 환경 없이 브라우저에서 코딩 과제 수행 및 배포",
+      "sort_order": 12
+    },
+    {
+      "id": "etr-050",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "safety_level": "advanced",
+      "use_case": "수업 자료 제작, 시험 문제 출제, 학생 피드백 작성 자동화",
+      "sort_order": 1
+    },
+    {
+      "id": "etr-051",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440002",
+      "safety_level": "advanced",
+      "use_case": "교육 과정 설계, 긴 교안 분석 및 개선, 학술 자료 검토",
+      "sort_order": 2
+    },
+    {
+      "id": "etr-052",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "safety_level": "advanced",
+      "use_case": "수업 프레젠테이션과 학부모 설명회 자료 빠르게 제작",
+      "sort_order": 3
+    },
+    {
+      "id": "etr-053",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "safety_level": "safe",
+      "use_case": "학급 게시물, 학교 행사 포스터, 교육 시각 자료 디자인",
+      "sort_order": 4
+    },
+    {
+      "id": "etr-054",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440070",
+      "safety_level": "advanced",
+      "use_case": "무료 AI 도구로 학생 지도용 예시 콘텐츠 제작",
+      "sort_order": 5
+    },
+    {
+      "id": "etr-055",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "safety_level": "advanced",
+      "use_case": "최신 교육 트렌드 리서치와 수업 자료 팩트체크",
+      "sort_order": 6
+    },
+    {
+      "id": "etr-056",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440060",
+      "safety_level": "safe",
+      "use_case": "해외 교육 자료 번역과 다문화 학생 소통 지원",
+      "sort_order": 7
+    },
+    {
+      "id": "etr-057",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440050",
+      "safety_level": "advanced",
+      "use_case": "학생 성적 데이터 분석과 학습 성과 시각화",
+      "sort_order": 8
+    },
+    {
+      "id": "etr-058",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440022",
+      "safety_level": "advanced",
+      "use_case": "수업 영상 제작 시 한국어 자막 자동 생성",
+      "sort_order": 9
+    },
+    {
+      "id": "etr-059",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440040",
+      "safety_level": "advanced",
+      "use_case": "음악 수업용 샘플 곡 제작과 AI 음악 교육 시연",
+      "sort_order": 10
+    }
+  ],
+  "news": [
+    {
+      "id": "news-1",
+      "title": "OpenAI, GPT-5 출시 임박... 멀티모달 성능 대폭 향상",
+      "summary": "OpenAI가 차세대 모델 GPT-5의 출시를 앞두고 있다. 새 모델은 이미지, 음성, 영상을 아우르는 멀티모달 성능이 크게 향상될 전망.",
+      "source_url": "https://example.com/news/1",
+      "image_url": null,
+      "category": "launch",
+      "related_tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "view_count": 15420,
+      "published_at": "2026-02-05T09:00:00Z",
+      "created_at": "2026-02-05T09:00:00Z"
+    },
+    {
+      "id": "news-2",
+      "title": "Midjourney, 한국어 프롬프트 공식 지원 시작",
+      "summary": "Midjourney가 v6.5 업데이트에서 한국어 프롬프트를 공식 지원하기 시작했다. 한국 사용자들의 접근성이 크게 개선될 전망.",
+      "source_url": "https://example.com/news/2",
+      "image_url": null,
+      "category": "update",
+      "related_tool_id": "550e8400-e29b-41d4-a716-446655440010",
+      "view_count": 8930,
+      "published_at": "2026-02-04T14:00:00Z",
+      "created_at": "2026-02-04T14:00:00Z"
+    },
+    {
+      "id": "news-3",
+      "title": "GitHub Copilot 무료 플랜 사용량 확대, 월 4,000회로 증가",
+      "summary": "GitHub이 Copilot 무료 플랜의 코드 자동완성 횟수를 월 2,000회에서 4,000회로 두 배 늘렸다.",
+      "source_url": "https://example.com/news/3",
+      "image_url": null,
+      "category": "pricing",
+      "related_tool_id": "550e8400-e29b-41d4-a716-446655440030",
+      "view_count": 12340,
+      "published_at": "2026-02-03T10:00:00Z",
+      "created_at": "2026-02-03T10:00:00Z"
+    },
+    {
+      "id": "news-4",
+      "title": "교육부, AI 활용 교육 가이드라인 발표... 초등학생 사용 기준 마련",
+      "summary": "교육부가 초중고 학생의 AI 도구 활용에 대한 공식 가이드라인을 발표했다. 학년별 적합한 AI 도구와 사용 수칙이 포함.",
+      "source_url": "https://example.com/news/4",
+      "image_url": null,
+      "category": "industry",
+      "related_tool_id": null,
+      "view_count": 6780,
+      "published_at": "2026-02-02T11:00:00Z",
+      "created_at": "2026-02-02T11:00:00Z"
+    },
+    {
+      "id": "news-5",
+      "title": "Suno AI, 상업적 사용 가능한 새 라이선스 모델 도입",
+      "summary": "AI 음악 생성 서비스 Suno가 크리에이터들의 상업적 활용을 위한 새로운 라이선스 체계를 도입했다.",
+      "source_url": "https://example.com/news/5",
+      "image_url": null,
+      "category": "update",
+      "related_tool_id": "550e8400-e29b-41d4-a716-446655440040",
+      "view_count": 4560,
+      "published_at": "2026-02-01T15:00:00Z",
+      "created_at": "2026-02-01T15:00:00Z"
     }
   ]
 }
