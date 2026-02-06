@@ -1,0 +1,872 @@
+{
+  "categories": [
+    {
+      "id": "cat-text-gen",
+      "name": "텍스트 생성",
+      "slug": "text-generation",
+      "icon": "PenTool",
+      "description": "AI 기반 텍스트 생성 및 작문 도구",
+      "sort_order": 1
+    },
+    {
+      "id": "cat-image-gen",
+      "name": "이미지 생성",
+      "slug": "image-generation",
+      "icon": "Image",
+      "description": "AI 기반 이미지 생성 및 편집 도구",
+      "sort_order": 2
+    },
+    {
+      "id": "cat-video-edit",
+      "name": "영상 편집",
+      "slug": "video-editing",
+      "icon": "Video",
+      "description": "AI 기반 영상 생성 및 편집 도구",
+      "sort_order": 3
+    },
+    {
+      "id": "cat-coding",
+      "name": "코딩 도구",
+      "slug": "coding-tools",
+      "icon": "Code",
+      "description": "AI 기반 코드 생성 및 개발 보조 도구",
+      "sort_order": 4
+    },
+    {
+      "id": "cat-music-gen",
+      "name": "음악 생성",
+      "slug": "music-generation",
+      "icon": "Music",
+      "description": "AI 기반 음악 및 오디오 생성 도구",
+      "sort_order": 5
+    },
+    {
+      "id": "cat-data",
+      "name": "데이터 분석",
+      "slug": "data-analysis",
+      "icon": "BarChart3",
+      "description": "AI 기반 데이터 분석 및 시각화 도구",
+      "sort_order": 6
+    },
+    {
+      "id": "cat-translation",
+      "name": "번역",
+      "slug": "translation",
+      "icon": "Languages",
+      "description": "AI 기반 번역 및 다국어 지원 도구",
+      "sort_order": 7
+    },
+    {
+      "id": "cat-others",
+      "name": "기타",
+      "slug": "others",
+      "icon": "Sparkles",
+      "description": "기타 AI 도구 및 서비스",
+      "sort_order": 8
+    }
+  ],
+  "tools": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "name": "ChatGPT",
+      "slug": "chatgpt",
+      "description": "OpenAI의 대화형 AI 어시스턴트로, 글쓰기·코딩·분석 등 다목적 활용 가능",
+      "long_description": null,
+      "category_id": "cat-text-gen",
+      "url": "https://chat.openai.com",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "GPT-4o 매월 80회 무료, GPT-4o mini 무제한, 파일 업로드 및 이미지 생성 일부 제한",
+      "monthly_price": 20,
+      "rating_avg": 4.7,
+      "review_count": 12847,
+      "visit_count": 1892450,
+      "tags": ["챗봇", "글쓰기", "코딩", "다목적"],
+      "is_editor_pick": true,
+      "supports_korean": true,
+      "pros": [
+        "다양한 작업에 범용적으로 활용 가능",
+        "플러그인 및 GPTs 생태계가 풍부함",
+        "한국어 성능이 뛰어남"
+      ],
+      "cons": [
+        "무료 플랜의 GPT-4o 사용 횟수 제한",
+        "실시간 정보 검색 정확도가 가끔 떨어짐"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "name": "Claude",
+      "slug": "claude",
+      "description": "Anthropic의 안전 중심 AI 어시스턴트로, 긴 문서 분석과 정교한 글쓰기에 강점",
+      "long_description": null,
+      "category_id": "cat-text-gen",
+      "url": "https://claude.ai",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "Claude Sonnet 일일 약 30회 무료, 파일 업로드 5개/대화, Projects 기능 제한적 사용 가능",
+      "monthly_price": 20,
+      "rating_avg": 4.8,
+      "review_count": 6823,
+      "visit_count": 985320,
+      "tags": ["챗봇", "글쓰기", "문서 분석", "코딩"],
+      "is_editor_pick": true,
+      "supports_korean": true,
+      "pros": [
+        "200K 토큰 컨텍스트로 긴 문서 분석에 탁월",
+        "정확하고 안전한 답변 품질",
+        "코드 작성 및 리뷰 능력이 뛰어남"
+      ],
+      "cons": [
+        "무료 플랜 일일 사용량 제한이 빡빡함",
+        "이미지 생성 기능 없음"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440003",
+      "name": "Gemini",
+      "slug": "gemini",
+      "description": "Google의 멀티모달 AI로, 검색 연동과 Google 워크스페이스 통합이 강점",
+      "long_description": null,
+      "category_id": "cat-text-gen",
+      "url": "https://gemini.google.com",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "Gemini 1.5 Flash 무제한 무료, 이미지 생성 하루 50회, 파일 업로드 가능, Google 검색 연동 무료",
+      "monthly_price": 19.99,
+      "rating_avg": 4.3,
+      "review_count": 5241,
+      "visit_count": 1245670,
+      "tags": ["챗봇", "검색", "Google 연동", "멀티모달"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "Google 검색과의 실시간 연동이 강력함",
+        "무료 플랜에서도 넉넉한 사용량 제공",
+        "Gmail·Docs 등 Google 서비스 통합"
+      ],
+      "cons": [
+        "한국어 응답 품질이 ChatGPT·Claude 대비 다소 부족",
+        "창의적 글쓰기 능력이 상대적으로 약함"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440004",
+      "name": "Perplexity",
+      "slug": "perplexity",
+      "description": "AI 기반 검색 엔진으로, 출처를 명시한 정확한 답변 제공",
+      "long_description": null,
+      "category_id": "cat-text-gen",
+      "url": "https://www.perplexity.ai",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "기본 검색 무제한, Pro 검색(GPT-4o/Claude 활용) 하루 5회 무료, 파일 업로드 3개/일",
+      "monthly_price": 20,
+      "rating_avg": 4.5,
+      "review_count": 3892,
+      "visit_count": 723450,
+      "tags": ["AI 검색", "리서치", "출처 제공"],
+      "is_editor_pick": true,
+      "supports_korean": true,
+      "pros": [
+        "출처 링크를 항상 제공하여 팩트체크 용이",
+        "최신 정보 검색 정확도가 높음",
+        "깔끔한 UI와 빠른 응답 속도"
+      ],
+      "cons": [
+        "Pro 검색 무료 횟수가 하루 5회로 적음",
+        "심층 분석보다는 간결한 요약에 특화"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440005",
+      "name": "Notion AI",
+      "slug": "notion-ai",
+      "description": "Notion에 내장된 AI 어시스턴트로, 문서 작성·요약·번역을 워크스페이스 안에서 처리",
+      "long_description": null,
+      "category_id": "cat-text-gen",
+      "url": "https://www.notion.so/product/ai",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "Notion 무료 플랜에서 AI 응답 월 20회 무료, 이후 멤버당 $10/월 추가",
+      "monthly_price": 10,
+      "rating_avg": 4.1,
+      "review_count": 2156,
+      "visit_count": 412300,
+      "tags": ["문서 작성", "요약", "워크스페이스", "생산성"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "Notion 워크스페이스와 완벽한 통합",
+        "문서 요약·번역·개선이 한 클릭으로 가능",
+        "Q&A 기능으로 워크스페이스 내 정보 검색 가능"
+      ],
+      "cons": [
+        "Notion을 사용하지 않으면 의미 없음",
+        "무료 사용 횟수가 월 20회로 매우 적음",
+        "독립적인 AI 도구 대비 성능이 제한적"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440010",
+      "name": "Midjourney",
+      "slug": "midjourney",
+      "description": "디스코드 기반 AI 이미지 생성 도구로, 예술적이고 고품질의 이미지 생성에 특화",
+      "long_description": null,
+      "category_id": "cat-image-gen",
+      "url": "https://www.midjourney.com",
+      "logo_url": null,
+      "pricing_type": "Paid",
+      "free_quota_detail": "무료 체험 약 25회 이미지 생성 (신규 가입 시, 수시 변경), 이후 구독 필요",
+      "monthly_price": 10,
+      "rating_avg": 4.8,
+      "review_count": 9432,
+      "visit_count": 1567230,
+      "tags": ["이미지 생성", "아트", "디자인", "일러스트"],
+      "is_editor_pick": true,
+      "supports_korean": false,
+      "pros": [
+        "이미지 품질과 예술성이 업계 최고 수준",
+        "스타일 일관성 유지 기능이 뛰어남",
+        "활발한 커뮤니티와 프롬프트 공유"
+      ],
+      "cons": [
+        "무료 플랜이 사실상 없음 (체험만 가능)",
+        "한국어 프롬프트 지원이 미흡함",
+        "디스코드 기반 인터페이스가 초보자에게 불편"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440011",
+      "name": "DALL-E 3",
+      "slug": "dall-e-3",
+      "description": "OpenAI의 이미지 생성 모델로, ChatGPT 내에서 텍스트 프롬프트로 이미지 생성",
+      "long_description": null,
+      "category_id": "cat-image-gen",
+      "url": "https://openai.com/dall-e-3",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "ChatGPT 무료 플랜에서 하루 2장 생성, Plus 구독 시 하루 50장, API는 이미지당 $0.04~$0.08",
+      "monthly_price": 20,
+      "rating_avg": 4.4,
+      "review_count": 6718,
+      "visit_count": 1123450,
+      "tags": ["이미지 생성", "텍스트 기반", "ChatGPT 연동"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "ChatGPT 대화 안에서 바로 이미지 생성 가능",
+        "텍스트 렌더링이 타 모델 대비 정확함",
+        "한국어 프롬프트를 잘 이해함"
+      ],
+      "cons": [
+        "무료 플랜에서 하루 2장 제한이 빡빡함",
+        "Midjourney 대비 예술적 스타일이 제한적",
+        "생성 속도가 상대적으로 느림"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440012",
+      "name": "Stable Diffusion",
+      "slug": "stable-diffusion",
+      "description": "오픈소스 AI 이미지 생성 모델로, 로컬 설치 및 커스터마이징이 자유로움",
+      "long_description": null,
+      "category_id": "cat-image-gen",
+      "url": "https://stability.ai",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "오픈소스 모델은 완전 무료 (로컬 GPU 필요), DreamStudio 웹에서 신규 가입 시 25크레딧 제공 (약 30장)",
+      "monthly_price": 10,
+      "rating_avg": 4.3,
+      "review_count": 5892,
+      "visit_count": 876540,
+      "tags": ["이미지 생성", "오픈소스", "로컬 실행", "커스터마이징"],
+      "is_editor_pick": false,
+      "supports_korean": false,
+      "pros": [
+        "오픈소스로 완전 무료 사용 가능 (로컬)",
+        "LoRA·ControlNet 등 커스터마이징 자유도 최고",
+        "활발한 오픈소스 커뮤니티와 모델 공유"
+      ],
+      "cons": [
+        "로컬 실행 시 고사양 GPU가 필요함 (VRAM 8GB+)",
+        "설치 및 설정이 비개발자에게 어려움",
+        "프롬프트 엔지니어링 학습 곡선이 높음"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440020",
+      "name": "Runway",
+      "slug": "runway",
+      "description": "AI 기반 영상 생성·편집 플랫폼으로, 텍스트·이미지에서 영상 생성 가능",
+      "long_description": null,
+      "category_id": "cat-video-edit",
+      "url": "https://runwayml.com",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "신규 가입 시 125크레딧 제공 (Gen-3 Alpha 약 25초 분량), 이후 월 $12부터",
+      "monthly_price": 12,
+      "rating_avg": 4.5,
+      "review_count": 4231,
+      "visit_count": 654320,
+      "tags": ["영상 생성", "영상 편집", "모션", "VFX"],
+      "is_editor_pick": true,
+      "supports_korean": false,
+      "pros": [
+        "텍스트/이미지에서 영상 생성 품질이 업계 최고",
+        "인페인팅·모션 브러시 등 편집 기능 풍부",
+        "웹 기반으로 별도 설치 불필요"
+      ],
+      "cons": [
+        "무료 크레딧이 금방 소진됨 (약 25초 분량)",
+        "유료 플랜도 크레딧 제한이 있어 비용이 빠르게 증가",
+        "한국어 프롬프트 지원이 미흡함"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440021",
+      "name": "CapCut",
+      "slug": "capcut",
+      "description": "ByteDance의 무료 영상 편집 앱으로, AI 자막·배경 제거 등 AI 기능 탑재",
+      "long_description": null,
+      "category_id": "cat-video-edit",
+      "url": "https://www.capcut.com",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "기본 편집 기능 전체 무료, AI 자막 생성 월 500분, 배경 제거 월 10회, 프리미엄 템플릿 제한",
+      "monthly_price": 9.99,
+      "rating_avg": 4.4,
+      "review_count": 8923,
+      "visit_count": 2341200,
+      "tags": ["영상 편집", "자막", "SNS", "모바일"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "대부분의 기능이 무료로 제공됨",
+        "AI 자동 자막 생성이 매우 정확함",
+        "모바일·데스크톱·웹 모두 지원"
+      ],
+      "cons": [
+        "무료 버전에서 일부 프리미엄 에셋 사용 불가",
+        "전문 영상 편집 소프트웨어 대비 기능 제한",
+        "내보내기 시 워터마크 (일부 기능)"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440022",
+      "name": "Vrew",
+      "slug": "vrew",
+      "description": "AI 자막 자동 생성 기반 영상 편집 프로그램으로, 한국어 자막에 특화",
+      "long_description": null,
+      "category_id": "cat-video-edit",
+      "url": "https://vrew.voyagerx.com",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "음성 분석 월 120분 무료, AI 음성(TTS) 월 1만 자, AI 이미지 월 100장, 영상 내보내기 무제한",
+      "monthly_price": 9.59,
+      "rating_avg": 4.2,
+      "review_count": 3421,
+      "visit_count": 512340,
+      "tags": ["영상 편집", "자막", "한국어 특화", "TTS"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "한국어 음성 인식 및 자막 정확도가 높음",
+        "무료 플랜이 넉넉하여 개인 크리에이터에 적합",
+        "직관적인 텍스트 기반 영상 편집 방식"
+      ],
+      "cons": [
+        "고급 영상 편집 기능은 부족함",
+        "대용량 파일 처리 시 속도가 느림",
+        "해외 서비스 대비 AI 영상 생성 기능 미흡"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440030",
+      "name": "GitHub Copilot",
+      "slug": "github-copilot",
+      "description": "GitHub과 OpenAI의 AI 코드 자동완성 도구로, VS Code 등 IDE에서 실시간 코드 제안",
+      "long_description": null,
+      "category_id": "cat-coding",
+      "url": "https://github.com/features/copilot",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "무료 플랜에서 월 코드 자동완성 2,000회, 채팅 50회 제공, 학생·오픈소스 기여자 Pro 무료",
+      "monthly_price": 10,
+      "rating_avg": 4.6,
+      "review_count": 7845,
+      "visit_count": 1432100,
+      "tags": ["코드 자동완성", "IDE 플러그인", "개발 생산성"],
+      "is_editor_pick": true,
+      "supports_korean": false,
+      "pros": [
+        "코드 자동완성 정확도와 속도가 뛰어남",
+        "VS Code·JetBrains 등 주요 IDE 모두 지원",
+        "코드 리뷰 및 테스트 코드 생성 가능"
+      ],
+      "cons": [
+        "무료 플랜 월 2,000회 자동완성 제한",
+        "가끔 부정확한 코드를 자신 있게 제안함",
+        "한국어 주석 기반 코드 생성이 다소 약함"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440031",
+      "name": "Cursor",
+      "slug": "cursor",
+      "description": "AI 네이티브 코드 에디터로, 코드베이스 전체를 이해하고 편집하는 AI 페어 프로그래밍 도구",
+      "long_description": null,
+      "category_id": "cat-coding",
+      "url": "https://cursor.sh",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "월 프리미엄 모델(GPT-4/Claude) 요청 50회, 기본 모델 요청 200회, 자동완성 2,000회 무료",
+      "monthly_price": 20,
+      "rating_avg": 4.7,
+      "review_count": 4523,
+      "visit_count": 876540,
+      "tags": ["코드 에디터", "AI IDE", "페어 프로그래밍"],
+      "is_editor_pick": false,
+      "supports_korean": false,
+      "pros": [
+        "코드베이스 전체를 컨텍스트로 이해하는 AI",
+        "Cmd+K로 직관적인 코드 수정 가능",
+        "VS Code 기반이라 기존 확장 호환"
+      ],
+      "cons": [
+        "무료 플랜 프리미엄 모델 50회 제한이 빠르게 소진",
+        "VS Code 대비 가끔 안정성 이슈 발생",
+        "대규모 프로젝트에서 인덱싱 시간이 소요됨"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440032",
+      "name": "Replit",
+      "slug": "replit",
+      "description": "AI가 내장된 클라우드 IDE로, 브라우저에서 코드 작성·실행·배포까지 한 번에 가능",
+      "long_description": null,
+      "category_id": "cat-coding",
+      "url": "https://replit.com",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "기본 IDE 무료, AI 코드 생성(Ghostwriter) 월 1,000회 기본 모델 무료, 배포 시 월 무료 트래픽 10GB",
+      "monthly_price": 25,
+      "rating_avg": 4.2,
+      "review_count": 3654,
+      "visit_count": 654320,
+      "tags": ["클라우드 IDE", "코드 실행", "배포", "협업"],
+      "is_editor_pick": false,
+      "supports_korean": false,
+      "pros": [
+        "설치 없이 브라우저에서 바로 코딩 가능",
+        "코드 작성부터 배포까지 원스톱으로 처리",
+        "실시간 협업 기능이 강력함"
+      ],
+      "cons": [
+        "무료 플랜의 컴퓨팅 리소스가 제한적",
+        "대규모 프로젝트에서 속도가 느림",
+        "로컬 IDE 대비 확장 생태계가 부족함"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440040",
+      "name": "Suno",
+      "slug": "suno",
+      "description": "텍스트 프롬프트로 보컬 포함 완성곡을 생성하는 AI 음악 생성 플랫폼",
+      "long_description": null,
+      "category_id": "cat-music-gen",
+      "url": "https://suno.com",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "일 50크레딧 무료 (곡 생성 1회에 10크레딧, 하루 약 5곡), 비상업적 용도 제한",
+      "monthly_price": 10,
+      "rating_avg": 4.5,
+      "review_count": 5123,
+      "visit_count": 723400,
+      "tags": ["음악 생성", "작곡", "보컬", "AI 음악"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "보컬 포함 완성도 높은 곡을 바로 생성",
+        "한국어 가사 입력 및 한국어 노래 생성 가능",
+        "다양한 장르와 스타일 지원"
+      ],
+      "cons": [
+        "무료 생성 곡은 상업적 사용 불가",
+        "곡의 구조적 반복이 단조로울 수 있음",
+        "특정 아티스트 스타일 모방에 윤리적 논란"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440041",
+      "name": "Udio",
+      "slug": "udio",
+      "description": "고품질 AI 음악 생성 서비스로, 정교한 음악 스타일 제어와 확장 기능 제공",
+      "long_description": null,
+      "category_id": "cat-music-gen",
+      "url": "https://www.udio.com",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "월 100크레딧 무료 (1곡 생성에 2크레딧, 월 약 50곡), 최대 15분 길이까지 확장 가능",
+      "monthly_price": 10,
+      "rating_avg": 4.4,
+      "review_count": 2876,
+      "visit_count": 412300,
+      "tags": ["음악 생성", "작곡", "오디오", "AI 음악"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "음악 품질이 매우 높고 장르 다양성 우수",
+        "곡 확장(Extension) 기능으로 긴 곡 생성 가능",
+        "무료 크레딧이 넉넉한 편"
+      ],
+      "cons": [
+        "Suno 대비 인지도와 커뮤니티가 작음",
+        "가끔 보컬 발음이 부자연스러움",
+        "세밀한 음악 구조 제어가 어려움"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440042",
+      "name": "AIVA",
+      "slug": "aiva",
+      "description": "클래식·영화 음악 등 감성적 악곡 생성에 특화된 AI 작곡 도구",
+      "long_description": null,
+      "category_id": "cat-music-gen",
+      "url": "https://www.aiva.ai",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "월 3곡 무료 생성, 각 곡 3분 이내, 다운로드는 MIDI만 가능, MP3 다운로드는 유료",
+      "monthly_price": 15,
+      "rating_avg": 4.0,
+      "review_count": 1234,
+      "visit_count": 198700,
+      "tags": ["AI 작곡", "배경 음악", "클래식", "영화 음악"],
+      "is_editor_pick": false,
+      "supports_korean": false,
+      "pros": [
+        "클래식·오케스트라 장르 품질이 뛰어남",
+        "악기별 트랙 분리 편집 가능",
+        "영상 배경 음악 제작에 최적화"
+      ],
+      "cons": [
+        "무료 플랜에서 월 3곡만 생성 가능",
+        "보컬 생성 기능 없음 (악기만 지원)",
+        "Suno·Udio 대비 대중음악 장르가 약함"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440050",
+      "name": "Julius AI",
+      "slug": "julius-ai",
+      "description": "자연어로 데이터를 분석하고 차트를 생성하는 AI 데이터 분석 도구",
+      "long_description": null,
+      "category_id": "cat-data",
+      "url": "https://julius.ai",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "월 15회 메시지 무료, 파일 업로드 25MB 제한, 기본 차트 생성 및 데이터 요약 가능",
+      "monthly_price": 20,
+      "rating_avg": 4.3,
+      "review_count": 1876,
+      "visit_count": 312400,
+      "tags": ["데이터 분석", "차트", "시각화", "스프레드시트"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "자연어로 데이터 분석 요청 가능 (코딩 불필요)",
+        "엑셀·CSV 파일 업로드만으로 즉시 분석",
+        "다양한 차트와 시각화를 자동 생성"
+      ],
+      "cons": [
+        "무료 메시지 15회가 매우 적음",
+        "복잡한 통계 분석은 정확도가 떨어질 수 있음",
+        "대용량 데이터셋 처리에 제한"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440051",
+      "name": "Gamma",
+      "slug": "gamma",
+      "description": "AI로 프레젠테이션·문서·웹페이지를 자동 생성하는 시각 콘텐츠 도구",
+      "long_description": null,
+      "category_id": "cat-data",
+      "url": "https://gamma.app",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "가입 시 400 AI 크레딧 제공 (프레젠테이션 1개 약 40크레딧, 약 10개 생성), 이후 월 $10",
+      "monthly_price": 10,
+      "rating_avg": 4.4,
+      "review_count": 3245,
+      "visit_count": 534200,
+      "tags": ["프레젠테이션", "문서", "시각화", "슬라이드"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "프롬프트 한 줄로 전문적인 슬라이드 자동 생성",
+        "디자인 감각 없이도 고품질 시각 콘텐츠 제작",
+        "웹 기반으로 실시간 공유 및 협업 가능"
+      ],
+      "cons": [
+        "무료 크레딧 소진 후 유료 전환 필요",
+        "세밀한 레이아웃 커스터마이징이 제한적",
+        "PowerPoint 내보내기 시 서식이 깨질 수 있음"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440052",
+      "name": "Tableau AI",
+      "slug": "tableau-ai",
+      "description": "Salesforce Tableau에 내장된 AI 분석 기능으로, 자연어 질의와 자동 인사이트 제공",
+      "long_description": null,
+      "category_id": "cat-data",
+      "url": "https://www.tableau.com/products/tableau-ai",
+      "logo_url": null,
+      "pricing_type": "Paid",
+      "free_quota_detail": "Tableau Public 무료 (공개 데이터만, AI 기능 제한), Tableau Creator 14일 무료 체험 후 월 $75",
+      "monthly_price": 75,
+      "rating_avg": 4.1,
+      "review_count": 2134,
+      "visit_count": 287600,
+      "tags": ["BI", "데이터 시각화", "대시보드", "기업용"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "엔터프라이즈급 데이터 시각화 업계 표준",
+        "자연어 질의로 복잡한 차트 자동 생성",
+        "대규모 데이터셋 처리 성능이 우수함"
+      ],
+      "cons": [
+        "가격이 매우 높아 개인 사용자에게 부담",
+        "학습 곡선이 높고 초기 설정이 복잡함",
+        "AI 기능이 아직 기본적인 수준"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440060",
+      "name": "DeepL",
+      "slug": "deepl",
+      "description": "유럽 기반 AI 번역기로, 자연스러운 문맥 번역과 문서 번역에 강점",
+      "long_description": null,
+      "category_id": "cat-translation",
+      "url": "https://www.deepl.com",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "웹 번역기 하루 5,000자, 문서 번역 월 3건 (5MB 이하), API 무료 월 50만 자, 용어집 1개",
+      "monthly_price": 8.74,
+      "rating_avg": 4.7,
+      "review_count": 6543,
+      "visit_count": 1234500,
+      "tags": ["번역", "문서 번역", "다국어", "API"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "유럽어 번역 품질이 Google 번역보다 자연스러움",
+        "문서 파일(PDF·Word) 레이아웃 유지 번역",
+        "개발자용 API가 잘 정리되어 있음"
+      ],
+      "cons": [
+        "한국어 번역 품질이 영·독·불어 대비 다소 부족",
+        "무료 문서 번역이 월 3건으로 제한",
+        "아시아 언어 지원이 상대적으로 늦게 추가됨"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440061",
+      "name": "Papago",
+      "slug": "papago",
+      "description": "네이버의 AI 번역 서비스로, 한국어 번역 정확도와 자연스러움에 특화",
+      "long_description": null,
+      "category_id": "cat-translation",
+      "url": "https://papago.naver.com",
+      "logo_url": null,
+      "pricing_type": "Free",
+      "free_quota_detail": "웹·앱 번역 완전 무료 (횟수 제한 없음), 이미지 번역·대화 번역 무료, API는 일 10,000자 무료",
+      "monthly_price": null,
+      "rating_avg": 4.3,
+      "review_count": 8765,
+      "visit_count": 2345600,
+      "tags": ["번역", "한국어 특화", "이미지 번역", "네이버"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "한국어-영어 번역 품질이 매우 자연스러움",
+        "웹·앱 번역이 완전 무료 (횟수 무제한)",
+        "이미지 번역·실시간 대화 번역 기능 제공"
+      ],
+      "cons": [
+        "유럽어 간 번역은 DeepL 대비 품질 부족",
+        "전문 분야(법률·의학) 번역 정확도가 떨어짐",
+        "문서 파일 번역 기능이 제한적"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440062",
+      "name": "Google Translate",
+      "slug": "google-translate",
+      "description": "Google의 AI 번역 서비스로, 133개 이상 언어 지원과 다양한 플랫폼 통합",
+      "long_description": null,
+      "category_id": "cat-translation",
+      "url": "https://translate.google.com",
+      "logo_url": null,
+      "pricing_type": "Free",
+      "free_quota_detail": "웹·앱 번역 완전 무료 (횟수 무제한), 문서 번역 무료, API는 월 50만 자 무료 (Cloud Translation)",
+      "monthly_price": null,
+      "rating_avg": 4.2,
+      "review_count": 12345,
+      "visit_count": 5678900,
+      "tags": ["번역", "다국어", "글로벌", "API"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "133개 이상 언어 지원으로 커버리지 최고",
+        "완전 무료로 횟수 제한 없이 사용 가능",
+        "Chrome·Android 등 Google 생태계 통합"
+      ],
+      "cons": [
+        "DeepL 대비 번역 자연스러움이 다소 부족",
+        "긴 문장에서 문맥을 놓치는 경우 있음",
+        "전문 용어 번역 정확도가 일관적이지 않음"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440070",
+      "name": "Wrtn (뤼튼)",
+      "slug": "wrtn",
+      "description": "한국형 AI 플랫폼으로, GPT-4o·DALL-E 3 등 여러 AI 모델을 무료로 이용 가능",
+      "long_description": null,
+      "category_id": "cat-others",
+      "url": "https://wrtn.ai",
+      "logo_url": null,
+      "pricing_type": "Free",
+      "free_quota_detail": "GPT-4o 무제한 무료, DALL-E 3 이미지 생성 무료, 캐릭터 챗 무료, 광고 기반 수익 모델",
+      "monthly_price": null,
+      "rating_avg": 4.1,
+      "review_count": 4532,
+      "visit_count": 1876500,
+      "tags": ["한국형 AI", "무료 GPT", "올인원", "캐릭터"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "GPT-4o 등 고급 모델을 완전 무료로 제공",
+        "한국어에 최적화된 UI와 프롬프트 템플릿",
+        "이미지 생성·캐릭터 챗 등 다양한 기능 통합"
+      ],
+      "cons": [
+        "광고가 삽입되어 사용 경험 저하",
+        "독자 모델이 아닌 OpenAI API 의존",
+        "전문적인 기능은 ChatGPT 직접 사용 대비 제한적"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440071",
+      "name": "Canva AI",
+      "slug": "canva-ai",
+      "description": "Canva에 내장된 AI 디자인 도구로, 이미지 생성·배경 제거·매직 에디트 등 제공",
+      "long_description": null,
+      "category_id": "cat-others",
+      "url": "https://www.canva.com/ai-image-generator",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "AI 이미지 생성 월 50회, 배경 제거 무료 플랜 불가, Magic Write 월 25회, 기본 디자인 템플릿 무료",
+      "monthly_price": 12.99,
+      "rating_avg": 4.3,
+      "review_count": 5678,
+      "visit_count": 3456700,
+      "tags": ["디자인", "AI 이미지", "템플릿", "소셜 미디어"],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "디자인 작업과 AI 기능이 하나의 플랫폼에 통합",
+        "풍부한 템플릿으로 비전문가도 쉽게 디자인",
+        "소셜 미디어·인쇄물 등 다양한 포맷 지원"
+      ],
+      "cons": [
+        "AI 이미지 품질이 전문 AI 도구 대비 부족",
+        "무료 플랜에서 배경 제거 등 핵심 AI 기능 제한",
+        "프리미엄 에셋 접근에 Pro 구독 필요"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440072",
+      "name": "Zapier AI",
+      "slug": "zapier-ai",
+      "description": "AI 기반 업무 자동화 플랫폼으로, 자연어로 앱 간 워크플로우 자동 구성",
+      "long_description": null,
+      "category_id": "cat-others",
+      "url": "https://zapier.com/ai",
+      "logo_url": null,
+      "pricing_type": "Freemium",
+      "free_quota_detail": "월 100 작업(Task) 무료, Zap(자동화) 5개, AI 챗봇 2개, 단일 스텝 자동화만 가능",
+      "monthly_price": 19.99,
+      "rating_avg": 4.2,
+      "review_count": 3421,
+      "visit_count": 567800,
+      "tags": ["자동화", "워크플로우", "노코드", "연동"],
+      "is_editor_pick": false,
+      "supports_korean": false,
+      "pros": [
+        "7,000개 이상 앱 간 자동 연동 지원",
+        "코딩 없이 자연어로 워크플로우 생성 가능",
+        "AI가 자동화 시나리오를 추천해줌"
+      ],
+      "cons": [
+        "무료 플랜 월 100 작업 제한이 금방 소진",
+        "복잡한 워크플로우는 유료 플랜 필수",
+        "한국어 지원이 미흡함"
+      ],
+      "created_at": "2026-01-15T00:00:00Z",
+      "updated_at": "2026-01-15T00:00:00Z"
+    }
+  ]
+}

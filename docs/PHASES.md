@@ -16,68 +16,106 @@
 - [ ] `lucide-react` 설치
 - [ ] CLAUDE.md 프로젝트 컨벤션 파일 작성
 
-### 1-2. 타입 정의
+### 1-2. 폰트 및 테마 설정 ✨ (추가)
+- [ ] 한국어 웹폰트 설정 (Pretendard via next/font/local 또는 Noto Sans KR via Google Fonts)
+- [ ] Tailwind 테마 커스텀 (`tailwind.config.ts`)
+  - 색상 팔레트:
+    - primary: `#3B82F6` (blue-500 계열) - 신뢰, 기술
+    - accent: `#10B981` (emerald-500 계열) - 무료, 접근성
+    - surface: 카드 배경, 섹션 구분용 중성 톤
+  - 그림자: 카드용 커스텀 box-shadow
+  - 반응형 breakpoint 확인 (sm:640, md:768, lg:1024, xl:1280)
+- [ ] 글로벌 CSS 리셋 및 기본 스타일 (`globals.css`)
+- [ ] 파비콘 및 기본 메타데이터 (`app/layout.tsx` 내 metadata export)
+  - title: "AIPICK - 나에게 맞는 AI를 찾아보세요"
+  - description, viewport, themeColor
+
+### 1-3. 타입 정의
 - [ ] `types/index.ts` - 모든 DB 스키마에 대응하는 TypeScript 인터페이스
   - Category, Tool, Review, Bookmark, News
+  - PricingType union type: 'Free' | 'Freemium' | 'Paid'
 
-### 1-3. 상수 및 설정
+### 1-4. 상수 및 설정
 - [ ] `lib/constants.ts`
-  - 사이트명, 설명 등 메타 정보
-  - 카테고리 목록 (초기 더미)
-  - 가격 타입 enum
-  - 페이지네이션 설정값
+  - SITE_NAME, SITE_DESCRIPTION 등 메타 정보
+  - CATEGORIES 배열 (아이콘 매핑 포함)
+  - PRICING_TYPES 맵 (라벨 + 색상)
+  - ITEMS_PER_PAGE 등 페이지네이션
 
-### 1-4. 공통 UI 컴포넌트
-- [ ] `components/ui/Button.tsx` - variant: primary, secondary, outline, ghost
-- [ ] `components/ui/Badge.tsx` - variant: free(green), freemium(blue), paid(gray)
-- [ ] `components/ui/Card.tsx` - 기본 카드 래퍼
-- [ ] `components/ui/Input.tsx` - 검색 입력 등
-- [ ] `components/ui/Skeleton.tsx` - 로딩 스켈레톤
+### 1-5. 공통 UI 컴포넌트
+- [ ] `components/ui/Button.tsx` - variant: primary, secondary, outline, ghost / size: sm, md, lg
+- [ ] `components/ui/Badge.tsx` - variant: free(green), freemium(blue), paid(gray), tag(slate)
+- [ ] `components/ui/Card.tsx` - 기본 카드 래퍼 (hover: shadow 상승 + 미세 translateY)
+- [ ] `components/ui/Input.tsx` - 검색 입력, 아이콘 슬롯
+- [ ] `components/ui/Skeleton.tsx` - 로딩 스켈레톤 (pulse 애니메이션)
 
-### 1-5. 레이아웃 컴포넌트
-- [ ] `app/layout.tsx` - 루트 레이아웃 (HTML head, body)
+### 1-6. 레이아웃 컴포넌트
+- [ ] `app/layout.tsx` - 루트 레이아웃 (폰트, 메타데이터, GNB+Footer 감싸기)
 - [ ] `components/layout/Header.tsx`
-  - 로고 (AIPICK 텍스트)
+  - 로고: "AIPICK" 텍스트 로고 (bold + accent 색상 포인트)
   - 카테고리 메뉴 (드롭다운)
-  - 검색창
-  - 로그인 버튼
-  - 모바일: 햄버거 메뉴
+  - 검색창 (아이콘 포함, Enter 시 /search로 이동)
+  - 로그인 버튼 (Phase 4까지는 비활성 표시)
+  - 모바일(md 이하): 햄버거 메뉴로 전환
 - [ ] `components/layout/Footer.tsx`
-  - 사이트 소개, 링크, 저작권
+  - 사이트 소개, 카테고리 링크, 저작권 (© 2026 AIPICK)
 - [ ] `components/layout/MobileNav.tsx`
-  - 슬라이드 메뉴
+  - 오버레이 + 슬라이드 메뉴
+  - 카테고리 목록, 검색 링크
 
-### 1-6. 서비스 카드 컴포넌트 (핵심)
+### 1-7. 서비스 카드 컴포넌트 (핵심)
 - [ ] `components/service/ServiceCard.tsx`
   ```
-  ┌─────────────────────────┐
-  │  [로고]  서비스명        │
-  │  한 줄 설명              │
-  │                         │
-  │  ┌──────────────────┐   │
-  │  │ 🟢 매일 5크레딧   │   │  ← 무료 사용량 뱃지 (강조)
-  │  └──────────────────┘   │
-  │                         │
-  │  ⭐ 4.5  │ Freemium     │
-  │  #태그1 #태그2          │
-  └─────────────────────────┘
+  ┌─────────────────────────────┐
+  │  [로고]  서비스명            │
+  │  한 줄 설명 (2줄 이내 말줌임) │
+  │                              │
+  │  ┌────────────────────┐     │
+  │  │ ✦ 매일 5크레딧 무료 │     │  ← 무료 사용량 뱃지 (green, 강조)
+  │  └────────────────────┘     │
+  │                              │
+  │  ★ 4.5 (128)  │ Freemium    │  ← 평점(리뷰수) + 가격 뱃지
+  │  #태그1  #태그2              │
+  └─────────────────────────────┘
   ```
-- [ ] `components/service/ServiceGrid.tsx` - 반응형 그리드 (PC: 3열, 태블릿: 2열, 모바일: 1열)
+  - Hover: shadow-lg + translateY(-2px) 트랜지션
+  - 클릭: /tools/[slug]로 이동 (Phase 1에서는 # 링크)
+  - 로고 없을 시: 서비스명 첫 글자 아바타 (배경색 자동)
+- [ ] `components/service/ServiceGrid.tsx`
+  - 반응형 그리드: PC(lg) 4열, 태블릿(md) 2열, 모바일 1열
+  - gap 일관 유지
 
-### 1-7. 메인 페이지
+### 1-8. 메인 페이지 섹션 구성
 - [ ] `app/page.tsx`
-  - 히어로 섹션: "어떤 AI를 찾고 계신가요?" + 목적별 퀵 버튼
-  - Editor's Pick 섹션: 에디터 추천 서비스 가로 스크롤
-  - 카테고리별 인기 서비스 섹션
-  - 최신 등록 서비스 섹션
+  - **히어로 섹션**: 그라데이션 배경
+    - 제목: "어떤 AI를 찾고 계신가요?"
+    - 부제: "목적에 맞는 AI를 추천받고, 무료로 시작하세요"
+    - 퀵 버튼 6개: 글쓰기, 이미지 생성, 영상 편집, 코딩, 번역, 데이터 분석
+    - 각 버튼은 Lucide 아이콘 + 라벨 (클릭 시 Phase 3에서 연결)
+  - **Editor's Pick 섹션**
+    - "에디터가 추천하는 AI" 제목
+    - 가로 스크롤 카드 리스트 (overflow-x-auto, snap-x)
+  - **카테고리별 인기 서비스**
+    - 각 카테고리 탭/섹션
+    - 카테고리당 상위 4개 서비스 카드
+    - "더보기 →" 링크 (Phase 3에서 연결)
+  - **최신 등록 서비스**
+    - 최근 추가된 서비스 4개
 
-### 1-8. 더미 데이터
+### 1-9. 더미 데이터 (시드) ✨ (보강)
 - [ ] `data/seed.json` 작성
-  - 카테고리 8개: 텍스트 생성, 이미지 생성, 영상 편집, 코딩 도구, 음악 생성, 데이터 분석, 번역, 기타
-  - AI 서비스 24개 이상 (카테고리별 3개씩)
-  - 실제 서비스 기반 데이터 (ChatGPT, Midjourney, Runway 등)
+  - **카테고리 8개**: 텍스트 생성, 이미지 생성, 영상 편집, 코딩 도구, 음악 생성, 데이터 분석, 번역, 기타
+  - **AI 서비스 24개 이상** (카테고리별 3개씩) - 실제 서비스 기반:
+    - 각 서비스에 **현실적인 free_quota_detail** 포함 (예: "매월 GPT-4o 80회 무료")
+    - pricing_type, tags, rating_avg, supports_korean, pros, cons 모두 포함
+    - 예시 서비스: ChatGPT, Claude, Gemini, Midjourney, DALL-E, Stable Diffusion,
+      Runway, CapCut, GitHub Copilot, Cursor, Suno, Udio, Julius AI 등
 
-**완료 기준**: `npm run dev`로 메인 페이지가 PC/모바일에서 완벽히 렌더링됨
+**완료 기준**:
+- `npm run dev`로 메인 페이지가 PC/태블릿/모바일에서 완벽히 렌더링
+- 서비스 카드에 무료 사용량 뱃지가 눈에 잘 띄게 표시
+- 히어로 퀵 버튼, 에디터 추천, 카테고리별 서비스 섹션 모두 더미 데이터로 동작
+- Lighthouse Accessibility 80+ (기초 접근성)
 
 ---
 

@@ -1,0 +1,76 @@
+import Link from 'next/link';
+import { SITE_NAME, CATEGORIES } from '@/lib/constants';
+
+const CURRENT_YEAR = new Date().getFullYear();
+
+export default function Footer() {
+  return (
+    <footer className="border-t border-border bg-surface">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {/* 브랜드 */}
+          <div>
+            <Link href="/" className="inline-flex items-center gap-1">
+              <span className="text-xl font-extrabold text-primary">AI</span>
+              <span className="text-xl font-extrabold text-foreground">PICK</span>
+            </Link>
+            <p className="mt-3 text-sm text-gray-500 leading-relaxed">
+              목적에 맞는 AI를 추천받고,<br />
+              무료로 시작하세요.
+            </p>
+          </div>
+
+          {/* 카테고리 */}
+          <div>
+            <h3 className="text-sm font-semibold text-foreground">카테고리</h3>
+            <ul className="mt-3 space-y-2">
+              {CATEGORIES.slice(0, 6).map((cat) => (
+                <li key={cat.slug}>
+                  <Link
+                    href={`/category/${cat.slug}`}
+                    className="text-sm text-gray-500 hover:text-primary transition-colors"
+                  >
+                    {cat.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* 서비스 */}
+          <div>
+            <h3 className="text-sm font-semibold text-foreground">서비스</h3>
+            <ul className="mt-3 space-y-2">
+              <li>
+                <Link href="/recommend" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  AI 추천받기
+                </Link>
+              </li>
+              <li>
+                <Link href="/news" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  AI 뉴스
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* 정보 */}
+          <div>
+            <h3 className="text-sm font-semibold text-foreground">정보</h3>
+            <ul className="mt-3 space-y-2">
+              <li>
+                <span className="text-sm text-gray-500">문의: contact@aipick.kr</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-10 border-t border-border pt-6 text-center">
+          <p className="text-sm text-gray-400">
+            &copy; {CURRENT_YEAR} {SITE_NAME}. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
