@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { SITE_NAME, CATEGORIES } from '@/lib/constants';
+import Logo from '@/components/ui/Logo';
 
 const CURRENT_YEAR = new Date().getFullYear();
 
@@ -10,13 +11,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* 브랜드 */}
           <div>
-            <Link href="/" className="inline-flex items-center gap-1">
-              <span className="text-xl font-extrabold text-primary">AI</span>
-              <span className="text-xl font-extrabold text-foreground">PICK</span>
+            <Link href="/">
+              <Logo size="md" />
             </Link>
             <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-              목적에 맞는 AI를 추천받고,<br />
-              무료로 시작하세요.
+              당신과 같은 전문가들이<br />
+              매일 확인하는 AI 큐레이션.
             </p>
           </div>
 

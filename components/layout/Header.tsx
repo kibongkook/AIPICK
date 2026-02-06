@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, ChevronDown } from 'lucide-react';
-import { SITE_NAME, CATEGORIES } from '@/lib/constants';
+import { Menu, X, ChevronDown, Search } from 'lucide-react';
+import { CATEGORIES } from '@/lib/constants';
 import Logo from '@/components/ui/Logo';
 import SearchBar from '@/components/search/SearchBar';
 import AuthButton from '@/components/auth/AuthButton';
@@ -16,9 +16,14 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* 로고 */}
-        <Link href="/">
-          <Logo size="md" />
+        {/* 로고 - 모바일은 아이콘만, 데스크탑은 텍스트 포함 */}
+        <Link href="/" className="shrink-0">
+          <span className="hidden sm:block">
+            <Logo size="md" showText={true} />
+          </span>
+          <span className="sm:hidden">
+            <Logo size="sm" showText={false} />
+          </span>
         </Link>
 
         {/* 데스크탑 네비게이션 */}
@@ -34,12 +39,12 @@ export default function Header() {
               <ChevronDown className={`h-4 w-4 transition-transform ${isCategoryOpen ? 'rotate-180' : ''}`} />
             </button>
             {isCategoryOpen && (
-              <div className="absolute left-0 top-full mt-2 w-48 rounded-lg border border-border bg-white py-2 shadow-lg">
+              <div className="absolute left-0 top-full mt-2 w-48 rounded-xl border border-border bg-white py-2 shadow-lg">
                 {CATEGORIES.map((cat) => (
                   <Link
                     key={cat.slug}
                     href={`/category/${cat.slug}`}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-surface hover:text-primary transition-colors"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors"
                   >
                     {cat.name}
                   </Link>
@@ -60,14 +65,10 @@ export default function Header() {
           <Link href="/news" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
             뉴스
           </Link>
-          <Link href="/guides" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
-            가이드
-          </Link>
-          <Link href="/recommend" className="text-sm font-medium text-primary hover:text-primary-hover transition-colors">
+          <Link href="/recommend" className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors">
             AI 추천
           </Link>
 
-          {/* 검색창 */}
           <SearchBar className="w-52" />
         </nav>
 
@@ -76,14 +77,19 @@ export default function Header() {
           <AuthButton />
         </div>
 
-        {/* 모바일 메뉴 버튼 */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 text-gray-700 hover:text-primary"
-          aria-label="메뉴 열기"
-        >
-          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        {/* 모바일 우측: 검색 + 메뉴 */}
+        <div className="flex items-center gap-2 md:hidden">
+          <Link href="/search" className="p-2 text-gray-500 hover:text-primary">
+            <Search className="h-5 w-5" />
+          </Link>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 text-gray-700 hover:text-primary"
+            aria-label="메뉴 열기"
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* 모바일 네비게이션 */}

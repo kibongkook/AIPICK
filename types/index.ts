@@ -244,3 +244,24 @@ export interface WeeklyRanking {
   visit_count: number;
   tool?: Tool;
 }
+
+// ==========================================
+// 사용자 등급 / 신뢰도 시스템
+// ==========================================
+export type UserLevel = 'newcomer' | 'active' | 'expert' | 'master';
+
+export interface UserProfile {
+  id: string;
+  email: string;
+  display_name: string;
+  avatar_url: string | null;
+  level: UserLevel;
+  experience_points: number;
+  review_count: number;
+  comment_count: number;
+  helpful_count: number;
+  job_category_slug: string | null;
+  edu_level_slug: string | null;
+  created_at: string;
+  updated_at: string;
+}

@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { Trophy, Star, TrendingUp, ArrowUp, ArrowDown, Minus } from 'lucide-react';
-import { SITE_NAME, CATEGORIES } from '@/lib/constants';
+import { Trophy, Star, ArrowUp, ArrowDown, Minus, Users } from 'lucide-react';
+import { SITE_NAME } from '@/lib/constants';
 import { getRankings, getCategories } from '@/lib/supabase/queries';
 import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
-import Badge from '@/components/ui/Badge';
 import type { Tool } from '@/types';
 
 export const metadata: Metadata = {
@@ -27,12 +26,12 @@ export default async function RankingsPage({ searchParams }: Props) {
       <div className="mb-8">
         <div className="flex items-center gap-3">
           <Trophy className="h-7 w-7 text-yellow-500" />
-          <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
+          <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">
             AI 서비스 랭킹
           </h1>
         </div>
-        <p className="mt-2 text-gray-500">
-          방문수, 평점, 리뷰를 기반으로 한 종합 랭킹
+        <p className="mt-2 text-sm text-gray-500">
+          종합 점수(방문수 40% + 평점 30% + 리뷰 20% + 북마크 10%) 기준
         </p>
       </div>
 
@@ -66,28 +65,27 @@ export default async function RankingsPage({ searchParams }: Props) {
       </div>
 
       {/* 랭킹 테이블 */}
-      <div className="rounded-xl border border-border bg-white overflow-hidden">
+      <div className="rounded-2xl border border-border bg-white overflow-hidden">
         {/* 테이블 헤더 */}
-        <div className="grid grid-cols-12 gap-2 border-b border-border bg-gray-50 px-4 py-3 text-xs font-semibold text-gray-500 sm:px-6">
+        <div className="grid grid-cols-12 gap-2 border-b border-border bg-gray-50/80 px-4 py-3 text-xs font-semibold text-gray-500 sm:px-6">
           <div className="col-span-1 text-center">#</div>
           <div className="col-span-5 sm:col-span-4">서비스</div>
           <div className="col-span-2 hidden sm:block text-center">카테고리</div>
           <div className="col-span-2 text-center">평점</div>
-          <div className="col-span-2 text-center hidden sm:block">방문수</div>
+          <div className="col-span-2 hidden sm:block text-center">점수</div>
           <div className="col-span-2 sm:col-span-1 text-center">변동</div>
         </div>
 
         {/* 랭킹 행 */}
         {rankedTools.map((tool) => {
           const cat = categories.find((c) => c.id === tool.category_id);
-          const pricingVariant = tool.pricing_type === 'Free' ? 'free' : tool.pricing_type === 'Freemium' ? 'freemium' : 'paid';
           const delta = tool.prev_ranking ? tool.prev_ranking - tool.ranking : 0;
 
           return (
             <Link
               key={tool.id}
               href={`/tools/${tool.slug}`}
-              className="grid grid-cols-12 gap-2 items-center px-4 py-3.5 border-b border-border/50 hover:bg-blue-50/50 transition-colors sm:px-6"
+              className="grid grid-cols-12 gap-2 items-center px-4 py-3.5 border-b border-border/50 hover:bg-primary-light/30 transition-colors sm:px-6"
             >
               {/* 순위 */}
               <div className="col-span-1 text-center">
@@ -97,32 +95,35 @@ export default async function RankingsPage({ searchParams }: Props) {
               {/* 서비스명 */}
               <div className="col-span-5 sm:col-span-4 flex items-center gap-3 min-w-0">
                 {tool.logo_url ? (
-                  <img src={tool.logo_url} alt={tool.name} className="h-8 w-8 rounded-lg object-cover shrink-0" />
+                  <img src={tool.logo_url} alt={tool.name} className="h-9 w-9 rounded-xl object-cover shrink-0 ring-1 ring-border" />
                 ) : (
-                  <div className={cn('flex h-8 w-8 items-center justify-center rounded-lg text-white text-xs font-bold shrink-0', getAvatarColor(tool.name))}>
+                  <div className={cn('flex h-9 w-9 items-center justify-center rounded-xl text-white text-xs font-bold shrink-0', getAvatarColor(tool.name))}>
                     {tool.name.charAt(0)}
                   </div>
                 )}
                 <div className="min-w-0">
-                  <span className="text-sm font-semibold text-foreground truncate block">{tool.name}</span>
-                  <span className="text-xs text-gray-400 truncate block">{tool.description.slice(0, 30)}...</span>
+                  <span className="text-sm font-bold text-foreground truncate block">{tool.name}</span>
+                  <span className="text-[11px] text-gray-400 flex items-center gap-1">
+                    <Users className="h-3 w-3" />
+                    {formatVisitCount(tool.visit_count)}명
+                  </span>
                 </div>
               </div>
 
               {/* 카테고리 */}
               <div className="col-span-2 hidden sm:flex justify-center">
-                <span className="text-xs text-gray-500">{cat?.name || '-'}</span>
+                <span className="text-xs text-gray-500 rounded-full bg-gray-50 px-2 py-0.5">{cat?.name || '-'}</span>
               </div>
 
               {/* 평점 */}
               <div className="col-span-2 flex items-center justify-center gap-1">
                 <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
-                <span className="text-sm font-medium">{formatRating(tool.rating_avg)}</span>
+                <span className="text-sm font-semibold">{formatRating(tool.rating_avg)}</span>
               </div>
 
-              {/* 방문수 */}
-              <div className="col-span-2 hidden sm:block text-center text-sm text-gray-600">
-                {formatVisitCount(tool.visit_count)}
+              {/* 종합 점수 */}
+              <div className="col-span-2 hidden sm:block text-center">
+                <span className="text-sm font-bold text-primary">{tool.ranking_score.toFixed(1)}</span>
               </div>
 
               {/* 변동 */}
@@ -138,14 +139,14 @@ export default async function RankingsPage({ searchParams }: Props) {
 }
 
 function RankBadge({ rank }: { rank: number }) {
-  if (rank === 1) return <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-yellow-400 text-xs font-bold text-white">1</span>;
-  if (rank === 2) return <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gray-300 text-xs font-bold text-white">2</span>;
-  if (rank === 3) return <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-600 text-xs font-bold text-white">3</span>;
+  if (rank === 1) return <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-400 text-xs font-bold text-white shadow-sm shadow-yellow-200">1</span>;
+  if (rank === 2) return <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-400 text-xs font-bold text-white">2</span>;
+  if (rank === 3) return <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-amber-600 text-xs font-bold text-white">3</span>;
   return <span className="text-sm font-medium text-gray-500">{rank}</span>;
 }
 
 function RankDelta({ delta }: { delta: number }) {
-  if (delta > 0) return <span className="flex items-center gap-0.5 text-xs font-medium text-emerald-600"><ArrowUp className="h-3 w-3" />{delta}</span>;
-  if (delta < 0) return <span className="flex items-center gap-0.5 text-xs font-medium text-red-500"><ArrowDown className="h-3 w-3" />{Math.abs(delta)}</span>;
+  if (delta > 0) return <span className="flex items-center gap-0.5 text-xs font-semibold text-emerald-600"><ArrowUp className="h-3 w-3" />{delta}</span>;
+  if (delta < 0) return <span className="flex items-center gap-0.5 text-xs font-semibold text-red-500"><ArrowDown className="h-3 w-3" />{Math.abs(delta)}</span>;
   return <Minus className="h-3 w-3 text-gray-400" />;
 }
