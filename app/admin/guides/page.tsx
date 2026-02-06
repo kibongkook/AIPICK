@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, BookOpen, Info } from 'lucide-react';
+import { ArrowLeft, BookOpen } from 'lucide-react';
 import { SITE_NAME } from '@/lib/constants';
 import { getGuides } from '@/lib/supabase/queries';
+import AdminDeleteButton from '@/components/admin/AdminDeleteButton';
 
 const GUIDE_CATEGORY_LABELS: Record<string, { label: string; color: string }> = {
   job: { label: '직군', color: 'bg-blue-100 text-blue-700' },
@@ -29,21 +30,23 @@ export default async function AdminGuidesPage() {
           <ArrowLeft className="h-4 w-4" />
           대시보드로 돌아가기
         </Link>
-        <h1 className="flex items-center gap-3 text-2xl font-extrabold text-foreground sm:text-3xl">
-          <BookOpen className="h-7 w-7 text-primary" />
-          가이드 관리
-        </h1>
-        <p className="mt-2 text-sm text-gray-500">
-          등록된 가이드 {guides.length}개
-        </p>
-      </div>
-
-      {/* 데모 안내 */}
-      <div className="mb-6 flex items-start gap-3 rounded-xl border border-blue-200 bg-blue-50 p-4">
-        <Info className="h-5 w-5 shrink-0 text-blue-600 mt-0.5" />
-        <p className="text-sm text-blue-700">
-          현재 데모 모드입니다. Supabase 연동 후 CRUD 기능이 활성화됩니다.
-        </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="flex items-center gap-3 text-2xl font-extrabold text-foreground sm:text-3xl">
+              <BookOpen className="h-7 w-7 text-primary" />
+              가이드 관리
+            </h1>
+            <p className="mt-2 text-sm text-gray-500">
+              등록된 가이드 {guides.length}개
+            </p>
+          </div>
+          <Link
+            href="/guides/new"
+            className="rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-hover transition-colors"
+          >
+            새 가이드 작성
+          </Link>
+        </div>
       </div>
 
       {/* 테이블 */}
@@ -55,6 +58,7 @@ export default async function AdminGuidesPage() {
               <th className="px-5 py-3 font-semibold text-gray-600">카테고리</th>
               <th className="px-5 py-3 font-semibold text-gray-600 text-right">조회수</th>
               <th className="px-5 py-3 font-semibold text-gray-600">작성일</th>
+              <th className="px-5 py-3 font-semibold text-gray-600 text-center">액션</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border/50">
@@ -63,7 +67,9 @@ export default async function AdminGuidesPage() {
               return (
                 <tr key={guide.id} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-5 py-3 font-medium text-foreground max-w-md">
-                    <span className="line-clamp-1">{guide.title}</span>
+                    <Link href={`/guides/${guide.slug}`} className="hover:text-primary transition-colors line-clamp-1">
+                      {guide.title}
+                    </Link>
                   </td>
                   <td className="px-5 py-3">
                     {categoryConfig ? (
@@ -79,6 +85,13 @@ export default async function AdminGuidesPage() {
                   </td>
                   <td className="px-5 py-3 text-gray-500 whitespace-nowrap">
                     {new Date(guide.created_at).toLocaleDateString('ko-KR')}
+                  </td>
+                  <td className="px-5 py-3 text-center">
+                    <AdminDeleteButton
+                      endpoint="/api/guides"
+                      id={guide.id}
+                      name={guide.title}
+                    />
                   </td>
                 </tr>
               );

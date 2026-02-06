@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, Newspaper, Info } from 'lucide-react';
+import { ArrowLeft, Newspaper, ExternalLink } from 'lucide-react';
 import { SITE_NAME, NEWS_CATEGORIES } from '@/lib/constants';
 import { getNews } from '@/lib/supabase/queries';
 import type { NewsCategory } from '@/types';
+import AdminDeleteButton from '@/components/admin/AdminDeleteButton';
 
 export const metadata: Metadata = {
   title: `뉴스 관리 | ${SITE_NAME}`,
@@ -23,21 +24,17 @@ export default async function AdminNewsPage() {
           <ArrowLeft className="h-4 w-4" />
           대시보드로 돌아가기
         </Link>
-        <h1 className="flex items-center gap-3 text-2xl font-extrabold text-foreground sm:text-3xl">
-          <Newspaper className="h-7 w-7 text-primary" />
-          뉴스 관리
-        </h1>
-        <p className="mt-2 text-sm text-gray-500">
-          등록된 뉴스 {news.length}개
-        </p>
-      </div>
-
-      {/* 데모 안내 */}
-      <div className="mb-6 flex items-start gap-3 rounded-xl border border-blue-200 bg-blue-50 p-4">
-        <Info className="h-5 w-5 shrink-0 text-blue-600 mt-0.5" />
-        <p className="text-sm text-blue-700">
-          현재 데모 모드입니다. Supabase 연동 후 CRUD 기능이 활성화됩니다.
-        </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="flex items-center gap-3 text-2xl font-extrabold text-foreground sm:text-3xl">
+              <Newspaper className="h-7 w-7 text-primary" />
+              뉴스 관리
+            </h1>
+            <p className="mt-2 text-sm text-gray-500">
+              등록된 뉴스 {news.length}개
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* 테이블 */}
@@ -49,6 +46,7 @@ export default async function AdminNewsPage() {
               <th className="px-5 py-3 font-semibold text-gray-600">카테고리</th>
               <th className="px-5 py-3 font-semibold text-gray-600 text-right">조회수</th>
               <th className="px-5 py-3 font-semibold text-gray-600">발행일</th>
+              <th className="px-5 py-3 font-semibold text-gray-600 text-center">액션</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border/50">
@@ -73,6 +71,26 @@ export default async function AdminNewsPage() {
                   </td>
                   <td className="px-5 py-3 text-gray-500 whitespace-nowrap">
                     {new Date(item.published_at).toLocaleDateString('ko-KR')}
+                  </td>
+                  <td className="px-5 py-3 text-center">
+                    <div className="flex items-center justify-center gap-2">
+                      {item.source_url && (
+                        <a
+                          href={item.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-primary transition-colors"
+                          title="원문 보기"
+                        >
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      )}
+                      <AdminDeleteButton
+                        endpoint="/api/admin/news"
+                        id={item.id}
+                        name={item.title}
+                      />
+                    </div>
                   </td>
                 </tr>
               );
