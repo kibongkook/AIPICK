@@ -5165,6 +5165,374 @@
       "recommendation_level": "optional",
       "reason": "제품 KPI 데이터 분석과 시각화로 데이터 기반 의사결정",
       "sort_order": 7
+    },
+    {
+      "id": "jtr-100",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440161",
+      "recommendation_level": "essential",
+      "reason": "AI 기반 코드 자동완성과 채팅이 무료 무제한으로 생산성 극대화",
+      "sort_order": 7
+    },
+    {
+      "id": "jtr-101",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440171",
+      "recommendation_level": "essential",
+      "reason": "터미널에서 자율 코딩하는 AI 에이전트로 대규모 리팩토링에 최적",
+      "sort_order": 8
+    },
+    {
+      "id": "jtr-102",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440164",
+      "recommendation_level": "recommended",
+      "reason": "React/Next.js UI를 프롬프트로 즉시 생성하는 프론트엔드 필수 도구",
+      "sort_order": 9
+    },
+    {
+      "id": "jtr-103",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440163",
+      "recommendation_level": "recommended",
+      "reason": "브라우저에서 풀스택 앱을 자동 생성하고 즉시 배포 가능",
+      "sort_order": 10
+    },
+    {
+      "id": "jtr-104",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440166",
+      "recommendation_level": "optional",
+      "reason": "오픈소스 AI 코딩 확장으로 VS Code/JetBrains에서 무료 사용",
+      "sort_order": 11
+    },
+    {
+      "id": "jtr-105",
+      "job_category_id": "job-ai-dev",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440190",
+      "recommendation_level": "optional",
+      "reason": "AI 논문과 기술 문서를 업로드하여 심층 분석하는 리서치 도구",
+      "sort_order": 12
+    },
+    {
+      "id": "jtr-110",
+      "job_category_id": "job-uiux",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440132",
+      "recommendation_level": "essential",
+      "reason": "상업적으로 안전한 AI 이미지 생성으로 UI 에셋 제작에 최적",
+      "sort_order": 6
+    },
+    {
+      "id": "jtr-111",
+      "job_category_id": "job-uiux",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440137",
+      "recommendation_level": "recommended",
+      "reason": "제품 이미지 배경 자동 제거로 목업 제작 시간 대폭 단축",
+      "sort_order": 7
+    },
+    {
+      "id": "jtr-112",
+      "job_category_id": "job-uiux",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440223",
+      "recommendation_level": "recommended",
+      "reason": "AI 와이어프레임과 플로우차트 자동 생성으로 기획 단계 가속",
+      "sort_order": 8
+    },
+    {
+      "id": "jtr-113",
+      "job_category_id": "job-uiux",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440164",
+      "recommendation_level": "optional",
+      "reason": "프롬프트로 React UI 프로토타입을 즉시 생성하여 개발팀과 소통",
+      "sort_order": 9
+    },
+    {
+      "id": "jtr-120",
+      "job_category_id": "job-graphic",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440131",
+      "recommendation_level": "essential",
+      "reason": "텍스트가 포함된 디자인에 최적화된 AI 이미지 생성 도구",
+      "sort_order": 6
+    },
+    {
+      "id": "jtr-121",
+      "job_category_id": "job-graphic",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440130",
+      "recommendation_level": "recommended",
+      "reason": "다양한 스타일의 고품질 이미지를 일일 무료 크레딧으로 생성",
+      "sort_order": 7
+    },
+    {
+      "id": "jtr-122",
+      "job_category_id": "job-graphic",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440132",
+      "recommendation_level": "recommended",
+      "reason": "Adobe 생태계와 연동되는 상업용 안전 AI 이미지 생성",
+      "sort_order": 8
+    },
+    {
+      "id": "jtr-123",
+      "job_category_id": "job-graphic",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440138",
+      "recommendation_level": "optional",
+      "reason": "상품 사진 배경 자동 편집으로 이커머스 디자인에 활용",
+      "sort_order": 9
+    },
+    {
+      "id": "jtr-124",
+      "job_category_id": "job-graphic",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440136",
+      "recommendation_level": "optional",
+      "reason": "오픈소스 최신 이미지 생성 모델로 로컬 환경에서 자유롭게 활용",
+      "sort_order": 10
+    },
+    {
+      "id": "jtr-130",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440110",
+      "recommendation_level": "essential",
+      "reason": "마케팅 특화 AI 카피라이팅으로 광고 문구와 블로그 대량 생성",
+      "sort_order": 8
+    },
+    {
+      "id": "jtr-131",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440148",
+      "recommendation_level": "recommended",
+      "reason": "긴 영상을 AI가 자동으로 숏폼으로 편집하여 SNS 콘텐츠 양산",
+      "sort_order": 9
+    },
+    {
+      "id": "jtr-132",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440144",
+      "recommendation_level": "recommended",
+      "reason": "AI 아바타로 제품 설명 영상을 빠르게 제작하여 마케팅 효율 극대화",
+      "sort_order": 10
+    },
+    {
+      "id": "jtr-133",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440211",
+      "recommendation_level": "optional",
+      "reason": "AI 요약 기능으로 마케팅 미팅과 프레젠테이션 효율화",
+      "sort_order": 11
+    },
+    {
+      "id": "jtr-134",
+      "job_category_id": "job-marketer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440210",
+      "recommendation_level": "optional",
+      "reason": "마케팅 자동화 시나리오를 시각적으로 구성하여 반복 업무 제거",
+      "sort_order": 12
+    },
+    {
+      "id": "jtr-140",
+      "job_category_id": "job-video",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440141",
+      "recommendation_level": "essential",
+      "reason": "OpenAI의 최고 수준 AI 영상 생성으로 크리에이티브 영상 제작",
+      "sort_order": 7
+    },
+    {
+      "id": "jtr-141",
+      "job_category_id": "job-video",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440149",
+      "recommendation_level": "essential",
+      "reason": "29개 언어 음성 클론으로 내레이션과 더빙을 AI로 자동화",
+      "sort_order": 8
+    },
+    {
+      "id": "jtr-142",
+      "job_category_id": "job-video",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440148",
+      "recommendation_level": "recommended",
+      "reason": "긴 영상에서 바이럴 구간을 AI가 자동 편집하여 쇼츠 생성",
+      "sort_order": 9
+    },
+    {
+      "id": "jtr-143",
+      "job_category_id": "job-video",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440140",
+      "recommendation_level": "recommended",
+      "reason": "텍스트/이미지에서 짧은 AI 영상 클립을 빠르게 생성",
+      "sort_order": 10
+    },
+    {
+      "id": "jtr-144",
+      "job_category_id": "job-video",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440147",
+      "recommendation_level": "optional",
+      "reason": "텍스트 기반 영상 편집으로 대본 수정만으로 영상 편집 가능",
+      "sort_order": 11
+    },
+    {
+      "id": "jtr-150",
+      "job_category_id": "job-writer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440113",
+      "recommendation_level": "essential",
+      "reason": "영문 글쓰기 문법 교정과 AI 작문 보조로 글 품질 향상",
+      "sort_order": 7
+    },
+    {
+      "id": "jtr-151",
+      "job_category_id": "job-writer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440122",
+      "recommendation_level": "recommended",
+      "reason": "소설/창작 글쓰기에 특화된 AI로 스토리 전개와 문체 제안",
+      "sort_order": 8
+    },
+    {
+      "id": "jtr-152",
+      "job_category_id": "job-writer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440121",
+      "recommendation_level": "recommended",
+      "reason": "문장 리라이팅과 문체 개선으로 글 다듬기에 최적화",
+      "sort_order": 9
+    },
+    {
+      "id": "jtr-153",
+      "job_category_id": "job-writer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440218",
+      "recommendation_level": "optional",
+      "reason": "AI 글쓰기 보조가 내장된 깔끔한 에디터로 집중 글쓰기",
+      "sort_order": 10
+    },
+    {
+      "id": "jtr-154",
+      "job_category_id": "job-writer",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440114",
+      "recommendation_level": "optional",
+      "reason": "패러프레이징과 문법 체크를 무료로 활용하여 글 교정",
+      "sort_order": 11
+    },
+    {
+      "id": "jtr-160",
+      "job_category_id": "job-data",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440190",
+      "recommendation_level": "essential",
+      "reason": "문서/데이터를 업로드하여 AI 기반 심층 분석과 인사이트 도출",
+      "sort_order": 7
+    },
+    {
+      "id": "jtr-161",
+      "job_category_id": "job-data",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440198",
+      "recommendation_level": "recommended",
+      "reason": "Microsoft Copilot AI와 연동된 엔터프라이즈급 데이터 시각화",
+      "sort_order": 8
+    },
+    {
+      "id": "jtr-162",
+      "job_category_id": "job-data",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440199",
+      "recommendation_level": "recommended",
+      "reason": "SQL/Python 노트북에서 AI 보조로 데이터 분석 워크플로우 구축",
+      "sort_order": 9
+    },
+    {
+      "id": "jtr-163",
+      "job_category_id": "job-data",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440192",
+      "recommendation_level": "optional",
+      "reason": "AI 스프레드시트로 데이터 분석을 자연어로 요청하여 빠르게 처리",
+      "sort_order": 10
+    },
+    {
+      "id": "jtr-170",
+      "job_category_id": "job-biz",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440100",
+      "recommendation_level": "recommended",
+      "reason": "Microsoft 365와 연동된 AI 어시스턴트로 업무 문서 자동 작성",
+      "sort_order": 7
+    },
+    {
+      "id": "jtr-171",
+      "job_category_id": "job-biz",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440210",
+      "recommendation_level": "recommended",
+      "reason": "비즈니스 워크플로우 자동화로 소규모 팀의 운영 효율 극대화",
+      "sort_order": 8
+    },
+    {
+      "id": "jtr-172",
+      "job_category_id": "job-biz",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440217",
+      "recommendation_level": "optional",
+      "reason": "AI 이메일 작성과 분류로 비즈니스 커뮤니케이션 효율화",
+      "sort_order": 9
+    },
+    {
+      "id": "jtr-173",
+      "job_category_id": "job-biz",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440211",
+      "recommendation_level": "optional",
+      "reason": "AI 요약 화상 미팅으로 투자자/파트너 커뮤니케이션 기록 관리",
+      "sort_order": 10
+    },
+    {
+      "id": "jtr-180",
+      "job_category_id": "job-music",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440180",
+      "recommendation_level": "recommended",
+      "reason": "로열티프리 배경음악을 AI로 빠르게 생성하여 콘텐츠에 활용",
+      "sort_order": 5
+    },
+    {
+      "id": "jtr-181",
+      "job_category_id": "job-music",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440181",
+      "recommendation_level": "recommended",
+      "reason": "커스텀 배경음악을 장르/분위기별로 세밀하게 조절하여 생성",
+      "sort_order": 6
+    },
+    {
+      "id": "jtr-182",
+      "job_category_id": "job-music",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440184",
+      "recommendation_level": "optional",
+      "reason": "영상 씬에 맞는 배경음악을 자동 생성하여 영상 제작에 활용",
+      "sort_order": 7
+    },
+    {
+      "id": "jtr-190",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440212",
+      "recommendation_level": "essential",
+      "reason": "AI 마인드맵과 아이디어 생성으로 기획 브레인스토밍 가속화",
+      "sort_order": 7
+    },
+    {
+      "id": "jtr-191",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440116",
+      "recommendation_level": "recommended",
+      "reason": "AI 회의록 자동 생성으로 미팅 노트 정리 시간 대폭 단축",
+      "sort_order": 8
+    },
+    {
+      "id": "jtr-192",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440215",
+      "recommendation_level": "recommended",
+      "reason": "AI 자동 매뉴얼 생성으로 프로세스 문서화를 효율화",
+      "sort_order": 9
+    },
+    {
+      "id": "jtr-193",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440211",
+      "recommendation_level": "optional",
+      "reason": "AI 요약 기능으로 프로젝트 회의 내용을 자동 기록하고 공유",
+      "sort_order": 10
+    },
+    {
+      "id": "jtr-194",
+      "job_category_id": "job-pm",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440222",
+      "recommendation_level": "optional",
+      "reason": "텍스트를 시각 다이어그램으로 변환하여 프로덕트 문서 시각화",
+      "sort_order": 11
     }
   ],
   "edu_tool_recommendations": [
@@ -5535,6 +5903,270 @@
       "safety_level": "advanced",
       "use_case": "음악 수업용 샘플 곡 제작과 AI 음악 교육 시연",
       "sort_order": 10
+    },
+    {
+      "id": "etr-100",
+      "edu_level_id": "edu-elementary-low",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440135",
+      "safety_level": "safe",
+      "use_case": "Bing 이미지 크리에이터로 상상한 그림을 AI로 만들어보기 체험",
+      "sort_order": 4
+    },
+    {
+      "id": "etr-110",
+      "edu_level_id": "edu-elementary-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440135",
+      "safety_level": "safe",
+      "use_case": "AI 이미지 생성으로 미술 프로젝트와 학교 발표 시각물 제작",
+      "sort_order": 6
+    },
+    {
+      "id": "etr-111",
+      "edu_level_id": "edu-elementary-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440123",
+      "safety_level": "guided",
+      "use_case": "AI 음성 합성으로 발표 연습과 영어 발음 학습 (교사 지도 하에)",
+      "sort_order": 7
+    },
+    {
+      "id": "etr-120",
+      "edu_level_id": "edu-middle",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440135",
+      "safety_level": "safe",
+      "use_case": "AI 이미지 생성으로 수행평가 시각 자료와 포스터 제작",
+      "sort_order": 8
+    },
+    {
+      "id": "etr-121",
+      "edu_level_id": "edu-middle",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440115",
+      "safety_level": "guided",
+      "use_case": "캐릭터 AI와 영어 대화 연습으로 영어 회화 능력 향상 (교사 가이드)",
+      "sort_order": 9
+    },
+    {
+      "id": "etr-122",
+      "edu_level_id": "edu-middle",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440113",
+      "safety_level": "safe",
+      "use_case": "영어 작문 문법 교정 도구로 영어 에세이 품질 향상",
+      "sort_order": 10
+    },
+    {
+      "id": "etr-130",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440190",
+      "safety_level": "guided",
+      "use_case": "탐구 보고서 자료를 업로드하여 AI 기반 심층 분석과 요약",
+      "sort_order": 10
+    },
+    {
+      "id": "etr-131",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440113",
+      "safety_level": "safe",
+      "use_case": "영어 에세이 문법 교정과 문체 개선으로 수능/내신 대비",
+      "sort_order": 11
+    },
+    {
+      "id": "etr-132",
+      "edu_level_id": "edu-high",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440100",
+      "safety_level": "guided",
+      "use_case": "Microsoft Copilot으로 학습 질문과 자료 검색 (Bing 검색 연동)",
+      "sort_order": 12
+    },
+    {
+      "id": "etr-140",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440190",
+      "safety_level": "advanced",
+      "use_case": "논문 PDF 업로드 후 AI 기반 핵심 인사이트 추출과 크로스 레퍼런스",
+      "sort_order": 13
+    },
+    {
+      "id": "etr-141",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440113",
+      "safety_level": "safe",
+      "use_case": "영문 논문 문법 교정과 학술 영어 작문 품질 향상",
+      "sort_order": 14
+    },
+    {
+      "id": "etr-142",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440161",
+      "safety_level": "advanced",
+      "use_case": "AI 코드 자동완성으로 프로그래밍 과제와 졸업 프로젝트 개발",
+      "sort_order": 15
+    },
+    {
+      "id": "etr-143",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440164",
+      "safety_level": "advanced",
+      "use_case": "UI 프로토타입을 프롬프트로 즉시 생성하여 디자인 프로젝트 제작",
+      "sort_order": 16
+    },
+    {
+      "id": "etr-144",
+      "edu_level_id": "edu-college",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440116",
+      "safety_level": "advanced",
+      "use_case": "강의 녹음 자동 전사와 요약으로 수업 내용 정리 효율화",
+      "sort_order": 17
+    },
+    {
+      "id": "etr-150",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440190",
+      "safety_level": "advanced",
+      "use_case": "교육 자료와 논문을 업로드하여 AI 기반 수업 자료 핵심 분석",
+      "sort_order": 10
+    },
+    {
+      "id": "etr-151",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440149",
+      "safety_level": "advanced",
+      "use_case": "AI 음성 합성으로 다국어 교육 영상 내레이션 자동 생성",
+      "sort_order": 11
+    },
+    {
+      "id": "etr-152",
+      "edu_level_id": "edu-teacher",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440144",
+      "safety_level": "advanced",
+      "use_case": "AI 아바타로 교육 강의 영상을 빠르게 제작하여 온라인 수업 활용",
+      "sort_order": 12
+    },
+    {
+      "id": "etr-160",
+      "edu_level_id": "edu-parent",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440135",
+      "safety_level": "safe",
+      "use_case": "자녀와 함께 AI 이미지 생성 체험으로 AI 이해도 높이기",
+      "sort_order": 1
+    },
+    {
+      "id": "etr-161",
+      "edu_level_id": "edu-parent",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440062",
+      "safety_level": "safe",
+      "use_case": "자녀 외국어 학습 보조 도구로 번역과 발음 확인",
+      "sort_order": 2
+    },
+    {
+      "id": "etr-162",
+      "edu_level_id": "edu-parent",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "safety_level": "safe",
+      "use_case": "자녀와 함께 AI 디자인으로 학교 과제 시각 자료 만들기",
+      "sort_order": 3
+    },
+    {
+      "id": "etr-163",
+      "edu_level_id": "edu-parent",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440070",
+      "safety_level": "guided",
+      "use_case": "무료 AI 챗봇으로 자녀의 학습 질문 해결 보조 (부모 감독 하에)",
+      "sort_order": 4
+    },
+    {
+      "id": "etr-164",
+      "edu_level_id": "edu-parent",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "safety_level": "guided",
+      "use_case": "ChatGPT로 자녀 숙제 도움과 학습 전략 상담 (부모 동반 사용)",
+      "sort_order": 5
+    },
+    {
+      "id": "etr-170",
+      "edu_level_id": "edu-academy",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "safety_level": "advanced",
+      "use_case": "학원 수업 교안 작성과 시험 문제 출제를 AI로 자동화",
+      "sort_order": 1
+    },
+    {
+      "id": "etr-171",
+      "edu_level_id": "edu-academy",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "safety_level": "advanced",
+      "use_case": "AI 프레젠테이션으로 학원 수업 자료와 학부모 설명회 자료 제작",
+      "sort_order": 2
+    },
+    {
+      "id": "etr-172",
+      "edu_level_id": "edu-academy",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440190",
+      "safety_level": "advanced",
+      "use_case": "교재와 참고 자료를 AI로 분석하여 수업 핵심 포인트 추출",
+      "sort_order": 3
+    },
+    {
+      "id": "etr-173",
+      "edu_level_id": "edu-academy",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "safety_level": "safe",
+      "use_case": "학원 홍보물과 수업 시각 자료를 AI 디자인으로 빠르게 제작",
+      "sort_order": 4
+    },
+    {
+      "id": "etr-174",
+      "edu_level_id": "edu-academy",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440149",
+      "safety_level": "advanced",
+      "use_case": "AI 음성 합성으로 다국어 듣기 교재와 학습 오디오 제작",
+      "sort_order": 5
+    },
+    {
+      "id": "etr-180",
+      "edu_level_id": "edu-coding",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440031",
+      "safety_level": "advanced",
+      "use_case": "AI IDE로 코딩 수업 시연과 학생 코드 리뷰에 활용",
+      "sort_order": 1
+    },
+    {
+      "id": "etr-181",
+      "edu_level_id": "edu-coding",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440032",
+      "safety_level": "advanced",
+      "use_case": "브라우저 기반 IDE로 학생들이 별도 설치 없이 코딩 실습",
+      "sort_order": 2
+    },
+    {
+      "id": "etr-182",
+      "edu_level_id": "edu-coding",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440164",
+      "safety_level": "advanced",
+      "use_case": "프롬프트로 UI를 생성하여 프론트엔드 교육 시연에 활용",
+      "sort_order": 3
+    },
+    {
+      "id": "etr-183",
+      "edu_level_id": "edu-coding",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440163",
+      "safety_level": "advanced",
+      "use_case": "AI 풀스택 앱 생성으로 프로젝트 기반 코딩 교육에 활용",
+      "sort_order": 4
+    },
+    {
+      "id": "etr-184",
+      "edu_level_id": "edu-coding",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "safety_level": "advanced",
+      "use_case": "코딩 개념 설명과 디버깅 보조로 학생 1:1 맞춤 학습 지원",
+      "sort_order": 5
+    },
+    {
+      "id": "etr-185",
+      "edu_level_id": "edu-coding",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440030",
+      "safety_level": "advanced",
+      "use_case": "AI 코드 자동완성으로 코딩 수업의 생산성과 학습 효율 향상",
+      "sort_order": 6
     }
   ],
   "news": [
