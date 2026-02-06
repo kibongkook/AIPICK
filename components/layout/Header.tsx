@@ -4,7 +4,9 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { SITE_NAME, CATEGORIES } from '@/lib/constants';
+import Logo from '@/components/ui/Logo';
 import SearchBar from '@/components/search/SearchBar';
+import AuthButton from '@/components/auth/AuthButton';
 import MobileNav from './MobileNav';
 
 export default function Header() {
@@ -15,9 +17,8 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* 로고 */}
-        <Link href="/" className="flex items-center gap-1">
-          <span className="text-2xl font-extrabold text-primary">AI</span>
-          <span className="text-2xl font-extrabold text-foreground">PICK</span>
+        <Link href="/">
+          <Logo size="md" />
         </Link>
 
         {/* 데스크탑 네비게이션 */}
@@ -66,9 +67,7 @@ export default function Header() {
 
         {/* 데스크탑 우측 버튼 */}
         <div className="hidden items-center gap-3 md:flex">
-          <button className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-gray-700 hover:bg-surface transition-colors">
-            로그인
-          </button>
+          <AuthButton />
         </div>
 
         {/* 모바일 메뉴 버튼 */}

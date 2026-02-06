@@ -7,6 +7,7 @@ import { getToolBySlug, getCategoryBySlug, getSimilarTools, getCategories } from
 import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
 import ServiceCard from '@/components/service/ServiceCard';
+import { BookmarkButton, UpvoteButton, FeatureRatingBars, ReviewSection, CommentSection } from '@/components/service/ToolInteractions';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -95,16 +96,20 @@ export default async function ToolDetailPage({ params }: Props) {
             </div>
           </div>
 
-          {/* 서비스 바로가기 */}
-          <a
-            href={tool.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-white hover:bg-primary-hover transition-colors"
-          >
-            <ExternalLink className="h-4 w-4" />
-            {tool.name} 바로가기
-          </a>
+          {/* 서비스 바로가기 + 액션 버튼 */}
+          <div className="flex items-center gap-3 flex-wrap">
+            <a
+              href={tool.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white hover:bg-primary-hover transition-colors"
+            >
+              <ExternalLink className="h-4 w-4" />
+              {tool.name} 바로가기
+            </a>
+            <BookmarkButton toolId={tool.id} />
+            <UpvoteButton toolId={tool.id} initialCount={tool.upvote_count} />
+          </div>
 
           {/* 무료로 어디까지? */}
           {tool.free_quota_detail && (
@@ -160,34 +165,21 @@ export default async function ToolDetailPage({ params }: Props) {
             )}
           </section>
 
-          {/* 기능별 평균 점수 (Phase 4에서 실제 데이터 연동) */}
+          {/* 기능별 평균 점수 (리뷰 기반 실시간 계산) */}
           <section className="rounded-xl border border-border bg-white p-6">
             <h2 className="text-lg font-bold text-foreground">기능별 평가</h2>
-            <p className="mt-1 text-xs text-gray-400">사용자 리뷰 기반 (Phase 4에서 연동)</p>
-            <div className="mt-4 space-y-3">
-              {Object.entries(FEATURE_RATING_LABELS).map(([key, label]) => (
-                <div key={key} className="flex items-center gap-3">
-                  <span className="w-24 text-sm text-gray-600">{label}</span>
-                  <div className="flex-1 h-2 rounded-full bg-gray-100">
-                    <div
-                      className="h-full rounded-full bg-primary"
-                      style={{ width: `${(tool.rating_avg / 5) * 100}%` }}
-                    />
-                  </div>
-                  <span className="w-8 text-right text-sm font-medium text-gray-700">
-                    {formatRating(tool.rating_avg)}
-                  </span>
-                </div>
-              ))}
-            </div>
+            <p className="mt-1 text-xs text-gray-400 mb-4">사용자 리뷰 기반</p>
+            <FeatureRatingBars toolId={tool.id} />
           </section>
 
-          {/* 리뷰 영역 (Phase 4에서 인터랙션 추가) */}
+          {/* 리뷰 영역 */}
           <section className="rounded-xl border border-border bg-white p-6">
-            <h2 className="text-lg font-bold text-foreground">리뷰</h2>
-            <p className="mt-2 text-sm text-gray-400">
-              아직 리뷰가 없습니다. Phase 4에서 리뷰 작성 기능이 추가됩니다.
-            </p>
+            <ReviewSection toolId={tool.id} />
+          </section>
+
+          {/* 댓글 영역 */}
+          <section className="rounded-xl border border-border bg-white p-6">
+            <CommentSection toolId={tool.id} />
           </section>
         </div>
 
