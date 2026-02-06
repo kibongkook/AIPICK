@@ -4,6 +4,7 @@ import { Layers, Heart, Wrench } from 'lucide-react';
 import { SITE_NAME } from '@/lib/constants';
 import { getCollections } from '@/lib/supabase/queries';
 import { cn, getAvatarColor } from '@/lib/utils';
+import CreateCollectionButton from '@/components/community/CreateCollectionButton';
 
 export const metadata: Metadata = {
   title: `인기 컬렉션 | ${SITE_NAME}`,
@@ -16,16 +17,19 @@ export default async function CollectionsPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 헤더 */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3">
-          <Layers className="h-7 w-7 text-primary" />
-          <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
-            인기 컬렉션
-          </h1>
+      <div className="mb-8 flex items-start justify-between">
+        <div>
+          <div className="flex items-center gap-3">
+            <Layers className="h-7 w-7 text-primary" />
+            <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
+              인기 컬렉션
+            </h1>
+          </div>
+          <p className="mt-2 text-gray-500">
+            사용자들이 직접 큐레이션한 AI 서비스 컬렉션
+          </p>
         </div>
-        <p className="mt-2 text-gray-500">
-          사용자들이 직접 큐레이션한 AI 서비스 컬렉션
-        </p>
+        <CreateCollectionButton />
       </div>
 
       {/* 컬렉션 그리드 */}

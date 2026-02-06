@@ -1,5 +1,6 @@
+import Link from 'next/link';
 import type { Metadata } from 'next';
-import { BookOpen, Eye } from 'lucide-react';
+import { BookOpen, Eye, PenSquare } from 'lucide-react';
 import { SITE_NAME } from '@/lib/constants';
 import { getGuides } from '@/lib/supabase/queries';
 import type { GuideCategory } from '@/types';
@@ -36,14 +37,23 @@ export default async function GuidesPage({ searchParams }: Props) {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       {/* 헤더 */}
-      <div className="mb-8">
-        <h1 className="flex items-center gap-2 text-2xl font-extrabold text-foreground sm:text-3xl">
-          <BookOpen className="h-7 w-7 text-primary" />
-          AI 활용 가이드
-        </h1>
-        <p className="mt-2 text-sm text-gray-500">
-          AI 도구를 200% 활용하는 방법을 알아보세요.
-        </p>
+      <div className="mb-8 flex items-start justify-between">
+        <div>
+          <h1 className="flex items-center gap-2 text-2xl font-extrabold text-foreground sm:text-3xl">
+            <BookOpen className="h-7 w-7 text-primary" />
+            AI 활용 가이드
+          </h1>
+          <p className="mt-2 text-sm text-gray-500">
+            AI 도구를 200% 활용하는 방법을 알아보세요.
+          </p>
+        </div>
+        <Link
+          href="/guides/new"
+          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-hover transition-colors shrink-0"
+        >
+          <PenSquare className="h-4 w-4" />
+          가이드 작성
+        </Link>
       </div>
 
       {/* 카테고리 필터 */}
