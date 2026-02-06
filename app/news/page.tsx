@@ -4,6 +4,7 @@ import { SITE_NAME, NEWS_CATEGORIES } from '@/lib/constants';
 import { getNews, getHotNews } from '@/lib/supabase/queries';
 import type { NewsCategory } from '@/types';
 import NewsCard from '@/components/news/NewsCard';
+import NewsletterForm from '@/components/newsletter/NewsletterForm';
 
 export const metadata: Metadata = {
   title: `AI 뉴스 | ${SITE_NAME}`,
@@ -71,8 +72,8 @@ export default async function NewsPage({ searchParams }: Props) {
           )}
         </div>
 
-        {/* 사이드바: 주간 핫 뉴스 */}
-        <aside>
+        {/* 사이드바: 주간 핫 뉴스 + 뉴스레터 */}
+        <aside className="space-y-6">
           <div className="rounded-xl border border-border bg-white p-5 sticky top-24">
             <h2 className="text-sm font-bold text-foreground mb-4">주간 핫 뉴스 TOP 5</h2>
             <div className="divide-y divide-border/50">
@@ -86,6 +87,7 @@ export default async function NewsPage({ searchParams }: Props) {
               ))}
             </div>
           </div>
+          <NewsletterForm />
         </aside>
       </div>
     </div>

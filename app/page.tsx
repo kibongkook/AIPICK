@@ -6,6 +6,7 @@ import DynamicIcon from '@/components/ui/DynamicIcon';
 import ServiceCard from '@/components/service/ServiceCard';
 import ServiceGrid from '@/components/service/ServiceGrid';
 import NewsCard from '@/components/news/NewsCard';
+import NewsletterForm from '@/components/newsletter/NewsletterForm';
 import {
   getTools, getCategories, getEditorPicks, getLatestTools,
   getRankings, getJobCategories, getEduLevels, getNews,
@@ -46,6 +47,11 @@ export default function Home() {
 
         {/* 최신 등록 */}
         <LatestSection tools={getLatestTools(CATEGORY_PREVIEW_COUNT)} />
+
+        {/* 뉴스레터 구독 */}
+        <section className="mb-16 mx-auto max-w-lg">
+          <NewsletterForm />
+        </section>
       </div>
     </>
   );

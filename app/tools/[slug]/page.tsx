@@ -2,12 +2,13 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Star, ExternalLink, Zap, ThumbsUp, ArrowLeft, Check, X } from 'lucide-react';
-import { SITE_NAME, PRICING_CONFIG, FEATURE_RATING_LABELS } from '@/lib/constants';
+import { SITE_NAME, SITE_URL, PRICING_CONFIG, FEATURE_RATING_LABELS } from '@/lib/constants';
 import { getToolBySlug, getCategoryBySlug, getSimilarTools, getCategories } from '@/lib/supabase/queries';
 import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
 import ServiceCard from '@/components/service/ServiceCard';
 import { BookmarkButton, UpvoteButton, FeatureRatingBars, ReviewSection, CommentSection } from '@/components/service/ToolInteractions';
+import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -48,6 +49,14 @@ export default async function ToolDetailPage({ params }: Props) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <SoftwareApplicationJsonLd tool={tool} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: '홈', url: SITE_URL },
+          ...(category ? [{ name: category.name, url: `${SITE_URL}/category/${category.slug}` }] : []),
+          { name: tool.name, url: `${SITE_URL}/tools/${tool.slug}` },
+        ]}
+      />
       {/* 뒤로가기 */}
       <Link
         href="/"

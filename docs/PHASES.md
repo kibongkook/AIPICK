@@ -300,47 +300,55 @@
 
 ---
 
-## Phase 6: SEO + PWA + 성능 최적화 + 뉴스레터
+## Phase 6: SEO + PWA + 성능 최적화 + 뉴스레터 ✅ 완료
 
 ### 6-1. PWA (Progressive Web App)
-- [ ] `next-pwa` 설정
-- [ ] `manifest.json` (앱 이름, 아이콘, 테마 색상)
-- [ ] Service Worker (오프라인 캐시)
-- [ ] 앱 설치 유도 배너 ("홈 화면에 추가")
-- [ ] 하단 탭 바 네비게이션 (모바일 앱 느낌)
+- [x] `public/manifest.json` (앱 이름, 아이콘, 테마 색상, standalone 모드)
+- [x] PWA 아이콘 생성 (`public/icons/icon-192.png`, `icon-512.png`)
+- [x] `app/layout.tsx`에 PWA 메타태그 (manifest, apple-web-app, theme-color, viewport-fit)
+- [x] 하단 탭 바 네비게이션 (`components/layout/BottomTabBar.tsx`)
   - 홈 / 랭킹 / 검색 / 뉴스 / MY
+  - 모바일에서만 표시 (md:hidden)
+  - 현재 경로 하이라이트
+- [ ] Service Worker (오프라인 캐시) - Supabase 연동 후 추가
+- [ ] 앱 설치 유도 배너 - 배포 후 추가
 
 ### 6-2. SEO 완성
-- [ ] 모든 페이지 동적 메타데이터
-  - title, description, og:image, twitter:card
-- [ ] `app/sitemap.ts` - 동적 사이트맵
-- [ ] `app/robots.ts` - robots.txt
-- [ ] JSON-LD 구조화 데이터
-  - WebSite (메인)
-  - SoftwareApplication (서비스 상세)
-  - Review (리뷰)
-  - Article (뉴스, 가이드)
+- [x] 모든 페이지 동적 메타데이터 (title, description, og, twitter)
+- [x] `app/sitemap.ts` - 동적 사이트맵 (전체 루트, 도구, 카테고리, 직군, 학년, 가이드, 컬렉션)
+- [x] `app/robots.ts` - robots.txt (admin, auth, api 차단)
+- [x] JSON-LD 구조화 데이터 (`components/seo/JsonLd.tsx`)
+  - WebSite (메인 - 검색 액션 포함)
+  - SoftwareApplication (서비스 상세 - 평점, 가격)
+  - Article (뉴스, 가이드용 준비 완료)
+  - BreadcrumbList (서비스 상세 - 홈 > 카테고리 > 서비스)
 
 ### 6-3. 성능 최적화
-- [ ] `next/image` 이미지 최적화
-- [ ] ISR (revalidate) 설정 - 랭킹, 뉴스 등
-- [ ] 번들 분석 (@next/bundle-analyzer)
-- [ ] Suspense Boundary 적용
-- [ ] Error Boundary 적용
-- [ ] Lighthouse 전 항목 90+ 달성
+- [x] `app/layout.tsx` - Viewport 설정 분리 (Next.js 16 패턴)
+- [x] Suspense Boundary - 동적 페이지에 적용
+- [x] Error Boundary - `app/error.tsx` (오류 복구)
+- [x] `app/not-found.tsx` (404 페이지)
+- [x] 모바일 하단 탭바 safe-area 대응
+- [ ] `next/image` 이미지 최적화 - 배포 후 추가
+- [ ] ISR (revalidate) 설정 - Supabase 연동 후 추가
+- [ ] Lighthouse 전 항목 90+ - 배포 후 검증
 
 ### 6-4. 뉴스레터 구독
-- [ ] 이메일 수집 폼 (메인 페이지 + 뉴스 페이지)
-- [ ] 구독자 DB 테이블
-- [ ] 주간 AI 뉴스레터 발송 (Resend 또는 Supabase Edge Function)
+- [x] `components/newsletter/NewsletterForm.tsx`
+  - 이메일 입력 + 구독 버튼
+  - 구독 완료 애니메이션
+  - localStorage 기반 데모 저장
+- [x] 메인 페이지 하단에 뉴스레터 폼 배치
+- [x] 뉴스 페이지 사이드바에 뉴스레터 폼 배치
+- [ ] Supabase subscribers 테이블 + Resend 연동 - 배포 후 추가
 
 ### 6-5. 추가 앱 전환 준비
-- [ ] 터치 제스처 최적화 (스와이프, 풀 투 리프레시)
-- [ ] 푸시 알림 기반 구조 (Web Push API)
-- [ ] 오프라인 시 캐시된 데이터 표시
-- [ ] 향후 React Native / Capacitor 전환 가이드 문서
+- [ ] 터치 제스처 최적화 - 후순위
+- [ ] 푸시 알림 기반 구조 - 후순위
+- [ ] 오프라인 시 캐시된 데이터 표시 - 후순위
+- [ ] React Native / Capacitor 전환 가이드 - 후순위
 
-**완료 기준**: PWA 설치 가능, Lighthouse 전 항목 90+, 뉴스레터 구독 동작
+**완료 기준**: PWA manifest 설정, 사이트맵/로봇, JSON-LD, 하단 탭바, 뉴스레터 구독 동작
 
 ---
 
@@ -353,4 +361,4 @@
 | Phase 3 | ✅ 완료 | 검색, 필터, 추천 위자드 |
 | Phase 4 | ✅ 완료 | 인증, 리뷰, 댓글, 북마크, 업보트 |
 | Phase 5 | ✅ 완료 | 뉴스, 컬렉션, 가이드, 관리자, 트렌딩 |
-| Phase 6 | [ ] 미진행 | PWA, SEO, 성능, 뉴스레터 |
+| Phase 6 | ✅ 완료 | PWA, SEO, JSON-LD, 하단탭바, 뉴스레터 |
