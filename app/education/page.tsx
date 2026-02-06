@@ -10,12 +10,21 @@ export const metadata: Metadata = {
   description: '학생 수준에 맞는 안전한 AI 도구를 찾아보세요. 초등학생부터 대학생, 교사, 학부모, 학원강사까지.',
 };
 
-export default function EducationPage() {
-  const eduLevels = getEduLevels();
+export default async function EducationPage() {
+  const eduLevels = await getEduLevels();
 
   // 학생 그룹과 교육 관련자 그룹 분리
   const studentSlugs = ['elementary-low', 'elementary-high', 'middle-school', 'high-school', 'college'];
   const educatorSlugs = ['teacher', 'parent', 'academy-tutor', 'coding-tutor'];
+
+  // Pre-fetch all recommendations in parallel
+  const allSlugs = [...studentSlugs, ...educatorSlugs];
+  const recsMap = new Map<string, Awaited<ReturnType<typeof getEduRecommendations>>>();
+  await Promise.all(
+    allSlugs.map(async (slug) => {
+      recsMap.set(slug, await getEduRecommendations(slug));
+    })
+  );
 
   const students = EDU_LEVELS.filter(e => studentSlugs.includes(e.slug));
   const educators = EDU_LEVELS.filter(e => educatorSlugs.includes(e.slug));
@@ -52,7 +61,7 @@ export default function EducationPage() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {students.map((level) => {
             const dbLevel = eduLevels.find(e => e.slug === level.slug);
-            const recs = getEduRecommendations(level.slug);
+            const recs = recsMap.get(level.slug) || [];
             const safeCount = recs.filter((r) => r.safety_level === 'safe').length;
             const toolNames = recs.slice(0, 3).map((r) => r.tool?.name).filter(Boolean);
 
@@ -110,7 +119,7 @@ export default function EducationPage() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {educators.map((level) => {
             const dbLevel = eduLevels.find(e => e.slug === level.slug);
-            const recs = getEduRecommendations(level.slug);
+            const recs = recsMap.get(level.slug) || [];
 
             return (
               <Link

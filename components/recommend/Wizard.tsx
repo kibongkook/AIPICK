@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Sparkles, Star, Zap, ExternalLink } from 'lucide-react';
 import { CATEGORIES, JOB_CATEGORIES, EDU_LEVELS } from '@/lib/constants';
-import { searchTools } from '@/lib/supabase/queries';
 import type { Tool, PricingType } from '@/types';
 import { cn, getAvatarColor, formatRating } from '@/lib/utils';
 import DynamicIcon from '@/components/ui/DynamicIcon';
@@ -34,24 +33,28 @@ export default function Wizard() {
   const totalSteps = 4;
   const currentStep = typeof step === 'number' ? step : totalSteps;
 
-  const goNext = () => {
+  const goNext = async () => {
     if (step === 4) {
-      // 검색 실행
-      const pricing: string[] | undefined =
-        state.budget === 'free' ? ['Free'] :
-        state.budget === 'under10' ? ['Free', 'Freemium'] :
-        undefined;
+      // API를 통해 검색 실행
+      const params = new URLSearchParams();
+      if (state.category) params.append('category', state.category);
+      if (state.budget === 'free') params.append('pricing', 'Free');
+      else if (state.budget === 'under10') {
+        params.append('pricing', 'Free');
+        params.append('pricing', 'Freemium');
+      }
+      if (state.korean === 'required') params.set('korean', 'true');
+      if (state.personaType === 'job' && state.persona) params.set('job', state.persona);
+      if (state.personaType === 'edu' && state.persona) params.set('edu', state.persona);
+      params.set('sort', 'popular');
 
-      const filtered = searchTools({
-        category: state.category ? [state.category] : undefined,
-        pricing,
-        supports_korean: state.korean === 'required' || undefined,
-        job: state.personaType === 'job' ? state.persona : undefined,
-        edu: state.personaType === 'edu' ? state.persona : undefined,
-        sort: 'popular',
-      });
-
-      setResults(filtered.slice(0, 6));
+      try {
+        const res = await fetch(`/api/search?${params.toString()}`);
+        const data = await res.json();
+        setResults((data.results || []).slice(0, 6));
+      } catch {
+        setResults([]);
+      }
       setStep('result');
     } else {
       setStep(((step as number) + 1) as Step);

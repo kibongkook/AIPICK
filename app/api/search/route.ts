@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
 
   // 자동완성 모드
   if (mode === 'autocomplete') {
-    const suggestions = getAutocompleteSuggestions(query);
+    const suggestions = await getAutocompleteSuggestions(query);
     return NextResponse.json({
       suggestions: suggestions.map((t) => ({
         id: t.id,
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
   const edu = searchParams.get('edu') || undefined;
   const sort = (searchParams.get('sort') as 'popular' | 'rating' | 'latest' | 'free_first') || 'popular';
 
-  const results = searchTools({
+  const results = await searchTools({
     query: query || undefined,
     pricing: pricing.length > 0 ? pricing : undefined,
     category: category.length > 0 ? category : undefined,

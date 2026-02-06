@@ -3,7 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Star, ExternalLink, Zap, ThumbsUp, ArrowLeft, Check, X } from 'lucide-react';
 import { SITE_NAME, SITE_URL, PRICING_CONFIG, FEATURE_RATING_LABELS } from '@/lib/constants';
-import { getToolBySlug, getCategoryBySlug, getSimilarTools, getCategories } from '@/lib/supabase/queries';
+import { getToolBySlug, getCategoryBySlug, getSimilarTools, getCategories, getTools } from '@/lib/supabase/queries';
 import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
 import ServiceCard from '@/components/service/ServiceCard';
@@ -16,7 +16,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const tool = getToolBySlug(slug);
+  const tool = await getToolBySlug(slug);
   if (!tool) return { title: '서비스를 찾을 수 없습니다' };
 
   return {
@@ -29,21 +29,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export function generateStaticParams() {
-  const categories = getCategories();
-  const { getTools } = require('@/lib/supabase/queries');
-  const tools = getTools();
-  return tools.map((tool: { slug: string }) => ({ slug: tool.slug }));
+export async function generateStaticParams() {
+  const tools = await getTools();
+  return tools.map((tool) => ({ slug: tool.slug }));
 }
 
 export default async function ToolDetailPage({ params }: Props) {
   const { slug } = await params;
-  const tool = getToolBySlug(slug);
+  const tool = await getToolBySlug(slug);
   if (!tool) notFound();
 
-  const categories = getCategories();
+  const categories = await getCategories();
   const category = categories.find((c) => c.id === tool.category_id);
-  const similarTools = getSimilarTools(tool, 3);
+  const similarTools = await getSimilarTools(tool, 3);
   const pricingStyle = PRICING_CONFIG[tool.pricing_type];
   const pricingVariant = tool.pricing_type === 'Free' ? 'free' : tool.pricing_type === 'Freemium' ? 'freemium' : 'paid';
 

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { User, Star, Bookmark, MessageSquare, Settings } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { useBookmarkList } from '@/hooks/useBookmark';
-import { getTools } from '@/lib/supabase/queries';
 import { cn, getAvatarColor } from '@/lib/utils';
 import AuthGuard from '@/components/auth/AuthGuard';
 import ServiceCard from '@/components/service/ServiceCard';
@@ -32,8 +31,17 @@ function ProfileContent() {
   const [myComments, setMyComments] = useState<StoredComment[]>([]);
 
   useEffect(() => {
-    const allTools = getTools();
-    setBookmarkedTools(allTools.filter((t) => bookmarkedIds.includes(t.id)));
+    if (bookmarkedIds.length === 0) {
+      setBookmarkedTools([]);
+      return;
+    }
+    fetch('/api/tools')
+      .then((res) => res.json())
+      .then((data) => {
+        const allTools: Tool[] = data.tools || [];
+        setBookmarkedTools(allTools.filter((t) => bookmarkedIds.includes(t.id)));
+      })
+      .catch(() => setBookmarkedTools([]));
   }, [bookmarkedIds]);
 
   useEffect(() => {

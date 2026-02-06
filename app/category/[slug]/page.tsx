@@ -16,7 +16,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const category = getCategoryBySlug(slug);
+  const category = await getCategoryBySlug(slug);
   if (!category) return { title: '카테고리를 찾을 수 없습니다' };
   return {
     title: `${category.name} AI 서비스 | ${SITE_NAME}`,
@@ -24,18 +24,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export function generateStaticParams() {
-  return getCategories().map((cat) => ({ slug: cat.slug }));
+export async function generateStaticParams() {
+  const categories = await getCategories();
+  return categories.map((cat) => ({ slug: cat.slug }));
 }
 
 export default async function CategoryPage({ params }: Props) {
   const { slug } = await params;
-  const category = getCategoryBySlug(slug);
+  const category = await getCategoryBySlug(slug);
   if (!category) notFound();
 
-  const tools = getToolsByCategory(category.id);
-  const topRanked = getRankings(slug).slice(0, 3);
-  const categories = getCategories();
+  const tools = await getToolsByCategory(category.id);
+  const topRanked = (await getRankings(slug)).slice(0, 3);
+  const categories = await getCategories();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

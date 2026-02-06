@@ -10,9 +10,9 @@ interface NewsCardProps {
   compact?: boolean;
 }
 
-export default function NewsCard({ news, compact }: NewsCardProps) {
+export default async function NewsCard({ news, compact }: NewsCardProps) {
   const categoryConfig = NEWS_CATEGORIES[news.category] || NEWS_CATEGORIES.general;
-  const relatedTool = news.related_tool_id ? getToolById(news.related_tool_id) : null;
+  const relatedTool = news.related_tool_id ? await getToolById(news.related_tool_id) : null;
 
   if (compact) {
     return (

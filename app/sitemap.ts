@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/constants';
 import { getTools, getCategories, getJobCategories, getEduLevels, getNews, getGuides, getCollections } from '@/lib/supabase/queries';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL;
 
   // 정적 페이지
@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // 서비스 상세 페이지
-  const toolPages: MetadataRoute.Sitemap = getTools().map((tool) => ({
+  const toolPages: MetadataRoute.Sitemap = (await getTools()).map((tool) => ({
     url: `${baseUrl}/tools/${tool.slug}`,
     lastModified: new Date(tool.updated_at),
     changeFrequency: 'weekly' as const,
@@ -28,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // 카테고리 페이지
-  const categoryPages: MetadataRoute.Sitemap = getCategories().map((cat) => ({
+  const categoryPages: MetadataRoute.Sitemap = (await getCategories()).map((cat) => ({
     url: `${baseUrl}/category/${cat.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
@@ -36,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // 직군별 페이지
-  const jobPages: MetadataRoute.Sitemap = getJobCategories().map((job) => ({
+  const jobPages: MetadataRoute.Sitemap = (await getJobCategories()).map((job) => ({
     url: `${baseUrl}/jobs/${job.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
@@ -44,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // 학년별 페이지
-  const eduPages: MetadataRoute.Sitemap = getEduLevels().map((edu) => ({
+  const eduPages: MetadataRoute.Sitemap = (await getEduLevels()).map((edu) => ({
     url: `${baseUrl}/education/${edu.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
@@ -52,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // 가이드 페이지
-  const guidePages: MetadataRoute.Sitemap = getGuides().map((guide) => ({
+  const guidePages: MetadataRoute.Sitemap = (await getGuides()).map((guide) => ({
     url: `${baseUrl}/guides/${guide.slug}`,
     lastModified: new Date(guide.updated_at),
     changeFrequency: 'monthly' as const,
@@ -60,7 +60,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // 컬렉션 페이지
-  const collectionPages: MetadataRoute.Sitemap = getCollections().map((col) => ({
+  const collectionPages: MetadataRoute.Sitemap = (await getCollections()).map((col) => ({
     url: `${baseUrl}/collections/${col.id}`,
     lastModified: new Date(col.updated_at),
     changeFrequency: 'weekly' as const,

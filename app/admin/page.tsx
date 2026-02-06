@@ -14,13 +14,13 @@ export const metadata: Metadata = {
   title: `관리자 대시보드 | ${SITE_NAME}`,
 };
 
-export default function AdminDashboard() {
-  const tools = getTools();
-  const news = getNews();
-  const guides = getGuides();
-  const collections = getCollections();
-  const jobCategories = getJobCategories();
-  const eduLevels = getEduLevels();
+export default async function AdminDashboard() {
+  const tools = await getTools();
+  const news = await getNews();
+  const guides = await getGuides();
+  const collections = await getCollections();
+  const jobCategories = await getJobCategories();
+  const eduLevels = await getEduLevels();
 
   const stats = [
     { label: '총 서비스 수', value: tools.length, icon: Wrench, color: 'text-blue-600 bg-blue-50' },

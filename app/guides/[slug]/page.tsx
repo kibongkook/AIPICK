@@ -87,7 +87,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const guide = getGuideBySlug(slug);
+  const guide = await getGuideBySlug(slug);
   if (!guide) return { title: '가이드를 찾을 수 없습니다' };
   return {
     title: `${guide.title} | ${SITE_NAME}`,
@@ -97,7 +97,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GuideDetailPage({ params }: Props) {
   const { slug } = await params;
-  const guide = getGuideBySlug(slug);
+  const guide = await getGuideBySlug(slug);
   if (!guide) notFound();
 
   const catConfig = GUIDE_CATEGORIES[guide.category];

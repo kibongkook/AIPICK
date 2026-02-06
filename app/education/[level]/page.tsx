@@ -15,7 +15,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { level } = await params;
-  const eduLevel = getEduLevelBySlug(level);
+  const eduLevel = await getEduLevelBySlug(level);
   if (!eduLevel) return { title: '학년을 찾을 수 없습니다' };
   return {
     title: `${eduLevel.name}을 위한 AI 추천 | ${SITE_NAME}`,
@@ -23,17 +23,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export function generateStaticParams() {
-  const levels = getEduLevels();
+export async function generateStaticParams() {
+  const levels = await getEduLevels();
   return levels.map((lvl) => ({ level: lvl.slug }));
 }
 
 export default async function EduLevelDetailPage({ params }: Props) {
   const { level } = await params;
-  const eduLevel = getEduLevelBySlug(level);
+  const eduLevel = await getEduLevelBySlug(level);
   if (!eduLevel) notFound();
 
-  const recommendations = getEduRecommendations(level);
+  const recommendations = await getEduRecommendations(level);
   const grouped: Record<SafetyLevel, typeof recommendations> = {
     safe: recommendations.filter((r) => r.safety_level === 'safe'),
     guided: recommendations.filter((r) => r.safety_level === 'guided'),

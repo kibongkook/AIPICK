@@ -18,14 +18,17 @@ import {
   getJobCategories, getJobRecommendations, getLatestTools, getNews,
 } from '@/lib/supabase/queries';
 
-export default function Home() {
-  const tools = getTools();
-  const editorPicks = getEditorPicks(EDITOR_PICKS_COUNT);
-  const topRanked = getRankings().slice(0, 5);
-  const trending = getTrending(6);
-  const jobCategories = getJobCategories();
-  const latestTools = getLatestTools(6);
-  const latestNews = getNews(3);
+export default async function Home() {
+  const [tools, editorPicks, topRankedAll, trending, jobCategories, latestTools, latestNews] = await Promise.all([
+    getTools(),
+    getEditorPicks(EDITOR_PICKS_COUNT),
+    getRankings(),
+    getTrending(6),
+    getJobCategories(),
+    getLatestTools(6),
+    getNews(3),
+  ]);
+  const topRanked = topRankedAll.slice(0, 5);
 
   // 만능 AI (다목적 태그를 가진 상위 도구들)
   const generalAI = tools
@@ -174,15 +177,23 @@ function TrendingBar({ tools }: { tools: Tool[] }) {
 // ==========================================
 // 직군별 필수 AI - FOMO
 // ==========================================
-function FeaturedJobsSection({ jobCategories }: { jobCategories: { id: string; name: string; slug: string; icon: string | null; description: string | null }[] }) {
+async function FeaturedJobsSection({ jobCategories }: { jobCategories: { id: string; name: string; slug: string; icon: string | null; description: string | null }[] }) {
   const featured = jobCategories.filter(j => (FEATURED_JOB_SLUGS as readonly string[]).includes(j.slug));
+
+  // 병렬로 추천 데이터 프리페치
+  const recsMap = new Map<string, Awaited<ReturnType<typeof getJobRecommendations>>>();
+  await Promise.all(
+    featured.map(async (job) => {
+      recsMap.set(job.slug, await getJobRecommendations(job.slug));
+    })
+  );
 
   return (
     <section>
       <SectionHeader title={SOCIAL_PROOF_MESSAGES.job_fomo} href="/jobs" linkText={`전체 ${JOB_CATEGORIES.length}개 직군`} />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {featured.map((job) => {
-          const recs = getJobRecommendations(job.slug);
+          const recs = recsMap.get(job.slug) || [];
           const essentials = recs.filter(r => r.recommendation_level === 'essential');
 
           return (

@@ -18,8 +18,8 @@ interface Props {
 export default async function NewsPage({ searchParams }: Props) {
   const { category } = await searchParams;
   const validCategory = category && category in NEWS_CATEGORIES ? category as NewsCategory : undefined;
-  const news = getNews(undefined, validCategory);
-  const hotNews = getHotNews(5);
+  const news = await getNews(undefined, validCategory);
+  const hotNews = await getHotNews(5);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

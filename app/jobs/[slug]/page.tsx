@@ -15,7 +15,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const job = getJobCategoryBySlug(slug);
+  const job = await getJobCategoryBySlug(slug);
   if (!job) return { title: '직군을 찾을 수 없습니다' };
   return {
     title: `${job.name}을 위한 AI 추천 | ${SITE_NAME}`,
@@ -23,17 +23,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export function generateStaticParams() {
-  const jobs = getJobCategories();
+export async function generateStaticParams() {
+  const jobs = await getJobCategories();
   return jobs.map((job) => ({ slug: job.slug }));
 }
 
 export default async function JobDetailPage({ params }: Props) {
   const { slug } = await params;
-  const job = getJobCategoryBySlug(slug);
+  const job = await getJobCategoryBySlug(slug);
   if (!job) notFound();
 
-  const recommendations = getJobRecommendations(slug);
+  const recommendations = await getJobRecommendations(slug);
   const grouped: Record<RecommendationLevel, typeof recommendations> = {
     essential: recommendations.filter((r) => r.recommendation_level === 'essential'),
     recommended: recommendations.filter((r) => r.recommendation_level === 'recommended'),

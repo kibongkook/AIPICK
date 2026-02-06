@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   title: `가이드 관리 | ${SITE_NAME}`,
 };
 
-export default function AdminGuidesPage() {
-  const guides = getGuides();
+export default async function AdminGuidesPage() {
+  const guides = await getGuides();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

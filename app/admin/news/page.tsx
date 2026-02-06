@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   title: `뉴스 관리 | ${SITE_NAME}`,
 };
 
-export default function AdminNewsPage() {
-  const news = getNews();
+export default async function AdminNewsPage() {
+  const news = await getNews();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

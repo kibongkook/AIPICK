@@ -13,7 +13,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const collection = getCollectionById(id);
+  const collection = await getCollectionById(id);
   if (!collection) return { title: '컬렉션을 찾을 수 없습니다' };
   return {
     title: `${collection.title} | ${SITE_NAME}`,
@@ -21,13 +21,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export function generateStaticParams() {
-  return getCollections().map((c) => ({ id: c.id }));
+export async function generateStaticParams() {
+  return (await getCollections()).map((c) => ({ id: c.id }));
 }
 
 export default async function CollectionDetailPage({ params }: Props) {
   const { id } = await params;
-  const collection = getCollectionById(id);
+  const collection = await getCollectionById(id);
   if (!collection) notFound();
 
   const createdDate = new Date(collection.created_at).toLocaleDateString('ko-KR', {

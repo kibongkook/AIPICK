@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   title: `서비스 관리 | ${SITE_NAME}`,
 };
 
-export default function AdminToolsPage() {
-  const tools = getTools();
+export default async function AdminToolsPage() {
+  const tools = await getTools();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

@@ -31,7 +31,7 @@ export default async function SearchPage({ searchParams }: Props) {
   const edu = typeof params.edu === 'string' ? params.edu : undefined;
   const sort = (typeof params.sort === 'string' ? params.sort : 'popular') as 'popular' | 'rating' | 'latest' | 'free_first';
 
-  const results = searchTools({
+  const results = await searchTools({
     query: query || undefined,
     pricing,
     category,
@@ -101,8 +101,8 @@ function SearchResultCard({ tool, query }: { tool: Tool; query: string }) {
   return <ServiceCard tool={tool} />;
 }
 
-function EmptyResults({ query }: { query: string }) {
-  const suggestions = searchTools({ sort: 'popular' }).slice(0, 4);
+async function EmptyResults({ query }: { query: string }) {
+  const suggestions = (await searchTools({ sort: 'popular' })).slice(0, 4);
 
   return (
     <div className="text-center py-16">

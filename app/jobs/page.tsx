@@ -10,8 +10,16 @@ export const metadata: Metadata = {
   description: '당신의 직업에 맞는 AI 도구를 찾아보세요. 개발자, 디자이너, 마케터 등 10개 직군별 맞춤 추천.',
 };
 
-export default function JobsPage() {
-  const jobCategories = getJobCategories();
+export default async function JobsPage() {
+  const jobCategories = await getJobCategories();
+
+  // Pre-fetch all recommendations in parallel
+  const recsMap = new Map<string, Awaited<ReturnType<typeof getJobRecommendations>>>();
+  await Promise.all(
+    jobCategories.map(async (job) => {
+      recsMap.set(job.slug, await getJobRecommendations(job.slug));
+    })
+  );
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -31,7 +39,7 @@ export default function JobsPage() {
       {/* 직군 카드 그리드 */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {jobCategories.map((job) => {
-          const recs = getJobRecommendations(job.slug);
+          const recs = recsMap.get(job.slug) || [];
           const essentialCount = recs.filter((r) => r.recommendation_level === 'essential').length;
 
           return (

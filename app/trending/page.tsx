@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default async function TrendingPage() {
-  const trendingTools = getTrending(10);
-  const latestTools = getLatestTools(4);
+  const trendingTools = await getTrending(10);
+  const latestTools = await getLatestTools(4);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

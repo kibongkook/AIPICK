@@ -31,7 +31,7 @@ export default async function GuidesPage({ searchParams }: Props) {
   const { category } = await searchParams;
   const validCategory =
     category && category in GUIDE_CATEGORIES ? (category as GuideCategory) : undefined;
-  const guides = getGuides(validCategory);
+  const guides = await getGuides(validCategory);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

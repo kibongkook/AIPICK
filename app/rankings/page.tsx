@@ -17,8 +17,8 @@ interface Props {
 
 export default async function RankingsPage({ searchParams }: Props) {
   const { category } = await searchParams;
-  const rankedTools = getRankings(category);
-  const categories = getCategories();
+  const rankedTools = await getRankings(category);
+  const categories = await getCategories();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { Bookmark } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { useBookmarkList } from '@/hooks/useBookmark';
-import { getTools } from '@/lib/supabase/queries';
 import ServiceCard from '@/components/service/ServiceCard';
 import AuthGuard from '@/components/auth/AuthGuard';
 import type { Tool } from '@/types';
@@ -32,8 +31,17 @@ function BookmarkContent() {
   }, [refresh]);
 
   useEffect(() => {
-    const allTools = getTools();
-    setTools(allTools.filter((t) => bookmarkedIds.includes(t.id)));
+    if (bookmarkedIds.length === 0) {
+      setTools([]);
+      return;
+    }
+    fetch('/api/tools')
+      .then((res) => res.json())
+      .then((data) => {
+        const allTools: Tool[] = data.tools || [];
+        setTools(allTools.filter((t) => bookmarkedIds.includes(t.id)));
+      })
+      .catch(() => setTools([]));
   }, [bookmarkedIds]);
 
   if (tools.length === 0) {
