@@ -19,7 +19,7 @@ interface ReviewFormProps {
       feature_variety: number;
       value_for_money: number;
     };
-  }) => boolean;
+  }) => boolean | Promise<boolean>;
   hasExisting: boolean;
 }
 
@@ -62,9 +62,9 @@ export default function ReviewForm({ toolId, onSubmit, hasExisting }: ReviewForm
     );
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (rating === 0 || !content.trim()) return;
-    const success = onSubmit({ rating, content: content.trim(), feature_ratings: featureRatings });
+    const success = await onSubmit({ rating, content: content.trim(), feature_ratings: featureRatings });
     if (success) {
       setRating(0);
       setContent('');

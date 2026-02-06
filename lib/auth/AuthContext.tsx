@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import { createClient } from '@/lib/supabase/client';
+import { isSupabaseConfigured } from '@/lib/supabase/config';
 
 export interface User {
   id: string;
@@ -42,15 +43,6 @@ const DEMO_USER: User = {
 };
 
 const STORAGE_KEY = 'aipick_auth_user';
-
-/** Supabase 환경변수 설정 여부 확인 */
-function isSupabaseConfigured(): boolean {
-  return !!(
-    process.env.NEXT_PUBLIC_SUPABASE_URL &&
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
-    process.env.NEXT_PUBLIC_SUPABASE_URL !== 'your-supabase-url'
-  );
-}
 
 /** Supabase 사용자 → AIPICK User 변환 */
 function mapSupabaseUser(supabaseUser: { id: string; email?: string; user_metadata?: Record<string, string>; app_metadata?: Record<string, string>; created_at: string }): User {

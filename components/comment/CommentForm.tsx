@@ -5,7 +5,7 @@ import { Send } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 
 interface CommentFormProps {
-  onSubmit: (content: string) => boolean;
+  onSubmit: (content: string) => boolean | Promise<boolean>;
   placeholder?: string;
   autoFocus?: boolean;
   compact?: boolean;
@@ -17,10 +17,10 @@ export default function CommentForm({ onSubmit, placeholder = '댓글을 작성�
 
   if (!user) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!content.trim()) return;
-    const success = onSubmit(content.trim());
+    const success = await onSubmit(content.trim());
     if (success) setContent('');
   };
 

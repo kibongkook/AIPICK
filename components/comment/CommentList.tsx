@@ -10,7 +10,7 @@ import type { StoredComment } from '@/hooks/useComments';
 interface CommentListProps {
   topLevelComments: StoredComment[];
   getReplies: (parentId: string) => StoredComment[];
-  onAddComment: (content: string, parentId: string | null) => boolean;
+  onAddComment: (content: string, parentId: string | null) => boolean | Promise<boolean>;
   onDelete: (commentId: string) => void;
   onLike: (commentId: string) => void;
 }
@@ -69,7 +69,7 @@ function CommentItem({
   comment: StoredComment;
   replies: StoredComment[];
   isOwn: boolean;
-  onReply: (content: string) => boolean;
+  onReply: (content: string) => boolean | Promise<boolean>;
   onDelete: () => void;
   onLike: () => void;
   onDeleteReply: (commentId: string) => void;
@@ -125,8 +125,8 @@ function CommentItem({
       {showReplyForm && (
         <div className="mt-3 pl-4 border-l-2 border-gray-100">
           <CommentForm
-            onSubmit={(content) => {
-              const result = onReply(content);
+            onSubmit={async (content) => {
+              const result = await onReply(content);
               if (result) setShowReplyForm(false);
               return result;
             }}

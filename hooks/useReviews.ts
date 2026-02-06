@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/lib/auth/AuthContext';
+import { isSupabaseConfigured } from '@/lib/supabase/config';
 
 const STORAGE_KEY = 'aipick_reviews';
+const useApi = isSupabaseConfigured();
 
 export interface StoredReview {
   id: string;
@@ -23,7 +25,8 @@ export interface StoredReview {
   created_at: string;
 }
 
-function getAllReviews(): StoredReview[] {
+// ── localStorage 헬퍼 ──
+function getLocalReviews(): StoredReview[] {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -31,8 +34,7 @@ function getAllReviews(): StoredReview[] {
     return [];
   }
 }
-
-function saveAllReviews(reviews: StoredReview[]) {
+function saveLocalReviews(reviews: StoredReview[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
 }
 
@@ -41,28 +43,64 @@ export function useReviews(toolId: string) {
   const [reviews, setReviews] = useState<StoredReview[]>([]);
   const [sort, setSort] = useState<'latest' | 'rating' | 'helpful'>('latest');
 
-  const load = useCallback(() => {
-    const all = getAllReviews().filter((r) => r.tool_id === toolId);
+  const sortReviews = useCallback((list: StoredReview[]) => {
+    const sorted = [...list];
     switch (sort) {
-      case 'rating': all.sort((a, b) => b.rating - a.rating); break;
-      case 'helpful': all.sort((a, b) => b.helpful_count - a.helpful_count); break;
-      default: all.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      case 'rating': sorted.sort((a, b) => b.rating - a.rating); break;
+      case 'helpful': sorted.sort((a, b) => b.helpful_count - a.helpful_count); break;
+      default: sorted.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
     }
-    setReviews(all);
-  }, [toolId, sort]);
+    return sorted;
+  }, [sort]);
+
+  const load = useCallback(async () => {
+    if (useApi) {
+      try {
+        const res = await fetch(`/api/reviews?tool_id=${encodeURIComponent(toolId)}`);
+        if (res.ok) {
+          const data = await res.json();
+          setReviews(sortReviews(data.reviews || []));
+          return;
+        }
+      } catch { /* fallback */ }
+    }
+    // localStorage fallback
+    const all = getLocalReviews().filter((r) => r.tool_id === toolId);
+    setReviews(sortReviews(all));
+  }, [toolId, sortReviews]);
 
   useEffect(() => { load(); }, [load]);
 
-  const addReview = useCallback((data: {
+  const addReview = useCallback(async (data: {
     rating: number;
     content: string;
     feature_ratings: StoredReview['feature_ratings'];
   }) => {
     if (!user) return false;
-    const all = getAllReviews();
-    // 이미 리뷰를 작성했는지 확인
-    if (all.some((r) => r.tool_id === toolId && r.user_id === user.id)) return false;
 
+    if (useApi && user.provider !== 'demo') {
+      try {
+        const res = await fetch('/api/reviews', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tool_id: toolId,
+            rating: data.rating,
+            content: data.content,
+            feature_ratings: data.feature_ratings,
+          }),
+        });
+        if (res.ok) {
+          await load();
+          return true;
+        }
+        if (res.status === 409) return false;
+      } catch { /* fallback */ }
+    }
+
+    // localStorage fallback
+    const all = getLocalReviews();
+    if (all.some((r) => r.tool_id === toolId && r.user_id === user.id)) return false;
     const review: StoredReview = {
       id: `review-${Date.now()}`,
       tool_id: toolId,
@@ -74,25 +112,52 @@ export function useReviews(toolId: string) {
       helpful_count: 0,
       created_at: new Date().toISOString(),
     };
-    saveAllReviews([...all, review]);
-    load();
+    saveLocalReviews([...all, review]);
+    await load();
     return true;
   }, [user, toolId, load]);
 
-  const deleteReview = useCallback((reviewId: string) => {
+  const deleteReview = useCallback(async (reviewId: string) => {
     if (!user) return;
-    const all = getAllReviews().filter((r) => !(r.id === reviewId && r.user_id === user.id));
-    saveAllReviews(all);
-    load();
+
+    if (useApi && user.provider !== 'demo') {
+      try {
+        const res = await fetch(`/api/reviews?id=${encodeURIComponent(reviewId)}`, {
+          method: 'DELETE',
+        });
+        if (res.ok) {
+          await load();
+          return;
+        }
+      } catch { /* fallback */ }
+    }
+
+    const all = getLocalReviews().filter((r) => !(r.id === reviewId && r.user_id === user.id));
+    saveLocalReviews(all);
+    await load();
   }, [user, load]);
 
-  const toggleHelpful = useCallback((reviewId: string) => {
-    const all = getAllReviews();
+  const toggleHelpful = useCallback(async (reviewId: string) => {
+    if (useApi) {
+      try {
+        const res = await fetch('/api/reviews/helpful', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ review_id: reviewId }),
+        });
+        if (res.ok) {
+          await load();
+          return;
+        }
+      } catch { /* fallback */ }
+    }
+
+    const all = getLocalReviews();
     const target = all.find((r) => r.id === reviewId);
     if (target) {
       target.helpful_count += 1;
-      saveAllReviews(all);
-      load();
+      saveLocalReviews(all);
+      await load();
     }
   }, [load]);
 
