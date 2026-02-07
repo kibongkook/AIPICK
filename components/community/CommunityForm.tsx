@@ -17,7 +17,6 @@ import type { CommunityPostType, FeatureRatings, MediaAttachment } from '@/types
 const FEATURE_KEYS = Object.keys(FEATURE_RATING_LABELS) as (keyof typeof FEATURE_RATING_LABELS)[];
 
 interface CommunityFormProps {
-  activeTab: CommunityPostType | 'all';
   hasExistingRating: boolean;
   onSubmit: (data: {
     post_type: CommunityPostType;
@@ -28,10 +27,10 @@ interface CommunityFormProps {
   }) => Promise<boolean>;
 }
 
-export default function CommunityForm({ activeTab, hasExistingRating, onSubmit }: CommunityFormProps) {
+export default function CommunityForm({ hasExistingRating, onSubmit }: CommunityFormProps) {
   const { user } = useAuth();
   const [isExpanded, setIsExpanded] = useState(false);
-  const [postType, setPostType] = useState<CommunityPostType>(activeTab === 'all' ? 'discussion' : activeTab);
+  const [postType, setPostType] = useState<CommunityPostType>('discussion');
   const [content, setContent] = useState('');
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
@@ -55,18 +54,12 @@ export default function CommunityForm({ activeTab, hasExistingRating, onSubmit }
   }
 
   if (!isExpanded) {
-    const placeholders: Record<string, string> = {
-      rating: '이 서비스에 대한 평가를 남겨주세요',
-      discussion: '자유롭게 의견을 공유해주세요',
-      tip: '유용한 사용 팁을 공유해주세요',
-      question: '궁금한 점을 질문해주세요',
-    };
     return (
       <button
         onClick={() => setIsExpanded(true)}
         className="w-full rounded-xl border-2 border-dashed border-gray-200 px-4 py-5 text-sm text-gray-500 hover:border-primary hover:text-primary transition-colors"
       >
-        {placeholders[postType] || '글을 작성해주세요'}
+        평가, 팁, 질문 등 자유롭게 글을 작성해주세요
       </button>
     );
   }

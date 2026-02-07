@@ -17,8 +17,7 @@ import type {
 
 const useApi = isSupabaseConfigured();
 
-type SortOption = 'latest' | 'popular' | 'rating';
-type TabOption = CommunityPostType | 'all';
+type SortOption = 'latest' | 'popular';
 
 export interface RatingStats {
   avg: number;
@@ -105,7 +104,6 @@ function migrateLocalStorage(): CommunityPost[] {
 export function useCommunity(targetType: CommunityTargetType, targetId: string) {
   const { user } = useAuth();
   const [posts, setPosts] = useState<CommunityPost[]>([]);
-  const [activeTab, setActiveTab] = useState<TabOption>('all');
   const [sort, setSort] = useState<SortOption>('latest');
 
   // ── 데이터 로드 ──
@@ -135,12 +133,6 @@ export function useCommunity(targetType: CommunityTargetType, targetId: string) 
   }, [targetType, targetId, sort]);
 
   useEffect(() => { load(); }, [load]);
-
-  // ── 필터링된 목록 ──
-  const filteredPosts = useMemo(() => {
-    if (activeTab === 'all') return posts;
-    return posts.filter((p) => p.post_type === activeTab);
-  }, [posts, activeTab]);
 
   // ── 내 평가 찾기 ──
   const myRatingPost = useMemo(() => {
@@ -346,10 +338,7 @@ export function useCommunity(targetType: CommunityTargetType, targetId: string) 
   }, []);
 
   return {
-    posts: filteredPosts,
     allPosts: posts,
-    activeTab,
-    setActiveTab,
     sort,
     setSort,
     myRatingPost,
@@ -368,9 +357,6 @@ function sortPosts(list: CommunityPost[], sort: SortOption): CommunityPost[] {
   switch (sort) {
     case 'popular':
       sorted.sort((a, b) => b.like_count - a.like_count);
-      break;
-    case 'rating':
-      sorted.sort((a, b) => (b.rating || 0) - (a.rating || 0));
       break;
     default:
       sorted.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());

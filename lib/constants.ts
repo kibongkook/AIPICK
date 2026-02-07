@@ -141,7 +141,6 @@ export const RATING_MAX = 5;
 // 커뮤니티 시스템 설정
 // ==========================================
 export const COMMUNITY_SECTION_LABEL = '커뮤니티';
-export const COMMUNITY_TAB_ALL_LABEL = '전체';
 
 export const COMMUNITY_POST_TYPES = {
   rating: { label: '평가', icon: 'Star', color: 'bg-yellow-100 text-yellow-700' },
@@ -161,7 +160,6 @@ export const ALLOWED_VIDEO_TYPES = ['video/mp4', 'video/webm'] as const;
 export const COMMUNITY_SORT_OPTIONS = [
   { value: 'latest' as const, label: '최신순' },
   { value: 'popular' as const, label: '인기순' },
-  { value: 'rating' as const, label: '평점순' },
 ] as const;
 
 export const COMMUNITY_STORAGE_KEY = 'aipick_community_posts';

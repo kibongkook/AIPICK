@@ -4,15 +4,13 @@ import { Star, Users } from 'lucide-react';
 import { useCommunity } from '@/hooks/useCommunity';
 import {
   COMMUNITY_SECTION_LABEL,
-  COMMUNITY_TAB_ALL_LABEL,
-  COMMUNITY_POST_TYPES,
   COMMUNITY_SORT_OPTIONS,
   FEATURE_RATING_LABELS,
 } from '@/lib/constants';
 import { cn, formatRating } from '@/lib/utils';
 import CommunityForm from './CommunityForm';
 import CommunityPostCard from './CommunityPost';
-import type { CommunityTargetType, CommunityPostType } from '@/types';
+import type { CommunityTargetType } from '@/types';
 
 const FEATURE_KEYS = Object.keys(FEATURE_RATING_LABELS) as (keyof typeof FEATURE_RATING_LABELS)[];
 
@@ -23,10 +21,7 @@ interface CommunitySectionProps {
 
 export default function CommunitySection({ targetType, targetId }: CommunitySectionProps) {
   const {
-    posts,
     allPosts,
-    activeTab,
-    setActiveTab,
     sort,
     setSort,
     myRatingPost,
@@ -38,22 +33,28 @@ export default function CommunitySection({ targetType, targetId }: CommunitySect
     getReplies,
   } = useCommunity(targetType, targetId);
 
-  const tabs: { key: CommunityPostType | 'all'; label: string }[] = [
-    { key: 'all', label: COMMUNITY_TAB_ALL_LABEL },
-    ...Object.entries(COMMUNITY_POST_TYPES).map(([key, cfg]) => ({
-      key: key as CommunityPostType,
-      label: cfg.label,
-    })),
-  ];
-
   return (
     <div className="space-y-5">
-      {/* 헤더 */}
+      {/* 헤더 + 정렬 */}
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
           <Users className="h-5 w-5" />
           {COMMUNITY_SECTION_LABEL} ({allPosts.length})
         </h2>
+        <div className="flex items-center gap-2">
+          {COMMUNITY_SORT_OPTIONS.map((opt) => (
+            <button
+              key={opt.value}
+              onClick={() => setSort(opt.value)}
+              className={cn(
+                'text-xs transition-colors',
+                sort === opt.value ? 'font-semibold text-primary' : 'text-gray-400 hover:text-gray-600'
+              )}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* 평가 요약 (도구 페이지에서만) */}
@@ -61,56 +62,16 @@ export default function CommunitySection({ targetType, targetId }: CommunitySect
         <RatingSummary avg={ratingStats.avg} count={ratingStats.count} featureAvg={ratingStats.featureAvg} />
       )}
 
-      {/* 탭 바 */}
-      <div className="flex items-center gap-1 overflow-x-auto">
-        {tabs.map((tab) => {
-          const count = tab.key === 'all'
-            ? allPosts.length
-            : allPosts.filter((p) => p.post_type === tab.key).length;
-          return (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className={cn(
-                'whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-colors',
-                activeTab === tab.key
-                  ? 'bg-primary text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              )}
-            >
-              {tab.label} {count > 0 && `(${count})`}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* 정렬 */}
-      <div className="flex items-center gap-2">
-        {COMMUNITY_SORT_OPTIONS.map((opt) => (
-          <button
-            key={opt.value}
-            onClick={() => setSort(opt.value)}
-            className={cn(
-              'text-xs transition-colors',
-              sort === opt.value ? 'font-semibold text-primary' : 'text-gray-400 hover:text-gray-600'
-            )}
-          >
-            {opt.label}
-          </button>
-        ))}
-      </div>
-
       {/* 작성 폼 */}
       <CommunityForm
-        activeTab={activeTab}
         hasExistingRating={!!myRatingPost}
         onSubmit={addPost}
       />
 
-      {/* 게시물 목록 */}
-      {posts.length > 0 ? (
+      {/* 게시물 목록 (통합 피드) */}
+      {allPosts.length > 0 ? (
         <div className="space-y-3">
-          {posts.map((post) => (
+          {allPosts.map((post) => (
             <CommunityPostCard
               key={post.id}
               post={post}
@@ -123,9 +84,7 @@ export default function CommunitySection({ targetType, targetId }: CommunitySect
         </div>
       ) : (
         <div className="rounded-lg border border-border bg-gray-50 py-10 text-center text-sm text-gray-400">
-          {activeTab === 'all'
-            ? '아직 커뮤니티 글이 없습니다. 첫 번째 글을 작성해보세요!'
-            : `아직 ${COMMUNITY_POST_TYPES[activeTab as CommunityPostType]?.label || ''} 글이 없습니다.`}
+          아직 커뮤니티 글이 없습니다. 첫 번째 글을 작성해보세요!
         </div>
       )}
     </div>
