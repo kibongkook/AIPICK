@@ -1,7 +1,7 @@
 # AIPICK - Product Requirements Document (PRD)
 
-> 최종 수정일: 2026-02-06
-> 버전: v2.0 (전면 개정)
+> 최종 수정일: 2026-02-07
+> 버전: v3.0 (Phase 7~8 추가)
 
 ---
 
@@ -53,7 +53,7 @@
 
 | 영역 | 기술 | 선택 이유 |
 |------|------|----------|
-| Framework | Next.js 14 (App Router) | SSR/SSG, SEO, PWA 지원 |
+| Framework | Next.js 16 (App Router) | SSR/SSG, SEO, PWA 지원 |
 | UI | React + Tailwind CSS | 반응형, 모바일 퍼스트 |
 | Icons | Lucide React | 경량, 일관성 |
 | Backend/DB | Supabase (PostgreSQL) | Auth, Storage, Realtime |
@@ -400,15 +400,31 @@ weekly_rankings (스냅샷)
 - 관리자 대시보드
 - 주간 트렌딩 페이지
 
-### Phase 6: SEO + PWA + 성능 최적화
+### Phase 6: SEO + PWA + 성능 최적화 ✅ (완료)
 **목표**: 앱 전환 + 검색 최적화 + 성능
 
-- PWA 설정 (next-pwa, manifest, service worker)
-- 앱 설치 유도 배너
+- PWA 설정 (manifest, 하단 탭바, 메타태그)
 - SEO 완성 (메타, 사이트맵, JSON-LD)
-- 성능 최적화 (ISR, 이미지, 번들)
-- Lighthouse 전 항목 90+
 - 뉴스레터 구독 기능
+- 하단 탭바 네비게이션
+
+### Phase 7: 데이터 정확성 + 외부 파이프라인 ✅ (완료)
+**목표**: 119개 도구 데이터 검증 + 자동 수집 시스템
+
+- seed.json 119개 도구 데이터 전수 검증/수정
+- 외부 데이터 크론잡 7개 (Product Hunt, 벤치마크, 가격, 트렌드 등)
+- 하이브리드 스코어링 시스템 (`lib/scoring/`)
+- AI 추천 엔진 (`lib/recommend/engine.ts`)
+- 비교 페이지 (`/compare/[...slugs]`)
+- 네비게이션/커뮤니티 UX 개선
+
+### Phase 8: 4대 피드백 개선 🔄 (진행중)
+**목표**: 사용자 피드백 기반 UX/콘텐츠 개선
+
+- ✅ 서비스 아이콘 고품질 교체 (큐레이션 30 + Google Favicon 89)
+- ✅ 벤치마크 점수 해석 (한글 설명 + 등급 뱃지 + 색상 코딩)
+- ✅ 전체 119개 도구 결과 미리보기 (sample_output)
+- 🔄 홈페이지 킬러 콘텐츠 + 페르소나 카드 (PersonaCards + FeaturedShowcase)
 
 ---
 
@@ -436,6 +452,8 @@ weekly_rankings (스냅샷)
 ├── /profile                     내 프로필
 │   ├── /profile/reviews         내 리뷰
 │   └── /profile/collections     내 컬렉션
+├── /discover                    AI 찾기 (통합 탐색)
+├── /compare/[...slugs]          AI 비교 (1:1 비교)
 ├── /auth/login                  로그인
 ├── /auth/callback               OAuth 콜백
 └── /admin                       관리자
@@ -476,14 +494,16 @@ weekly_rankings (스냅샷)
 
 ## 8. Phase별 완료 기준
 
-| Phase | 완료 기준 |
-|-------|----------|
-| Phase 1 | ✅ 더미 데이터 기반 메인 페이지 PC/모바일 렌더링 |
-| Phase 2 | DB 연동, 상세 페이지, 랭킹, 직군/학년별 추천 동작 |
-| Phase 3 | 검색/필터/위자드 모든 경로로 AI 탐색 가능 |
-| Phase 4 | 로그인, 리뷰, 기능별 평가, 댓글, 북마크, 업보트 동작 |
-| Phase 5 | 뉴스, 컬렉션, 가이드, 관리자 CRUD 동작 |
-| Phase 6 | PWA 설치 가능, Lighthouse 전 항목 90+ |
+| Phase | 완료 기준 | 상태 |
+|-------|----------|------|
+| Phase 1 | 더미 데이터 기반 메인 페이지 PC/모바일 렌더링 | ✅ |
+| Phase 2 | DB 연동, 상세 페이지, 랭킹, 직군/학년별 추천 동작 | ✅ |
+| Phase 3 | 검색/필터/위자드 모든 경로로 AI 탐색 가능 | ✅ |
+| Phase 4 | 로그인, 리뷰, 기능별 평가, 댓글, 북마크, 업보트 동작 | ✅ |
+| Phase 5 | 뉴스, 컬렉션, 가이드, 관리자 CRUD 동작 | ✅ |
+| Phase 6 | PWA manifest, 사이트맵, JSON-LD, 하단탭바, 뉴스레터 | ✅ |
+| Phase 7 | 119개 도구 검증, 크론잡 7개, 스코어링/추천/비교 | ✅ |
+| Phase 8 | 아이콘/벤치마크/미리보기 완료, 홈페이지 개선 진행중 | 🔄 |
 
 ---
 

@@ -2,7 +2,8 @@
 
 > 각 Phase의 세부 태스크와 진행 상태를 추적합니다.
 > 상태: [ ] 미진행 / [~] 진행중 / [x] 완료
-> v2.0 - 랭킹, 직군/학년별 추천, 커뮤니티, 뉴스, PWA 추가
+> v3.0 - Phase 7 (데이터/파이프라인) + Phase 8 (4대 피드백 개선) 추가
+> 마지막 업데이트: 2026-02-07
 
 ---
 
@@ -352,6 +353,63 @@
 
 ---
 
+## Phase 7: 데이터 정확성 + 외부 파이프라인 ✅ 완료
+
+### 7-1. 데이터 정확성 개선
+- [x] seed.json 119개 도구 데이터 검증 및 수정
+- [x] 슬러그/URL/카테고리 일관성 수정 (`scripts/fix-seed-data.mjs`, `fix-seed-slugs.mjs`)
+- [x] 추천 데이터 보강 (`scripts/enhance-recommendations.mjs`)
+- [x] 시드 데이터 검증 스크립트 (`scripts/verify-seed.mjs`)
+
+### 7-2. 외부 데이터 자동 수집 파이프라인
+- [x] `app/api/cron/product-hunt/route.ts` — Product Hunt 인기 도구
+- [x] `app/api/cron/benchmarks/route.ts` — AI 벤치마크 점수 수집
+- [x] `app/api/cron/pricing/route.ts` — 가격 변동 추적
+- [x] `app/api/cron/artificial-analysis/route.ts` — 외부 분석 데이터
+- [x] `app/api/cron/trends/route.ts` — 주간 트렌드 계산
+- [x] `app/api/cron/category-popularity/route.ts` — 카테고리 인기도
+- [x] `supabase/migrations/004_external_data_pipeline.sql` — 파이프라인용 DB 스키마
+- [x] `lib/pipeline/fetcher-base.ts` — 공통 데이터 수집 베이스
+- [x] `lib/pipeline/model-matcher.ts` — 모델-도구 매칭
+- [x] `data/model-mapping.json` — 모델명 → 도구 슬러그 매핑
+
+### 7-3. UX 개선
+- [x] 네비게이션 심플화 — AI찾기 통합 페이지 (`app/discover/page.tsx`)
+- [x] 커뮤니티 시스템 통합 — 탭 제거, 평가/자유글/팁/질문 통합 피드
+- [x] 비교 페이지 (`app/compare/[...slugs]/page.tsx`) + 인기 비교 쌍
+- [x] 모바일 하단 CTA 바 (`components/service/MobileStickyBar.tsx`)
+- [x] 하이브리드 스코어링 시스템 (`lib/scoring/`)
+- [x] 추천 엔진 (`lib/recommend/engine.ts`)
+
+---
+
+## Phase 8: 4대 피드백 개선 🔄 진행중
+
+### 8-A. 서비스 아이콘 고품질 교체 ✅ 완료
+- [x] Tier 1: 핵심 30개 도구 공식 CDN 로고 큐레이션 (`scripts/fix-logos-v2.mjs`)
+- [x] Tier 2: 나머지 89개 Google Favicon V2 128px 적용
+- [x] `components/ui/LogoImage.tsx` — 2단계 폴백 (원본 → Google Favicon → 아바타)
+- [x] `data/seed.json` — 119개 도구 logo_url 업데이트
+
+### 8-B. 벤치마크 점수 해석 ✅ 완료
+- [x] `lib/constants.ts` — `BENCHMARK_EXPLANATIONS`, `SPEED_EXPLANATIONS` 상수
+- [x] `lib/utils.ts` — `getQualityLabel()` 등급 변환 함수
+- [x] `components/ranking/BenchmarkScores.tsx` — 한글 설명 + 등급 뱃지 + 색상 코딩 + 프로그레스 바
+
+### 8-C. 전체 도구 결과 미리보기 ✅ 완료
+- [x] `types/index.ts` — Tool에 `sample_output`, `sample_output_prompt` 필드 추가
+- [x] `scripts/generate-sample-outputs.mjs` — 119개 도구 카테고리별 대표 결과 생성
+- [x] `data/seed.json` — 119개 도구에 sample_output 데이터 추가
+- [x] `components/showcase/ToolShowcaseStrip.tsx` — showcase 없을 때 sample_output 폴백 렌더링
+
+### 8-D. 홈페이지 킬러 콘텐츠 + 페르소나 🔄 진행중
+- [x] `lib/constants.ts` — `PERSONA_CARDS` (4개 페르소나), `MAIN_PAGE_CATEGORIES_REDUCED`
+- [x] `components/home/FeaturedShowcase.tsx` — 킬러 콘텐츠 히어로 블록
+- [ ] `components/home/PersonaCards.tsx` — 4개 페르소나 카드 그리드
+- [ ] `app/page.tsx` — 홈페이지 섹션 재구성 (FeaturedShowcase + PersonaCards 추가, 카테고리 5→3)
+
+---
+
 ## 개발 진행 요약
 
 | Phase | 상태 | 핵심 산출물 |
@@ -362,3 +420,5 @@
 | Phase 4 | ✅ 완료 | 인증, 리뷰, 댓글, 북마크, 업보트 |
 | Phase 5 | ✅ 완료 | 뉴스, 컬렉션, 가이드, 관리자, 트렌딩 |
 | Phase 6 | ✅ 완료 | PWA, SEO, JSON-LD, 하단탭바, 뉴스레터 |
+| Phase 7 | ✅ 완료 | 데이터 정확성, 외부 파이프라인, UX 개선 |
+| Phase 8 | 🔄 진행중 | 아이콘/벤치마크/미리보기/홈페이지 개선 |
