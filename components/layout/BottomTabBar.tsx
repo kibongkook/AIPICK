@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Trophy, Search, Newspaper, User } from 'lucide-react';
+import { Home, Trophy, Compass, Newspaper, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const TABS = [
   { label: '홈', href: '/', icon: Home },
   { label: '랭킹', href: '/rankings', icon: Trophy },
-  { label: '검색', href: '/search', icon: Search },
+  { label: 'AI찾기', href: '/discover', icon: Compass },
   { label: '뉴스', href: '/news', icon: Newspaper },
   { label: 'MY', href: '/profile', icon: User },
 ] as const;

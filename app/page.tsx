@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import {
-  ArrowRight, Trophy, TrendingUp, ChevronRight,
-  Users, Flame, Shield, Sparkles, Zap, Star, Wand2,
+  ArrowRight, Trophy,
+  Flame, Sparkles, Star, Wand2,
 } from 'lucide-react';
 import {
   EDITOR_PICKS_COUNT, FEATURED_JOB_SLUGS, JOB_CATEGORIES,
-  SOCIAL_PROOF_MESSAGES, FEATURED_EDU_SLUGS, EDU_LEVELS, CATEGORIES,
+  SOCIAL_PROOF_MESSAGES, CATEGORIES,
 } from '@/lib/constants';
 import type { Tool, News } from '@/types';
 import DynamicIcon from '@/components/ui/DynamicIcon';
@@ -73,9 +73,6 @@ export default async function Home() {
             {/* 카테고리 퀵 링크 */}
             <CategorySidebar />
 
-            {/* 교육/안전 AI */}
-            <EduSidebar />
-
             {/* AI 추천 CTA */}
             <WizardSidebar />
 
@@ -92,8 +89,6 @@ export default async function Home() {
 // 히어로 - 컴팩트, 임팩트, FOMO
 // ==========================================
 function HeroSection() {
-  const featuredJobs = JOB_CATEGORIES.filter(j => (FEATURED_JOB_SLUGS as readonly string[]).includes(j.slug));
-
   return (
     <section className="hero-gradient">
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
@@ -104,7 +99,7 @@ function HeroSection() {
             <span className="text-xs text-gray-400">{SOCIAL_PROOF_MESSAGES.hero_stat}</span>
           </div>
 
-          {/* 메인 헤드라인 - 강렬하게 */}
+          {/* 메인 헤드라인 */}
           <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl leading-tight whitespace-pre-line">
             {SOCIAL_PROOF_MESSAGES.hero_headline}
           </h1>
@@ -113,30 +108,20 @@ function HeroSection() {
             {SOCIAL_PROOF_MESSAGES.hero_sub}
           </p>
 
-          {/* CTA 영역 - 컴팩트 */}
-          <div className="mt-7 flex flex-wrap justify-center gap-2.5">
-            {featuredJobs.map((job) => (
-              <Link
-                key={job.slug}
-                href={`/jobs/${job.slug}`}
-                className="group flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white backdrop-blur-sm hover:bg-white/15 transition-all"
-              >
-                <DynamicIcon name={job.icon} className="h-3.5 w-3.5 text-primary" />
-                {job.name}
-              </Link>
-            ))}
+          {/* CTA 영역 - 2개로 심플하게 */}
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link
-              href="/jobs"
-              className="flex items-center gap-1 rounded-full border border-white/10 px-4 py-2 text-xs text-gray-400 hover:text-white transition-all"
+              href="/discover"
+              className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-sm hover:bg-white/20 transition-all"
             >
-              +{JOB_CATEGORIES.length - featuredJobs.length}개 직군
+              목적별 · 역할별 AI 찾기
             </Link>
             <Link
               href="/recommend"
-              className="flex items-center gap-1.5 rounded-full bg-primary px-5 py-2 text-xs font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary-hover transition-all"
+              className="flex items-center gap-1.5 rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary-hover transition-all"
             >
-              <Sparkles className="h-3.5 w-3.5" />
-              나만의 AI 찾기
+              <Sparkles className="h-4 w-4" />
+              맞춤 AI 추천
             </Link>
           </div>
         </div>
@@ -190,7 +175,7 @@ async function FeaturedJobsSection({ jobCategories }: { jobCategories: { id: str
 
   return (
     <section>
-      <SectionHeader title={SOCIAL_PROOF_MESSAGES.job_fomo} href="/jobs" linkText={`전체 ${JOB_CATEGORIES.length}개 직군`} />
+      <SectionHeader title={SOCIAL_PROOF_MESSAGES.job_fomo} href="/discover" linkText="역할별 AI 찾기" />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {featured.map((job) => {
           const recs = recsMap.get(job.slug) || [];
@@ -376,37 +361,6 @@ function CategorySidebar() {
           </Link>
         ))}
       </div>
-    </div>
-  );
-}
-
-// ==========================================
-// 사이드바: 교육/안전
-// ==========================================
-function EduSidebar() {
-  const featured = EDU_LEVELS.filter(e => (FEATURED_EDU_SLUGS as readonly string[]).includes(e.slug));
-
-  return (
-    <div className="rounded-xl border border-border bg-gradient-to-br from-indigo-50/50 to-white p-4">
-      <div className="flex items-center gap-1.5 mb-3">
-        <Shield className="h-4 w-4 text-primary" />
-        <h3 className="text-sm font-bold text-foreground">{SOCIAL_PROOF_MESSAGES.edu_headline}</h3>
-      </div>
-      <div className="grid grid-cols-2 gap-2 mb-3">
-        {featured.map((level) => (
-          <Link
-            key={level.slug}
-            href={`/education/${level.slug}`}
-            className="flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-2 text-xs font-medium text-gray-600 border border-border hover:border-primary transition-colors"
-          >
-            <DynamicIcon name={level.icon} className="h-3.5 w-3.5 text-primary" />
-            {level.name}
-          </Link>
-        ))}
-      </div>
-      <Link href="/education" className="text-[11px] font-medium text-primary flex items-center gap-1">
-        학부모 · 학원강사 · 코딩강사 →
-      </Link>
     </div>
   );
 }

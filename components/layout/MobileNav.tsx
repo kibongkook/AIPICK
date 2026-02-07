@@ -30,14 +30,11 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
           {/* 주요 메뉴 */}
           <nav className="flex flex-col gap-1 mb-6">
+            <Link href="/discover" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-semibold text-primary hover:bg-primary/5 transition-colors">
+              AI 찾기
+            </Link>
             <Link href="/rankings" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
               랭킹
-            </Link>
-            <Link href="/jobs" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
-              직군별
-            </Link>
-            <Link href="/education" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
-              학년별
             </Link>
             <Link href="/news" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
               뉴스
@@ -50,9 +47,6 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             </Link>
             <Link href="/collections" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
               컬렉션
-            </Link>
-            <Link href="/recommend" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-semibold text-primary hover:bg-primary/5 transition-colors">
-              AI 추천
             </Link>
           </nav>
 

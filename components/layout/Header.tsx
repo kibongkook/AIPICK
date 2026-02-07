@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, ChevronDown, Search } from 'lucide-react';
-import { CATEGORIES } from '@/lib/constants';
+import { Menu, X, Search } from 'lucide-react';
 import Logo from '@/components/ui/Logo';
 import SearchBar from '@/components/search/SearchBar';
 import AuthButton from '@/components/auth/AuthButton';
@@ -11,7 +10,6 @@ import MobileNav from './MobileNav';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur-sm">
@@ -26,47 +24,16 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* 데스크탑 네비게이션 */}
+        {/* 데스크탑 네비게이션 - 간소화된 4개 메뉴 */}
         <nav className="hidden items-center gap-5 md:flex">
-          {/* 카테고리 드롭다운 */}
-          <div className="relative">
-            <button
-              onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-              onBlur={() => setTimeout(() => setIsCategoryOpen(false), 150)}
-              className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-primary transition-colors"
-            >
-              카테고리
-              <ChevronDown className={`h-4 w-4 transition-transform ${isCategoryOpen ? 'rotate-180' : ''}`} />
-            </button>
-            {isCategoryOpen && (
-              <div className="absolute left-0 top-full mt-2 w-48 rounded-xl border border-border bg-white py-2 shadow-lg">
-                {CATEGORIES.map((cat) => (
-                  <Link
-                    key={cat.slug}
-                    href={`/category/${cat.slug}`}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors"
-                  >
-                    {cat.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
+          <Link href="/discover" className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors">
+            AI 찾기
+          </Link>
           <Link href="/rankings" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
             랭킹
           </Link>
-          <Link href="/jobs" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
-            직군별
-          </Link>
-          <Link href="/education" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
-            학년별
-          </Link>
           <Link href="/news" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
             뉴스
-          </Link>
-          <Link href="/recommend" className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors">
-            AI 추천
           </Link>
 
           <SearchBar className="w-52" />
