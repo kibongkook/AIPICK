@@ -6,7 +6,10 @@
 import type {
   Tool, Category, JobCategory, EduLevel,
   JobToolRecommendation, EduToolRecommendation, News, Guide, NewsCategory,
+  ToolBenchmarkScore, ToolExternalScore, ToolPricingData, CategoryPopularity, ScoringWeight,
+  CategoryShowcase, ToolShowcase, RoleShowcase, RoleUseCaseShowcase,
 } from '@/types';
+import { HERO_KEYWORDS } from '@/lib/constants';
 import seedData from '@/data/seed.json';
 
 // ==========================================
@@ -67,6 +70,11 @@ const seed = {
   news: (seedData as Record<string, unknown>).news as News[] | undefined,
   guides: (seedData as Record<string, unknown>).guides as Guide[] | undefined,
   collections: (seedData as Record<string, unknown>).collections as SeedCollection[] | undefined,
+  tool_benchmark_scores: (seedData as Record<string, unknown>).tool_benchmark_scores as ToolBenchmarkScore[] | undefined,
+  category_showcases: (seedData as Record<string, unknown>).category_showcases as CategoryShowcase[] | undefined,
+  tool_showcases: (seedData as Record<string, unknown>).tool_showcases as ToolShowcase[] | undefined,
+  role_showcases: (seedData as Record<string, unknown>).role_showcases as RoleShowcase[] | undefined,
+  role_use_cases: (seedData as Record<string, unknown>).role_use_cases as RoleUseCaseShowcase[] | undefined,
 };
 
 // ==========================================
@@ -186,6 +194,35 @@ export async function getLatestTools(limit = 4): Promise<Tool[]> {
 }
 
 // ==========================================
+// 카테고리 slug 기반 상위 도구
+// ==========================================
+export async function getTopToolsByCategorySlug(slug: string, limit = 4): Promise<Tool[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data: cat } = await supabase
+      .from('categories')
+      .select('id')
+      .eq('slug', slug)
+      .single();
+    if (cat) {
+      const { data } = await supabase
+        .from('tools')
+        .select('*')
+        .eq('category_id', cat.id)
+        .order('ranking_score', { ascending: false })
+        .limit(limit);
+      if (data?.length) return data as Tool[];
+    }
+  }
+  const seedCat = seed.categories.find((c) => c.slug === slug);
+  if (!seedCat) return [];
+  return [...seed.tools]
+    .filter((t) => t.category_id === seedCat.id)
+    .sort((a, b) => b.ranking_score - a.ranking_score)
+    .slice(0, limit);
+}
+
+// ==========================================
 // 랭킹
 // ==========================================
 export async function getRankings(categorySlug?: string): Promise<(Tool & { ranking: number })[]> {
@@ -204,7 +241,7 @@ export async function getRankings(categorySlug?: string): Promise<(Tool & { rank
       }
     }
 
-    const { data } = await query.order('ranking_score', { ascending: false });
+    const { data } = await query.order('hybrid_score', { ascending: false });
     if (data?.length) {
       return data.map((tool: Tool, index: number) => ({ ...tool, ranking: index + 1 }));
     }
@@ -219,22 +256,38 @@ export async function getRankings(categorySlug?: string): Promise<(Tool & { rank
     }
   }
   return tools
-    .sort((a, b) => (b.ranking_score || b.visit_count) - (a.ranking_score || a.visit_count))
+    .sort((a, b) => (b.hybrid_score || b.ranking_score || 0) - (a.hybrid_score || a.ranking_score || 0))
     .map((tool, index) => ({ ...tool, ranking: index + 1 }));
 }
 
 export async function getTrending(limit = 10): Promise<Tool[]> {
   const supabase = await db();
   if (supabase) {
+    // 트렌드 방향이 'up'인 도구를 magnitude 순으로
     const { data } = await supabase
+      .from('tools')
+      .select('*')
+      .eq('trend_direction', 'up')
+      .order('trend_magnitude', { ascending: false })
+      .limit(limit);
+    if (data?.length) return data as Tool[];
+
+    // 폴백: 기존 weekly_visit_delta 방식
+    const { data: fallback } = await supabase
       .from('tools')
       .select('*')
       .order('weekly_visit_delta', { ascending: false })
       .limit(limit);
-    if (data?.length) return data as Tool[];
+    if (fallback?.length) return fallback as Tool[];
   }
   return [...seed.tools]
-    .sort((a, b) => (b.weekly_visit_delta || 0) - (a.weekly_visit_delta || 0))
+    .sort((a, b) => {
+      // trend_magnitude가 있으면 우선 사용
+      const aMag = (a as Tool).trend_magnitude ?? 0;
+      const bMag = (b as Tool).trend_magnitude ?? 0;
+      if (aMag !== bMag) return bMag - aMag;
+      return (b.weekly_visit_delta || 0) - (a.weekly_visit_delta || 0);
+    })
     .slice(0, limit);
 }
 
@@ -338,6 +391,31 @@ export async function getEduRecommendations(levelSlug: string): Promise<EduToolR
     ...rec,
     tool: seed.tools.find((t) => t.id === rec.tool_id),
   }));
+}
+
+// ==========================================
+// 전체 추천 데이터 (추천 엔진용)
+// ==========================================
+export async function getAllJobRecommendations(): Promise<JobToolRecommendation[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('job_tool_recommendations')
+      .select('*');
+    if (data?.length) return data as JobToolRecommendation[];
+  }
+  return seed.job_tool_recommendations || [];
+}
+
+export async function getAllEduRecommendations(): Promise<EduToolRecommendation[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('edu_tool_recommendations')
+      .select('*');
+    if (data?.length) return data as EduToolRecommendation[];
+  }
+  return seed.edu_tool_recommendations || [];
 }
 
 // ==========================================
@@ -693,4 +771,153 @@ export async function getCollectionById(id: string): Promise<(SeedCollection & {
     ...c,
     tools: c.tool_ids.map((tid) => seed.tools.find((t) => t.id === tid)).filter(Boolean) as Tool[],
   };
+}
+
+// ==========================================
+// 하이브리드 스코어링 & 외부 데이터
+// ==========================================
+
+/**
+ * 히어로 키워드를 카테고리 인기순으로 정렬하여 반환합니다.
+ * DB에 category_popularity 데이터가 없으면 기본 순서를 반환합니다.
+ */
+export async function getHeroKeywordsOrdered(): Promise<typeof HERO_KEYWORDS[number][]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('category_popularity')
+      .select('category_slug, popularity_score')
+      .eq('period', 'weekly')
+      .order('popularity_score', { ascending: false });
+
+    if (data?.length) {
+      const orderMap = new Map(data.map((d: { category_slug: string; popularity_score: number }, i: number) => [d.category_slug, i]));
+      return [...HERO_KEYWORDS].sort((a, b) => {
+        const aOrder = orderMap.get(a.slug) ?? 999;
+        const bOrder = orderMap.get(b.slug) ?? 999;
+        return aOrder - bOrder;
+      });
+    }
+  }
+
+  return [...HERO_KEYWORDS];
+}
+
+/**
+ * 도구의 벤치마크 점수를 조회합니다.
+ */
+export async function getToolBenchmarks(toolId: string): Promise<ToolBenchmarkScore[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tool_benchmark_scores')
+      .select('*')
+      .eq('tool_id', toolId);
+    if (data?.length) return data as ToolBenchmarkScore[];
+  }
+  // Seed fallback
+  return (seed.tool_benchmark_scores || []).filter((b) => b.tool_id === toolId);
+}
+
+/**
+ * 도구의 외부 점수 목록을 조회합니다.
+ */
+export async function getToolExternalScores(toolId: string): Promise<ToolExternalScore[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tool_external_scores')
+      .select('*')
+      .eq('tool_id', toolId);
+    if (data?.length) return data as ToolExternalScore[];
+  }
+  return [];
+}
+
+/**
+ * 도구의 외부 가격 데이터를 조회합니다.
+ */
+export async function getToolPricingData(toolId: string): Promise<ToolPricingData | null> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tool_pricing_data')
+      .select('*')
+      .eq('tool_id', toolId)
+      .order('fetched_at', { ascending: false })
+      .limit(1)
+      .single();
+    if (data) return data as ToolPricingData;
+  }
+  return null;
+}
+
+/**
+ * 스코어링 가중치를 조회합니다.
+ */
+export async function getScoringWeights(): Promise<ScoringWeight[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('scoring_weights')
+      .select('*')
+      .order('category');
+    if (data?.length) return data as ScoringWeight[];
+  }
+  return [];
+}
+
+// ==========================================
+// 카테고리 쇼케이스 (프롬프트→결과 비교)
+// ==========================================
+export async function getCategoryShowcase(categorySlug: string): Promise<CategoryShowcase | undefined> {
+  return (seed.category_showcases || []).find((s) => s.category_slug === categorySlug);
+}
+
+export async function getToolShowcasesByCategory(categorySlug: string): Promise<(ToolShowcase & { tool?: Tool })[]> {
+  const showcase = (seed.category_showcases || []).find((s) => s.category_slug === categorySlug);
+  if (!showcase) return [];
+  const items = (seed.tool_showcases || [])
+    .filter((ts) => ts.showcase_id === showcase.id)
+    .sort((a, b) => a.sort_order - b.sort_order);
+  return items.map((ts) => ({
+    ...ts,
+    tool: seed.tools.find((t) => t.slug === ts.tool_slug),
+  }));
+}
+
+export async function getToolShowcases(toolSlug: string): Promise<(ToolShowcase & { showcase?: CategoryShowcase })[]> {
+  const items = (seed.tool_showcases || []).filter((ts) => ts.tool_slug === toolSlug);
+  return items.map((ts) => ({
+    ...ts,
+    showcase: (seed.category_showcases || []).find((s) => s.id === ts.showcase_id),
+  }));
+}
+
+export async function getAllCategoryShowcases(): Promise<CategoryShowcase[]> {
+  return (seed.category_showcases || []).sort((a, b) => a.sort_order - b.sort_order);
+}
+
+// ==========================================
+// 역할별 AI 활용 쇼케이스 (직업/교육)
+// ==========================================
+export async function getRoleShowcase(targetType: 'job' | 'education', targetSlug: string): Promise<RoleShowcase | undefined> {
+  return (seed.role_showcases || []).find(
+    (rs) => rs.target_type === targetType && rs.target_slug === targetSlug
+  );
+}
+
+export async function getRoleUseCases(roleShowcaseId: string): Promise<(RoleUseCaseShowcase & { tool?: Tool })[]> {
+  const items = (seed.role_use_cases || [])
+    .filter((ruc) => ruc.role_showcase_id === roleShowcaseId)
+    .sort((a, b) => a.sort_order - b.sort_order);
+  return items.map((ruc) => ({
+    ...ruc,
+    tool: seed.tools.find((t) => t.slug === ruc.tool_slug),
+  }));
+}
+
+export async function getAllRoleShowcases(targetType?: 'job' | 'education'): Promise<RoleShowcase[]> {
+  const all = (seed.role_showcases || []).sort((a, b) => a.sort_order - b.sort_order);
+  return targetType ? all.filter((rs) => rs.target_type === targetType) : all;
 }

@@ -3,10 +3,11 @@ import type { Metadata } from 'next';
 import { Sparkles, ArrowRight, Shield } from 'lucide-react';
 import { SITE_NAME, CATEGORIES, JOB_CATEGORIES, EDU_LEVELS } from '@/lib/constants';
 import DynamicIcon from '@/components/ui/DynamicIcon';
+import Wizard from '@/components/recommend/Wizard';
 
 export const metadata: Metadata = {
-  title: `AI 찾기 | ${SITE_NAME}`,
-  description: '목적별, 역할별로 나에게 맞는 AI를 찾아보세요. 카테고리, 직군, 학습 단계별 AI 추천.',
+  title: `AI 찾기 & 맞춤 추천 | ${SITE_NAME}`,
+  description: '목적별, 역할별로 나에게 맞는 AI를 찾거나 4단계 맞춤 추천을 받아보세요.',
 };
 
 export default function DiscoverPage() {
@@ -14,28 +15,30 @@ export default function DiscoverPage() {
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 페이지 헤더 */}
       <div className="text-center mb-10">
-        <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">AI 찾기</h1>
-        <p className="mt-2 text-sm text-gray-500">목적별 또는 역할별로 나에게 딱 맞는 AI를 찾아보세요</p>
+        <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">AI 찾기 & 맞춤 추천</h1>
+        <p className="mt-2 text-sm text-gray-500">목적별로 탐색하거나, 맞춤 추천으로 나에게 딱 맞는 AI를 찾아보세요</p>
       </div>
 
-      {/* 맞춤 추천 CTA */}
-      <div className="mb-10 rounded-2xl hero-gradient overflow-hidden">
-        <div className="relative z-10 flex flex-col items-center gap-3 px-6 py-8 text-center sm:flex-row sm:justify-between sm:text-left">
-          <div>
-            <p className="text-lg font-bold text-white">어떤 AI를 써야 할지 모르겠다면?</p>
-            <p className="mt-1 text-sm text-gray-400">4단계 질문으로 나에게 맞는 AI를 추천받으세요</p>
+      {/* 섹션 1: 맞춤 AI 추천 위자드 (임베드) */}
+      <section id="wizard" className="mb-12">
+        <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 sm:p-8">
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <h2 className="text-lg font-extrabold text-foreground">맞춤 AI 추천</h2>
           </div>
-          <Link
-            href="/recommend"
-            className="inline-flex items-center gap-1.5 rounded-full bg-white px-6 py-2.5 text-sm font-bold text-primary shadow-lg hover:shadow-xl transition-all shrink-0"
-          >
-            <Sparkles className="h-4 w-4" />
-            맞춤 AI 추천
-          </Link>
+          <p className="text-sm text-gray-500 mb-6">4단계 질문으로 나에게 맞는 AI를 추천받으세요</p>
+          <Wizard />
         </div>
+      </section>
+
+      {/* 구분선 */}
+      <div className="flex items-center gap-4 mb-12">
+        <div className="flex-1 h-px bg-border" />
+        <span className="text-sm font-medium text-gray-400">또는 직접 탐색하기</span>
+        <div className="flex-1 h-px bg-border" />
       </div>
 
-      {/* 섹션 1: 무엇을 하고 싶나요? (목적/기능별) */}
+      {/* 섹션 2: 무엇을 하고 싶나요? (목적/기능별) */}
       <section className="mb-12">
         <h2 className="text-lg font-extrabold text-foreground mb-1">무엇을 하고 싶나요?</h2>
         <p className="text-sm text-gray-500 mb-5">목적에 맞는 AI 카테고리를 선택하세요</p>

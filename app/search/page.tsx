@@ -6,6 +6,7 @@ import type { Tool } from '@/types';
 import ServiceCard from '@/components/service/ServiceCard';
 import SearchBar from '@/components/search/SearchBar';
 import FilterSidebar from '@/components/search/FilterSidebar';
+import SortSelector from '@/components/search/SortSelector';
 
 interface Props {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
@@ -64,7 +65,7 @@ export default async function SearchPage({ searchParams }: Props) {
 
         {/* 검색 결과 */}
         <div className="flex-1 min-w-0">
-          {/* 결과 요약 */}
+          {/* 결과 요약 + 정렬 */}
           <div className="mb-6 flex items-center justify-between">
             <p className="text-sm text-gray-500">
               {query ? (
@@ -79,6 +80,9 @@ export default async function SearchPage({ searchParams }: Props) {
                 </>
               )}
             </p>
+            <Suspense fallback={null}>
+              <SortSelector />
+            </Suspense>
           </div>
 
           {/* 결과 그리드 */}

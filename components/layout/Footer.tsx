@@ -24,7 +24,7 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-foreground">카테고리</h3>
             <ul className="mt-3 space-y-2">
-              {CATEGORIES.slice(0, 6).map((cat) => (
+              {CATEGORIES.map((cat) => (
                 <li key={cat.slug}>
                   <Link
                     href={`/category/${cat.slug}`}
@@ -84,7 +84,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <span className="text-sm text-gray-500">문의: contact@aipick.kr</span>
+                <a href="mailto:contact@aipick.kr" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                  문의: contact@aipick.kr
+                </a>
               </li>
             </ul>
           </div>

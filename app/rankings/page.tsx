@@ -1,14 +1,15 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { Trophy, Star, ArrowUp, ArrowDown, Minus, Users } from 'lucide-react';
+import { Trophy, Star, Users } from 'lucide-react';
 import { SITE_NAME } from '@/lib/constants';
 import { getRankings, getCategories } from '@/lib/supabase/queries';
 import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
 import type { Tool } from '@/types';
+import TrendBadge from '@/components/ranking/TrendBadge';
 
 export const metadata: Metadata = {
   title: `AI 서비스 랭킹 | ${SITE_NAME}`,
-  description: '인기 AI 서비스 종합 랭킹. 방문수, 평점, 리뷰를 기반으로 한 TOP 100.',
+  description: '외부 벤치마크 + 사용자 평가 기반 AI 서비스 하이브리드 랭킹 TOP 100.',
 };
 
 interface Props {
@@ -31,7 +32,7 @@ export default async function RankingsPage({ searchParams }: Props) {
           </h1>
         </div>
         <p className="mt-2 text-sm text-gray-500">
-          종합 점수(방문수 40% + 평점 30% + 리뷰 20% + 북마크 10%) 기준
+          외부 벤치마크 + 사용자 평가 기반 하이브리드 점수
         </p>
       </div>
 
@@ -79,7 +80,8 @@ export default async function RankingsPage({ searchParams }: Props) {
         {/* 랭킹 행 */}
         {rankedTools.map((tool) => {
           const cat = categories.find((c) => c.id === tool.category_id);
-          const delta = tool.prev_ranking ? tool.prev_ranking - tool.ranking : 0;
+          const trendDir = tool.trend_direction || 'stable';
+          const trendMag = tool.trend_magnitude || 0;
 
           return (
             <Link
@@ -123,12 +125,12 @@ export default async function RankingsPage({ searchParams }: Props) {
 
               {/* 종합 점수 */}
               <div className="col-span-2 hidden sm:block text-center">
-                <span className="text-sm font-bold text-primary">{tool.ranking_score.toFixed(1)}</span>
+                <span className="text-sm font-bold text-primary">{(tool.hybrid_score || tool.ranking_score).toFixed(1)}</span>
               </div>
 
               {/* 변동 */}
               <div className="col-span-2 sm:col-span-1 flex justify-center">
-                <RankDelta delta={delta} />
+                <TrendBadge direction={trendDir} magnitude={trendMag} size="sm" />
               </div>
             </Link>
           );
@@ -145,8 +147,3 @@ function RankBadge({ rank }: { rank: number }) {
   return <span className="text-sm font-medium text-gray-500">{rank}</span>;
 }
 
-function RankDelta({ delta }: { delta: number }) {
-  if (delta > 0) return <span className="flex items-center gap-0.5 text-xs font-semibold text-emerald-600"><ArrowUp className="h-3 w-3" />{delta}</span>;
-  if (delta < 0) return <span className="flex items-center gap-0.5 text-xs font-semibold text-red-500"><ArrowDown className="h-3 w-3" />{Math.abs(delta)}</span>;
-  return <Minus className="h-3 w-3 text-gray-400" />;
-}

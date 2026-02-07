@@ -9,6 +9,7 @@ import DynamicIcon from '@/components/ui/DynamicIcon';
 import Badge from '@/components/ui/Badge';
 import ServiceCard from '@/components/service/ServiceCard';
 import ServiceGrid from '@/components/service/ServiceGrid';
+import ShowcaseSection from '@/components/showcase/ShowcaseSection';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -72,6 +73,9 @@ export default async function CategoryPage({ params }: Props) {
           ))}
         </div>
       </div>
+
+      {/* 같은 프롬프트, 다른 결과 - AI 쇼케이스 */}
+      <ShowcaseSection categorySlug={slug} />
 
       {/* 카테고리별 TOP 3 */}
       {topRanked.length > 0 && (

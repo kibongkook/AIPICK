@@ -41,15 +41,73 @@ export const PRICING_CONFIG: Record<PricingType, { label: string; className: str
 };
 
 // ==========================================
-// 히어로 퀵 버튼 (메인 페이지)
+// 히어로 키워드 태그 (메인 페이지)
 // ==========================================
-export const HERO_QUICK_BUTTONS = [
+export const HERO_KEYWORDS = [
   { label: '글쓰기', icon: 'PenTool', slug: 'text-generation' },
   { label: '이미지 생성', icon: 'Image', slug: 'image-generation' },
-  { label: '영상 편집', icon: 'Video', slug: 'video-editing' },
+  { label: '영상 제작', icon: 'Video', slug: 'video-editing' },
   { label: '코딩', icon: 'Code', slug: 'coding-tools' },
   { label: '번역', icon: 'Languages', slug: 'translation' },
   { label: '데이터 분석', icon: 'BarChart3', slug: 'data-analysis' },
+  { label: '음악', icon: 'Music', slug: 'music-generation' },
+  { label: '만능 AI', icon: 'Wand2', slug: 'general-ai' },
+] as const;
+
+// ==========================================
+// 메인 페이지 카테고리 섹션 (인기순 5개)
+// ==========================================
+export const MAIN_PAGE_CATEGORIES = [
+  { slug: 'general-ai', title: '만능 AI', subtitle: '글쓰기, 코딩, 검색, 분석까지 하나로', icon: 'Wand2' },
+  { slug: 'image-generation', title: '이미지 생성 AI', subtitle: 'AI로 원하는 이미지를 뚝딱', icon: 'Image' },
+  { slug: 'video-editing', title: '영상 제작 AI', subtitle: '영상 편집, 자막, 더빙까지', icon: 'Video' },
+  { slug: 'text-generation', title: '글쓰기 AI', subtitle: '블로그, 기사, 카피라이팅', icon: 'PenTool' },
+  { slug: 'coding-tools', title: '코딩 AI', subtitle: '코드 생성, 디버깅, 리뷰', icon: 'Code' },
+] as const;
+
+// 홈페이지 축소 카테고리 (3개만)
+export const MAIN_PAGE_CATEGORIES_REDUCED = MAIN_PAGE_CATEGORIES.slice(0, 3);
+
+// ==========================================
+// 페르소나 카드 (홈페이지 빠른 진입점)
+// ==========================================
+export const PERSONA_CARDS = [
+  {
+    id: 'professional',
+    title: '직장인 · 전문가',
+    subtitle: '업무 효율 10배 올리기',
+    icon: 'Briefcase',
+    color: 'from-blue-500 to-indigo-600',
+    href: '/jobs/marketer',
+    killerSlugs: ['chatgpt', 'claude', 'notion-ai'],
+  },
+  {
+    id: 'creator',
+    title: '크리에이터',
+    subtitle: '아이디어를 작품으로',
+    icon: 'Palette',
+    color: 'from-purple-500 to-pink-600',
+    href: '/jobs/video-creator',
+    killerSlugs: ['midjourney', 'runway-ml', 'suno-ai'],
+  },
+  {
+    id: 'student',
+    title: '학생',
+    subtitle: '공부의 게임체인저',
+    icon: 'GraduationCap',
+    color: 'from-emerald-500 to-teal-600',
+    href: '/education/college',
+    killerSlugs: ['perplexity', 'deepl', 'gamma'],
+  },
+  {
+    id: 'developer',
+    title: '개발자',
+    subtitle: '코딩 속도 5배',
+    icon: 'Code',
+    color: 'from-orange-500 to-red-600',
+    href: '/jobs/ai-developer',
+    killerSlugs: ['cursor', 'github-copilot', 'claude'],
+  },
 ] as const;
 
 // ==========================================
@@ -124,6 +182,9 @@ export const NEWS_CATEGORIES = {
 export const ITEMS_PER_PAGE = 12;
 export const EDITOR_PICKS_COUNT = 6;
 export const CATEGORY_PREVIEW_COUNT = 4;
+export const MAIN_EDITOR_PICKS_COUNT = 4;
+export const MAIN_NEW_TOOLS_COUNT = 4;
+export const MAIN_CATEGORY_TOOLS_COUNT = 4;
 export const SIMILAR_TOOLS_COUNT = 3;
 export const RANKING_TOP_COUNT = 100;
 export const RANKING_CATEGORY_COUNT = 20;
@@ -196,12 +257,66 @@ export const EXP_ACTIONS = {
 } as const;
 
 // ==========================================
+// 하이브리드 스코어링 설정
+// ==========================================
+export const DEFAULT_SCORING_WEIGHTS = {
+  internal_visit_count: 15,
+  internal_rating_avg: 15,
+  internal_review_count: 10,
+  internal_bookmark_count: 5,
+  internal_upvote_count: 5,
+  external_github: 10,
+  external_product_hunt: 10,
+  external_benchmark: 15,
+  external_pricing: 5,
+  external_artificial_analysis: 10,
+} as const;
+
+export const TREND_THRESHOLDS = {
+  HOT: 10,
+  STRONG: 5,
+  MILD: 1,
+} as const;
+
+export const DATA_SOURCE_KEYS = {
+  GITHUB: 'github',
+  PRODUCT_HUNT: 'product_hunt',
+  HUGGINGFACE_LLM: 'huggingface_llm',
+  OPENROUTER: 'openrouter',
+  ARTIFICIAL_ANALYSIS: 'artificial_analysis',
+} as const;
+
+export const BENCHMARK_APPLICABLE_CATEGORIES = [
+  'general-ai', 'text-generation', 'coding-tools', 'translation',
+] as const;
+
+// ==========================================
+// 벤치마크 해석 (점수 설명 + 등급 임계값)
+// ==========================================
+export const BENCHMARK_EXPLANATIONS: Record<string, { description: string; goodThreshold: number; greatThreshold: number; higherIsBetter: boolean }> = {
+  mmlu: { description: '대학 수준 지식 테스트 (57개 분야)', goodThreshold: 70, greatThreshold: 85, higherIsBetter: true },
+  hellaswag: { description: '상식 추론 능력', goodThreshold: 80, greatThreshold: 93, higherIsBetter: true },
+  arc_challenge: { description: '과학 문제 해결력', goodThreshold: 80, greatThreshold: 93, higherIsBetter: true },
+  truthfulqa: { description: '사실 기반 정확도', goodThreshold: 50, greatThreshold: 70, higherIsBetter: true },
+  winogrande: { description: '문맥 이해 능력', goodThreshold: 80, greatThreshold: 87, higherIsBetter: true },
+  gsm8k: { description: '수학 문제 해결력', goodThreshold: 70, greatThreshold: 90, higherIsBetter: true },
+  humaneval: { description: '코딩 능력 (Python)', goodThreshold: 60, greatThreshold: 85, higherIsBetter: true },
+  overall_score: { description: '종합 성능 점수', goodThreshold: 70, greatThreshold: 85, higherIsBetter: true },
+  elo_rating: { description: '사용자 선호도 순위', goodThreshold: 1100, greatThreshold: 1250, higherIsBetter: true },
+};
+
+export const SPEED_EXPLANATIONS: Record<string, { description: string; unit: string; goodThreshold: number; greatThreshold: number; higherIsBetter: boolean }> = {
+  speed_ttft_ms: { description: '첫 응답 시간', unit: 'ms', goodThreshold: 500, greatThreshold: 300, higherIsBetter: false },
+  speed_tps: { description: '생성 속도', unit: 'tok/s', goodThreshold: 50, greatThreshold: 80, higherIsBetter: true },
+};
+
+// ==========================================
 // FOMO / 소셜 프루프 메시지
 // ==========================================
 export const SOCIAL_PROOF_MESSAGES = {
   hero_headline: '모두가 쓰는 AI,\n당신만 모르고 있었습니다',
-  hero_sub: '매주 12,847명이 확인하는 AI 큐레이션',
-  hero_stat: '지금 342명 탐색 중',
+  hero_sub: '119개 AI 서비스를 한눈에 비교하세요',
+  hero_stat: '최신 AI 큐레이션',
   job_cta: '필수 AI 확인하기',
   job_fomo: '당신의 경쟁자는 이미 알고 있습니다',
   edu_headline: '우리 아이, 어떤 AI가 안전할까?',

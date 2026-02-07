@@ -1,7 +1,9 @@
 import Link from 'next/link';
-import { Star, Users, TrendingUp, ChevronRight } from 'lucide-react';
+import { Star, ChevronRight } from 'lucide-react';
 import type { Tool } from '@/types';
 import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
+import TrendBadge from '@/components/ranking/TrendBadge';
+import LogoImage from '@/components/ui/LogoImage';
 
 interface ServiceCardProps {
   tool: Tool;
@@ -13,7 +15,8 @@ interface ServiceCardProps {
  * 로고 + 이름 + 한줄 태그라인 + 핵심 메트릭 1개
  */
 export default function ServiceCard({ tool, compact = false }: ServiceCardProps) {
-  const isTrending = (tool.weekly_visit_delta || 0) > 5000;
+  const trendDirection = tool.trend_direction || (tool.weekly_visit_delta > 5000 ? 'up' as const : 'stable' as const);
+  const trendMagnitude = tool.trend_magnitude || 0;
 
   return (
     <Link href={`/tools/${tool.slug}`}>
@@ -23,10 +26,14 @@ export default function ServiceCard({ tool, compact = false }: ServiceCardProps)
       )}>
         {/* 로고 */}
         {tool.logo_url ? (
-          <img
+          <LogoImage
             src={tool.logo_url}
             alt={tool.name}
             className={cn('rounded-xl object-cover shrink-0', compact ? 'h-10 w-10' : 'h-12 w-12')}
+            fallbackClassName={cn(
+              'rounded-xl shrink-0',
+              compact ? 'h-10 w-10 text-sm' : 'h-12 w-12 text-base',
+            )}
           />
         ) : (
           <div
@@ -46,8 +53,8 @@ export default function ServiceCard({ tool, compact = false }: ServiceCardProps)
             <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors truncate">
               {tool.name}
             </h3>
-            {isTrending && (
-              <TrendingUp className="h-3 w-3 text-orange-500 shrink-0" />
+            {trendDirection !== 'stable' && (
+              <TrendBadge direction={trendDirection} magnitude={trendMagnitude} size="sm" />
             )}
           </div>
           <p className="text-xs text-gray-400 truncate mt-0.5">

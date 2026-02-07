@@ -1,82 +1,122 @@
 import Link from 'next/link';
 import {
-  ArrowRight, Trophy,
-  Flame, Sparkles, Star, Wand2,
+  ArrowRight, ArrowRightLeft, Trophy,
+  Flame, Sparkles, Star,
 } from 'lucide-react';
 import {
-  EDITOR_PICKS_COUNT, FEATURED_JOB_SLUGS, JOB_CATEGORIES,
-  SOCIAL_PROOF_MESSAGES, CATEGORIES,
+  MAIN_EDITOR_PICKS_COUNT, MAIN_NEW_TOOLS_COUNT, MAIN_CATEGORY_TOOLS_COUNT,
+  FEATURED_JOB_SLUGS, JOB_CATEGORIES,
+  SOCIAL_PROOF_MESSAGES, CATEGORIES, HERO_KEYWORDS, MAIN_PAGE_CATEGORIES,
 } from '@/lib/constants';
-import type { Tool, News } from '@/types';
+import type { Tool, News, RoleShowcase, RoleUseCaseShowcase } from '@/types';
 import DynamicIcon from '@/components/ui/DynamicIcon';
 import ServiceCard from '@/components/service/ServiceCard';
 import NewsCard from '@/components/news/NewsCard';
 import NewsletterForm from '@/components/newsletter/NewsletterForm';
+import RoleShowcaseRotation from '@/components/showcase/RoleShowcaseRotation';
 import { formatVisitCount } from '@/lib/utils';
 import {
-  getTools, getEditorPicks, getRankings, getTrending,
+  getEditorPicks, getRankings, getTrending,
   getJobCategories, getJobRecommendations, getLatestTools, getNews,
+  getTopToolsByCategorySlug, getHeroKeywordsOrdered,
+  getAllRoleShowcases, getRoleUseCases,
 } from '@/lib/supabase/queries';
+import { POPULAR_PAIRS, getCompareUrl } from '@/lib/compare/popular-pairs';
 
 export default async function Home() {
-  const [tools, editorPicks, topRankedAll, trending, jobCategories, latestTools, latestNews] = await Promise.all([
-    getTools(),
-    getEditorPicks(EDITOR_PICKS_COUNT),
+  const [
+    editorPicks, topRankedAll, trending, jobCategories, latestTools, latestNews,
+    heroKeywords, jobRoleShowcases, eduRoleShowcases,
+    ...categoryToolsArr
+  ] = await Promise.all([
+    getEditorPicks(MAIN_EDITOR_PICKS_COUNT),
     getRankings(),
     getTrending(6),
     getJobCategories(),
-    getLatestTools(6),
+    getLatestTools(MAIN_NEW_TOOLS_COUNT),
     getNews(3),
+    getHeroKeywordsOrdered(),
+    getAllRoleShowcases('job'),
+    getAllRoleShowcases('education'),
+    ...MAIN_PAGE_CATEGORIES.map(cat => getTopToolsByCategorySlug(cat.slug, MAIN_CATEGORY_TOOLS_COUNT)),
   ]);
   const topRanked = topRankedAll.slice(0, 5);
 
-  // 만능 AI (다목적 태그를 가진 상위 도구들)
-  const generalAI = tools
-    .filter(t => t.tags.some(tag => ['다목적', '챗봇', '만능', 'AI 어시스턴트'].includes(tag)))
-    .sort((a, b) => b.ranking_score - a.ranking_score)
-    .slice(0, 6);
+  // 카테고리별 도구 매핑
+  const categoryToolsMap = new Map<string, Tool[]>();
+  MAIN_PAGE_CATEGORIES.forEach((cat, i) => {
+    categoryToolsMap.set(cat.slug, categoryToolsArr[i] as Tool[]);
+  });
+
+  const buildShowcaseWithCases = async (showcases: RoleShowcase[]) => {
+    const results = await Promise.all(
+      showcases.slice(0, 5).map(async (rs) => ({
+        ...rs,
+        useCases: await getRoleUseCases(rs.id),
+      }))
+    );
+    return results.filter(r => r.useCases.length > 0);
+  };
+
+  const [jobShowcasesWithCases, eduShowcasesWithCases] = await Promise.all([
+    buildShowcaseWithCases(jobRoleShowcases),
+    buildShowcaseWithCases(eduRoleShowcases),
+  ]);
 
   return (
     <>
-      {/* 히어로 - 컴팩트하고 강렬하게 */}
-      <HeroSection />
+      {/* 히어로 */}
+      <HeroSection keywords={heroKeywords} />
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* 트렌딩 바 */}
         <TrendingBar tools={trending} />
 
-        {/* 2단 레이아웃: 왼쪽=메인 / 오른쪽=사이드 */}
+        {/* 직업/교육별 AI 활용 쇼케이스 (상단 배치) */}
+        <div className="mt-8">
+          <RoleShowcaseRotation
+            jobShowcases={jobShowcasesWithCases}
+            eduShowcases={eduShowcasesWithCases}
+          />
+        </div>
+
+        {/* 2단 레이아웃 */}
         <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {/* 메인 컨텐츠 (2/3) */}
+          {/* 메인 콘텐츠 (2/3) */}
           <div className="lg:col-span-2 space-y-10">
-            {/* 직군별 필수 AI */}
-            <FeaturedJobsSection jobCategories={jobCategories} />
-
-            {/* NEW - 신규 AI 서비스 */}
-            <NewToolsSection tools={latestTools} />
-
-            {/* 만능 AI */}
-            {generalAI.length > 0 && <GeneralAISection tools={generalAI} />}
-
-            {/* 에디터 추천 */}
+            {/* 1. 에디터 추천 - 가장 중요, 맨 위 */}
             <EditorPicksSection tools={editorPicks} />
 
-            {/* AI 뉴스 */}
+            {/* 2-6. 카테고리별 인기 AI */}
+            {MAIN_PAGE_CATEGORIES.map((cat) => (
+              <CategoryToolsSection
+                key={cat.slug}
+                title={cat.title}
+                subtitle={cat.subtitle}
+                icon={cat.icon}
+                slug={cat.slug}
+                tools={categoryToolsMap.get(cat.slug) || []}
+              />
+            ))}
+
+            {/* 7. 직군별 필수 AI */}
+            <FeaturedJobsSection jobCategories={jobCategories} />
+
+            {/* 8. NEW - 신규 AI */}
+            <NewToolsSection tools={latestTools} />
+
+            {/* 9. 인기 비교 */}
+            <PopularComparisonsSection />
+
+            {/* 10. AI 뉴스 */}
             {latestNews.length > 0 && <NewsSection news={latestNews} />}
           </div>
 
           {/* 사이드바 (1/3) */}
           <aside className="space-y-6">
-            {/* 랭킹 TOP 5 */}
             <RankingSidebar tools={topRanked} />
-
-            {/* 카테고리 퀵 링크 */}
             <CategorySidebar />
-
-            {/* AI 추천 CTA */}
             <WizardSidebar />
-
-            {/* 뉴스레터 */}
             <NewsletterForm />
           </aside>
         </div>
@@ -86,9 +126,9 @@ export default async function Home() {
 }
 
 // ==========================================
-// 히어로 - 컴팩트, 임팩트, FOMO
+// 히어로 - 키워드 태그 추가
 // ==========================================
-function HeroSection() {
+function HeroSection({ keywords }: { keywords: typeof HERO_KEYWORDS[number][] }) {
   return (
     <section className="hero-gradient">
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
@@ -108,20 +148,28 @@ function HeroSection() {
             {SOCIAL_PROOF_MESSAGES.hero_sub}
           </p>
 
-          {/* CTA 영역 - 2개로 심플하게 */}
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
+          {/* 키워드 태그 */}
+          <div className="mt-5 flex flex-wrap justify-center gap-2">
+            {keywords.map((kw) => (
+              <Link
+                key={kw.slug}
+                href={`/category/${kw.slug}`}
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-gray-300 backdrop-blur-sm hover:bg-white/15 hover:text-white transition-all"
+              >
+                <DynamicIcon name={kw.icon} className="h-3 w-3" />
+                {kw.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* CTA - 통합 버튼 */}
+          <div className="mt-7">
             <Link
               href="/discover"
-              className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-sm hover:bg-white/20 transition-all"
-            >
-              목적별 · 역할별 AI 찾기
-            </Link>
-            <Link
-              href="/recommend"
-              className="flex items-center gap-1.5 rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary-hover transition-all"
+              className="inline-flex items-center gap-1.5 rounded-full bg-primary px-7 py-3 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary-hover transition-all"
             >
               <Sparkles className="h-4 w-4" />
-              맞춤 AI 추천
+              AI 찾기 · 맞춤 추천
             </Link>
           </div>
         </div>
@@ -131,7 +179,7 @@ function HeroSection() {
 }
 
 // ==========================================
-// 트렌딩 바 - 한줄 스트립
+// 트렌딩 바
 // ==========================================
 function TrendingBar({ tools }: { tools: Tool[] }) {
   if (tools.length === 0) return null;
@@ -160,12 +208,58 @@ function TrendingBar({ tools }: { tools: Tool[] }) {
 }
 
 // ==========================================
-// 직군별 필수 AI - FOMO
+// 에디터 추천
+// ==========================================
+function EditorPicksSection({ tools }: { tools: Tool[] }) {
+  if (tools.length === 0) return null;
+
+  return (
+    <section>
+      <SectionHeader
+        title="에디터 추천"
+        badge={<Sparkles className="ml-1.5 h-4 w-4 text-primary" />}
+      />
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {tools.map((tool) => (
+          <ServiceCard key={tool.id} tool={tool} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ==========================================
+// 카테고리별 인기 AI (범용)
+// ==========================================
+function CategoryToolsSection({ title, subtitle, icon, slug, tools }: {
+  title: string; subtitle: string; icon: string; slug: string; tools: Tool[];
+}) {
+  if (tools.length === 0) return null;
+
+  return (
+    <section>
+      <SectionHeader
+        title={title}
+        badge={<DynamicIcon name={icon} className="ml-1.5 h-4 w-4 text-primary" />}
+        href={`/category/${slug}`}
+        linkText="전체 보기"
+      />
+      <p className="text-xs text-gray-400 mb-4 -mt-2">{subtitle}</p>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {tools.map((tool) => (
+          <ServiceCard key={tool.id} tool={tool} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ==========================================
+// 직군별 필수 AI
 // ==========================================
 async function FeaturedJobsSection({ jobCategories }: { jobCategories: { id: string; name: string; slug: string; icon: string | null; description: string | null }[] }) {
   const featured = jobCategories.filter(j => (FEATURED_JOB_SLUGS as readonly string[]).includes(j.slug));
 
-  // 병렬로 추천 데이터 프리페치
   const recsMap = new Map<string, Awaited<ReturnType<typeof getJobRecommendations>>>();
   await Promise.all(
     featured.map(async (job) => {
@@ -198,7 +292,6 @@ async function FeaturedJobsSection({ jobCategories }: { jobCategories: { id: str
                   </div>
                 </div>
 
-                {/* 상위 3개만 이름 나열 */}
                 <div className="flex flex-wrap gap-1 mb-3">
                   {essentials.slice(0, 3).map((rec) => rec.tool && (
                     <span key={rec.id} className="inline-flex items-center rounded-md bg-gray-50 px-2 py-0.5 text-[11px] text-gray-600">
@@ -234,50 +327,7 @@ function NewToolsSection({ tools }: { tools: Tool[] }) {
         href="/search?sort=latest"
         linkText="전체 보기"
       />
-      <p className="text-xs text-gray-400 mb-4 -mt-2">새로 등장한 AI 서비스. 어떤 신흥 강자가 당신의 워크플로우를 바꿀까요?</p>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {tools.map((tool) => (
-          <ServiceCard key={tool.id} tool={tool} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ==========================================
-// 만능 AI - General Purpose
-// ==========================================
-function GeneralAISection({ tools }: { tools: Tool[] }) {
-  return (
-    <section>
-      <SectionHeader
-        title="만능 AI"
-        badge={<Wand2 className="ml-1.5 h-4 w-4 text-primary" />}
-        href="/category/general-ai"
-        linkText="전체 보기"
-      />
-      <p className="text-xs text-gray-400 mb-4 -mt-2">글쓰기, 코딩, 검색, 분석까지. 하나로 다 되는 AI</p>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {tools.map((tool) => (
-          <ServiceCard key={tool.id} tool={tool} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ==========================================
-// 에디터 추천
-// ==========================================
-function EditorPicksSection({ tools }: { tools: Tool[] }) {
-  if (tools.length === 0) return null;
-
-  return (
-    <section>
-      <SectionHeader
-        title="에디터 추천"
-        badge={<Sparkles className="ml-1.5 h-4 w-4 text-primary" />}
-      />
+      <p className="text-xs text-gray-400 mb-4 -mt-2">새로 등장한 AI 서비스</p>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         {tools.map((tool) => (
           <ServiceCard key={tool.id} tool={tool} />
@@ -297,6 +347,39 @@ function NewsSection({ news }: { news: News[] }) {
       <div className="space-y-3">
         {news.map((item) => (
           <NewsCard key={item.id} news={item} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ==========================================
+// 인기 비교
+// ==========================================
+const FEATURED_COMPARISONS = [
+  { slugs: ['chatgpt', 'claude'] as const, label: 'ChatGPT vs Claude' },
+  { slugs: ['midjourney', 'dall-e-3'] as const, label: 'Midjourney vs DALL-E 3' },
+  { slugs: ['cursor', 'github-copilot'] as const, label: 'Cursor vs GitHub Copilot' },
+  { slugs: ['deepl', 'google-translate'] as const, label: 'DeepL vs Google 번역' },
+  { slugs: ['runway-ml', 'sora'] as const, label: 'Runway vs Sora' },
+  { slugs: ['suno-ai', 'udio'] as const, label: 'Suno vs Udio' },
+];
+
+function PopularComparisonsSection() {
+  return (
+    <section>
+      <SectionHeader title="AI 비교" href="/compare/chatgpt/claude" linkText="비교하기" />
+      <div className="grid gap-3 sm:grid-cols-2">
+        {FEATURED_COMPARISONS.slice(0, 4).map(({ slugs, label }) => (
+          <Link
+            key={label}
+            href={getCompareUrl(slugs[0], slugs[1])}
+            className="flex items-center gap-3 rounded-xl border border-border bg-white p-4 hover:border-primary hover:shadow-md transition-all"
+          >
+            <ArrowRightLeft className="h-4 w-4 text-primary shrink-0" />
+            <span className="text-sm font-semibold text-foreground">{label}</span>
+            <ArrowRight className="ml-auto h-3.5 w-3.5 text-gray-400" />
+          </Link>
         ))}
       </div>
     </section>
@@ -334,7 +417,7 @@ function RankingSidebar({ tools }: { tools: (Tool & { ranking: number })[] }) {
               {tool.ranking}
             </span>
             <span className="text-xs font-semibold text-foreground truncate flex-1">{tool.name}</span>
-            <span className="text-[10px] font-bold text-primary">{tool.ranking_score.toFixed(1)}</span>
+            <span className="text-[10px] font-bold text-primary">{(tool.hybrid_score || tool.ranking_score).toFixed(1)}</span>
           </Link>
         ))}
       </div>
@@ -374,7 +457,7 @@ function WizardSidebar() {
       <div className="relative z-10 p-4 text-center">
         <p className="text-sm font-bold text-white">어떤 AI를 써야 할지 모르겠다면?</p>
         <Link
-          href="/recommend"
+          href="/discover#wizard"
           className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2 text-xs font-bold text-primary hover:shadow-lg transition-all"
         >
           <Sparkles className="h-3.5 w-3.5" />

@@ -36,3 +36,20 @@ export function formatVisitCount(count: number): string {
   if (count >= 1_000) return `${(count / 1_000).toFixed(1)}K`;
   return count.toString();
 }
+
+/**
+ * 벤치마크 점수를 등급 라벨로 변환
+ */
+export function getQualityLabel(
+  score: number,
+  goodThreshold: number,
+  greatThreshold: number,
+  higherIsBetter: boolean
+): { label: string; color: string; barColor: string } {
+  const isGreat = higherIsBetter ? score >= greatThreshold : score <= greatThreshold;
+  const isGood = higherIsBetter ? score >= goodThreshold : score <= goodThreshold;
+
+  if (isGreat) return { label: '최상위', color: 'text-emerald-600', barColor: 'bg-emerald-500' };
+  if (isGood) return { label: '우수', color: 'text-blue-600', barColor: 'bg-blue-500' };
+  return { label: '보통', color: 'text-gray-500', barColor: 'bg-gray-400' };
+}

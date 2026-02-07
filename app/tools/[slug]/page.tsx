@@ -3,13 +3,20 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Star, ExternalLink, Zap, ThumbsUp, ArrowLeft, Check, X } from 'lucide-react';
 import { SITE_NAME, SITE_URL, PRICING_CONFIG } from '@/lib/constants';
-import { getToolBySlug, getCategoryBySlug, getSimilarTools, getCategories, getTools } from '@/lib/supabase/queries';
+import { getToolBySlug, getCategoryBySlug, getSimilarTools, getCategories, getTools, getToolBenchmarks, getToolExternalScores } from '@/lib/supabase/queries';
+import { getPopularCompareTargets, getCompareUrl } from '@/lib/compare/popular-pairs';
 import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
 import ServiceCard from '@/components/service/ServiceCard';
 import { BookmarkButton, UpvoteButton } from '@/components/service/ToolInteractions';
 import CommunitySection from '@/components/community/CommunitySection';
+import TrendBadge from '@/components/ranking/TrendBadge';
+import ScoreBreakdown from '@/components/ranking/ScoreBreakdown';
+import ToolShowcaseStrip from '@/components/showcase/ToolShowcaseStrip';
+import BenchmarkScores from '@/components/ranking/BenchmarkScores';
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import LogoImage from '@/components/ui/LogoImage';
+import MobileStickyBar from '@/components/service/MobileStickyBar';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -42,7 +49,10 @@ export default async function ToolDetailPage({ params }: Props) {
 
   const categories = await getCategories();
   const category = categories.find((c) => c.id === tool.category_id);
-  const similarTools = await getSimilarTools(tool, 3);
+  const [similarTools, benchmarks] = await Promise.all([
+    getSimilarTools(tool, 3),
+    tool.has_benchmark_data ? getToolBenchmarks(tool.id) : Promise.resolve([]),
+  ]);
   const pricingStyle = PRICING_CONFIG[tool.pricing_type];
   const pricingVariant = tool.pricing_type === 'Free' ? 'free' : tool.pricing_type === 'Freemium' ? 'freemium' : 'paid';
 
@@ -71,7 +81,12 @@ export default async function ToolDetailPage({ params }: Props) {
           {/* 서비스 헤더 */}
           <div className="flex items-start gap-4">
             {tool.logo_url ? (
-              <img src={tool.logo_url} alt={tool.name} className="h-16 w-16 rounded-xl object-cover" />
+              <LogoImage
+                src={tool.logo_url}
+                alt={tool.name}
+                className="h-16 w-16 rounded-xl object-cover"
+                fallbackClassName="h-16 w-16 rounded-xl text-xl"
+              />
             ) : (
               <div
                 className={cn(
@@ -118,6 +133,9 @@ export default async function ToolDetailPage({ params }: Props) {
             <BookmarkButton toolId={tool.id} />
             <UpvoteButton toolId={tool.id} initialCount={tool.upvote_count} />
           </div>
+
+          {/* 이런 결과를 만들 수 있어요 */}
+          <ToolShowcaseStrip toolSlug={slug} tool={tool} />
 
           {/* 무료로 어디까지? */}
           {tool.free_quota_detail && (
@@ -217,6 +235,30 @@ export default async function ToolDetailPage({ params }: Props) {
             </dl>
           </div>
 
+          {/* 트렌드 + 점수 구성 */}
+          {(tool.hybrid_score > 0 || tool.trend_direction !== 'stable') && (
+            <div className="space-y-4">
+              {tool.trend_direction && tool.trend_direction !== 'stable' && (
+                <div className="rounded-xl border border-border bg-white p-5 flex items-center justify-between">
+                  <span className="text-sm font-semibold text-foreground">주간 트렌드</span>
+                  <TrendBadge direction={tool.trend_direction} magnitude={tool.trend_magnitude || 0} size="md" />
+                </div>
+              )}
+              {tool.hybrid_score > 0 && (
+                <ScoreBreakdown
+                  hybridScore={tool.hybrid_score}
+                  internalScore={tool.internal_score || tool.hybrid_score}
+                  externalScore={tool.external_score || 0}
+                />
+              )}
+            </div>
+          )}
+
+          {/* 벤치마크 점수 */}
+          {benchmarks.length > 0 && (
+            <BenchmarkScores benchmarks={benchmarks} />
+          )}
+
           {/* 태그 */}
           {tool.tags.length > 0 && (
             <div className="rounded-xl border border-border bg-white p-5">
@@ -228,6 +270,31 @@ export default async function ToolDetailPage({ params }: Props) {
               </div>
             </div>
           )}
+
+          {/* 비교하기 */}
+          {(() => {
+            const compareTargets = getPopularCompareTargets(tool.slug);
+            if (compareTargets.length === 0) return null;
+            return (
+              <div className="rounded-xl border border-border bg-white p-5">
+                <h3 className="font-semibold text-foreground">다른 도구와 비교</h3>
+                <div className="mt-3 space-y-2">
+                  {compareTargets.slice(0, 3).map((targetSlug) => (
+                    <Link
+                      key={targetSlug}
+                      href={getCompareUrl(tool.slug, targetSlug)}
+                      className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm hover:border-primary hover:bg-primary/5 transition-all"
+                    >
+                      <ArrowLeft className="h-3.5 w-3.5 text-primary rotate-180" />
+                      <span className="font-medium">{tool.name}</span>
+                      <span className="text-gray-400">vs</span>
+                      <span className="font-medium capitalize">{targetSlug.replace(/-/g, ' ')}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
 
           {/* 유사 서비스 */}
           {similarTools.length > 0 && (
@@ -242,6 +309,9 @@ export default async function ToolDetailPage({ params }: Props) {
           )}
         </div>
       </div>
+
+      {/* 모바일 하단 CTA */}
+      <MobileStickyBar toolName={tool.name} toolUrl={tool.url} />
     </div>
   );
 }

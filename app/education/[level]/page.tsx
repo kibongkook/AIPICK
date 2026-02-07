@@ -1,13 +1,14 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Crown } from 'lucide-react';
 import { SITE_NAME, SAFETY_LEVELS } from '@/lib/constants';
 import { getEduLevelBySlug, getEduRecommendations, getEduLevels } from '@/lib/supabase/queries';
 import type { SafetyLevel } from '@/types';
 import DynamicIcon from '@/components/ui/DynamicIcon';
 import Badge from '@/components/ui/Badge';
 import ServiceCard from '@/components/service/ServiceCard';
+import RoleShowcaseSection from '@/components/showcase/RoleShowcaseSection';
 
 interface Props {
   params: Promise<{ level: string }>;
@@ -66,6 +67,36 @@ export default async function EduLevelDetailPage({ params }: Props) {
           </p>
         </div>
       </div>
+
+      {/* AI 활용 쇼케이스 */}
+      <RoleShowcaseSection targetType="education" targetSlug={level} />
+
+      {/* 킬러 픽 */}
+      {recommendations.filter(r => r.is_killer_pick).length > 0 && (
+        <section className="mb-10">
+          <div className="mb-4 flex items-center gap-2">
+            <Crown className="h-5 w-5 text-amber-500" />
+            <h2 className="text-lg font-bold text-foreground">{eduLevel.name}의 필수 픽</h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {recommendations.filter(r => r.is_killer_pick).map((rec) => (
+              <div key={rec.id} className="relative">
+                <div className="absolute -top-1.5 -right-1.5 z-10 rounded-full bg-amber-400 px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">
+                  PICK
+                </div>
+                <div className="rounded-xl border-2 border-amber-200 bg-amber-50/30 p-1">
+                  {rec.tool && <ServiceCard tool={rec.tool} />}
+                </div>
+                {rec.use_case && (
+                  <p className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-700">
+                    {rec.use_case}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* 안전 등급 범례 */}
       <div className="mb-8 rounded-xl border border-border bg-white p-4">

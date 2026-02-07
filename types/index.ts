@@ -12,6 +12,7 @@ export type CommentTargetType = 'tool' | 'news' | 'guide';
 export type CommunityPostType = 'rating' | 'discussion' | 'tip' | 'question';
 export type CommunityTargetType = 'tool' | 'news' | 'guide';
 export type MediaType = 'image' | 'video';
+export type TrendDirection = 'up' | 'down' | 'stable' | 'new';
 
 // ==========================================
 // 카테고리
@@ -53,6 +54,18 @@ export interface Tool {
   supports_korean: boolean;
   pros: string[];
   cons: string[];
+  hybrid_score: number;
+  external_score: number;
+  internal_score: number;
+  trend_direction: TrendDirection;
+  trend_magnitude: number;
+  has_benchmark_data: boolean;
+  github_stars: number | null;
+  github_forks: number | null;
+  product_hunt_upvotes: number | null;
+  model_identifiers: string[];
+  sample_output: string | null;
+  sample_output_prompt: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -98,6 +111,7 @@ export interface JobToolRecommendation {
   recommendation_level: RecommendationLevel;
   reason: string | null;
   sort_order: number;
+  is_killer_pick?: boolean;
   tool?: Tool;
 }
 
@@ -111,6 +125,7 @@ export interface EduToolRecommendation {
   safety_level: SafetyLevel;
   use_case: string | null;
   sort_order: number;
+  is_killer_pick?: boolean;
   tool?: Tool;
 }
 
@@ -306,4 +321,182 @@ export interface UserProfile {
   edu_level_slug: string | null;
   created_at: string;
   updated_at: string;
+}
+
+// ==========================================
+// 외부 데이터 파이프라인
+// ==========================================
+export interface ExternalDataSource {
+  id: string;
+  source_key: string;
+  display_name: string;
+  source_url: string | null;
+  fetch_frequency: string;
+  last_fetched_at: string | null;
+  last_status: string;
+  last_error: string | null;
+  is_enabled: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ToolExternalScore {
+  id: string;
+  tool_id: string;
+  source_key: string;
+  normalized_score: number;
+  raw_data: Record<string, unknown>;
+  fetched_at: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ToolBenchmarkScore {
+  id: string;
+  tool_id: string;
+  benchmark_source: string;
+  overall_score: number | null;
+  mmlu: number | null;
+  hellaswag: number | null;
+  arc_challenge: number | null;
+  truthfulqa: number | null;
+  winogrande: number | null;
+  gsm8k: number | null;
+  humaneval: number | null;
+  elo_rating: number | null;
+  elo_rank: number | null;
+  quality_index: number | null;
+  speed_index: number | null;
+  speed_ttft_ms: number | null;
+  speed_tps: number | null;
+  extra_scores: Record<string, unknown>;
+  fetched_at: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ToolPricingData {
+  id: string;
+  tool_id: string;
+  source: string;
+  input_price_per_1m_tokens: number | null;
+  output_price_per_1m_tokens: number | null;
+  context_window: number | null;
+  max_output_tokens: number | null;
+  free_tier_details: string | null;
+  pro_monthly_price: number | null;
+  enterprise_monthly_price: number | null;
+  value_score: number | null;
+  fetched_at: string;
+  updated_at: string;
+}
+
+export interface ScoringWeight {
+  id: string;
+  weight_key: string;
+  weight_value: number;
+  description: string | null;
+  category: string;
+  updated_at: string;
+}
+
+export interface TrendSnapshot {
+  id: string;
+  tool_id: string;
+  snapshot_date: string;
+  ranking_position: number;
+  ranking_score: number;
+  visit_count: number;
+  review_count: number;
+  bookmark_count: number;
+  upvote_count: number;
+  external_score: number;
+  created_at: string;
+}
+
+export interface CategoryPopularity {
+  id: string;
+  category_slug: string;
+  period: string;
+  total_visits: number;
+  total_reviews: number;
+  total_bookmarks: number;
+  tool_count: number;
+  avg_ranking_score: number;
+  popularity_score: number;
+  computed_at: string;
+}
+
+// ==========================================
+// 추천 알고리즘
+// ==========================================
+export interface MatchDetails {
+  categoryMatch: number;   // 0-30
+  personaMatch: number;    // 0-25
+  budgetMatch: number;     // 0-15
+  koreanMatch: number;     // 0-10
+  qualitySignal: number;   // 0-20
+}
+
+export interface RecommendedTool {
+  tool: Tool;
+  matchScore: number;       // 0-100
+  reasons: string[];
+  matchDetails: MatchDetails;
+}
+
+// ==========================================
+// AI 쇼케이스 (카테고리별 프롬프트→결과 비교)
+// ==========================================
+export type ShowcaseMediaType = 'image' | 'text' | 'code';
+
+export interface CategoryShowcase {
+  id: string;
+  category_slug: string;
+  prompt: string;           // 영문 원본
+  prompt_ko: string;        // 한국어 표시용
+  description: string;
+  media_type: ShowcaseMediaType;
+  sort_order: number;
+}
+
+export interface ToolShowcase {
+  id: string;
+  tool_slug: string;
+  showcase_id: string;
+  result_image_url: string | null;
+  result_text: string | null;
+  result_description: string;
+  sort_order: number;
+  tool?: Tool;
+  showcase?: CategoryShowcase;
+}
+
+// ==========================================
+// 직업/역할별 AI 활용 쇼케이스
+// ==========================================
+export interface RoleShowcase {
+  id: string;
+  target_type: 'job' | 'education';
+  target_slug: string;          // 'marketing', 'student' 등
+  title: string;                // "마케팅에서 AI를 잘 활용하면?"
+  subtitle: string;
+  hero_image_url: string | null;
+  sort_order: number;
+}
+
+export interface RoleUseCaseShowcase {
+  id: string;
+  role_showcase_id: string;
+  tool_slug: string;
+  title: string;                // "SNS 광고 카피 자동 생성"
+  description: string;
+  prompt_example: string | null;
+  result_image_url: string | null;
+  result_text: string | null;
+  result_video_url: string | null;
+  outcome: string;              // "클릭률 30% 향상"
+  sort_order: number;
+  tool?: Tool;
+  role_showcase?: RoleShowcase;
 }

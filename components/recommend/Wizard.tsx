@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Sparkles, Star, Zap, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Sparkles, Star, Zap, Check } from 'lucide-react';
 import { CATEGORIES, JOB_CATEGORIES, EDU_LEVELS } from '@/lib/constants';
-import type { Tool, PricingType } from '@/types';
+import type { RecommendedTool } from '@/types';
 import { cn, getAvatarColor, formatRating } from '@/lib/utils';
 import DynamicIcon from '@/components/ui/DynamicIcon';
 import Badge from '@/components/ui/Badge';
@@ -13,7 +13,7 @@ type Step = 1 | 2 | 3 | 4 | 'result';
 
 interface WizardState {
   category: string;
-  persona: string; // job slug or edu slug
+  persona: string;
   personaType: 'job' | 'edu' | '';
   budget: 'free' | 'under10' | 'any';
   korean: 'required' | 'any';
@@ -28,33 +28,32 @@ export default function Wizard() {
     budget: 'any',
     korean: 'any',
   });
-  const [results, setResults] = useState<Tool[]>([]);
+  const [results, setResults] = useState<RecommendedTool[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const totalSteps = 4;
   const currentStep = typeof step === 'number' ? step : totalSteps;
 
   const goNext = async () => {
+    if (step === 1 && !state.category) return;
+
     if (step === 4) {
-      // API를 통해 검색 실행
+      setLoading(true);
       const params = new URLSearchParams();
-      if (state.category) params.append('category', state.category);
-      if (state.budget === 'free') params.append('pricing', 'Free');
-      else if (state.budget === 'under10') {
-        params.append('pricing', 'Free');
-        params.append('pricing', 'Freemium');
-      }
-      if (state.korean === 'required') params.set('korean', 'true');
-      if (state.personaType === 'job' && state.persona) params.set('job', state.persona);
-      if (state.personaType === 'edu' && state.persona) params.set('edu', state.persona);
-      params.set('sort', 'popular');
+      if (state.category) params.set('category', state.category);
+      if (state.persona) params.set('persona', state.persona);
+      if (state.personaType) params.set('personaType', state.personaType);
+      params.set('budget', state.budget);
+      params.set('korean', state.korean);
 
       try {
-        const res = await fetch(`/api/search?${params.toString()}`);
+        const res = await fetch(`/api/recommend?${params.toString()}`);
         const data = await res.json();
-        setResults((data.results || []).slice(0, 6));
+        setResults(data.results || []);
       } catch {
         setResults([]);
       }
+      setLoading(false);
       setStep('result');
     } else {
       setStep(((step as number) + 1) as Step);
@@ -112,6 +111,9 @@ export default function Wizard() {
               </button>
             ))}
           </div>
+          {!state.category && (
+            <p className="mt-3 text-xs text-amber-600">분야를 선택해주세요</p>
+          )}
         </StepContainer>
       )}
 
@@ -240,8 +242,8 @@ export default function Wizard() {
 
           {results.length > 0 ? (
             <div className="space-y-4">
-              {results.map((tool, index) => (
-                <ResultCard key={tool.id} tool={tool} rank={index + 1} />
+              {results.map((result, index) => (
+                <ResultCard key={result.tool.id} result={result} rank={index + 1} />
               ))}
             </div>
           ) : (
@@ -290,10 +292,21 @@ export default function Wizard() {
           </button>
           <button
             onClick={goNext}
-            className="flex items-center gap-1 rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:bg-primary-hover transition-colors"
+            disabled={loading || (step === 1 && !state.category)}
+            className={cn(
+              'flex items-center gap-1 rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-colors',
+              loading || (step === 1 && !state.category)
+                ? 'opacity-50 cursor-not-allowed'
+                : 'hover:bg-primary-hover'
+            )}
           >
-            {step === 4 ? '추천받기' : '다음'}
-            {step === 4 ? <Sparkles className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
+            {loading ? (
+              <>분석 중...</>
+            ) : step === 4 ? (
+              <>추천받기 <Sparkles className="h-4 w-4" /></>
+            ) : (
+              <>다음 <ArrowRight className="h-4 w-4" /></>
+            )}
           </button>
         </div>
       )}
@@ -311,49 +324,108 @@ function StepContainer({ title, subtitle, children }: { title: string; subtitle:
   );
 }
 
-function ResultCard({ tool, rank }: { tool: Tool; rank: number }) {
+function ResultCard({ result, rank }: { result: RecommendedTool; rank: number }) {
+  const { tool, matchScore, reasons, matchDetails } = result;
   const pricingVariant = tool.pricing_type === 'Free' ? 'free' : tool.pricing_type === 'Freemium' ? 'freemium' : 'paid';
+  const scorePercent = Math.round(matchScore);
 
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="flex items-start gap-4 rounded-xl border border-border bg-white p-5 shadow-sm hover:shadow-md transition-shadow"
+      className="block rounded-xl border border-border bg-white p-5 shadow-sm hover:shadow-md transition-shadow"
     >
-      <span className={cn(
-        'flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white shrink-0',
-        rank === 1 ? 'bg-yellow-400' : rank === 2 ? 'bg-gray-300' : rank === 3 ? 'bg-amber-600' : 'bg-gray-200 text-gray-600'
-      )}>
-        {rank}
-      </span>
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2">
-          {tool.logo_url ? (
-            <img src={tool.logo_url} alt={tool.name} className="h-8 w-8 rounded-lg object-cover" />
-          ) : (
-            <div className={cn('flex h-8 w-8 items-center justify-center rounded-lg text-white text-xs font-bold', getAvatarColor(tool.name))}>
-              {tool.name.charAt(0)}
+      <div className="flex items-start gap-4">
+        {/* 랭크 + 매칭 점수 */}
+        <div className="flex flex-col items-center gap-1 shrink-0">
+          <span className={cn(
+            'flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white',
+            rank === 1 ? 'bg-yellow-400' : rank === 2 ? 'bg-gray-300' : rank === 3 ? 'bg-amber-600' : 'bg-gray-200 text-gray-600'
+          )}>
+            {rank}
+          </span>
+          <span className={cn(
+            'text-[11px] font-bold',
+            scorePercent >= 80 ? 'text-emerald-600' : scorePercent >= 60 ? 'text-blue-600' : 'text-gray-500'
+          )}>
+            {scorePercent}%
+          </span>
+        </div>
+
+        <div className="flex-1 min-w-0">
+          {/* 도구 이름 + 뱃지 */}
+          <div className="flex items-center gap-2">
+            {tool.logo_url ? (
+              <img src={tool.logo_url} alt={tool.name} className="h-8 w-8 rounded-lg object-cover" />
+            ) : (
+              <div className={cn('flex h-8 w-8 items-center justify-center rounded-lg text-white text-xs font-bold', getAvatarColor(tool.name))}>
+                {tool.name.charAt(0)}
+              </div>
+            )}
+            <h3 className="text-sm font-semibold text-foreground">{tool.name}</h3>
+            <Badge variant={pricingVariant} className="text-[10px]">
+              {tool.pricing_type === 'Free' ? '무료' : tool.pricing_type === 'Freemium' ? '부분 무료' : '유료'}
+            </Badge>
+          </div>
+
+          {/* 설명 */}
+          <p className="mt-1 text-xs text-gray-500 line-clamp-1">{tool.description}</p>
+
+          {/* 추천 이유 */}
+          {reasons.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {reasons.slice(0, 4).map((reason, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-0.5 rounded-full bg-primary/5 px-2 py-0.5 text-[10px] font-medium text-primary"
+                >
+                  <Check className="h-2.5 w-2.5" />
+                  {reason}
+                </span>
+              ))}
             </div>
           )}
-          <h3 className="text-sm font-semibold text-foreground">{tool.name}</h3>
-          <Badge variant={pricingVariant} className="text-[10px]">
-            {tool.pricing_type === 'Free' ? '무료' : tool.pricing_type === 'Freemium' ? '부분 무료' : '유료'}
-          </Badge>
-        </div>
-        <p className="mt-1 text-xs text-gray-500 line-clamp-1">{tool.description}</p>
-        {tool.free_quota_detail && (
-          <p className="mt-2 flex items-center gap-1 text-xs text-emerald-700">
-            <Zap className="h-3 w-3" />
-            {tool.free_quota_detail.slice(0, 60)}...
-          </p>
-        )}
-        <div className="mt-2 flex items-center gap-3 text-xs text-gray-400">
-          <span className="flex items-center gap-1">
-            <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-            {formatRating(tool.rating_avg)}
-          </span>
-          <span>{tool.review_count}개 리뷰</span>
+
+          {/* 무료 사용량 */}
+          {tool.free_quota_detail && tool.pricing_type !== 'Paid' && (
+            <p className="mt-2 flex items-center gap-1 text-xs text-emerald-700">
+              <Zap className="h-3 w-3" />
+              {tool.free_quota_detail.slice(0, 60)}
+            </p>
+          )}
+
+          {/* 평점 + 리뷰 */}
+          <div className="mt-2 flex items-center gap-3 text-xs text-gray-400">
+            <span className="flex items-center gap-1">
+              <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+              {formatRating(tool.rating_avg)}
+            </span>
+            <span>{tool.review_count}개 리뷰</span>
+            <MatchBar details={matchDetails} />
+          </div>
         </div>
       </div>
     </Link>
+  );
+}
+
+function MatchBar({ details }: { details: RecommendedTool['matchDetails'] }) {
+  const segments = [
+    { value: details.categoryMatch, max: 30, color: 'bg-blue-500', label: '분야' },
+    { value: details.personaMatch, max: 25, color: 'bg-purple-500', label: '역할' },
+    { value: details.budgetMatch, max: 15, color: 'bg-emerald-500', label: '예산' },
+    { value: details.koreanMatch, max: 10, color: 'bg-orange-500', label: '한국어' },
+    { value: details.qualitySignal, max: 20, color: 'bg-yellow-500', label: '품질' },
+  ];
+
+  return (
+    <div className="ml-auto flex items-center gap-0.5" title="매칭 상세">
+      {segments.map((seg) => (
+        <div
+          key={seg.label}
+          className={cn('h-1.5 w-3 rounded-full', seg.value > seg.max * 0.5 ? seg.color : 'bg-gray-200')}
+          title={`${seg.label}: ${Math.round(seg.value)}/${seg.max}`}
+        />
+      ))}
+    </div>
   );
 }

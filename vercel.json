@@ -1,16 +1,13 @@
 {
   "crons": [
-    {
-      "path": "/api/cron/ranking",
-      "schedule": "0 3 * * 1"
-    },
-    {
-      "path": "/api/cron/news-fetch",
-      "schedule": "0 */6 * * *"
-    },
-    {
-      "path": "/api/cron/github-stats",
-      "schedule": "0 4 * * 0"
-    }
+    { "path": "/api/cron/pricing", "schedule": "0 6 * * *" },
+    { "path": "/api/cron/trends", "schedule": "30 3 * * *" },
+    { "path": "/api/cron/news-fetch", "schedule": "0 */6 * * *" },
+    { "path": "/api/cron/github-stats", "schedule": "0 4 * * 0" },
+    { "path": "/api/cron/artificial-analysis", "schedule": "0 3 * * 0" },
+    { "path": "/api/cron/product-hunt", "schedule": "0 5 * * 0" },
+    { "path": "/api/cron/benchmarks", "schedule": "0 2 * * 1" },
+    { "path": "/api/cron/ranking", "schedule": "0 3 * * 1" },
+    { "path": "/api/cron/category-popularity", "schedule": "0 4 * * 1" }
   ]
 }

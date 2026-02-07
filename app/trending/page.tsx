@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { TrendingUp, ArrowUp, ArrowRight, Star, Sparkles } from 'lucide-react';
+import { TrendingUp, ArrowRight, Star, Sparkles } from 'lucide-react';
 import { SITE_NAME } from '@/lib/constants';
 import { getTrending, getLatestTools } from '@/lib/supabase/queries';
-import { cn, formatVisitCount, getAvatarColor, formatRating } from '@/lib/utils';
+import { cn, getAvatarColor, formatRating } from '@/lib/utils';
 import ServiceCard from '@/components/service/ServiceCard';
+import TrendBadge from '@/components/ranking/TrendBadge';
 
 export const metadata: Metadata = {
   title: `주간 트렌딩 | ${SITE_NAME}`,
@@ -79,12 +80,12 @@ export default async function TrendingPage() {
                   </span>
                 </div>
 
-                {/* 주간 방문 증가량 */}
-                <div className="flex items-center gap-1 shrink-0">
-                  <ArrowUp className="h-3.5 w-3.5 text-emerald-500" />
-                  <span className="text-xs font-medium text-emerald-600">
-                    +{formatVisitCount(tool.weekly_visit_delta)} visits
-                  </span>
+                {/* 트렌드 */}
+                <div className="shrink-0">
+                  <TrendBadge
+                    direction={tool.trend_direction || 'up'}
+                    magnitude={tool.trend_magnitude || 0}
+                  />
                 </div>
 
                 {/* 평점 */}
