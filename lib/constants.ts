@@ -130,12 +130,42 @@ export const RANKING_CATEGORY_COUNT = 20;
 export const TRENDING_COUNT = 10;
 
 // ==========================================
-// 리뷰 설정
+// 리뷰 설정 (레거시 - 커뮤니티 시스템으로 대체)
 // ==========================================
 export const MIN_REVIEW_LENGTH = 10;
 export const MAX_REVIEW_LENGTH = 500;
 export const RATING_MIN = 1;
 export const RATING_MAX = 5;
+
+// ==========================================
+// 커뮤니티 시스템 설정
+// ==========================================
+export const COMMUNITY_SECTION_LABEL = '커뮤니티';
+export const COMMUNITY_TAB_ALL_LABEL = '전체';
+
+export const COMMUNITY_POST_TYPES = {
+  rating: { label: '평가', icon: 'Star', color: 'bg-yellow-100 text-yellow-700' },
+  discussion: { label: '자유글', icon: 'MessageSquare', color: 'bg-blue-100 text-blue-700' },
+  tip: { label: '팁', icon: 'Lightbulb', color: 'bg-emerald-100 text-emerald-700' },
+  question: { label: '질문', icon: 'HelpCircle', color: 'bg-purple-100 text-purple-700' },
+} as const;
+
+export const MIN_POST_CONTENT_LENGTH = 5;
+export const MAX_POST_CONTENT_LENGTH = 2000;
+export const MAX_MEDIA_ATTACHMENTS = 5;
+export const MAX_MEDIA_FILE_SIZE_MB = 10;
+export const MAX_VIDEO_FILE_SIZE_MB = 50;
+export const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'] as const;
+export const ALLOWED_VIDEO_TYPES = ['video/mp4', 'video/webm'] as const;
+
+export const COMMUNITY_SORT_OPTIONS = [
+  { value: 'latest' as const, label: '최신순' },
+  { value: 'popular' as const, label: '인기순' },
+  { value: 'rating' as const, label: '평점순' },
+] as const;
+
+export const COMMUNITY_STORAGE_KEY = 'aipick_community_posts';
+export const COMMUNITY_MEDIA_STORAGE_KEY = 'aipick_community_media';
 
 // ==========================================
 // 기능별 평가 기준

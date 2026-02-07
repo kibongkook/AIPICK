@@ -1,24 +1,14 @@
 'use client';
 
-import { Bookmark, ThumbsUp, MessageSquare, Star } from 'lucide-react';
+import { Bookmark, ThumbsUp } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { useBookmark } from '@/hooks/useBookmark';
 import { useUpvote } from '@/hooks/useUpvote';
-import { useReviews } from '@/hooks/useReviews';
-import { useComments } from '@/hooks/useComments';
+import { useCommunity } from '@/hooks/useCommunity';
 import { cn, formatRating } from '@/lib/utils';
 import { FEATURE_RATING_LABELS } from '@/lib/constants';
-import ReviewForm from '@/components/review/ReviewForm';
-import ReviewList from '@/components/review/ReviewList';
-import CommentList from '@/components/comment/CommentList';
 
-interface ToolInteractionsProps {
-  toolId: string;
-  toolName: string;
-  initialUpvoteCount: number;
-}
-
-const FEATURE_KEYS = ['ease_of_use', 'korean_support', 'free_quota', 'feature_variety', 'value_for_money'] as const;
+const FEATURE_KEYS = Object.keys(FEATURE_RATING_LABELS) as (keyof typeof FEATURE_RATING_LABELS)[];
 
 export function BookmarkButton({ toolId }: { toolId: string }) {
   const { user } = useAuth();
@@ -77,89 +67,34 @@ export function UpvoteButton({ toolId, initialCount }: { toolId: string; initial
   );
 }
 
+/** 기능별 평가 바 (커뮤니티 데이터 기반) */
 export function FeatureRatingBars({ toolId }: { toolId: string }) {
-  const { reviews } = useReviews(toolId);
+  const { ratingStats } = useCommunity('tool', toolId);
 
-  // 리뷰에서 기능별 평균 계산
-  const averages: Record<string, number> = {};
-  FEATURE_KEYS.forEach((key) => {
-    const rated = reviews.filter((r) => r.feature_ratings[key] > 0);
-    averages[key] = rated.length > 0
-      ? rated.reduce((sum, r) => sum + r.feature_ratings[key], 0) / rated.length
-      : 0;
-  });
-
-  const hasData = Object.values(averages).some((v) => v > 0);
+  const hasData = Object.values(ratingStats.featureAvg).some((v) => v > 0);
 
   return (
     <div className="space-y-3">
-      {FEATURE_KEYS.map((key) => (
-        <div key={key} className="flex items-center gap-3">
-          <span className="w-24 text-sm text-gray-600">{FEATURE_RATING_LABELS[key]}</span>
-          <div className="flex-1 h-2 rounded-full bg-gray-100">
-            <div
-              className="h-full rounded-full bg-primary transition-all duration-500"
-              style={{ width: `${(hasData ? averages[key] / 5 : 0) * 100}%` }}
-            />
+      {FEATURE_KEYS.map((key) => {
+        const val = ratingStats.featureAvg[key] || 0;
+        return (
+          <div key={key} className="flex items-center gap-3">
+            <span className="w-24 text-sm text-gray-600">{FEATURE_RATING_LABELS[key]}</span>
+            <div className="flex-1 h-2 rounded-full bg-gray-100">
+              <div
+                className="h-full rounded-full bg-primary transition-all duration-500"
+                style={{ width: `${(hasData ? val / 5 : 0) * 100}%` }}
+              />
+            </div>
+            <span className="w-8 text-right text-sm font-medium text-gray-700">
+              {hasData && val > 0 ? formatRating(val) : '-'}
+            </span>
           </div>
-          <span className="w-8 text-right text-sm font-medium text-gray-700">
-            {hasData && averages[key] > 0 ? formatRating(averages[key]) : '-'}
-          </span>
-        </div>
-      ))}
+        );
+      })}
       {!hasData && (
         <p className="text-xs text-gray-400 mt-1">아직 기능별 평가 데이터가 없습니다.</p>
       )}
-    </div>
-  );
-}
-
-export function ReviewSection({ toolId }: { toolId: string }) {
-  const { reviews, myReview, sort, setSort, addReview, deleteReview, toggleHelpful } = useReviews(toolId);
-
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
-          <Star className="h-5 w-5" />
-          리뷰 ({reviews.length})
-        </h2>
-      </div>
-
-      <ReviewForm
-        toolId={toolId}
-        onSubmit={addReview}
-        hasExisting={!!myReview}
-      />
-
-      <ReviewList
-        reviews={reviews}
-        sort={sort}
-        onSortChange={setSort}
-        onHelpful={toggleHelpful}
-        onDelete={deleteReview}
-      />
-    </div>
-  );
-}
-
-export function CommentSection({ toolId }: { toolId: string }) {
-  const { topLevelComments, getReplies, addComment, deleteComment, toggleLike } = useComments(toolId);
-
-  return (
-    <div className="space-y-4">
-      <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
-        <MessageSquare className="h-5 w-5" />
-        댓글 ({topLevelComments.length})
-      </h2>
-
-      <CommentList
-        topLevelComments={topLevelComments}
-        getReplies={getReplies}
-        onAddComment={addComment}
-        onDelete={deleteComment}
-        onLike={toggleLike}
-      />
     </div>
   );
 }

@@ -2,12 +2,13 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Star, ExternalLink, Zap, ThumbsUp, ArrowLeft, Check, X } from 'lucide-react';
-import { SITE_NAME, SITE_URL, PRICING_CONFIG, FEATURE_RATING_LABELS } from '@/lib/constants';
+import { SITE_NAME, SITE_URL, PRICING_CONFIG } from '@/lib/constants';
 import { getToolBySlug, getCategoryBySlug, getSimilarTools, getCategories, getTools } from '@/lib/supabase/queries';
 import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
 import ServiceCard from '@/components/service/ServiceCard';
-import { BookmarkButton, UpvoteButton, FeatureRatingBars, ReviewSection, CommentSection } from '@/components/service/ToolInteractions';
+import { BookmarkButton, UpvoteButton } from '@/components/service/ToolInteractions';
+import CommunitySection from '@/components/community/CommunitySection';
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
 interface Props {
@@ -96,7 +97,7 @@ export default async function ToolDetailPage({ params }: Props) {
                 <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                   <span className="font-medium text-gray-700">{formatRating(tool.rating_avg)}</span>
-                  <span>({tool.review_count}개 리뷰)</span>
+                  <span>({tool.review_count}개 평가)</span>
                 </div>
                 <span>{formatVisitCount(tool.visit_count)} 방문</span>
               </div>
@@ -172,21 +173,9 @@ export default async function ToolDetailPage({ params }: Props) {
             )}
           </section>
 
-          {/* 기능별 평균 점수 (리뷰 기반 실시간 계산) */}
+          {/* 커뮤니티 (평가 + 자유글 + 팁 + 질문) */}
           <section className="rounded-xl border border-border bg-white p-6">
-            <h2 className="text-lg font-bold text-foreground">기능별 평가</h2>
-            <p className="mt-1 text-xs text-gray-400 mb-4">사용자 리뷰 기반</p>
-            <FeatureRatingBars toolId={tool.id} />
-          </section>
-
-          {/* 리뷰 영역 */}
-          <section className="rounded-xl border border-border bg-white p-6">
-            <ReviewSection toolId={tool.id} />
-          </section>
-
-          {/* 댓글 영역 */}
-          <section className="rounded-xl border border-border bg-white p-6">
-            <CommentSection toolId={tool.id} />
+            <CommunitySection targetType="tool" targetId={tool.id} />
           </section>
         </div>
 
@@ -218,7 +207,7 @@ export default async function ToolDetailPage({ params }: Props) {
                 </dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-gray-500">리뷰 수</dt>
+                <dt className="text-gray-500">평가 수</dt>
                 <dd className="font-medium">{tool.review_count.toLocaleString()}개</dd>
               </div>
               <div className="flex justify-between">

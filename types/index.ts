@@ -9,6 +9,9 @@ export type SafetyLevel = 'safe' | 'guided' | 'advanced';
 export type NewsCategory = 'update' | 'launch' | 'industry' | 'pricing' | 'general';
 export type GuideCategory = 'job' | 'education' | 'tip' | 'tutorial';
 export type CommentTargetType = 'tool' | 'news' | 'guide';
+export type CommunityPostType = 'rating' | 'discussion' | 'tip' | 'question';
+export type CommunityTargetType = 'tool' | 'news' | 'guide';
+export type MediaType = 'image' | 'video';
 
 // ==========================================
 // 카테고리
@@ -243,6 +246,45 @@ export interface WeeklyRanking {
   ranking_score: number;
   visit_count: number;
   tool?: Tool;
+}
+
+// ==========================================
+// 커뮤니티 게시물
+// ==========================================
+export interface MediaAttachment {
+  url: string;
+  type: MediaType;
+  thumbnail_url?: string;
+  size?: number;
+  filename?: string;
+}
+
+export interface FeatureRatings {
+  ease_of_use: number;
+  korean_support: number;
+  free_quota: number;
+  feature_variety: number;
+  value_for_money: number;
+}
+
+export interface CommunityPost {
+  id: string;
+  target_type: CommunityTargetType;
+  target_id: string;
+  user_id: string;
+  user_name: string | null;
+  post_type: CommunityPostType;
+  content: string;
+  rating: number | null;
+  feature_ratings: FeatureRatings | null;
+  parent_id: string | null;
+  media: MediaAttachment[];
+  like_count: number;
+  reply_count: number;
+  is_reported: boolean;
+  is_pinned: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 // ==========================================

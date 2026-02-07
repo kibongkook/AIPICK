@@ -1,16 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { User, Star, Bookmark, MessageSquare, Settings } from 'lucide-react';
+import { Star, Bookmark, Users } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { useBookmarkList } from '@/hooks/useBookmark';
 import { cn, getAvatarColor } from '@/lib/utils';
 import AuthGuard from '@/components/auth/AuthGuard';
 import ServiceCard from '@/components/service/ServiceCard';
-import type { Tool } from '@/types';
-import type { StoredReview } from '@/hooks/useReviews';
-import type { StoredComment } from '@/hooks/useComments';
+import { COMMUNITY_STORAGE_KEY, COMMUNITY_POST_TYPES } from '@/lib/constants';
+import type { Tool, CommunityPost } from '@/types';
 
 export default function ProfilePage() {
   return (
@@ -25,10 +23,9 @@ export default function ProfilePage() {
 function ProfileContent() {
   const { user, signOut } = useAuth();
   const { bookmarkedIds } = useBookmarkList();
-  const [tab, setTab] = useState<'bookmarks' | 'reviews' | 'comments'>('bookmarks');
+  const [tab, setTab] = useState<'bookmarks' | 'community'>('bookmarks');
   const [bookmarkedTools, setBookmarkedTools] = useState<Tool[]>([]);
-  const [myReviews, setMyReviews] = useState<StoredReview[]>([]);
-  const [myComments, setMyComments] = useState<StoredComment[]>([]);
+  const [myPosts, setMyPosts] = useState<CommunityPost[]>([]);
 
   useEffect(() => {
     if (bookmarkedIds.length === 0) {
@@ -47,10 +44,44 @@ function ProfileContent() {
   useEffect(() => {
     if (!user) return;
     try {
-      const reviews: StoredReview[] = JSON.parse(localStorage.getItem('aipick_reviews') || '[]');
-      setMyReviews(reviews.filter((r) => r.user_id === user.id));
-      const comments: StoredComment[] = JSON.parse(localStorage.getItem('aipick_comments') || '[]');
-      setMyComments(comments.filter((c) => c.user_id === user.id));
+      // 새 형식
+      const posts: CommunityPost[] = JSON.parse(localStorage.getItem(COMMUNITY_STORAGE_KEY) || '[]');
+      const mine = posts.filter((p) => p.user_id === user.id && !p.parent_id);
+      setMyPosts(mine);
+
+      // 레거시 형식도 확인 (마이그레이션 안 된 경우)
+      if (mine.length === 0) {
+        const oldReviews = JSON.parse(localStorage.getItem('aipick_reviews') || '[]');
+        const oldComments = JSON.parse(localStorage.getItem('aipick_comments') || '[]');
+        const legacy: CommunityPost[] = [];
+        for (const r of oldReviews) {
+          if (r.user_id === user.id) {
+            legacy.push({
+              id: r.id, target_type: 'tool', target_id: r.tool_id,
+              user_id: r.user_id, user_name: r.user_name || '사용자',
+              post_type: 'rating', content: r.content,
+              rating: r.rating, feature_ratings: r.feature_ratings || null,
+              parent_id: null, media: [], like_count: r.helpful_count || 0,
+              reply_count: 0, is_reported: false, is_pinned: false,
+              created_at: r.created_at, updated_at: r.created_at,
+            });
+          }
+        }
+        for (const c of oldComments) {
+          if (c.user_id === user.id && !c.parent_id) {
+            legacy.push({
+              id: c.id, target_type: 'tool', target_id: c.tool_id,
+              user_id: c.user_id, user_name: c.user_name || '사용자',
+              post_type: 'discussion', content: c.content,
+              rating: null, feature_ratings: null,
+              parent_id: null, media: [], like_count: c.like_count || 0,
+              reply_count: 0, is_reported: false, is_pinned: false,
+              created_at: c.created_at, updated_at: c.created_at,
+            });
+          }
+        }
+        if (legacy.length > 0) setMyPosts(legacy);
+      }
     } catch { /* ignore */ }
   }, [user]);
 
@@ -58,8 +89,7 @@ function ProfileContent() {
 
   const tabs = [
     { id: 'bookmarks' as const, label: '북마크', icon: Bookmark, count: bookmarkedTools.length },
-    { id: 'reviews' as const, label: '리뷰', icon: Star, count: myReviews.length },
-    { id: 'comments' as const, label: '댓글', icon: MessageSquare, count: myComments.length },
+    { id: 'community' as const, label: '커뮤니티', icon: Users, count: myPosts.length },
   ];
 
   return (
@@ -113,45 +143,36 @@ function ProfileContent() {
         )
       )}
 
-      {tab === 'reviews' && (
-        myReviews.length > 0 ? (
-          <div className="space-y-4">
-            {myReviews.map((review) => (
-              <div key={review.id} className="rounded-xl border border-border bg-white p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="flex gap-0.5">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <Star
-                        key={s}
-                        className={cn('h-3.5 w-3.5', review.rating >= s ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200')}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-xs text-gray-400">{new Date(review.created_at).toLocaleDateString('ko-KR')}</span>
-                </div>
-                <p className="text-sm text-gray-700">{review.content}</p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <EmptyState icon={Star} message="작성한 리뷰가 없습니다" />
-        )
-      )}
-
-      {tab === 'comments' && (
-        myComments.length > 0 ? (
+      {tab === 'community' && (
+        myPosts.length > 0 ? (
           <div className="space-y-3">
-            {myComments.map((comment) => (
-              <div key={comment.id} className="rounded-xl border border-border bg-white p-4">
-                <p className="text-sm text-gray-700">{comment.content}</p>
-                <span className="text-xs text-gray-400 mt-1 block">
-                  {new Date(comment.created_at).toLocaleDateString('ko-KR')}
-                </span>
-              </div>
-            ))}
+            {myPosts.map((post) => {
+              const typeConfig = COMMUNITY_POST_TYPES[post.post_type as keyof typeof COMMUNITY_POST_TYPES];
+              return (
+                <div key={post.id} className="rounded-xl border border-border bg-white p-5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className={cn('inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium', typeConfig?.color || 'bg-gray-100 text-gray-600')}>
+                      {typeConfig?.label || post.post_type}
+                    </span>
+                    {post.post_type === 'rating' && post.rating && (
+                      <div className="flex gap-0.5">
+                        {[1, 2, 3, 4, 5].map((s) => (
+                          <Star key={s} className={cn('h-3.5 w-3.5', post.rating! >= s ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200')} />
+                        ))}
+                      </div>
+                    )}
+                    <span className="text-xs text-gray-400">{new Date(post.created_at).toLocaleDateString('ko-KR')}</span>
+                  </div>
+                  <p className="text-sm text-gray-700 whitespace-pre-wrap">{post.content}</p>
+                  {post.like_count > 0 && (
+                    <p className="text-xs text-gray-400 mt-2">좋아요 {post.like_count}</p>
+                  )}
+                </div>
+              );
+            })}
           </div>
         ) : (
-          <EmptyState icon={MessageSquare} message="작성한 댓글이 없습니다" />
+          <EmptyState icon={Users} message="작성한 커뮤니티 글이 없습니다" />
         )
       )}
     </div>
