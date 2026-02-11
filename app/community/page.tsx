@@ -64,8 +64,18 @@ function CommunityContent() {
         } else {
           // localStorage fallback
           const localPosts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') as CommunityPost[];
+          const userLikes = JSON.parse(localStorage.getItem('aipick_user_likes') || '[]') as string[];
+          const userBookmarks = JSON.parse(localStorage.getItem('aipick_user_bookmarks') || '[]') as string[];
+
+          // 좋아요/북마크 상태 반영
+          const postsWithStatus = localPosts.map(post => ({
+            ...post,
+            has_liked: userLikes.includes(post.id),
+            has_bookmarked: userBookmarks.includes(post.id),
+          }));
+
           const offset = (currentPage - 1) * POSTS_PER_PAGE;
-          const paginatedPosts = localPosts.slice(offset, offset + POSTS_PER_PAGE);
+          const paginatedPosts = postsWithStatus.slice(offset, offset + POSTS_PER_PAGE);
           setPosts(paginatedPosts);
           setTotal(localPosts.length);
         }
@@ -74,8 +84,18 @@ function CommunityContent() {
       console.error('Failed to fetch posts:', error);
       // localStorage fallback
       const localPosts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') as CommunityPost[];
+      const userLikes = JSON.parse(localStorage.getItem('aipick_user_likes') || '[]') as string[];
+      const userBookmarks = JSON.parse(localStorage.getItem('aipick_user_bookmarks') || '[]') as string[];
+
+      // 좋아요/북마크 상태 반영
+      const postsWithStatus = localPosts.map(post => ({
+        ...post,
+        has_liked: userLikes.includes(post.id),
+        has_bookmarked: userBookmarks.includes(post.id),
+      }));
+
       const offset = (currentPage - 1) * POSTS_PER_PAGE;
-      const paginatedPosts = localPosts.slice(offset, offset + POSTS_PER_PAGE);
+      const paginatedPosts = postsWithStatus.slice(offset, offset + POSTS_PER_PAGE);
       setPosts(paginatedPosts);
       setTotal(localPosts.length);
     } finally {
@@ -116,27 +136,63 @@ function CommunityContent() {
   };
 
   const handleLike = async (postId: string) => {
-    try {
-      await fetch('/api/community/like', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_id: postId }),
-      });
-    } catch { /* ignore */ }
+    // localStorage 기반 좋아요 토글
+    const likesKey = 'aipick_user_likes';
+    const userLikes = JSON.parse(localStorage.getItem(likesKey) || '[]') as string[];
+    const hasLiked = userLikes.includes(postId);
+
+    // 토글: 이미 좋아요했으면 취소, 아니면 추가
+    const newLikes = hasLiked
+      ? userLikes.filter(id => id !== postId)
+      : [...userLikes, postId];
+
+    localStorage.setItem(likesKey, JSON.stringify(newLikes));
+
+    // 게시글 목록 업데이트
+    const localPosts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') as CommunityPost[];
+    const updatedPosts = localPosts.map(post => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          like_count: hasLiked ? (post.like_count - 1) : (post.like_count + 1),
+          has_liked: !hasLiked,
+        };
+      }
+      return post;
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
     await fetchPosts();
   };
 
   const handleBookmark = async (postId: string) => {
-    try {
-      await fetch('/api/community/v2/bookmark', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_id: postId }),
-      });
-      await fetchPosts();
-    } catch (error) {
-      console.error('Bookmark error:', error);
-    }
+    // localStorage 기반 북마크 토글
+    const bookmarksKey = 'aipick_user_bookmarks';
+    const userBookmarks = JSON.parse(localStorage.getItem(bookmarksKey) || '[]') as string[];
+    const hasBookmarked = userBookmarks.includes(postId);
+
+    // 토글: 이미 북마크했으면 취소, 아니면 추가
+    const newBookmarks = hasBookmarked
+      ? userBookmarks.filter(id => id !== postId)
+      : [...userBookmarks, postId];
+
+    localStorage.setItem(bookmarksKey, JSON.stringify(newBookmarks));
+
+    // 게시글 목록 업데이트
+    const localPosts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') as CommunityPost[];
+    const updatedPosts = localPosts.map(post => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          bookmark_count: hasBookmarked ? (post.bookmark_count - 1) : (post.bookmark_count + 1),
+          has_bookmarked: !hasBookmarked,
+        };
+      }
+      return post;
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
+    await fetchPosts();
   };
 
   const handleQuickSubmit = async (data: {
