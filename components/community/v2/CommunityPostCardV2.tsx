@@ -47,7 +47,21 @@ export default function CommunityPostCardV2({
 
   // title이 content의 시작 부분과 일치하면 해당 부분 제거
   const titleWithoutEllipsis = post.title.replace(/\.\.\.$/g, '').trim();
-  if (post.content.startsWith(titleWithoutEllipsis)) {
+
+  // content를 줄바꿈 기준으로 분리하여 첫 줄과 비교
+  const contentLines = post.content.split('\n');
+  const firstLine = contentLines[0].trim();
+
+  // title이 첫 줄과 일치하면 나머지 줄만 표시
+  if (firstLine === titleWithoutEllipsis || titleWithoutEllipsis.startsWith(firstLine)) {
+    if (contentLines.length > 1) {
+      // 첫 줄 제거하고 나머지 줄들을 표시
+      displayContent = contentLines.slice(1).join('\n').trim();
+    } else {
+      displayContent = '';
+    }
+  } else if (post.content.startsWith(titleWithoutEllipsis)) {
+    // 연속된 텍스트인 경우
     displayContent = post.content.slice(titleWithoutEllipsis.length).trim();
     // '...' 제거
     if (displayContent.startsWith('...')) {
