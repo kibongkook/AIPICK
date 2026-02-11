@@ -18,6 +18,11 @@ function CommunityContent() {
   const [loading, setLoading] = useState(true);
   const [availableGoals, setAvailableGoals] = useState<CommunityTag[]>([]);
   const [availableAIs, setAvailableAIs] = useState<CommunityTag[]>([]);
+  const [total, setTotal] = useState(0);
+
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const POSTS_PER_PAGE = 20;
+  const totalPages = Math.ceil(total / POSTS_PER_PAGE);
 
   const filters: CommunityFilters = {
     goal: searchParams.get('goal') || undefined,
@@ -39,23 +44,36 @@ function CommunityContent() {
       if (filters.keyword) params.set('keyword', filters.keyword);
       if (filters.sort) params.set('sort', filters.sort);
 
+      // 페이지네이션 파라미터 추가
+      params.set('limit', POSTS_PER_PAGE.toString());
+      params.set('offset', ((currentPage - 1) * POSTS_PER_PAGE).toString());
+
       const res = await fetch(`/api/community/v2?${params}`);
       if (res.ok) {
         const data = await res.json();
 
         if (data.posts && data.posts.length > 0) {
           setPosts(data.posts);
+          setTotal(data.total || 0);
           setAvailableGoals(data.filters?.popularGoals || []);
           setAvailableAIs(data.filters?.popularAIs || []);
         } else {
+          // localStorage fallback
           const localPosts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') as CommunityPost[];
-          setPosts(localPosts);
+          const offset = (currentPage - 1) * POSTS_PER_PAGE;
+          const paginatedPosts = localPosts.slice(offset, offset + POSTS_PER_PAGE);
+          setPosts(paginatedPosts);
+          setTotal(localPosts.length);
         }
       }
     } catch (error) {
       console.error('Failed to fetch posts:', error);
+      // localStorage fallback
       const localPosts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') as CommunityPost[];
-      setPosts(localPosts);
+      const offset = (currentPage - 1) * POSTS_PER_PAGE;
+      const paginatedPosts = localPosts.slice(offset, offset + POSTS_PER_PAGE);
+      setPosts(paginatedPosts);
+      setTotal(localPosts.length);
     } finally {
       setLoading(false);
     }
@@ -70,7 +88,17 @@ function CommunityContent() {
     if (merged.keyword) params.set('keyword', merged.keyword);
     if (merged.sort && merged.sort !== 'latest') params.set('sort', merged.sort);
 
+    // 필터 변경 시 1페이지로 리셋
+    params.set('page', '1');
+
     router.push(`/community?${params}`);
+  };
+
+  const handlePageChange = (page: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('page', page.toString());
+    router.push(`/community?${params}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleTagClick = (tag: CommunityTag) => {
@@ -254,17 +282,70 @@ function CommunityContent() {
           {loading ? (
             <div className="text-center py-12 text-gray-400">로딩 중...</div>
           ) : posts.length > 0 ? (
-            <div className="space-y-3">
-              {posts.map(post => (
-                <CommunityPostCardV2
-                  key={post.id}
-                  post={post}
-                  onTagClick={handleTagClick}
-                  onLike={() => handleLike(post.id)}
-                  onBookmark={() => handleBookmark(post.id)}
-                />
-              ))}
-            </div>
+            <>
+              <div className="space-y-3">
+                {posts.map(post => (
+                  <CommunityPostCardV2
+                    key={post.id}
+                    post={post}
+                    onTagClick={handleTagClick}
+                    onLike={() => handleLike(post.id)}
+                    onBookmark={() => handleBookmark(post.id)}
+                  />
+                ))}
+              </div>
+
+              {/* 페이지네이션 */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 mt-8">
+                  {/* 이전 페이지 */}
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="px-3 py-2 rounded-lg border border-border bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    이전
+                  </button>
+
+                  {/* 페이지 번호 */}
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => {
+                    // 현재 페이지 근처만 표시 (최대 7개)
+                    if (
+                      page === 1 ||
+                      page === totalPages ||
+                      (page >= currentPage - 2 && page <= currentPage + 2)
+                    ) {
+                      return (
+                        <button
+                          key={page}
+                          onClick={() => handlePageChange(page)}
+                          className={`px-3 py-2 rounded-lg border transition-colors ${
+                            page === currentPage
+                              ? 'bg-primary text-white border-primary'
+                              : 'border-border bg-white hover:bg-gray-50'
+                          }`}
+                        >
+                          {page}
+                        </button>
+                      );
+                    } else if (page === currentPage - 3 || page === currentPage + 3) {
+                      // 생략 표시
+                      return <span key={page} className="px-2 text-gray-400">...</span>;
+                    }
+                    return null;
+                  })}
+
+                  {/* 다음 페이지 */}
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="px-3 py-2 rounded-lg border border-border bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    다음
+                  </button>
+                </div>
+              )}
+            </>
           ) : (
             <div className="text-center py-12">
               <p className="text-gray-400 mb-4">아직 글이 없습니다</p>
