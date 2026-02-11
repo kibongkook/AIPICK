@@ -42,6 +42,19 @@ export default function CommunityPostCardV2({
   const avatarColor = getAvatarColor(post.user_name || 'User');
   const firstChar = (post.user_name || 'U')[0];
 
+  // 제목 이후의 본문 추출 (중복 방지)
+  let displayContent = post.content;
+
+  // title이 content의 시작 부분과 일치하면 해당 부분 제거
+  const titleWithoutEllipsis = post.title.replace(/\.\.\.$/g, '').trim();
+  if (post.content.startsWith(titleWithoutEllipsis)) {
+    displayContent = post.content.slice(titleWithoutEllipsis.length).trim();
+    // '...' 제거
+    if (displayContent.startsWith('...')) {
+      displayContent = displayContent.slice(3).trim();
+    }
+  }
+
   return (
     <Link href={`/community/${post.id}`}>
       <div className="rounded-xl border border-border bg-white p-4 hover:shadow-md transition-shadow">
@@ -63,10 +76,12 @@ export default function CommunityPostCardV2({
           {post.title}
         </h3>
 
-        {/* 본문 미리보기 (2줄) */}
-        <p className="text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed">
-          {post.content}
-        </p>
+        {/* 본문 미리보기 (2줄) - 제목 이후 내용만 표시 */}
+        {displayContent && (
+          <p className="text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed whitespace-pre-wrap">
+            {displayContent}
+          </p>
+        )}
 
         {/* 하단 정보 */}
         <div className="flex items-center justify-between text-xs text-gray-400">
