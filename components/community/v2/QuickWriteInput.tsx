@@ -226,8 +226,8 @@ export default function QuickWriteInput({ onSubmit }: QuickWriteInputProps) {
         </div>
       )}
 
-      {/* 태그 영역 */}
-      <div className="mb-3 flex flex-wrap items-center gap-1.5">
+      {/* 태그 영역 - 최대 10줄까지 wrap */}
+      <div className="mb-3 flex flex-wrap items-center gap-1.5 max-h-[280px] overflow-y-auto">
         {tags.map((tag, index) => (
           <span
             key={index}

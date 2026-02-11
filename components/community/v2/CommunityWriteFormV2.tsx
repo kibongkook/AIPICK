@@ -170,8 +170,8 @@ export default function CommunityWriteFormV2({ onSubmit }: CommunityWriteFormV2P
       />
       <p className="text-xs text-gray-400 mb-4">{content.length}/10000</p>
 
-      {/* 태그 영역 */}
-      <div className="mb-4 flex flex-wrap items-center gap-1.5 min-h-[32px] p-2 border border-border rounded-lg">
+      {/* 태그 영역 - 최대 10줄까지 wrap */}
+      <div className="mb-4 flex flex-wrap items-center gap-1.5 min-h-[32px] max-h-[320px] overflow-y-auto p-2 border border-border rounded-lg">
         {tags.map((tag, index) => (
           <span
             key={index}
