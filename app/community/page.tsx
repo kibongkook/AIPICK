@@ -2,7 +2,6 @@
 
 import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import CommunityFilterBar from '@/components/community/v2/CommunityFilterBar';
 import CommunityPostCardV2 from '@/components/community/v2/CommunityPostCardV2';
@@ -242,20 +241,11 @@ function CommunityContent() {
       {/* 헤더 */}
       <div className="bg-white border-b border-border">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">커뮤니티</h1>
-              <p className="text-sm text-gray-600 mt-1">
-                AI 활용 노하우를 공유하고 배워보세요
-              </p>
-            </div>
-            <Link
-              href="/community/write"
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors"
-            >
-              <Plus className="h-4 w-4" />
-              글쓰기
-            </Link>
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-foreground">커뮤니티</h1>
+            <p className="text-sm text-gray-600 mt-1">
+              AI 활용 노하우를 공유하고 배워보세요
+            </p>
           </div>
         </div>
       </div>
@@ -355,7 +345,6 @@ function CommunityContent() {
                 href="/community/write"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors"
               >
-                <Plus className="h-4 w-4" />
                 첫 번째 글 작성하기
               </Link>
             </div>
