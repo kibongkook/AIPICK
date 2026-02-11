@@ -135,14 +135,12 @@ export default function CommentSection({ postId, commentCount, onCommentCountCha
 
   if (loading) {
     return (
-      <div className="rounded-xl border border-border bg-white p-6">
-        <div className="text-center py-8 text-gray-400 text-sm">로딩 중...</div>
-      </div>
+      <div className="text-center py-8 text-gray-400 text-sm">로딩 중...</div>
     );
   }
 
   return (
-    <div className="rounded-xl border border-border bg-white p-6">
+    <div>
       <h2 className="text-lg font-bold text-foreground mb-4">
         댓글 {comments.length}개
       </h2>

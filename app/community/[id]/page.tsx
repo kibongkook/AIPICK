@@ -29,7 +29,28 @@ function CommunityPostDetail({ postId }: { postId: string }) {
         const localPost = localPosts.find(p => p.id === postId);
 
         if (localPost) {
-          setPost(localPost);
+          // 조회수 증가
+          const updatedPosts = localPosts.map(p => {
+            if (p.id === postId) {
+              return {
+                ...p,
+                view_count: (p.view_count || 0) + 1,
+              };
+            }
+            return p;
+          });
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
+
+          // 좋아요/북마크 상태 로드
+          const userLikes = JSON.parse(localStorage.getItem('aipick_user_likes') || '[]') as string[];
+          const userBookmarks = JSON.parse(localStorage.getItem('aipick_user_bookmarks') || '[]') as string[];
+
+          setPost({
+            ...localPost,
+            view_count: (localPost.view_count || 0) + 1,
+            has_liked: userLikes.includes(postId),
+            has_bookmarked: userBookmarks.includes(postId),
+          });
           setLoading(false);
           return;
         }
@@ -177,16 +198,53 @@ function CommunityPostDetail({ postId }: { postId: string }) {
           커뮤니티로 돌아가기
         </Link>
 
-        {/* 글 상세 */}
-        <div className="rounded-xl border border-border bg-white p-6 mb-6">
-          {/* 작성자 정보 */}
-          <div className="flex items-center gap-2 mb-4 pb-4 border-b border-border">
-            <div className={cn('h-8 w-8 rounded-full flex items-center justify-center text-white text-sm font-bold', avatarColor)}>
-              {firstChar}
+        {/* 글 상세 + 댓글 (하나의 박스) */}
+        <div className="rounded-xl border border-border bg-white p-6">
+          {/* 작성자 정보 + 액션 버튼 */}
+          <div className="flex items-center justify-between mb-4 pb-4 border-b border-border">
+            {/* 좌측: 작성자 정보 */}
+            <div className="flex items-center gap-2">
+              <div className={cn('h-8 w-8 rounded-full flex items-center justify-center text-white text-sm font-bold', avatarColor)}>
+                {firstChar}
+              </div>
+              <div>
+                <div className="text-sm font-medium text-foreground">{post.user_name}</div>
+                <div className="text-xs text-gray-400">{formatTimeAgo(post.created_at)}</div>
+              </div>
             </div>
-            <div>
-              <div className="text-sm font-medium text-foreground">{post.user_name}</div>
-              <div className="text-xs text-gray-400">{formatTimeAgo(post.created_at)}</div>
+
+            {/* 우측: 액션 버튼 */}
+            <div className="flex items-center gap-3 text-xs">
+              <button
+                onClick={handleLike}
+                className={cn(
+                  'flex items-center gap-1 transition-colors',
+                  post.has_liked ? 'text-primary' : 'text-gray-400 hover:text-primary'
+                )}
+              >
+                <ThumbsUp className="h-4 w-4" />
+                <span>{post.like_count}</span>
+              </button>
+
+              <button
+                onClick={handleBookmark}
+                className={cn(
+                  'flex items-center gap-1 transition-colors',
+                  post.has_bookmarked ? 'text-primary' : 'text-gray-400 hover:text-primary'
+                )}
+              >
+                <Bookmark className="h-4 w-4" />
+              </button>
+
+              <div className="flex items-center gap-1 text-gray-400">
+                <Eye className="h-4 w-4" />
+                <span>{post.view_count || 0}</span>
+              </div>
+
+              <div className="flex items-center gap-1 text-gray-400">
+                <MessageSquare className="h-4 w-4" />
+                <span>{post.comment_count || 0}</span>
+              </div>
             </div>
           </div>
 
@@ -227,50 +285,20 @@ function CommunityPostDetail({ postId }: { postId: string }) {
             </div>
           )}
 
-          {/* 액션 버튼 */}
-          <div className="flex items-center gap-4 pt-4 border-t border-border">
-            <button
-              onClick={handleLike}
-              className={cn(
-                'flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors',
-                post.has_liked && 'text-primary bg-purple-50'
-              )}
-            >
-              <ThumbsUp className="h-4 w-4" />
-              <span className="text-sm font-medium">{post.like_count}</span>
-            </button>
+          {/* 구분선 */}
+          <div className="border-t border-border my-6"></div>
 
-            <button
-              onClick={handleBookmark}
-              className={cn(
-                'flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors',
-                post.has_bookmarked && 'text-primary bg-purple-50'
-              )}
-            >
-              <Bookmark className="h-4 w-4" />
-              <span className="text-sm font-medium">저장</span>
-            </button>
-
-            <div className="flex items-center gap-2 px-4 py-2 text-gray-400">
-              <Eye className="h-4 w-4" />
-              <span className="text-sm">{post.view_count || 0}</span>
-            </div>
-
-            <div className="flex items-center gap-2 px-4 py-2 text-gray-400">
-              <MessageSquare className="h-4 w-4" />
-              <span className="text-sm">{post.comment_count || 0}</span>
-            </div>
+          {/* 댓글 영역 (같은 박스 내) */}
+          <div>
+            <CommentSection
+              postId={postId}
+              commentCount={post.comment_count || 0}
+              onCommentCountChange={(newCount) => {
+                setPost({ ...post, comment_count: newCount });
+              }}
+            />
           </div>
         </div>
-
-        {/* 댓글 영역 */}
-        <CommentSection
-          postId={postId}
-          commentCount={post.comment_count || 0}
-          onCommentCountChange={(newCount) => {
-            setPost({ ...post, comment_count: newCount });
-          }}
-        />
       </div>
     </div>
   );
