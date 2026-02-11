@@ -2,6 +2,7 @@
 
 import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Search } from 'lucide-react';
 import Link from 'next/link';
 import CommunityFilterBar from '@/components/community/v2/CommunityFilterBar';
 import CommunityPostCardV2 from '@/components/community/v2/CommunityPostCardV2';
@@ -258,78 +259,97 @@ function CommunityContent() {
       <div className="bg-white">
         <div className="container mx-auto px-4 py-4">
           <div className="max-w-4xl mx-auto">
-            {/* 글 타입 필터 */}
-            <div className="flex gap-2 mb-4">
-              <button
-                onClick={() => {
-                  const params = new URLSearchParams(searchParams.toString());
-                  params.delete('post_type');
-                  params.set('page', '1');
-                  router.push(`/community?${params}`);
-                }}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  currentPostType === 'all'
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                전체
-              </button>
-              <button
-                onClick={() => {
-                  const params = new URLSearchParams(searchParams.toString());
-                  params.set('post_type', 'discussion');
-                  params.set('page', '1');
-                  router.push(`/community?${params}`);
-                }}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  currentPostType === 'discussion'
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                일반
-              </button>
-              <button
-                onClick={() => {
-                  const params = new URLSearchParams(searchParams.toString());
-                  params.set('post_type', 'review');
-                  params.set('page', '1');
-                  router.push(`/community?${params}`);
-                }}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  currentPostType === 'review'
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                리뷰
-              </button>
-              <button
-                onClick={() => {
-                  const params = new URLSearchParams(searchParams.toString());
-                  params.set('post_type', 'question');
-                  params.set('page', '1');
-                  router.push(`/community?${params}`);
-                }}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  currentPostType === 'question'
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                질문
-              </button>
-            </div>
+            {/* 통합 필터바 */}
+            <div className="flex items-center gap-3">
+              {/* 글 타입 필터 */}
+              <div className="flex gap-2 shrink-0">
+                <button
+                  onClick={() => {
+                    const params = new URLSearchParams(searchParams.toString());
+                    params.delete('post_type');
+                    params.set('page', '1');
+                    router.push(`/community?${params}`);
+                  }}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    currentPostType === 'all'
+                      ? 'bg-primary text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  전체
+                </button>
+                <button
+                  onClick={() => {
+                    const params = new URLSearchParams(searchParams.toString());
+                    params.set('post_type', 'discussion');
+                    params.set('page', '1');
+                    router.push(`/community?${params}`);
+                  }}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    currentPostType === 'discussion'
+                      ? 'bg-primary text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  일반
+                </button>
+                <button
+                  onClick={() => {
+                    const params = new URLSearchParams(searchParams.toString());
+                    params.set('post_type', 'review');
+                    params.set('page', '1');
+                    router.push(`/community?${params}`);
+                  }}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    currentPostType === 'review'
+                      ? 'bg-primary text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  리뷰
+                </button>
+                <button
+                  onClick={() => {
+                    const params = new URLSearchParams(searchParams.toString());
+                    params.set('post_type', 'question');
+                    params.set('page', '1');
+                    router.push(`/community?${params}`);
+                  }}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    currentPostType === 'question'
+                      ? 'bg-primary text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  질문
+                </button>
+              </div>
 
-            {/* 기존 필터바 (전체 버튼 제거) */}
-            <CommunityFilterBar
-              filters={filters}
-              availableGoals={availableGoals}
-              availableAIs={availableAIs}
-              onFilterChange={handleFilterChange}
-              hideGoalFilter={true}
-            />
+              {/* 검색 */}
+              <div className="flex-1 min-w-[180px]">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <input
+                    type="text"
+                    value={filters.keyword || ''}
+                    onChange={(e) => handleFilterChange({ keyword: e.target.value || undefined })}
+                    placeholder="키워드 검색"
+                    className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* 정렬 */}
+              <select
+                value={filters.sort}
+                onChange={(e) => handleFilterChange({ sort: e.target.value as any })}
+                className="shrink-0 px-3 py-2 text-sm border border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+              >
+                <option value="latest">최신순</option>
+                <option value="popular">인기순</option>
+                <option value="saved">저장순</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
