@@ -42,32 +42,16 @@ export default function CommunityPostCardV2({
   const avatarColor = getAvatarColor(post.user_name || 'User');
   const firstChar = (post.user_name || 'U')[0];
 
-  // 제목 이후의 본문 추출 (중복 방지)
-  let displayContent = post.content;
-
-  // title이 content의 시작 부분과 일치하면 해당 부분 제거
-  const titleWithoutEllipsis = post.title.replace(/\.\.\.$/g, '').trim();
-
-  // content를 줄바꿈 기준으로 분리하여 첫 줄과 비교
+  // content를 줄바꿈 기준으로 분리
   const contentLines = post.content.split('\n');
-  const firstLine = contentLines[0].trim();
 
-  // title이 첫 줄과 일치하면 나머지 줄만 표시
-  if (firstLine === titleWithoutEllipsis || titleWithoutEllipsis.startsWith(firstLine)) {
-    if (contentLines.length > 1) {
-      // 첫 줄 제거하고 나머지 줄들을 표시
-      displayContent = contentLines.slice(1).join('\n').trim();
-    } else {
-      displayContent = '';
-    }
-  } else if (post.content.startsWith(titleWithoutEllipsis)) {
-    // 연속된 텍스트인 경우
-    displayContent = post.content.slice(titleWithoutEllipsis.length).trim();
-    // '...' 제거
-    if (displayContent.startsWith('...')) {
-      displayContent = displayContent.slice(3).trim();
-    }
-  }
+  // 제목: 첫 줄만 표시
+  const displayTitle = contentLines[0]?.trim() || post.title;
+
+  // 본문 미리보기: 두 번째 줄부터 표시
+  const displayContent = contentLines.length > 1
+    ? contentLines.slice(1).join('\n').trim()
+    : '';
 
   return (
     <Link href={`/community/${post.id}`}>
@@ -87,7 +71,7 @@ export default function CommunityPostCardV2({
 
         {/* 제목 (1줄) */}
         <h3 className="text-base font-bold text-foreground mb-2 hover:text-primary transition-colors line-clamp-1">
-          {post.title}
+          {displayTitle}
         </h3>
 
         {/* 본문 미리보기 (2줄) - 제목 이후 내용만 표시 */}
