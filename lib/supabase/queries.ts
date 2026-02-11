@@ -4,12 +4,14 @@
 // ==========================================
 
 import type {
-  Tool, Category, JobCategory, EduLevel,
-  JobToolRecommendation, EduToolRecommendation, News, Guide, NewsCategory,
+  Tool, Category, JobCategory, EduLevel, UserType,
+  JobToolRecommendation, EduToolRecommendation, PurposeToolRecommendation,
+  News, Guide, NewsCategory, PurposeSlug, UserTypeSlug,
   ToolBenchmarkScore, ToolExternalScore, ToolPricingData, CategoryPopularity, ScoringWeight,
   CategoryShowcase, ToolShowcase, RoleShowcase, RoleUseCaseShowcase,
+  DailyPick, CommunityPost,
 } from '@/types';
-import { HERO_KEYWORDS } from '@/lib/constants';
+import { HERO_KEYWORDS, LEGACY_CATEGORY_TO_PURPOSE } from '@/lib/constants';
 import seedData from '@/data/seed.json';
 
 // ==========================================
@@ -60,21 +62,27 @@ async function db() {
 // ==========================================
 // Seed 데이터 캐스팅
 // ==========================================
+const seedRaw = seedData as Record<string, unknown>;
 const seed = {
   tools: seedData.tools as unknown as Tool[],
   categories: seedData.categories as unknown as Category[],
-  job_categories: (seedData as Record<string, unknown>).job_categories as JobCategory[] | undefined,
-  edu_levels: (seedData as Record<string, unknown>).edu_levels as EduLevel[] | undefined,
-  job_tool_recommendations: (seedData as Record<string, unknown>).job_tool_recommendations as JobToolRecommendation[] | undefined,
-  edu_tool_recommendations: (seedData as Record<string, unknown>).edu_tool_recommendations as EduToolRecommendation[] | undefined,
-  news: (seedData as Record<string, unknown>).news as News[] | undefined,
-  guides: (seedData as Record<string, unknown>).guides as Guide[] | undefined,
-  collections: (seedData as Record<string, unknown>).collections as SeedCollection[] | undefined,
-  tool_benchmark_scores: (seedData as Record<string, unknown>).tool_benchmark_scores as ToolBenchmarkScore[] | undefined,
-  category_showcases: (seedData as Record<string, unknown>).category_showcases as CategoryShowcase[] | undefined,
-  tool_showcases: (seedData as Record<string, unknown>).tool_showcases as ToolShowcase[] | undefined,
-  role_showcases: (seedData as Record<string, unknown>).role_showcases as RoleShowcase[] | undefined,
-  role_use_cases: (seedData as Record<string, unknown>).role_use_cases as RoleUseCaseShowcase[] | undefined,
+  // 새 2단계 분류
+  user_types: seedRaw.user_types as UserType[] | undefined,
+  purpose_tool_recommendations: seedRaw.purpose_tool_recommendations as PurposeToolRecommendation[] | undefined,
+  // 레거시 호환
+  job_categories: seedRaw.job_categories as JobCategory[] | undefined,
+  edu_levels: seedRaw.edu_levels as EduLevel[] | undefined,
+  job_tool_recommendations: seedRaw.job_tool_recommendations as JobToolRecommendation[] | undefined,
+  edu_tool_recommendations: seedRaw.edu_tool_recommendations as EduToolRecommendation[] | undefined,
+  // 기타 데이터
+  news: seedRaw.news as News[] | undefined,
+  guides: seedRaw.guides as Guide[] | undefined,
+  collections: seedRaw.collections as SeedCollection[] | undefined,
+  tool_benchmark_scores: seedRaw.tool_benchmark_scores as ToolBenchmarkScore[] | undefined,
+  category_showcases: seedRaw.category_showcases as CategoryShowcase[] | undefined,
+  tool_showcases: seedRaw.tool_showcases as ToolShowcase[] | undefined,
+  role_showcases: seedRaw.role_showcases as RoleShowcase[] | undefined,
+  role_use_cases: seedRaw.role_use_cases as RoleUseCaseShowcase[] | undefined,
 };
 
 // ==========================================
@@ -194,6 +202,34 @@ export async function getLatestTools(limit = 4): Promise<Tool[]> {
 }
 
 // ==========================================
+// 급상승 AI (트렌딩)
+// ==========================================
+export async function getTrendingTools(limit = 4): Promise<Tool[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tools')
+      .select('*')
+      .eq('trend_direction', 'up')
+      .order('trend_magnitude', { ascending: false })
+      .limit(limit);
+    if (data?.length) return data as Tool[];
+  }
+  // seed fallback: trend_direction='up' 우선, 없으면 ranking_score 상위
+  const trending = [...seed.tools]
+    .filter(t => t.trend_direction === 'up')
+    .sort((a, b) => (b.trend_magnitude ?? 0) - (a.trend_magnitude ?? 0));
+  if (trending.length >= limit) return trending.slice(0, limit);
+
+  // trending 부족 시 ranking_score 상위로 채움
+  const usedIds = new Set(trending.map(t => t.id));
+  const topRanked = [...seed.tools]
+    .filter(t => !usedIds.has(t.id))
+    .sort((a, b) => b.ranking_score - a.ranking_score);
+  return [...trending, ...topRanked].slice(0, limit);
+}
+
+// ==========================================
 // 카테고리 slug 기반 상위 도구
 // ==========================================
 export async function getTopToolsByCategorySlug(slug: string, limit = 4): Promise<Tool[]> {
@@ -256,8 +292,110 @@ export async function getRankings(categorySlug?: string): Promise<(Tool & { rank
     }
   }
   return tools
-    .sort((a, b) => (b.hybrid_score || b.ranking_score || 0) - (a.hybrid_score || a.ranking_score || 0))
+    .sort((a, b) => {
+      const scoreA = (a.hybrid_score || a.ranking_score || 0);
+      const scoreB = (b.hybrid_score || b.ranking_score || 0);
+      if (scoreA !== scoreB) return scoreB - scoreA;
+
+      // hybrid_score가 0이면 rating_avg로 정렬
+      const ratingA = a.rating_avg || 0;
+      const ratingB = b.rating_avg || 0;
+      if (ratingA !== ratingB) return ratingB - ratingA;
+
+      // rating도 같으면 visit_count로 정렬
+      const visitA = a.visit_count || 0;
+      const visitB = b.visit_count || 0;
+      if (visitA !== visitB) return visitB - visitA;
+
+      // 모두 같으면 이름순
+      return a.name.localeCompare(b.name);
+    })
     .map((tool, index) => ({ ...tool, ranking: index + 1 }));
+}
+
+/** 가장 많이 사용되는 AI (방문수 기준) */
+export async function getMostUsedTools(limit = 5): Promise<Tool[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tools')
+      .select('*')
+      .order('visit_count', { ascending: false })
+      .limit(limit);
+    if (data) return data;
+  }
+  return [...seed.tools].sort((a, b) => (b.visit_count || 0) - (a.visit_count || 0)).slice(0, limit);
+}
+
+/** 최근 가장 인기 있는 AI (주간 증가량 기준) */
+export async function getRecentlyPopularTools(limit = 5): Promise<Tool[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tools')
+      .select('*')
+      .order('weekly_visit_delta', { ascending: false })
+      .limit(limit);
+    if (data) return data;
+  }
+  return [...seed.tools].sort((a, b) => (b.weekly_visit_delta || 0) - (a.weekly_visit_delta || 0)).slice(0, limit);
+}
+
+/** 평가 점수가 가장 높은 AI */
+export async function getTopRatedTools(limit = 5): Promise<Tool[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tools')
+      .select('*')
+      .gte('review_count', 3) // 최소 3개 이상의 리뷰가 있는 도구만
+      .order('rating_avg', { ascending: false })
+      .limit(limit);
+    if (data) return data;
+  }
+  return [...seed.tools]
+    .filter(t => (t.review_count || 0) >= 3)
+    .sort((a, b) => (b.rating_avg || 0) - (a.rating_avg || 0))
+    .slice(0, limit);
+}
+
+/** 급상승 AI (트렌드 크기 기준) */
+export async function getFastestGrowingTools(limit = 5): Promise<Tool[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tools')
+      .select('*')
+      .eq('trend_direction', 'up')
+      .order('trend_magnitude', { ascending: false })
+      .limit(limit);
+    if (data) return data;
+  }
+  return [...seed.tools]
+    .filter(t => t.trend_direction === 'up')
+    .sort((a, b) => (b.trend_magnitude || 0) - (a.trend_magnitude || 0))
+    .slice(0, limit);
+}
+
+/** 최근 커뮤니티 글 (V2) */
+export async function getRecentCommunityPosts(limit = 5) {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('community_posts')
+      .select('*')
+      .is('parent_id', null)
+      .eq('is_hidden', false)
+      .order('created_at', { ascending: false })
+      .limit(limit);
+    if (data) return data;
+  }
+  // localStorage fallback
+  if (typeof window !== 'undefined') {
+    const localPosts = JSON.parse(localStorage.getItem('aipick_community_v2') || '[]');
+    return localPosts.slice(0, limit);
+  }
+  return [];
 }
 
 export async function getTrending(limit = 10): Promise<Tool[]> {
@@ -286,7 +424,20 @@ export async function getTrending(limit = 10): Promise<Tool[]> {
       const aMag = (a as Tool).trend_magnitude ?? 0;
       const bMag = (b as Tool).trend_magnitude ?? 0;
       if (aMag !== bMag) return bMag - aMag;
-      return (b.weekly_visit_delta || 0) - (a.weekly_visit_delta || 0);
+
+      const aDelta = a.weekly_visit_delta || 0;
+      const bDelta = b.weekly_visit_delta || 0;
+      if (aDelta !== bDelta) return bDelta - aDelta;
+
+      // weekly_visit_delta가 0이면 visit_count로 정렬 (전체 인기도)
+      const aVisit = a.visit_count || 0;
+      const bVisit = b.visit_count || 0;
+      if (aVisit !== bVisit) return bVisit - aVisit;
+
+      // visit도 같으면 rating_avg로 정렬
+      const aRating = a.rating_avg || 0;
+      const bRating = b.rating_avg || 0;
+      return bRating - aRating;
     })
     .slice(0, limit);
 }
@@ -394,7 +545,7 @@ export async function getEduRecommendations(levelSlug: string): Promise<EduToolR
 }
 
 // ==========================================
-// 전체 추천 데이터 (추천 엔진용)
+// 전체 추천 데이터 (추천 엔진용) - 레거시
 // ==========================================
 export async function getAllJobRecommendations(): Promise<JobToolRecommendation[]> {
   const supabase = await db();
@@ -419,16 +570,116 @@ export async function getAllEduRecommendations(): Promise<EduToolRecommendation[
 }
 
 // ==========================================
+// 2단계 분류: 사용자 타입
+// ==========================================
+export async function getUserTypes(): Promise<UserType[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase.from('user_types').select('*').order('sort_order');
+    if (data?.length) return data as UserType[];
+  }
+  return (seed.user_types || []).sort((a, b) => a.sort_order - b.sort_order);
+}
+
+export async function getUserTypeBySlug(slug: string): Promise<UserType | undefined> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase.from('user_types').select('*').eq('slug', slug).single();
+    if (data) return data as UserType;
+  }
+  return (seed.user_types || []).find((u) => u.slug === slug);
+}
+
+// ==========================================
+// 2단계 분류: 목적별 도구 추천
+// ==========================================
+export async function getPurposeRecommendations(
+  purposeSlug: PurposeSlug,
+  userTypeSlug?: UserTypeSlug
+): Promise<PurposeToolRecommendation[]> {
+  const supabase = await db();
+  if (supabase) {
+    let query = supabase
+      .from('purpose_tool_recommendations')
+      .select('*, tool:tools(*)')
+      .eq('purpose_slug', purposeSlug)
+      .order('sort_order');
+    if (userTypeSlug) {
+      query = query.eq('user_type_slug', userTypeSlug);
+    }
+    const { data } = await query;
+    if (data?.length) return data as PurposeToolRecommendation[];
+  }
+
+  // Seed fallback
+  let recs = (seed.purpose_tool_recommendations || [])
+    .filter((r) => r.purpose_slug === purposeSlug);
+  if (userTypeSlug) {
+    recs = recs.filter((r) => r.user_type_slug === userTypeSlug);
+  }
+  recs.sort((a, b) => a.sort_order - b.sort_order);
+  return recs.map((rec) => ({
+    ...rec,
+    tool: seed.tools.find((t) => t.id === rec.tool_id),
+  }));
+}
+
+export async function getAllPurposeRecommendations(): Promise<PurposeToolRecommendation[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('purpose_tool_recommendations')
+      .select('*');
+    if (data?.length) return data as PurposeToolRecommendation[];
+  }
+  return seed.purpose_tool_recommendations || [];
+}
+
+// ==========================================
+// 목적(Purpose) slug 기반 도구 조회
+// ==========================================
+export async function getToolsByPurpose(purposeSlug: string, limit?: number): Promise<Tool[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data: cat } = await supabase
+      .from('categories')
+      .select('id')
+      .eq('slug', purposeSlug)
+      .single();
+    if (cat) {
+      let query = supabase
+        .from('tools')
+        .select('*')
+        .eq('category_id', cat.id)
+        .order('ranking_score', { ascending: false });
+      if (limit) query = query.limit(limit);
+      const { data } = await query;
+      if (data?.length) return data as Tool[];
+    }
+  }
+
+  // Seed fallback: find category by slug
+  const seedCat = seed.categories.find((c) => c.slug === purposeSlug);
+  if (!seedCat) return [];
+  const tools = [...seed.tools]
+    .filter((t) => t.category_id === seedCat.id)
+    .sort((a, b) => b.ranking_score - a.ranking_score);
+  return limit ? tools.slice(0, limit) : tools;
+}
+
+// ==========================================
 // 검색 + 필터
 // ==========================================
 export interface SearchFilters {
   query?: string;
   pricing?: string[];
-  category?: string[];
+  category?: string[];        // purpose slugs (new) or legacy category slugs
+  purpose?: string[];          // explicit purpose filter
+  user_type?: string;          // user type filter
   supports_korean?: boolean;
   min_rating?: number;
-  job?: string;
-  edu?: string;
+  job?: string;                // 레거시 호환
+  edu?: string;                // 레거시 호환
   sort?: 'popular' | 'rating' | 'latest' | 'free_first';
 }
 
@@ -920,4 +1171,183 @@ export async function getRoleUseCases(roleShowcaseId: string): Promise<(RoleUseC
 export async function getAllRoleShowcases(targetType?: 'job' | 'education'): Promise<RoleShowcase[]> {
   const all = (seed.role_showcases || []).sort((a, b) => a.sort_order - b.sort_order);
   return targetType ? all.filter((rs) => rs.target_type === targetType) : all;
+}
+
+// ==========================================
+// 오늘의 PICK (Weekly Picks - 7일 주기)
+// ==========================================
+
+/** 도구 데이터 기반 사실적 추천 이유 생성 (seed fallback용) */
+function generateSeedPickReason(tool: Tool, pickType: string): string {
+  switch (pickType) {
+    case 'trending': {
+      const parts: string[] = [];
+      if (tool.visit_count > 100_000_000) {
+        parts.push(`월 ${Math.round(tool.visit_count / 1_000_000)}M 사용자 보유`);
+      } else if (tool.visit_count > 10_000_000) {
+        parts.push(`월 ${Math.round(tool.visit_count / 1_000_000)}M+ 방문`);
+      }
+      if (tool.trend_magnitude >= 5) parts.push('최근 사용량 급증');
+      else parts.push('사용량 꾸준히 증가 중');
+      if (tool.rating_avg >= 4.5) parts.push(`평점 ${tool.rating_avg.toFixed(1)}점`);
+      if (tool.supports_korean) parts.push('한국어 지원');
+      return parts.slice(0, 2).join(', ');
+    }
+    case 'new': {
+      const parts: string[] = [];
+      if (tool.pricing_type === 'Free') parts.push('완전 무료로 바로 시작 가능');
+      else if (tool.free_quota_detail) parts.push(`무료: ${tool.free_quota_detail.slice(0, 30)}`);
+      if (tool.rating_avg >= 4.0) parts.push(`평점 ${tool.rating_avg.toFixed(1)}점 기록`);
+      if (tool.supports_korean) parts.push('한국어 지원');
+      return parts.slice(0, 2).join(' · ') || '새로 등장한 주목할 AI 서비스';
+    }
+    case 'hidden_gem': {
+      const parts: string[] = [];
+      parts.push(`평점 ${tool.rating_avg.toFixed(1)}점의 숨은 보석`);
+      if (tool.pricing_type === 'Free') parts.push('완전 무료');
+      else if (tool.pricing_type === 'Freemium') parts.push('무료 사용 가능');
+      if (tool.supports_korean) parts.push('한국어 지원');
+      return parts.slice(0, 2).join(', ');
+    }
+    case 'price_drop': {
+      if (tool.pricing_type === 'Free') {
+        const parts = ['제한 없이 완전 무료 사용'];
+        if (tool.rating_avg >= 4.0) parts.push(`평점 ${tool.rating_avg.toFixed(1)}점`);
+        return parts.slice(0, 2).join(', ');
+      }
+      const parts: string[] = [];
+      if (tool.free_quota_detail) parts.push(`무료 제공: ${tool.free_quota_detail.slice(0, 35)}`);
+      else parts.push('넉넉한 무료 사용량 제공');
+      if (tool.rating_avg >= 4.0) parts.push(`평점 ${tool.rating_avg.toFixed(1)}점`);
+      return parts.slice(0, 2).join(', ');
+    }
+    default:
+      return '에디터가 검증한 추천 AI';
+  }
+}
+
+export async function getDailyPicks(limit = 8): Promise<(DailyPick & { tool?: Tool })[]> {
+  const supabase = await db();
+  if (supabase) {
+    // 7일 이내 PICK 조회
+    const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    const { data } = await supabase
+      .from('daily_picks')
+      .select('*, tool:tools(*)')
+      .gte('pick_date', weekAgo)
+      .order('pick_date', { ascending: false })
+      .order('sort_order', { ascending: true })
+      .limit(limit);
+    if (data?.length) return data as (DailyPick & { tool?: Tool })[];
+
+    // 7일 이내 없으면 가장 최근 pick_date
+    const { data: latest } = await supabase
+      .from('daily_picks')
+      .select('*, tool:tools(*)')
+      .order('pick_date', { ascending: false })
+      .order('sort_order', { ascending: true })
+      .limit(limit);
+    if (latest?.length) return latest as (DailyPick & { tool?: Tool })[];
+  }
+
+  // seed fallback: 트렌딩/신규/숨은명작/무료추천 자동 생성 (사실적 이유 포함)
+  const trending = [...seed.tools]
+    .filter(t => t.trend_direction === 'up')
+    .sort((a, b) => (b.trend_magnitude ?? 0) - (a.trend_magnitude ?? 0))
+    .slice(0, 2);
+  const newest = [...seed.tools]
+    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+    .slice(0, 2);
+  const hiddenGems = [...seed.tools]
+    .filter(t => t.rating_avg >= 4.0 && t.visit_count < 5000000)
+    .sort((a, b) => b.rating_avg - a.rating_avg)
+    .slice(0, 2);
+  const topFree = [...seed.tools]
+    .filter(t => t.pricing_type === 'Free' || t.pricing_type === 'Freemium')
+    .sort((a, b) => b.ranking_score - a.ranking_score)
+    .slice(0, 2);
+
+  const picks: (DailyPick & { tool?: Tool })[] = [];
+  const today = new Date().toISOString().split('T')[0];
+  let order = 0;
+  const usedIds = new Set<string>();
+
+  for (const t of trending) {
+    usedIds.add(t.id);
+    picks.push({ id: `dp-${t.id}`, pick_date: today, tool_id: t.id, pick_type: 'trending', reason: generateSeedPickReason(t, 'trending'), sort_order: order++, created_at: new Date().toISOString(), tool: t });
+  }
+  for (const t of newest) {
+    if (usedIds.has(t.id)) continue;
+    usedIds.add(t.id);
+    picks.push({ id: `dp-${t.id}`, pick_date: today, tool_id: t.id, pick_type: 'new', reason: generateSeedPickReason(t, 'new'), sort_order: order++, created_at: new Date().toISOString(), tool: t });
+  }
+  for (const t of hiddenGems) {
+    if (usedIds.has(t.id)) continue;
+    usedIds.add(t.id);
+    picks.push({ id: `dp-${t.id}`, pick_date: today, tool_id: t.id, pick_type: 'hidden_gem', reason: generateSeedPickReason(t, 'hidden_gem'), sort_order: order++, created_at: new Date().toISOString(), tool: t });
+  }
+  for (const t of topFree) {
+    if (usedIds.has(t.id)) continue;
+    usedIds.add(t.id);
+    picks.push({ id: `dp-${t.id}`, pick_date: today, tool_id: t.id, pick_type: 'price_drop', reason: generateSeedPickReason(t, 'price_drop'), sort_order: order++, created_at: new Date().toISOString(), tool: t });
+  }
+
+  return picks.slice(0, limit);
+}
+
+// ==========================================
+// 커뮤니티 인기 질문 (홈페이지용)
+// ==========================================
+export async function getTrendingQuestions(limit = 5): Promise<CommunityPost[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('community_posts')
+      .select('*')
+      .eq('post_type', 'question')
+      .is('parent_id', null)
+      .eq('is_hidden', false)
+      .order('like_count', { ascending: false })
+      .order('created_at', { ascending: false })
+      .limit(limit);
+    if (data?.length) return data as CommunityPost[];
+  }
+  return [];
+}
+
+// ==========================================
+// 커뮤니티 통계 (홈페이지용)
+// ==========================================
+export async function getCommunityStats(): Promise<{ questionCount: number; answerCount: number; activeUsers: number }> {
+  const supabase = await db();
+  if (supabase) {
+    const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+
+    const [{ count: qCount }, { count: aCount }, { data: users }] = await Promise.all([
+      supabase
+        .from('community_posts')
+        .select('id', { count: 'exact', head: true })
+        .eq('post_type', 'question')
+        .gte('created_at', weekAgo),
+      supabase
+        .from('community_posts')
+        .select('id', { count: 'exact', head: true })
+        .eq('is_answer', true)
+        .gte('created_at', weekAgo),
+      supabase
+        .from('community_posts')
+        .select('user_id')
+        .gte('created_at', weekAgo),
+    ]);
+
+    const uniqueUsers = new Set(users?.map(u => u.user_id) || []);
+
+    return {
+      questionCount: qCount || 0,
+      answerCount: aCount || 0,
+      activeUsers: uniqueUsers.size,
+    };
+  }
+
+  return { questionCount: 0, answerCount: 0, activeUsers: 0 };
 }

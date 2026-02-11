@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { CATEGORIES } from '@/lib/constants';
+import { PURPOSE_CATEGORIES } from '@/lib/constants';
 import SearchBar from '@/components/search/SearchBar';
 
 interface MobileNavProps {
@@ -36,8 +36,11 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             <Link href="/rankings" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
               랭킹
             </Link>
-            <Link href="/news" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
-              뉴스
+            <Link href="/recipes" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
+              AI 레시피
+            </Link>
+            <Link href="/community" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
+              커뮤니티
             </Link>
             <Link href="/guides" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
               가이드
@@ -50,12 +53,12 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             </Link>
           </nav>
 
-          {/* 카테고리 */}
+          {/* 목적별 AI */}
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
-            카테고리
+            목적별 AI
           </p>
           <nav className="flex flex-col gap-1">
-            {CATEGORIES.map((cat) => (
+            {PURPOSE_CATEGORIES.map((cat) => (
               <Link
                 key={cat.slug}
                 href={`/category/${cat.slug}`}

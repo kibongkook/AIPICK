@@ -28,13 +28,19 @@ export async function POST(request: NextRequest) {
   // 2. 모든 도구 조회
   const { data: tools, error: toolsError } = await supabase
     .from('tools')
-    .select('id, visit_count, rating_avg, review_count, upvote_count, has_benchmark_data, category_id');
+    .select('id, rating_avg, upvote_count, has_benchmark_data, supports_korean, category_id, visit_count, review_count');
 
   if (toolsError || !tools?.length) {
     return NextResponse.json({ error: toolsError?.message || 'No tools found' }, { status: 500 });
   }
 
-  // 3. 북마크 카운트 조회
+  // 3. 카테고리 slug 매핑 (LLM 판단용)
+  const { data: categories } = await supabase
+    .from('categories')
+    .select('id, slug');
+  const catIdToSlug = new Map((categories || []).map((c) => [c.id, c.slug]));
+
+  // 4. 북마크 카운트 조회
   const { data: bookmarkCounts } = await supabase
     .from('bookmarks')
     .select('tool_id');
@@ -44,7 +50,7 @@ export async function POST(request: NextRequest) {
     bookmarkMap.set(b.tool_id, (bookmarkMap.get(b.tool_id) || 0) + 1);
   });
 
-  // 4. 외부 점수 조회
+  // 5. 외부 점수 조회
   const { data: externalScores } = await supabase
     .from('tool_external_scores')
     .select('tool_id, source_key, normalized_score');
@@ -57,23 +63,26 @@ export async function POST(request: NextRequest) {
     externalMap.get(es.tool_id)!.set(es.source_key, Number(es.normalized_score));
   });
 
-  // 5. 정규화 최대값 계산
+  // 6. 정규화 최대값 계산
   const maxValues: MaxValues = {
-    max_visit: Math.max(...tools.map((t) => t.visit_count), 1),
-    max_review: Math.max(...tools.map((t) => t.review_count), 1),
     max_bookmark: Math.max(...Array.from(bookmarkMap.values()), 1),
     max_upvote: Math.max(...tools.map((t) => t.upvote_count), 1),
   };
 
-  // 6. 하이브리드 점수 계산
+  // 7. 하이브리드 점수 계산 (4계층)
+  const { isBenchmarkApplicable } = await import('@/lib/scoring/hybrid');
+
   const updates = tools.map((tool) => {
+    const categorySlug = catIdToSlug.get(tool.category_id) || '';
+    const isLlm = isBenchmarkApplicable(categorySlug) || tool.has_benchmark_data;
+
     const toolMetrics: ToolMetrics = {
-      visit_count: tool.visit_count,
       rating_avg: tool.rating_avg,
-      review_count: tool.review_count,
       bookmark_count: bookmarkMap.get(tool.id) || 0,
       upvote_count: tool.upvote_count,
-      has_benchmark_data: tool.has_benchmark_data ?? false,
+      supports_korean: tool.supports_korean ?? false,
+      is_llm: isLlm,
+      category_slug: categorySlug,
       external_scores: externalMap.get(tool.id) || new Map(),
     };
 
@@ -87,18 +96,19 @@ export async function POST(request: NextRequest) {
     };
   });
 
-  // 7. 점수순 정렬
+  // 8. 점수순 정렬
   updates.sort((a, b) => b.hybrid_score - a.hybrid_score);
 
-  // 8. DB 업데이트
+  // 9. DB 업데이트
   let updatedCount = 0;
   for (let i = 0; i < updates.length; i++) {
     const { error } = await supabase
       .from('tools')
       .update({
         hybrid_score: updates[i].hybrid_score,
-        internal_score: updates[i].internal_score,
-        external_score: updates[i].external_score,
+        // 하위 호환: internal/external을 tier 합산으로
+        internal_score: updates[i].tier4_score,
+        external_score: updates[i].tier1_score + updates[i].tier2_score + updates[i].tier3_score,
         ranking_score: updates[i].ranking_score,
         prev_ranking: i + 1,
         updated_at: new Date().toISOString(),
@@ -133,7 +143,7 @@ export async function POST(request: NextRequest) {
     review_count: tools.find((t) => t.id === u.id)?.review_count || 0,
     bookmark_count: bookmarkMap.get(u.id) || 0,
     upvote_count: tools.find((t) => t.id === u.id)?.upvote_count || 0,
-    external_score: u.external_score,
+    external_score: u.tier1_score + u.tier2_score + u.tier3_score,
   }));
 
   await supabase

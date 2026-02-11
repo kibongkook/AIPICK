@@ -59,10 +59,12 @@ function ProfileContent() {
             legacy.push({
               id: r.id, target_type: 'tool', target_id: r.tool_id,
               user_id: r.user_id, user_name: r.user_name || '사용자',
-              post_type: 'rating', content: r.content,
+              post_type: 'rating', title: r.content.slice(0, 50), content: r.content,
               rating: r.rating, feature_ratings: r.feature_ratings || null,
               parent_id: null, media: [], like_count: r.helpful_count || 0,
-              reply_count: 0, is_reported: false, is_pinned: false,
+              comment_count: 0, bookmark_count: 0, view_count: 0,
+              popularity_score: 0, quality_score: 0,
+              is_reported: false, is_pinned: false, is_hidden: false,
               created_at: r.created_at, updated_at: r.created_at,
             });
           }
@@ -72,10 +74,12 @@ function ProfileContent() {
             legacy.push({
               id: c.id, target_type: 'tool', target_id: c.tool_id,
               user_id: c.user_id, user_name: c.user_name || '사용자',
-              post_type: 'discussion', content: c.content,
+              post_type: 'discussion', title: c.content.slice(0, 50), content: c.content,
               rating: null, feature_ratings: null,
               parent_id: null, media: [], like_count: c.like_count || 0,
-              reply_count: 0, is_reported: false, is_pinned: false,
+              comment_count: 0, bookmark_count: 0, view_count: 0,
+              popularity_score: 0, quality_score: 0,
+              is_reported: false, is_pinned: false, is_hidden: false,
               created_at: c.created_at, updated_at: c.created_at,
             });
           }

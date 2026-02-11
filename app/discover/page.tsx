@@ -1,16 +1,19 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { Sparkles, ArrowRight, Shield } from 'lucide-react';
-import { SITE_NAME, CATEGORIES, JOB_CATEGORIES, EDU_LEVELS } from '@/lib/constants';
+import { Sparkles, ArrowRight, Users } from 'lucide-react';
+import { SITE_NAME, PURPOSE_CATEGORIES, USER_TYPES } from '@/lib/constants';
 import DynamicIcon from '@/components/ui/DynamicIcon';
 import Wizard from '@/components/recommend/Wizard';
 
 export const metadata: Metadata = {
   title: `AI 찾기 & 맞춤 추천 | ${SITE_NAME}`,
-  description: '목적별, 역할별로 나에게 맞는 AI를 찾거나 4단계 맞춤 추천을 받아보세요.',
+  description: '목적별, 사용자 타입별로 나에게 맞는 AI를 찾거나 맞춤 추천을 받아보세요.',
 };
 
 export default function DiscoverPage() {
+  const skillTypes = USER_TYPES.filter(u => u.group === 'skill');
+  const roleTypes = USER_TYPES.filter(u => u.group === 'role');
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 페이지 헤더 */}
@@ -26,7 +29,7 @@ export default function DiscoverPage() {
             <Sparkles className="h-5 w-5 text-primary" />
             <h2 className="text-lg font-extrabold text-foreground">맞춤 AI 추천</h2>
           </div>
-          <p className="text-sm text-gray-500 mb-6">4단계 질문으로 나에게 맞는 AI를 추천받으세요</p>
+          <p className="text-sm text-gray-500 mb-6">2단계 질문으로 나에게 맞는 AI를 추천받으세요</p>
           <Wizard />
         </div>
       </section>
@@ -38,21 +41,22 @@ export default function DiscoverPage() {
         <div className="flex-1 h-px bg-border" />
       </div>
 
-      {/* 섹션 2: 무엇을 하고 싶나요? (목적/기능별) */}
+      {/* 1단계: 지금 뭐 하려고 하세요? (목적별) */}
       <section className="mb-12">
-        <h2 className="text-lg font-extrabold text-foreground mb-1">무엇을 하고 싶나요?</h2>
-        <p className="text-sm text-gray-500 mb-5">목적에 맞는 AI 카테고리를 선택하세요</p>
+        <h2 className="text-lg font-extrabold text-foreground mb-1">지금 뭐 하려고 하세요?</h2>
+        <p className="text-sm text-gray-500 mb-5">목적에 맞는 AI를 찾아보세요</p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {CATEGORIES.map((cat) => (
+          {PURPOSE_CATEGORIES.map((cat) => (
             <Link
               key={cat.slug}
               href={`/category/${cat.slug}`}
               className="group flex flex-col items-center gap-2.5 rounded-xl border border-border bg-white p-5 hover:border-primary hover:shadow-md transition-all"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                <DynamicIcon name={cat.icon} className="h-5 w-5 text-primary" />
+              <div className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${cat.color} shadow-sm`}>
+                <DynamicIcon name={cat.icon} className="h-5 w-5 text-white" />
               </div>
-              <span className="text-sm font-semibold text-foreground">{cat.name}</span>
+              <span className="text-sm font-semibold text-foreground text-center">{cat.name}</span>
+              <span className="text-[11px] text-gray-400 text-center">{cat.description}</span>
             </Link>
           ))}
         </div>
@@ -65,49 +69,47 @@ export default function DiscoverPage() {
         <div className="flex-1 h-px bg-border" />
       </div>
 
-      {/* 섹션 2: 나의 역할은? (직군 + 학습단계) */}
+      {/* 2단계: 당신은 어떤 상황에서 쓰나요? (사용자 타입별) */}
       <section className="mb-12">
-        <h2 className="text-lg font-extrabold text-foreground mb-1">나의 역할은?</h2>
-        <p className="text-sm text-gray-500 mb-5">직업이나 학습 단계에 맞는 AI를 추천받으세요</p>
+        <div className="flex items-center gap-2 mb-1">
+          <Users className="h-5 w-5 text-primary" />
+          <h2 className="text-lg font-extrabold text-foreground">당신은 어떤 상황에서 쓰나요?</h2>
+        </div>
+        <p className="text-sm text-gray-500 mb-5">사용자 타입에 맞는 AI 추천을 받아보세요</p>
 
-        {/* 직군 */}
-        <h3 className="text-sm font-bold text-gray-700 mb-3">직군별</h3>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 mb-8">
-          {JOB_CATEGORIES.map((job) => (
+        {/* 숙련도 */}
+        <h3 className="text-sm font-bold text-gray-700 mb-3">숙련도별</h3>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-8">
+          {skillTypes.map((ut) => (
             <Link
-              key={job.slug}
-              href={`/jobs/${job.slug}`}
+              key={ut.slug}
+              href={`/discover/${ut.slug}`}
               className="group flex items-center gap-3 rounded-xl border border-border bg-white p-4 hover:border-primary hover:shadow-md transition-all"
             >
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors shrink-0">
-                <DynamicIcon name={job.icon} className="h-4 w-4 text-primary" />
+                <DynamicIcon name={ut.icon} className="h-4 w-4 text-primary" />
               </div>
-              <span className="text-sm font-semibold text-foreground">{job.name}</span>
+              <div>
+                <span className="text-sm font-semibold text-foreground block">{ut.name}</span>
+                <span className="text-[11px] text-gray-400">{ut.description}</span>
+              </div>
             </Link>
           ))}
         </div>
 
-        {/* 학습 단계 */}
-        <div className="flex items-center gap-2 mb-3">
-          <Shield className="h-4 w-4 text-primary" />
-          <h3 className="text-sm font-bold text-gray-700">학습 단계별</h3>
-        </div>
+        {/* 역할별 */}
+        <h3 className="text-sm font-bold text-gray-700 mb-3">역할별</h3>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {EDU_LEVELS.map((level) => (
+          {roleTypes.map((ut) => (
             <Link
-              key={level.slug}
-              href={`/education/${level.slug}`}
+              key={ut.slug}
+              href={`/discover/${ut.slug}`}
               className="group flex items-center gap-3 rounded-xl border border-border bg-white p-4 hover:border-primary hover:shadow-md transition-all"
             >
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-50 group-hover:bg-indigo-100 transition-colors shrink-0">
-                <DynamicIcon name={level.icon} className="h-4 w-4 text-indigo-600" />
+                <DynamicIcon name={ut.icon} className="h-4 w-4 text-indigo-600" />
               </div>
-              <div>
-                <span className="text-sm font-semibold text-foreground block">{level.name}</span>
-                {level.ageRange && (
-                  <span className="text-[11px] text-gray-400">{level.ageRange}</span>
-                )}
-              </div>
+              <span className="text-sm font-semibold text-foreground">{ut.name}</span>
             </Link>
           ))}
         </div>

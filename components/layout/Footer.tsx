@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SITE_NAME, CATEGORIES } from '@/lib/constants';
+import { SITE_NAME, PURPOSE_CATEGORIES } from '@/lib/constants';
 import Logo from '@/components/ui/Logo';
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -20,11 +20,11 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* 카테고리 */}
+          {/* 목적별 AI */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground">카테고리</h3>
+            <h3 className="text-sm font-semibold text-foreground">목적별 AI</h3>
             <ul className="mt-3 space-y-2">
-              {CATEGORIES.map((cat) => (
+              {PURPOSE_CATEGORIES.map((cat) => (
                 <li key={cat.slug}>
                   <Link
                     href={`/category/${cat.slug}`}

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { Star, ExternalLink, Zap, ThumbsUp, ArrowLeft, Check, X } from 'lucide-react';
+import { Star, ExternalLink, Zap, ThumbsUp, ArrowLeft, Check, X, Info, Lightbulb } from 'lucide-react';
 import { SITE_NAME, SITE_URL, PRICING_CONFIG } from '@/lib/constants';
 import { getToolBySlug, getCategoryBySlug, getSimilarTools, getCategories, getTools, getToolBenchmarks, getToolExternalScores } from '@/lib/supabase/queries';
 import { getPopularCompareTargets, getCompareUrl } from '@/lib/compare/popular-pairs';
@@ -137,6 +137,19 @@ export default async function ToolDetailPage({ params }: Props) {
           {/* 이런 결과를 만들 수 있어요 */}
           <ToolShowcaseStrip toolSlug={slug} tool={tool} />
 
+          {/* 서비스 소개 */}
+          {tool.long_description && (
+            <section className="rounded-xl border border-border bg-white p-6">
+              <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
+                <Info className="h-5 w-5 text-primary" />
+                서비스 소개
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-gray-700">
+                {tool.long_description}
+              </p>
+            </section>
+          )}
+
           {/* 무료로 어디까지? */}
           {tool.free_quota_detail && (
             <section className="rounded-xl border-2 border-emerald-200 bg-emerald-50 p-6">
@@ -190,6 +203,26 @@ export default async function ToolDetailPage({ params }: Props) {
               </div>
             )}
           </section>
+
+          {/* 활용 팁 */}
+          {tool.usage_tips && tool.usage_tips.length > 0 && (
+            <section className="rounded-xl border-2 border-amber-200 bg-amber-50 p-6">
+              <h2 className="flex items-center gap-2 text-lg font-bold text-amber-800">
+                <Lightbulb className="h-5 w-5" />
+                활용 팁
+              </h2>
+              <ol className="mt-3 space-y-2">
+                {tool.usage_tips.map((tip, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-amber-900">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-200 text-xs font-bold text-amber-800">
+                      {i + 1}
+                    </span>
+                    {tip}
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
 
           {/* 커뮤니티 (평가 + 자유글 + 팁 + 질문) */}
           <section className="rounded-xl border border-border bg-white p-6">

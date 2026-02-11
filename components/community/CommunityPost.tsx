@@ -136,7 +136,7 @@ export default function CommunityPostCard({ post, onLike, onDelete, onReply, get
           className="flex items-center gap-1 text-xs text-gray-500 hover:text-primary transition-colors"
         >
           <MessageSquare className="h-3.5 w-3.5" />
-          답글 {post.reply_count > 0 && `(${post.reply_count})`}
+          답글 {post.comment_count > 0 && `(${post.comment_count})`}
         </button>
       </div>
 

@@ -1,0 +1,1073 @@
+[
+  {
+    "name": "ChatGPT",
+    "slug": "chatgpt",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.oaistatic.com/assets/apple-touch-icon-mz9nytnj.webp",
+    "newLogo": "https://cdn.oaistatic.com/assets/apple-touch-icon-mz9nytnj.webp",
+    "changed": false
+  },
+  {
+    "name": "Claude",
+    "slug": "claude",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://claude.ai/images/claude_app_icon.png",
+    "newLogo": "https://claude.ai/images/claude_app_icon.png",
+    "changed": false
+  },
+  {
+    "name": "Gemini",
+    "slug": "gemini",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/google-gemini.svg",
+    "newLogo": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/google-gemini.svg",
+    "changed": false
+  },
+  {
+    "name": "Perplexity",
+    "slug": "perplexity",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/perplexity.svg",
+    "newLogo": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/perplexity.svg",
+    "changed": false
+  },
+  {
+    "name": "Wrtn (뤼튼)",
+    "slug": "wrtn",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/wrtn.ai",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wrtn.png",
+    "changed": true
+  },
+  {
+    "name": "Microsoft Copilot",
+    "slug": "microsoft-copilot",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/microsoft-copilot.svg",
+    "newLogo": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/microsoft-copilot.svg",
+    "changed": false
+  },
+  {
+    "name": "Grok",
+    "slug": "grok",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://x.ai/favicon.ico",
+    "newLogo": "https://x.ai/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Poe",
+    "slug": "poe",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/poe.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/poe.com.ico",
+    "changed": true
+  },
+  {
+    "name": "HuggingChat",
+    "slug": "huggingchat",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/huggingface.png",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/huggingface.png",
+    "changed": false
+  },
+  {
+    "name": "You.com",
+    "slug": "you-com",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/you.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/you.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Coze",
+    "slug": "coze",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/coze.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/coze.com.ico",
+    "changed": true
+  },
+  {
+    "name": "뒤집기",
+    "slug": "dwijibgi",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/dwijibgi.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/dwijibgi.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Kimi",
+    "slug": "kimi",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/kimi.moonshot.cn",
+    "newLogo": "https://icons.duckduckgo.com/ip3/kimi.moonshot.cn.ico",
+    "changed": true
+  },
+  {
+    "name": "Notion AI",
+    "slug": "notion-ai",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://www.notion.so/images/favicon.ico",
+    "newLogo": "https://www.notion.so/images/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Jasper",
+    "slug": "jasper",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://www.jasper.ai/favicon.ico",
+    "newLogo": "https://www.jasper.ai/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Copy.ai",
+    "slug": "copy-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/copy.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/copy.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Writesonic",
+    "slug": "writesonic",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/writesonic.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/writesonic.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Grammarly",
+    "slug": "grammarly",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://static.grammarly.com/assets/files/efe57d016d9efff36da7884c193b646b/favicon-32x32.png",
+    "newLogo": "https://static.grammarly.com/assets/files/efe57d016d9efff36da7884c193b646b/favicon-32x32.png",
+    "changed": false
+  },
+  {
+    "name": "QuillBot",
+    "slug": "quillbot",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/quillbot.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/quillbot.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Character.ai",
+    "slug": "character-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/character.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/character.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Otter.ai",
+    "slug": "otter-ai",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/otter-ai.png",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/otter-ai.png",
+    "changed": false
+  },
+  {
+    "name": "Fireflies.ai",
+    "slug": "fireflies-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/fireflies.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/fireflies.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "tl;dv",
+    "slug": "tldv",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/tldv.io",
+    "newLogo": "https://icons.duckduckgo.com/ip3/tldv.io.ico",
+    "changed": true
+  },
+  {
+    "name": "Clova Note",
+    "slug": "clova-note",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/clovanote.naver.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/clovanote.naver.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Rytr",
+    "slug": "rytr",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/rytr.me",
+    "newLogo": "https://icons.duckduckgo.com/ip3/rytr.me.ico",
+    "changed": true
+  },
+  {
+    "name": "Wordtune",
+    "slug": "wordtune",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/wordtune.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/wordtune.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Sudowrite",
+    "slug": "sudowrite",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/sudowrite.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/sudowrite.com.ico",
+    "changed": true
+  },
+  {
+    "name": "타입캐스트",
+    "slug": "typecast",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/typecast.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/typecast.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Midjourney",
+    "slug": "midjourney",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/midjourney.svg",
+    "newLogo": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/midjourney.svg",
+    "changed": false
+  },
+  {
+    "name": "DALL-E 3",
+    "slug": "dall-e-3",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.oaistatic.com/assets/apple-touch-icon-mz9nytnj.webp",
+    "newLogo": "https://cdn.oaistatic.com/assets/apple-touch-icon-mz9nytnj.webp",
+    "changed": false
+  },
+  {
+    "name": "Stable Diffusion",
+    "slug": "stable-diffusion",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://stability.ai/favicon.ico",
+    "newLogo": "https://stability.ai/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Leonardo.ai",
+    "slug": "leonardo-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/leonardo.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/leonardo.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Ideogram",
+    "slug": "ideogram",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/ideogram.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/ideogram.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Adobe Firefly",
+    "slug": "adobe-firefly",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://firefly.adobe.com/favicon.ico",
+    "newLogo": "https://firefly.adobe.com/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Krea AI",
+    "slug": "krea-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/krea.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/krea.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Playground AI",
+    "slug": "playground-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/playground.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/playground.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Bing Image Creator",
+    "slug": "bing-image-creator",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/bing.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/bing.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Flux",
+    "slug": "flux",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/flux1.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/flux1.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Remove.bg",
+    "slug": "remove-bg",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/remove.bg",
+    "newLogo": "https://icons.duckduckgo.com/ip3/remove.bg.ico",
+    "changed": true
+  },
+  {
+    "name": "PhotoRoom",
+    "slug": "photoroom",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/photoroom.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/photoroom.com.ico",
+    "changed": true
+  },
+  {
+    "name": "ClipDrop",
+    "slug": "clipdrop",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/clipdrop.co",
+    "newLogo": "https://icons.duckduckgo.com/ip3/clipdrop.co.ico",
+    "changed": true
+  },
+  {
+    "name": "Runway ML",
+    "slug": "runway-ml",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://runwayml.com/favicon.ico",
+    "newLogo": "https://runwayml.com/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "CapCut",
+    "slug": "capcut",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://lf16-web-buz.capcut.com/obj/capcut-web-buz-us/common/images/capcut-favicon.ico",
+    "newLogo": "https://lf16-web-buz.capcut.com/obj/capcut-web-buz-us/common/images/capcut-favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "VREW",
+    "slug": "vrew",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/vrew.voyagerx.com",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vrew.png",
+    "changed": true
+  },
+  {
+    "name": "Pika",
+    "slug": "pika",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://pika.art/favicon.ico",
+    "newLogo": "https://pika.art/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Sora",
+    "slug": "sora",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://sora.com/favicon.ico",
+    "newLogo": "https://sora.com/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Luma Dream Machine",
+    "slug": "luma-dream-machine",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/lumalabs.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/lumalabs.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Kling AI",
+    "slug": "kling-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/klingai.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/klingai.com.ico",
+    "changed": true
+  },
+  {
+    "name": "HeyGen",
+    "slug": "heygen",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://www.heygen.com/favicon.ico",
+    "newLogo": "https://www.heygen.com/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Synthesia",
+    "slug": "synthesia",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/synthesia.io",
+    "newLogo": "https://icons.duckduckgo.com/ip3/synthesia.io.ico",
+    "changed": true
+  },
+  {
+    "name": "D-ID",
+    "slug": "d-id",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/d-id.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/d-id.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Descript",
+    "slug": "descript",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/descript.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/descript.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Opus Clip",
+    "slug": "opus-clip",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/opus.pro",
+    "newLogo": "https://icons.duckduckgo.com/ip3/opus.pro.ico",
+    "changed": true
+  },
+  {
+    "name": "ElevenLabs",
+    "slug": "elevenlabs",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/elevenlabs.png",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/elevenlabs.png",
+    "changed": false
+  },
+  {
+    "name": "Fliki",
+    "slug": "fliki",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/fliki.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/fliki.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "InVideo AI",
+    "slug": "invideo-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/invideo.io",
+    "newLogo": "https://icons.duckduckgo.com/ip3/invideo.io.ico",
+    "changed": true
+  },
+  {
+    "name": "Topaz Video AI",
+    "slug": "topaz-video-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/topazlabs.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/topazlabs.com.ico",
+    "changed": true
+  },
+  {
+    "name": "GitHub Copilot",
+    "slug": "github-copilot",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://github.githubassets.com/favicons/favicon.svg",
+    "newLogo": "https://github.githubassets.com/favicons/favicon.svg",
+    "changed": false
+  },
+  {
+    "name": "Cursor",
+    "slug": "cursor",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://www.cursor.com/favicon.ico",
+    "newLogo": "https://www.cursor.com/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Replit",
+    "slug": "replit",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://replit.com/public/icons/favicon-196.png",
+    "newLogo": "https://replit.com/public/icons/favicon-196.png",
+    "changed": false
+  },
+  {
+    "name": "Tabnine",
+    "slug": "tabnine",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/tabnine.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/tabnine.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Windsurf",
+    "slug": "windsurf",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/codeium.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/codeium.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Amazon Q Developer",
+    "slug": "amazon-q-developer",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/aws.amazon.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/aws.amazon.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Bolt.new",
+    "slug": "bolt-new",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://bolt.new/favicon.ico",
+    "newLogo": "https://bolt.new/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "v0",
+    "slug": "v0",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://v0.dev/favicon.ico",
+    "newLogo": "https://v0.dev/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Lovable",
+    "slug": "lovable",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/lovable.dev",
+    "newLogo": "https://icons.duckduckgo.com/ip3/lovable.dev.ico",
+    "changed": true
+  },
+  {
+    "name": "Continue",
+    "slug": "continue",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/continue.dev",
+    "newLogo": "https://icons.duckduckgo.com/ip3/continue.dev.ico",
+    "changed": true
+  },
+  {
+    "name": "Pieces",
+    "slug": "pieces",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/pieces.app",
+    "newLogo": "https://icons.duckduckgo.com/ip3/pieces.app.ico",
+    "changed": true
+  },
+  {
+    "name": "Cody",
+    "slug": "cody",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/sourcegraph.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/sourcegraph.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Blackbox AI",
+    "slug": "blackbox-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/blackbox.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/blackbox.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Devin",
+    "slug": "devin",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/devin.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/devin.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Claude Code",
+    "slug": "claude-code",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/claude.png",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/claude.png",
+    "changed": false
+  },
+  {
+    "name": "Suno AI",
+    "slug": "suno-ai",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://suno.com/favicon.ico",
+    "newLogo": "https://suno.com/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Udio",
+    "slug": "udio",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://www.udio.com/favicon.ico",
+    "newLogo": "https://www.udio.com/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "AIVA",
+    "slug": "aiva",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/aiva.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/aiva.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Mubert",
+    "slug": "mubert",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/mubert.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/mubert.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Soundraw",
+    "slug": "soundraw",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/soundraw.io",
+    "newLogo": "https://icons.duckduckgo.com/ip3/soundraw.io.ico",
+    "changed": true
+  },
+  {
+    "name": "Boomy",
+    "slug": "boomy",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/boomy.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/boomy.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Soundful",
+    "slug": "soundful",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/soundful.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/soundful.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Beatoven.ai",
+    "slug": "beatoven-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/beatoven.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/beatoven.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Loudly",
+    "slug": "loudly",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/loudly.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/loudly.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Julius AI",
+    "slug": "julius-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/julius.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/julius.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Gamma",
+    "slug": "gamma",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://gamma.app/favicon.ico",
+    "newLogo": "https://gamma.app/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Tableau",
+    "slug": "tableau",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://www.tableau.com/favicon.ico",
+    "newLogo": "https://www.tableau.com/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Google NotebookLM",
+    "slug": "google-notebooklm",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/notebooklm.google.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/notebooklm.google.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Obviously AI",
+    "slug": "obviously-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/obviously.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/obviously.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Rows AI",
+    "slug": "rows-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/rows.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/rows.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Beautiful.ai",
+    "slug": "beautiful-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/beautiful.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/beautiful.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "SlidesAI",
+    "slug": "slidesai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/slidesai.io",
+    "newLogo": "https://icons.duckduckgo.com/ip3/slidesai.io.ico",
+    "changed": true
+  },
+  {
+    "name": "Tome",
+    "slug": "tome",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/tome.app",
+    "newLogo": "https://icons.duckduckgo.com/ip3/tome.app.ico",
+    "changed": true
+  },
+  {
+    "name": "Prezi AI",
+    "slug": "prezi-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/prezi.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/prezi.com.ico",
+    "changed": true
+  },
+  {
+    "name": "MonkeyLearn",
+    "slug": "monkeylearn",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/monkeylearn.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/monkeylearn.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Power BI",
+    "slug": "power-bi",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/powerbi.microsoft.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/powerbi.microsoft.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Hex",
+    "slug": "hex",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/hex.tech",
+    "newLogo": "https://icons.duckduckgo.com/ip3/hex.tech.ico",
+    "changed": true
+  },
+  {
+    "name": "DeepL",
+    "slug": "deepl",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://static.deepl.com/img/favicon/favicon_96.png",
+    "newLogo": "https://static.deepl.com/img/favicon/favicon_96.png",
+    "changed": false
+  },
+  {
+    "name": "Papago",
+    "slug": "papago",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://papago.naver.com/favicon.ico",
+    "newLogo": "https://papago.naver.com/favicon.ico",
+    "changed": false
+  },
+  {
+    "name": "Google Translate",
+    "slug": "google-translate",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/translate.google.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/translate.google.com.ico",
+    "changed": true
+  },
+  {
+    "name": "DeepL Write",
+    "slug": "deepl-write",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/deepl.png",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/deepl.png",
+    "changed": false
+  },
+  {
+    "name": "Flitto",
+    "slug": "flitto",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/flitto.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/flitto.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Smartcat",
+    "slug": "smartcat",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/smartcat.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/smartcat.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Lingva Translate",
+    "slug": "lingva-translate",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/lingva.ml",
+    "newLogo": "https://icons.duckduckgo.com/ip3/lingva.ml.ico",
+    "changed": true
+  },
+  {
+    "name": "iTranslate",
+    "slug": "itranslate",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/itranslate.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/itranslate.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Canva AI",
+    "slug": "canva-ai",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://static.canva.com/static/images/favicon-1.ico",
+    "newLogo": "https://static.canva.com/static/images/favicon-1.ico",
+    "changed": false
+  },
+  {
+    "name": "Zapier AI",
+    "slug": "zapier-ai",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/zapier.png",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/zapier.png",
+    "changed": false
+  },
+  {
+    "name": "Make",
+    "slug": "make",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/make.png",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/make.png",
+    "changed": false
+  },
+  {
+    "name": "Loom AI",
+    "slug": "loom-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/loom.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/loom.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Miro AI",
+    "slug": "miro-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/miro.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/miro.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Tally",
+    "slug": "tally",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/tally.so",
+    "newLogo": "https://icons.duckduckgo.com/ip3/tally.so.ico",
+    "changed": true
+  },
+  {
+    "name": "Typeform",
+    "slug": "typeform",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/typeform.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/typeform.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Scribe",
+    "slug": "scribe",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/scribehow.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/scribehow.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Reclaim AI",
+    "slug": "reclaim-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/reclaim.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/reclaim.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Superhuman",
+    "slug": "superhuman",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/superhuman.com",
+    "newLogo": "https://icons.duckduckgo.com/ip3/superhuman.com.ico",
+    "changed": true
+  },
+  {
+    "name": "Lex",
+    "slug": "lex",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/lex.page",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/perplexity.png",
+    "changed": true
+  },
+  {
+    "name": "Perplexity Pages",
+    "slug": "perplexity-pages",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/perplexity.png",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/perplexity.png",
+    "changed": false
+  },
+  {
+    "name": "Coda AI",
+    "slug": "coda-ai",
+    "status": "KEEP",
+    "reason": "Direct URL",
+    "oldLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/coda.png",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/coda.png",
+    "changed": false
+  },
+  {
+    "name": "Mem AI",
+    "slug": "mem-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/get.mem.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/get.mem.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Napkin AI",
+    "slug": "napkin-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/napkin.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/napkin.ai.ico",
+    "changed": true
+  },
+  {
+    "name": "Whimsical AI",
+    "slug": "whimsical-ai",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/whimsical.com",
+    "newLogo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/whimsical.png",
+    "changed": true
+  },
+  {
+    "name": "Krisp",
+    "slug": "krisp",
+    "status": "FIXED",
+    "reason": "Clearbit API (unreliable)",
+    "oldLogo": "https://logo.clearbit.com/krisp.ai",
+    "newLogo": "https://icons.duckduckgo.com/ip3/krisp.ai.ico",
+    "changed": true
+  }
+]

@@ -6,6 +6,7 @@ import { Menu, X, Search } from 'lucide-react';
 import Logo from '@/components/ui/Logo';
 import SearchBar from '@/components/search/SearchBar';
 import AuthButton from '@/components/auth/AuthButton';
+import NotificationBell from '@/components/notifications/NotificationBell';
 import MobileNav from './MobileNav';
 
 export default function Header() {
@@ -24,7 +25,7 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* 데스크탑 네비게이션 - 간소화된 4개 메뉴 */}
+        {/* 데스크탑 네비게이션 - 간소화된 5개 메뉴 */}
         <nav className="hidden items-center gap-5 md:flex">
           <Link href="/discover" className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors">
             AI 찾기
@@ -32,8 +33,11 @@ export default function Header() {
           <Link href="/rankings" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
             랭킹
           </Link>
-          <Link href="/news" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
-            뉴스
+          <Link href="/recipes" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
+            AI 레시피
+          </Link>
+          <Link href="/community" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
+            커뮤니티
           </Link>
 
           <SearchBar className="w-52" />
@@ -41,6 +45,7 @@ export default function Header() {
 
         {/* 데스크탑 우측 버튼 */}
         <div className="hidden items-center gap-3 md:flex">
+          <NotificationBell />
           <AuthButton />
         </div>
 

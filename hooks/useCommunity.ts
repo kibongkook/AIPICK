@@ -60,11 +60,17 @@ function migrateLocalStorage(): CommunityPost[] {
         parent_id: null,
         media: [],
         like_count: r.helpful_count || 0,
-        reply_count: 0,
+        comment_count: 0,
         is_reported: false,
         is_pinned: false,
         created_at: r.created_at,
         updated_at: r.created_at,
+        title: r.content.slice(0, 50),
+        bookmark_count: 0,
+        view_count: 0,
+        popularity_score: 0,
+        quality_score: 0,
+        is_hidden: false,
       });
     }
   } catch { /* ignore */ }
@@ -85,11 +91,17 @@ function migrateLocalStorage(): CommunityPost[] {
         parent_id: c.parent_id || null,
         media: [],
         like_count: c.like_count || 0,
-        reply_count: 0,
+        comment_count: 0,
         is_reported: false,
         is_pinned: false,
         created_at: c.created_at,
         updated_at: c.created_at,
+        title: c.content.slice(0, 50),
+        bookmark_count: 0,
+        view_count: 0,
+        popularity_score: 0,
+        quality_score: 0,
+        is_hidden: false,
       });
     }
   } catch { /* ignore */ }
@@ -211,11 +223,17 @@ export function useCommunity(targetType: CommunityTargetType, targetId: string) 
       parent_id: null,
       media: data.media || [],
       like_count: 0,
-      reply_count: 0,
+      comment_count: 0,
       is_reported: false,
       is_pinned: false,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
+      title: data.content.slice(0, 50),
+      bookmark_count: 0,
+      view_count: 0,
+      popularity_score: 0,
+      quality_score: 0,
+      is_hidden: false,
     };
 
     saveLocalPosts([...all, post]);
@@ -307,16 +325,22 @@ export function useCommunity(targetType: CommunityTargetType, targetId: string) 
       parent_id: parentId,
       media: media || [],
       like_count: 0,
-      reply_count: 0,
+      comment_count: 0,
       is_reported: false,
       is_pinned: false,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
+      title: content.slice(0, 50),
+      bookmark_count: 0,
+      view_count: 0,
+      popularity_score: 0,
+      quality_score: 0,
+      is_hidden: false,
     };
 
-    // 부모의 reply_count 증가
+    // 부모의 comment_count 증가
     const parent = all.find((p) => p.id === parentId);
-    if (parent) parent.reply_count += 1;
+    if (parent) parent.comment_count += 1;
 
     saveLocalPosts([...all, reply]);
     await load();
@@ -337,6 +361,97 @@ export function useCommunity(targetType: CommunityTargetType, targetId: string) 
       .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
   }, []);
 
+  // ── 답변 등록 (Q&A) ──
+  const addAnswer = useCallback(async (questionId: string, content: string) => {
+    if (!user) return false;
+
+    if (useApi && user.provider !== 'demo') {
+      try {
+        const res = await fetch('/api/community/v2/answer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question_id: questionId, content }),
+        });
+        if (res.ok) {
+          await load();
+          return true;
+        }
+      } catch { /* fallback */ }
+    }
+
+    // localStorage fallback
+    const all = getLocalPosts();
+    const answer: CommunityPost = {
+      id: `cp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      target_type: targetType,
+      target_id: targetId,
+      user_id: user.id,
+      user_name: user.name,
+      post_type: 'discussion',
+      content,
+      rating: null,
+      feature_ratings: null,
+      parent_id: questionId,
+      media: [],
+      like_count: 0,
+      comment_count: 0,
+      is_reported: false,
+      is_pinned: false,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      title: content.slice(0, 50),
+      bookmark_count: 0,
+      view_count: 0,
+      popularity_score: 0,
+      quality_score: 0,
+      is_hidden: false,
+      is_answer: true,
+    };
+
+    const parent = all.find((p) => p.id === questionId);
+    if (parent) {
+      parent.answer_count = (parent.answer_count || 0) + 1;
+      parent.comment_count += 1;
+    }
+
+    saveLocalPosts([...all, answer]);
+    await load();
+    return true;
+  }, [user, targetType, targetId, load]);
+
+  // ── 답변 채택 (Q&A) ──
+  const acceptAnswer = useCallback(async (answerId: string) => {
+    if (!user) return false;
+
+    if (useApi && user.provider !== 'demo') {
+      try {
+        const res = await fetch('/api/community/v2/accept-answer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ answer_id: answerId }),
+        });
+        if (res.ok) {
+          await load();
+          return true;
+        }
+      } catch { /* fallback */ }
+    }
+
+    // localStorage fallback
+    const all = getLocalPosts();
+    const answer = all.find((p) => p.id === answerId);
+    if (answer?.parent_id) {
+      const question = all.find((p) => p.id === answer.parent_id);
+      if (question && question.user_id === user.id) {
+        question.accepted_answer_id = answerId;
+        saveLocalPosts(all);
+        await load();
+        return true;
+      }
+    }
+    return false;
+  }, [user, load]);
+
   return {
     allPosts: posts,
     sort,
@@ -348,6 +463,8 @@ export function useCommunity(targetType: CommunityTargetType, targetId: string) 
     toggleLike,
     addReply,
     getReplies,
+    addAnswer,
+    acceptAnswer,
   };
 }
 

@@ -87,7 +87,11 @@ export default function RoleShowcaseRotation({ jobShowcases, eduShowcases }: Rol
         {/* 활용 사례 미리보기 */}
         <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border">
           {current.useCases.slice(0, 3).map((uc) => (
-            <div key={uc.id} className="p-4">
+            <Link
+              key={uc.id}
+              href={`/tools/${uc.tool_slug}`}
+              className="p-4 hover:bg-primary/5 transition-colors group"
+            >
               <div className="flex items-center gap-2 mb-2">
                 {uc.tool?.logo_url ? (
                   <img src={uc.tool.logo_url} alt={uc.tool.name} className="h-6 w-6 rounded object-cover" />
@@ -96,14 +100,14 @@ export default function RoleShowcaseRotation({ jobShowcases, eduShowcases }: Rol
                     {(uc.tool?.name || uc.tool_slug).charAt(0).toUpperCase()}
                   </div>
                 )}
-                <span className="text-xs font-semibold text-foreground">{uc.title}</span>
+                <span className="text-xs font-semibold text-foreground group-hover:text-primary transition-colors">{uc.title}</span>
               </div>
               <p className="text-[11px] text-gray-500 line-clamp-2 mb-2">{uc.description}</p>
               <div className="flex items-center gap-1">
                 <Zap className="h-3 w-3 text-amber-500" />
                 <span className="text-[10px] font-semibold text-amber-700">{uc.outcome}</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

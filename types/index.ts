@@ -1,6 +1,6 @@
 // ==========================================
-// AIPICK 타입 정의 v2.0
-// DB 스키마와 1:1 매핑
+// AIPICK 타입 정의 v3.0
+// 2단계 분류: 목적(Purpose) + 사용자 타입(UserType)
 // ==========================================
 
 export type PricingType = 'Free' | 'Freemium' | 'Paid';
@@ -10,21 +10,61 @@ export type NewsCategory = 'update' | 'launch' | 'industry' | 'pricing' | 'gener
 export type GuideCategory = 'job' | 'education' | 'tip' | 'tutorial';
 export type CommentTargetType = 'tool' | 'news' | 'guide';
 export type CommunityPostType = 'rating' | 'discussion' | 'tip' | 'question';
-export type CommunityTargetType = 'tool' | 'news' | 'guide';
+export type CommunityTargetType = 'tool' | 'news' | 'guide' | 'general';
 export type MediaType = 'image' | 'video';
 export type TrendDirection = 'up' | 'down' | 'stable' | 'new';
 
 // ==========================================
-// 카테고리
+// 1단계: 목적별 카테고리 (Purpose)
 // ==========================================
+export type PurposeSlug =
+  | 'writing' | 'design' | 'video' | 'automation' | 'coding'
+  | 'research' | 'learning' | 'presentation' | 'marketing' | 'building';
+
 export interface Category {
   id: string;
   name: string;
   slug: string;
   icon: string | null;
   description?: string;
+  color?: string;
   sort_order: number;
   created_at: string;
+}
+
+// ==========================================
+// 2단계: 사용자 타입 (UserType)
+// ==========================================
+export type UserTypeSlug =
+  | 'beginner' | 'intermediate' | 'daily-user' | 'expert'
+  | 'student' | 'teacher' | 'parent' | 'freelancer' | 'team';
+
+export type UserTypeGroup = 'skill' | 'role';
+
+export interface UserType {
+  id: string;
+  name: string;
+  slug: UserTypeSlug;
+  description: string | null;
+  icon: string | null;
+  group: UserTypeGroup;
+  sort_order: number;
+  created_at: string;
+}
+
+// ==========================================
+// 목적×사용자타입 → 도구 추천 매핑
+// ==========================================
+export interface PurposeToolRecommendation {
+  id: string;
+  purpose_slug: PurposeSlug;
+  user_type_slug: UserTypeSlug;
+  tool_id: string;
+  recommendation_level: RecommendationLevel;
+  reason: string | null;
+  sort_order: number;
+  is_killer_pick?: boolean;
+  tool?: Tool;
 }
 
 // ==========================================
@@ -54,6 +94,7 @@ export interface Tool {
   supports_korean: boolean;
   pros: string[];
   cons: string[];
+  usage_tips: string[];
   hybrid_score: number;
   external_score: number;
   internal_score: number;
@@ -75,7 +116,32 @@ export interface ToolWithCategory extends Tool {
 }
 
 // ==========================================
-// 직군 카테고리
+// AI 서비스 제안
+// ==========================================
+export interface ToolSuggestion {
+  id: string;
+  user_id: string;
+  user_name: string;
+  tool_name: string;
+  tool_url: string;
+  tool_description: string;
+  category_slug: string;
+  reason: string;
+  vote_count: number;
+  status: 'pending' | 'approved' | 'rejected' | 'merged';
+  merged_tool_id: string | null;
+  merged_at: string | null;
+  reviewed_by: string | null;
+  reviewed_at: string | null;
+  created_at: string;
+  updated_at: string;
+
+  // 클라이언트 전용
+  has_voted?: boolean;
+}
+
+// ==========================================
+// 레거시 호환: 직군 카테고리 → UserType으로 대체
 // ==========================================
 export interface JobCategory {
   id: string;
@@ -88,7 +154,7 @@ export interface JobCategory {
 }
 
 // ==========================================
-// 교육 단계
+// 레거시 호환: 교육 단계 → UserType으로 대체
 // ==========================================
 export interface EduLevel {
   id: string;
@@ -102,7 +168,7 @@ export interface EduLevel {
 }
 
 // ==========================================
-// 직군-툴 추천 매핑
+// 레거시 호환: 직군-툴 추천 매핑
 // ==========================================
 export interface JobToolRecommendation {
   id: string;
@@ -116,7 +182,7 @@ export interface JobToolRecommendation {
 }
 
 // ==========================================
-// 학년-툴 추천 매핑
+// 레거시 호환: 학년-툴 추천 매핑
 // ==========================================
 export interface EduToolRecommendation {
   id: string;
@@ -289,17 +355,90 @@ export interface CommunityPost {
   user_id: string;
   user_name: string | null;
   post_type: CommunityPostType;
+  title: string;                      // V2: 제목
   content: string;
   rating: number | null;
   feature_ratings: FeatureRatings | null;
   parent_id: string | null;
   media: MediaAttachment[];
   like_count: number;
-  reply_count: number;
+  comment_count: number;              // V2: reply_count → comment_count
+  bookmark_count: number;             // V2: 저장 수
+  view_count: number;                 // V2: 조회수
+  popularity_score: number;           // V2: 인기 점수
+  quality_score: number;              // V2: 품질 점수
   is_reported: boolean;
   is_pinned: boolean;
+  is_hidden: boolean;                 // V2: 숨김
   created_at: string;
   updated_at: string;
+
+  // Q&A 시스템
+  accepted_answer_id?: string | null;  // 채택된 답변 ID
+  answer_count?: number;               // 답변 수
+  is_answer?: boolean;                 // 답변 여부
+  mentioned_tool_ids?: string[];       // @멘션된 도구 ID
+
+  // 클라이언트 전용
+  tags?: CommunityTag[];              // V2: 태그 목록
+  has_liked?: boolean;
+  has_bookmarked?: boolean;
+}
+
+// ==========================================
+// 커뮤니티 V2: 태그 시스템
+// ==========================================
+export type TagType = 'GOAL' | 'AI_TOOL' | 'FEATURE' | 'KEYWORD';
+
+export interface CommunityTag {
+  id: string;
+  tag_type: TagType;
+  tag_value: string;                  // 'writing', 'chatgpt', 'text', '프롬프트'
+  tag_display: string;                // '글쓰기', 'ChatGPT', '텍스트', '프롬프트'
+  tag_normalized: string;             // 소문자, 검색용
+  tag_color: string | null;           // UI 색상
+  tag_icon: string | null;            // Lucide 아이콘
+  related_tool_id: string | null;     // AI_TOOL인 경우
+  related_category_slug: string | null; // GOAL인 경우
+  usage_count: number;
+  created_at: string;
+}
+
+export interface CommunityPostTag {
+  id: string;
+  post_id: string;
+  tag_id: string;
+  is_auto_generated: boolean;
+  confidence_score: number | null;
+  created_at: string;
+  tag?: CommunityTag;                 // 조인 시
+}
+
+export interface CommunityBookmark {
+  id: string;
+  user_id: string;
+  post_id: string;
+  created_at: string;
+}
+
+// 태그 추출 결과
+export interface ExtractedTag {
+  type: TagType;
+  value: string;
+  display: string;
+  confidence: number;
+  related_tool_id?: string;
+  related_category_slug?: string;
+}
+
+// 커뮤니티 필터
+export interface CommunityFilters {
+  goal?: string;
+  ai?: string;
+  keyword?: string;
+  sort?: 'latest' | 'popular' | 'saved';
+  target_type?: string;
+  target_id?: string;
 }
 
 // ==========================================
@@ -317,10 +456,35 @@ export interface UserProfile {
   review_count: number;
   comment_count: number;
   helpful_count: number;
+  question_count: number;
+  answer_count: number;
+  accepted_answer_count: number;
+  user_type_slug: UserTypeSlug | null;
+  preferred_purposes: PurposeSlug[];
+  // 레거시 호환
   job_category_slug: string | null;
   edu_level_slug: string | null;
   created_at: string;
   updated_at: string;
+}
+
+// ==========================================
+// 알림 시스템
+// ==========================================
+export type NotificationType = 'answer_received' | 'answer_accepted' | 'like_received' | 'mention';
+
+export interface Notification {
+  id: string;
+  user_id: string;
+  type: NotificationType;
+  title: string;
+  message: string;
+  link: string | null;
+  related_post_id: string | null;
+  actor_id: string | null;
+  actor_name: string | null;
+  is_read: boolean;
+  created_at: string;
 }
 
 // ==========================================
@@ -428,14 +592,69 @@ export interface CategoryPopularity {
 }
 
 // ==========================================
+// Daily Picks (매일 자동 선정)
+// ==========================================
+export type DailyPickType = 'trending' | 'new' | 'hidden_gem' | 'price_drop';
+
+export interface DailyPick {
+  id: string;
+  pick_date: string;
+  tool_id: string;
+  pick_type: DailyPickType;
+  reason: string;
+  sort_order: number;
+  created_at: string;
+  tool?: Tool;
+}
+
+// ==========================================
+// AI 레시피 (워크플로우 가이드)
+// ==========================================
+export type RecipeDifficulty = 'easy' | 'medium' | 'hard';
+
+export type RecipeCategory =
+  | 'music' | 'video' | 'image' | 'marketing' | 'presentation'
+  | 'blog' | 'social' | 'education' | 'ecommerce' | 'podcast'
+  | 'brand' | 'comic' | '3d';
+
+export interface RecipeStep {
+  step: number;
+  title: string;
+  tool_slug: string;        // AIPICK 도구 slug (링크 연결)
+  tool_name: string;         // 표시용 도구명
+  alt_tools?: string[];      // 대안 도구 slug 목록
+  action: string;            // 이 단계에서 하는 일
+  prompt_example?: string;   // 프롬프트 예시
+  tip?: string;              // 핵심 팁
+}
+
+export interface AIRecipe {
+  slug: string;
+  title: string;
+  subtitle: string;
+  category: RecipeCategory;
+  difficulty: RecipeDifficulty;
+  estimated_time: string;    // "30분", "1~2시간" 등
+  tool_count: number;
+  steps: RecipeStep[];
+  result_description: string;
+  tags: string[];
+  icon: string;              // Lucide icon name
+  color: string;             // gradient class
+}
+
+// ==========================================
 // 추천 알고리즘
 // ==========================================
 export interface MatchDetails {
-  categoryMatch: number;   // 0-30
-  personaMatch: number;    // 0-25
+  purposeMatch: number;    // 0-30 (목적 일치도)
+  userTypeMatch: number;   // 0-25 (사용자 타입 일치도)
   budgetMatch: number;     // 0-15
   koreanMatch: number;     // 0-10
   qualitySignal: number;   // 0-20
+  // 레거시 호환 별칭
+  categoryMatch?: number;
+  personaMatch?: number;
 }
 
 export interface RecommendedTool {

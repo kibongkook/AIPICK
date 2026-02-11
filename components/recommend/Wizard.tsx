@@ -1,72 +1,70 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Sparkles, Star, Zap, Check } from 'lucide-react';
-import { CATEGORIES, JOB_CATEGORIES, EDU_LEVELS } from '@/lib/constants';
+import { ArrowLeft, Sparkles, Star, Zap, Check } from 'lucide-react';
+import { PURPOSE_CATEGORIES, USER_TYPES } from '@/lib/constants';
 import type { RecommendedTool } from '@/types';
 import { cn, getAvatarColor, formatRating } from '@/lib/utils';
 import DynamicIcon from '@/components/ui/DynamicIcon';
 import Badge from '@/components/ui/Badge';
 
-type Step = 1 | 2 | 3 | 4 | 'result';
+type Step = 1 | 2 | 'result';
 
 interface WizardState {
-  category: string;
-  persona: string;
-  personaType: 'job' | 'edu' | '';
-  budget: 'free' | 'under10' | 'any';
-  korean: 'required' | 'any';
+  purpose: string;
+  userType: string;
 }
 
 export default function Wizard() {
   const [step, setStep] = useState<Step>(1);
   const [state, setState] = useState<WizardState>({
-    category: '',
-    persona: '',
-    personaType: '',
-    budget: 'any',
-    korean: 'any',
+    purpose: '',
+    userType: '',
   });
   const [results, setResults] = useState<RecommendedTool[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const totalSteps = 4;
+  const totalSteps = 2;
   const currentStep = typeof step === 'number' ? step : totalSteps;
 
-  const goNext = async () => {
-    if (step === 1 && !state.category) return;
+  const skillTypes = USER_TYPES.filter(u => u.group === 'skill');
 
-    if (step === 4) {
-      setLoading(true);
-      const params = new URLSearchParams();
-      if (state.category) params.set('category', state.category);
-      if (state.persona) params.set('persona', state.persona);
-      if (state.personaType) params.set('personaType', state.personaType);
-      params.set('budget', state.budget);
-      params.set('korean', state.korean);
+  const fetchResults = useCallback(async (purpose: string, userType: string) => {
+    setLoading(true);
+    setStep('result');
+    const params = new URLSearchParams();
+    if (purpose) params.set('category', purpose);
+    if (userType) params.set('userType', userType);
 
-      try {
-        const res = await fetch(`/api/recommend?${params.toString()}`);
-        const data = await res.json();
-        setResults(data.results || []);
-      } catch {
-        setResults([]);
-      }
-      setLoading(false);
-      setStep('result');
-    } else {
-      setStep(((step as number) + 1) as Step);
+    try {
+      const res = await fetch(`/api/recommend?${params.toString()}`);
+      const data = await res.json();
+      setResults(data.results || []);
+    } catch {
+      setResults([]);
     }
+    setLoading(false);
+  }, []);
+
+  const selectPurpose = (slug: string) => {
+    setState((s) => ({ ...s, purpose: slug }));
+    setStep(2);
+  };
+
+  const selectUserType = (slug: string) => {
+    const newState = { ...state, userType: slug };
+    setState(newState);
+    fetchResults(newState.purpose, slug);
   };
 
   const goBack = () => {
-    if (step === 'result') setStep(4);
-    else if ((step as number) > 1) setStep(((step as number) - 1) as Step);
+    if (step === 'result') setStep(2);
+    else if (step === 2) setStep(1);
   };
 
   const restart = () => {
-    setState({ category: '', persona: '', personaType: '', budget: 'any', korean: 'any' });
+    setState({ purpose: '', userType: '' });
     setStep(1);
     setResults([]);
   };
@@ -78,6 +76,15 @@ export default function Wizard() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs text-gray-400">단계 {currentStep} / {totalSteps}</span>
+            {step === 2 && (
+              <button
+                onClick={goBack}
+                className="flex items-center gap-1 text-xs text-gray-400 hover:text-primary transition-colors"
+              >
+                <ArrowLeft className="h-3 w-3" />
+                이전
+              </button>
+            )}
           </div>
           <div className="h-2 rounded-full bg-gray-100">
             <div
@@ -88,136 +95,62 @@ export default function Wizard() {
         </div>
       )}
 
-      {/* Step 1: 카테고리 */}
+      {/* Step 1: 목적 (Purpose) — 선택하면 자동 진행 */}
       {step === 1 && (
         <StepContainer
-          title="어떤 작업을 하시나요?"
-          subtitle="가장 관련 있는 분야를 선택하세요"
+          title="지금 뭐 하려고 하세요?"
+          subtitle="목적을 선택하면 바로 다음으로 넘어갑니다"
         >
           <div className="grid gap-3 sm:grid-cols-2">
-            {CATEGORIES.map((cat) => (
+            {PURPOSE_CATEGORIES.map((cat) => (
               <button
                 key={cat.slug}
-                onClick={() => setState((s) => ({ ...s, category: cat.slug }))}
+                onClick={() => selectPurpose(cat.slug)}
                 className={cn(
-                  'flex items-center gap-3 rounded-xl border p-4 text-left transition-all',
-                  state.category === cat.slug
+                  'flex items-center gap-3 rounded-xl border p-4 text-left transition-all hover:shadow-md',
+                  state.purpose === cat.slug
                     ? 'border-primary bg-primary/5 ring-2 ring-primary/20'
                     : 'border-border hover:border-primary/50'
                 )}
               >
-                <DynamicIcon name={cat.icon} className="h-5 w-5 text-primary shrink-0" />
-                <span className="text-sm font-medium text-foreground">{cat.name}</span>
+                <div className={`flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br ${cat.color} shrink-0`}>
+                  <DynamicIcon name={cat.icon} className="h-4 w-4 text-white" />
+                </div>
+                <div>
+                  <span className="text-sm font-medium text-foreground block">{cat.name}</span>
+                  <span className="text-[11px] text-gray-400">{cat.description}</span>
+                </div>
               </button>
             ))}
           </div>
-          {!state.category && (
-            <p className="mt-3 text-xs text-amber-600">분야를 선택해주세요</p>
-          )}
         </StepContainer>
       )}
 
-      {/* Step 2: 직군/학년 */}
+      {/* Step 2: 숙련도 (Skill Level) — 선택하면 자동 결과 */}
       {step === 2 && (
         <StepContainer
-          title="당신은 누구인가요?"
-          subtitle="직군 또는 학년을 선택하면 맞춤 추천이 가능합니다"
+          title="AI를 얼마나 써보셨나요?"
+          subtitle="숙련도에 맞게 추천해드립니다"
         >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">직군</p>
-          <div className="grid gap-2 sm:grid-cols-2 mb-6">
-            {JOB_CATEGORIES.map((job) => (
-              <button
-                key={job.slug}
-                onClick={() => setState((s) => ({ ...s, persona: job.slug, personaType: 'job' }))}
-                className={cn(
-                  'flex items-center gap-3 rounded-lg border px-3 py-2.5 text-left transition-all',
-                  state.persona === job.slug && state.personaType === 'job'
-                    ? 'border-primary bg-primary/5 ring-2 ring-primary/20'
-                    : 'border-border hover:border-primary/50'
-                )}
-              >
-                <DynamicIcon name={job.icon} className="h-4 w-4 text-primary shrink-0" />
-                <span className="text-sm text-foreground">{job.name}</span>
-              </button>
-            ))}
-          </div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">학년</p>
-          <div className="grid gap-2 sm:grid-cols-3">
-            {EDU_LEVELS.map((level) => (
-              <button
-                key={level.slug}
-                onClick={() => setState((s) => ({ ...s, persona: level.slug, personaType: 'edu' }))}
-                className={cn(
-                  'flex items-center gap-2 rounded-lg border px-3 py-2.5 text-left transition-all',
-                  state.persona === level.slug && state.personaType === 'edu'
-                    ? 'border-primary bg-primary/5 ring-2 ring-primary/20'
-                    : 'border-border hover:border-primary/50'
-                )}
-              >
-                <DynamicIcon name={level.icon} className="h-4 w-4 text-primary shrink-0" />
-                <span className="text-sm text-foreground">{level.name}</span>
-              </button>
-            ))}
-          </div>
-          <button
-            onClick={() => setState((s) => ({ ...s, persona: '', personaType: '' }))}
-            className={cn(
-              'mt-3 w-full rounded-lg border px-3 py-2.5 text-sm text-gray-500 transition-all',
-              !state.persona ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-            )}
-          >
-            건너뛰기
-          </button>
-        </StepContainer>
-      )}
-
-      {/* Step 3: 예산 */}
-      {step === 3 && (
-        <StepContainer title="예산은 어느 정도인가요?" subtitle="무료 서비스를 우선 추천해드립니다">
           <div className="space-y-3">
-            {[
-              { value: 'free' as const, label: '무료만', desc: '완전 무료 서비스만 보기' },
-              { value: 'under10' as const, label: '월 $10 이하', desc: '무료 + 저렴한 유료 포함' },
-              { value: 'any' as const, label: '상관없음', desc: '모든 가격대 포함' },
-            ].map((opt) => (
+            {skillTypes.map((ut) => (
               <button
-                key={opt.value}
-                onClick={() => setState((s) => ({ ...s, budget: opt.value }))}
+                key={ut.slug}
+                onClick={() => selectUserType(ut.slug)}
                 className={cn(
-                  'flex w-full flex-col rounded-xl border p-4 text-left transition-all',
-                  state.budget === opt.value
+                  'flex w-full items-center gap-4 rounded-xl border p-4 text-left transition-all hover:shadow-md',
+                  state.userType === ut.slug
                     ? 'border-primary bg-primary/5 ring-2 ring-primary/20'
                     : 'border-border hover:border-primary/50'
                 )}
               >
-                <span className="text-sm font-semibold text-foreground">{opt.label}</span>
-                <span className="text-xs text-gray-400 mt-0.5">{opt.desc}</span>
-              </button>
-            ))}
-          </div>
-        </StepContainer>
-      )}
-
-      {/* Step 4: 한국어 */}
-      {step === 4 && (
-        <StepContainer title="한국어 지원이 필요한가요?" subtitle="한국어를 지원하는 AI만 필터링할 수 있습니다">
-          <div className="space-y-3">
-            {[
-              { value: 'required' as const, label: '필수', desc: '한국어 지원 서비스만 보기' },
-              { value: 'any' as const, label: '상관없음', desc: '영문 서비스도 포함' },
-            ].map((opt) => (
-              <button
-                key={opt.value}
-                onClick={() => setState((s) => ({ ...s, korean: opt.value }))}
-                className={cn(
-                  'flex w-full flex-col rounded-xl border p-4 text-left transition-all',
-                  state.korean === opt.value
-                    ? 'border-primary bg-primary/5 ring-2 ring-primary/20'
-                    : 'border-border hover:border-primary/50'
-                )}
-              >
-                <span className="text-sm font-semibold text-foreground">{opt.label}</span>
-                <span className="text-xs text-gray-400 mt-0.5">{opt.desc}</span>
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 shrink-0">
+                  <DynamicIcon name={ut.icon} className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <span className="text-sm font-semibold text-foreground block">{ut.name}</span>
+                  <span className="text-[11px] text-gray-400">{ut.description}</span>
+                </div>
               </button>
             ))}
           </div>
@@ -228,25 +161,36 @@ export default function Wizard() {
       {step === 'result' && (
         <div>
           <div className="mb-8 text-center">
-            <Sparkles className="mx-auto h-8 w-8 text-primary" />
-            <h2 className="mt-3 text-xl font-bold text-foreground">
-              맞춤 AI 추천 결과
-            </h2>
-            <p className="mt-1 text-sm text-gray-500">
-              {results.length > 0
-                ? `조건에 맞는 ${results.length}개의 AI 서비스를 찾았습니다`
-                : '조건에 맞는 서비스가 없습니다. 필터를 조정해보세요.'
-              }
-            </p>
+            {loading ? (
+              <>
+                <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                <p className="mt-3 text-sm text-gray-500">AI를 분석하고 있습니다...</p>
+              </>
+            ) : (
+              <>
+                <Sparkles className="mx-auto h-8 w-8 text-primary" />
+                <h2 className="mt-3 text-xl font-bold text-foreground">
+                  맞춤 AI 추천 결과
+                </h2>
+                <p className="mt-1 text-sm text-gray-500">
+                  {results.length > 0
+                    ? `조건에 맞는 ${results.length}개의 AI 서비스를 찾았습니다`
+                    : '조건에 맞는 서비스가 없습니다. 다시 시도해보세요.'
+                  }
+                </p>
+              </>
+            )}
           </div>
 
-          {results.length > 0 ? (
+          {!loading && results.length > 0 && (
             <div className="space-y-4">
               {results.map((result, index) => (
                 <ResultCard key={result.tool.id} result={result} rank={index + 1} />
               ))}
             </div>
-          ) : (
+          )}
+
+          {!loading && results.length === 0 && (
             <div className="text-center py-10">
               <button
                 onClick={restart}
@@ -257,57 +201,22 @@ export default function Wizard() {
             </div>
           )}
 
-          <div className="mt-8 flex justify-center gap-3">
-            <button
-              onClick={restart}
-              className="rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-            >
-              처음부터 다시
-            </button>
-            <Link
-              href="/search"
-              className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-hover transition-colors"
-            >
-              전체 검색으로 이동
-            </Link>
-          </div>
-        </div>
-      )}
-
-      {/* 네비게이션 버튼 */}
-      {step !== 'result' && (
-        <div className="mt-8 flex items-center justify-between">
-          <button
-            onClick={goBack}
-            disabled={step === 1}
-            className={cn(
-              'flex items-center gap-1 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors',
-              step === 1
-                ? 'text-gray-300 cursor-not-allowed'
-                : 'text-gray-700 hover:bg-gray-100'
-            )}
-          >
-            <ArrowLeft className="h-4 w-4" />
-            이전
-          </button>
-          <button
-            onClick={goNext}
-            disabled={loading || (step === 1 && !state.category)}
-            className={cn(
-              'flex items-center gap-1 rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-colors',
-              loading || (step === 1 && !state.category)
-                ? 'opacity-50 cursor-not-allowed'
-                : 'hover:bg-primary-hover'
-            )}
-          >
-            {loading ? (
-              <>분석 중...</>
-            ) : step === 4 ? (
-              <>추천받기 <Sparkles className="h-4 w-4" /></>
-            ) : (
-              <>다음 <ArrowRight className="h-4 w-4" /></>
-            )}
-          </button>
+          {!loading && (
+            <div className="mt-8 flex justify-center gap-3">
+              <button
+                onClick={restart}
+                className="rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                처음부터 다시
+              </button>
+              <Link
+                href="/discover"
+                className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-hover transition-colors"
+              >
+                전체 AI 보기
+              </Link>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -410,8 +319,8 @@ function ResultCard({ result, rank }: { result: RecommendedTool; rank: number })
 
 function MatchBar({ details }: { details: RecommendedTool['matchDetails'] }) {
   const segments = [
-    { value: details.categoryMatch, max: 30, color: 'bg-blue-500', label: '분야' },
-    { value: details.personaMatch, max: 25, color: 'bg-purple-500', label: '역할' },
+    { value: details.purposeMatch ?? details.categoryMatch ?? 0, max: 40, color: 'bg-blue-500', label: '목적' },
+    { value: details.userTypeMatch ?? details.personaMatch ?? 0, max: 40, color: 'bg-purple-500', label: '숙련도' },
     { value: details.budgetMatch, max: 15, color: 'bg-emerald-500', label: '예산' },
     { value: details.koreanMatch, max: 10, color: 'bg-orange-500', label: '한국어' },
     { value: details.qualitySignal, max: 20, color: 'bg-yellow-500', label: '품질' },
@@ -422,7 +331,7 @@ function MatchBar({ details }: { details: RecommendedTool['matchDetails'] }) {
       {segments.map((seg) => (
         <div
           key={seg.label}
-          className={cn('h-1.5 w-3 rounded-full', seg.value > seg.max * 0.5 ? seg.color : 'bg-gray-200')}
+          className={cn('h-1.5 w-3 rounded-full', seg.value > seg.max * 0.3 ? seg.color : 'bg-gray-200')}
           title={`${seg.label}: ${Math.round(seg.value)}/${seg.max}`}
         />
       ))}

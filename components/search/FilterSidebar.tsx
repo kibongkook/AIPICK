@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
 import { Filter, X } from 'lucide-react';
-import { CATEGORIES, JOB_CATEGORIES, EDU_LEVELS } from '@/lib/constants';
+import { PURPOSE_CATEGORIES, USER_TYPES } from '@/lib/constants';
 import type { PricingType } from '@/types';
 
 const PRICING_OPTIONS: { value: string; label: string }[] = [
@@ -125,9 +125,9 @@ export default function FilterSidebar() {
         ))}
       </FilterSection>
 
-      {/* 카테고리 */}
-      <FilterSection title="카테고리">
-        {CATEGORIES.map((cat) => (
+      {/* 목적별 */}
+      <FilterSection title="목적별">
+        {PURPOSE_CATEGORIES.map((cat) => (
           <label key={cat.slug} className="flex items-center gap-2 cursor-pointer">
             <input
               type="checkbox"
@@ -167,31 +167,31 @@ export default function FilterSidebar() {
         </select>
       </FilterSection>
 
-      {/* 직군 필터 */}
-      <FilterSection title="직군">
+      {/* 사용자 타입 필터 */}
+      <FilterSection title="사용자 타입">
         <select
-          value={currentJob}
-          onChange={(e) => updateFilters('job', e.target.value || null)}
+          value={currentJob || currentEdu}
+          onChange={(e) => {
+            updateFilters('job', null);
+            updateFilters('edu', null);
+            const ut = USER_TYPES.find(u => u.slug === e.target.value);
+            if (ut) {
+              updateFilters(ut.group === 'role' ? 'job' : 'edu', e.target.value || null);
+            }
+          }}
           className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
         >
           <option value="">전체</option>
-          {JOB_CATEGORIES.map((job) => (
-            <option key={job.slug} value={job.slug}>{job.name}</option>
-          ))}
-        </select>
-      </FilterSection>
-
-      {/* 학년 필터 */}
-      <FilterSection title="학년">
-        <select
-          value={currentEdu}
-          onChange={(e) => updateFilters('edu', e.target.value || null)}
-          className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-        >
-          <option value="">전체</option>
-          {EDU_LEVELS.map((level) => (
-            <option key={level.slug} value={level.slug}>{level.name}</option>
-          ))}
+          <optgroup label="숙련도">
+            {USER_TYPES.filter(u => u.group === 'skill').map((ut) => (
+              <option key={ut.slug} value={ut.slug}>{ut.name}</option>
+            ))}
+          </optgroup>
+          <optgroup label="역할">
+            {USER_TYPES.filter(u => u.group === 'role').map((ut) => (
+              <option key={ut.slug} value={ut.slug}>{ut.name}</option>
+            ))}
+          </optgroup>
         </select>
       </FilterSection>
     </aside>

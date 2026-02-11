@@ -1,29 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getTools, getAllJobRecommendations, getAllEduRecommendations } from '@/lib/supabase/queries';
+import { getTools, getCategories, getAllPurposeRecommendations } from '@/lib/supabase/queries';
 import { recommendTools } from '@/lib/recommend/engine';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
 
-  const category = searchParams.get('category') || '';
-  const persona = searchParams.get('persona') || '';
-  const personaType = (searchParams.get('personaType') || '') as 'job' | 'edu' | '';
+  const purposeSlug = searchParams.get('category') || searchParams.get('purpose') || '';
+  const userTypeSlug = searchParams.get('userType') || '';
   const budget = (searchParams.get('budget') || 'any') as 'free' | 'under10' | 'any';
   const korean = (searchParams.get('korean') || 'any') as 'required' | 'any';
 
-  const [tools, jobRecommendations, eduRecommendations] = await Promise.all([
+  const [tools, categories, purposeRecommendations] = await Promise.all([
     getTools(),
-    getAllJobRecommendations(),
-    getAllEduRecommendations(),
+    getCategories(),
+    getAllPurposeRecommendations(),
   ]);
 
   const results = recommendTools({
     tools,
-    jobRecommendations,
-    eduRecommendations,
-    category,
-    persona,
-    personaType,
+    categories,
+    purposeRecommendations,
+    purposeSlug,
+    userTypeSlug,
     budget,
     korean,
   });

@@ -125,7 +125,7 @@ export default async function RankingsPage({ searchParams }: Props) {
 
               {/* 종합 점수 */}
               <div className="col-span-2 hidden sm:block text-center">
-                <span className="text-sm font-bold text-primary">{(tool.hybrid_score || tool.ranking_score).toFixed(1)}</span>
+                <span className="text-sm font-bold text-primary">{(tool.hybrid_score || tool.ranking_score) ? (tool.hybrid_score || tool.ranking_score).toFixed(1) : '-'}</span>
               </div>
 
               {/* 변동 */}

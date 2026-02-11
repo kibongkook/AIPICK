@@ -23,15 +23,19 @@ export function getAvatarColor(name: string): string {
 
 /**
  * 평점을 소수점 1자리로 포맷
+ * 0이면 '미평가' 반환 (외부 데이터 미수집 상태)
  */
 export function formatRating(rating: number): string {
+  if (!rating || rating === 0) return '미평가';
   return rating.toFixed(1);
 }
 
 /**
  * 방문 수를 축약 표기 (1.2K, 3.4M 등)
+ * 0이면 '-' 반환
  */
 export function formatVisitCount(count: number): string {
+  if (!count || count === 0) return '-';
   if (count >= 1_000_000) return `${(count / 1_000_000).toFixed(1)}M`;
   if (count >= 1_000) return `${(count / 1_000).toFixed(1)}K`;
   return count.toString();
