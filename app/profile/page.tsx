@@ -94,6 +94,10 @@ function ProfileContent() {
   // 저장한 커뮤니티 글 로드
   useEffect(() => {
     if (!user) return;
+    loadSavedPosts();
+  }, [user, tab]);
+
+  const loadSavedPosts = () => {
     try {
       const bookmarksKey = 'aipick_user_bookmarks';
       const userBookmarks = JSON.parse(localStorage.getItem(bookmarksKey) || '[]') as string[];
@@ -107,7 +111,7 @@ function ProfileContent() {
       const bookmarked = allPosts.filter(p => userBookmarks.includes(p.id));
       setSavedPosts(bookmarked);
     } catch { /* ignore */ }
-  }, [user]);
+  };
 
   if (!user) return null;
 
