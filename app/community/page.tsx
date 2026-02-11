@@ -68,16 +68,33 @@ function CommunityContent() {
           const userBookmarks = JSON.parse(localStorage.getItem('aipick_user_bookmarks') || '[]') as string[];
 
           // 좋아요/북마크 상태 반영
-          const postsWithStatus = localPosts.map(post => ({
+          let postsWithStatus = localPosts.map(post => ({
             ...post,
             has_liked: userLikes.includes(post.id),
             has_bookmarked: userBookmarks.includes(post.id),
           }));
 
+          // 저장순 필터: 북마크한 글만 표시
+          if (filters.sort === 'saved') {
+            postsWithStatus = postsWithStatus.filter(post => userBookmarks.includes(post.id));
+          }
+
+          // 글 타입 필터
+          if (filters.post_type) {
+            postsWithStatus = postsWithStatus.filter(post => post.post_type === filters.post_type);
+          }
+
+          // 정렬
+          if (filters.sort === 'popular') {
+            postsWithStatus.sort((a, b) => b.popularity_score - a.popularity_score);
+          } else {
+            postsWithStatus.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+          }
+
           const offset = (currentPage - 1) * POSTS_PER_PAGE;
           const paginatedPosts = postsWithStatus.slice(offset, offset + POSTS_PER_PAGE);
           setPosts(paginatedPosts);
-          setTotal(localPosts.length);
+          setTotal(postsWithStatus.length);
         }
       }
     } catch (error) {
@@ -88,16 +105,33 @@ function CommunityContent() {
       const userBookmarks = JSON.parse(localStorage.getItem('aipick_user_bookmarks') || '[]') as string[];
 
       // 좋아요/북마크 상태 반영
-      const postsWithStatus = localPosts.map(post => ({
+      let postsWithStatus = localPosts.map(post => ({
         ...post,
         has_liked: userLikes.includes(post.id),
         has_bookmarked: userBookmarks.includes(post.id),
       }));
 
+      // 저장순 필터: 북마크한 글만 표시
+      if (filters.sort === 'saved') {
+        postsWithStatus = postsWithStatus.filter(post => userBookmarks.includes(post.id));
+      }
+
+      // 글 타입 필터
+      if (filters.post_type) {
+        postsWithStatus = postsWithStatus.filter(post => post.post_type === filters.post_type);
+      }
+
+      // 정렬
+      if (filters.sort === 'popular') {
+        postsWithStatus.sort((a, b) => b.popularity_score - a.popularity_score);
+      } else {
+        postsWithStatus.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      }
+
       const offset = (currentPage - 1) * POSTS_PER_PAGE;
       const paginatedPosts = postsWithStatus.slice(offset, offset + POSTS_PER_PAGE);
       setPosts(paginatedPosts);
-      setTotal(localPosts.length);
+      setTotal(postsWithStatus.length);
     } finally {
       setLoading(false);
     }

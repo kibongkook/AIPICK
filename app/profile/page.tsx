@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Star, Bookmark, Users } from 'lucide-react';
+import { Star, Bookmark, Users, BookmarkCheck } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { useBookmarkList } from '@/hooks/useBookmark';
 import { cn, getAvatarColor } from '@/lib/utils';
@@ -9,6 +9,7 @@ import AuthGuard from '@/components/auth/AuthGuard';
 import ServiceCard from '@/components/service/ServiceCard';
 import { COMMUNITY_STORAGE_KEY, COMMUNITY_POST_TYPES } from '@/lib/constants';
 import type { Tool, CommunityPost } from '@/types';
+import Link from 'next/link';
 
 export default function ProfilePage() {
   return (
@@ -23,9 +24,10 @@ export default function ProfilePage() {
 function ProfileContent() {
   const { user, signOut } = useAuth();
   const { bookmarkedIds } = useBookmarkList();
-  const [tab, setTab] = useState<'bookmarks' | 'community'>('bookmarks');
+  const [tab, setTab] = useState<'bookmarks' | 'community' | 'saved-posts'>('bookmarks');
   const [bookmarkedTools, setBookmarkedTools] = useState<Tool[]>([]);
   const [myPosts, setMyPosts] = useState<CommunityPost[]>([]);
+  const [savedPosts, setSavedPosts] = useState<CommunityPost[]>([]);
 
   useEffect(() => {
     if (bookmarkedIds.length === 0) {
@@ -89,11 +91,30 @@ function ProfileContent() {
     } catch { /* ignore */ }
   }, [user]);
 
+  // 저장한 커뮤니티 글 로드
+  useEffect(() => {
+    if (!user) return;
+    try {
+      const bookmarksKey = 'aipick_user_bookmarks';
+      const userBookmarks = JSON.parse(localStorage.getItem(bookmarksKey) || '[]') as string[];
+
+      if (userBookmarks.length === 0) {
+        setSavedPosts([]);
+        return;
+      }
+
+      const allPosts: CommunityPost[] = JSON.parse(localStorage.getItem(COMMUNITY_STORAGE_KEY) || '[]');
+      const bookmarked = allPosts.filter(p => userBookmarks.includes(p.id));
+      setSavedPosts(bookmarked);
+    } catch { /* ignore */ }
+  }, [user]);
+
   if (!user) return null;
 
   const tabs = [
     { id: 'bookmarks' as const, label: '북마크', icon: Bookmark, count: bookmarkedTools.length },
-    { id: 'community' as const, label: '커뮤니티', icon: Users, count: myPosts.length },
+    { id: 'saved-posts' as const, label: '저장한 글', icon: BookmarkCheck, count: savedPosts.length },
+    { id: 'community' as const, label: '내 글', icon: Users, count: myPosts.length },
   ];
 
   return (
@@ -144,6 +165,72 @@ function ProfileContent() {
           </div>
         ) : (
           <EmptyState icon={Bookmark} message="저장한 서비스가 없습니다" />
+        )
+      )}
+
+      {tab === 'saved-posts' && (
+        savedPosts.length > 0 ? (
+          <div className="space-y-3">
+            {savedPosts.map((post) => {
+              const typeConfig = COMMUNITY_POST_TYPES[post.post_type as keyof typeof COMMUNITY_POST_TYPES];
+              const avatarColor = getAvatarColor(post.user_name || 'User');
+              const firstChar = (post.user_name || 'U')[0];
+
+              return (
+                <Link key={post.id} href={`/community/${post.id}`}>
+                  <div className="rounded-xl border border-border bg-white p-5 hover:shadow-md transition-shadow">
+                    {/* 태그 */}
+                    {post.tags && post.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                        {post.tags.slice(0, 3).map(tag => (
+                          <span key={tag.id} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-50 text-purple-700">
+                            #{tag.tag_display}
+                          </span>
+                        ))}
+                        {post.tags.length > 3 && (
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-50 text-gray-500">
+                            +{post.tags.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {/* 제목 */}
+                    <h3 className="text-base font-bold text-foreground mb-2 line-clamp-1">
+                      {post.title}
+                    </h3>
+
+                    {/* 본문 미리보기 */}
+                    <p className="text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed">
+                      {post.content}
+                    </p>
+
+                    {/* 하단 정보 */}
+                    <div className="flex items-center justify-between text-xs text-gray-400">
+                      <div className="flex items-center gap-1">
+                        <div className={cn('h-5 w-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold', avatarColor)}>
+                          {firstChar}
+                        </div>
+                        <span>{post.user_name}</span>
+                        <span>•</span>
+                        <span>{new Date(post.created_at).toLocaleDateString('ko-KR')}</span>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <span className={cn('inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium', typeConfig?.color || 'bg-gray-100 text-gray-600')}>
+                          {typeConfig?.label || post.post_type}
+                        </span>
+                        <span>좋아요 {post.like_count}</span>
+                        <span>댓글 {post.comment_count || 0}</span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        ) : (
+          <EmptyState icon={BookmarkCheck} message="저장한 글이 없습니다" />
         )
       )}
 
