@@ -7,6 +7,7 @@ import { cn, getAvatarColor } from '@/lib/utils';
 import type { CommunityPost } from '@/types';
 import TagPill from '@/components/community/v2/TagPill';
 import QuestionDetailView from '@/components/community/QuestionDetailView';
+import CommentSection from '@/components/community/v2/CommentSection';
 
 const STORAGE_KEY = 'aipick_community_v2';
 
@@ -52,26 +53,66 @@ function CommunityPostDetail({ postId }: { postId: string }) {
 
   const handleLike = async () => {
     if (!post) return;
-    try {
-      await fetch('/api/community/like', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_id: post.id }),
-      });
-      await fetchPost();
-    } catch { /* ignore */ }
+
+    // localStorage 기반 좋아요 토글
+    const likesKey = 'aipick_user_likes';
+    const userLikes = JSON.parse(localStorage.getItem(likesKey) || '[]') as string[];
+    const hasLiked = userLikes.includes(post.id);
+
+    // 토글
+    const newLikes = hasLiked
+      ? userLikes.filter(id => id !== post.id)
+      : [...userLikes, post.id];
+
+    localStorage.setItem(likesKey, JSON.stringify(newLikes));
+
+    // 게시글 업데이트
+    const localPosts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') as CommunityPost[];
+    const updatedPosts = localPosts.map(p => {
+      if (p.id === post.id) {
+        return {
+          ...p,
+          like_count: hasLiked ? (p.like_count - 1) : (p.like_count + 1),
+          has_liked: !hasLiked,
+        };
+      }
+      return p;
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
+    await fetchPost();
   };
 
   const handleBookmark = async () => {
     if (!post) return;
-    try {
-      await fetch('/api/community/v2/bookmark', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_id: post.id }),
-      });
-      await fetchPost();
-    } catch { /* ignore */ }
+
+    // localStorage 기반 북마크 토글
+    const bookmarksKey = 'aipick_user_bookmarks';
+    const userBookmarks = JSON.parse(localStorage.getItem(bookmarksKey) || '[]') as string[];
+    const hasBookmarked = userBookmarks.includes(post.id);
+
+    // 토글
+    const newBookmarks = hasBookmarked
+      ? userBookmarks.filter(id => id !== post.id)
+      : [...userBookmarks, post.id];
+
+    localStorage.setItem(bookmarksKey, JSON.stringify(newBookmarks));
+
+    // 게시글 업데이트
+    const localPosts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') as CommunityPost[];
+    const updatedPosts = localPosts.map(p => {
+      if (p.id === post.id) {
+        return {
+          ...p,
+          bookmark_count: hasBookmarked ? (p.bookmark_count - 1) : (p.bookmark_count + 1),
+          has_bookmarked: !hasBookmarked,
+        };
+      }
+      return p;
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
+    await fetchPost();
   };
 
   if (loading) {
@@ -222,15 +263,14 @@ function CommunityPostDetail({ postId }: { postId: string }) {
           </div>
         </div>
 
-        {/* 댓글 영역 (추후 구현) */}
-        <div className="rounded-xl border border-border bg-white p-6">
-          <h2 className="text-lg font-bold text-foreground mb-4">
-            댓글 {post.comment_count || 0}개
-          </h2>
-          <div className="text-center py-8 text-gray-400 text-sm">
-            댓글 기능은 곧 추가됩니다
-          </div>
-        </div>
+        {/* 댓글 영역 */}
+        <CommentSection
+          postId={postId}
+          commentCount={post.comment_count || 0}
+          onCommentCountChange={(newCount) => {
+            setPost({ ...post, comment_count: newCount });
+          }}
+        />
       </div>
     </div>
   );

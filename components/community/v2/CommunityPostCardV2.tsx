@@ -58,13 +58,13 @@ export default function CommunityPostCardV2({
           </div>
         )}
 
-        {/* 제목 */}
-        <h3 className="text-base font-bold text-foreground mb-2 hover:text-primary transition-colors">
+        {/* 제목 (1줄) */}
+        <h3 className="text-base font-bold text-foreground mb-2 hover:text-primary transition-colors line-clamp-1">
           {post.title}
         </h3>
 
-        {/* 본문 미리보기 */}
-        <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+        {/* 본문 미리보기 (2줄) */}
+        <p className="text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed">
           {post.content}
         </p>
 
