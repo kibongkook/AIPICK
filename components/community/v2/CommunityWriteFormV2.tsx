@@ -11,11 +11,13 @@ interface CommunityWriteFormV2Props {
     content: string;
     media?: MediaAttachment[];
     tags?: string[];
+    post_type?: 'discussion' | 'question' | 'review';
   }) => Promise<boolean>;
 }
 
 export default function CommunityWriteFormV2({ onSubmit }: CommunityWriteFormV2Props) {
   const { user } = useAuth();
+  const [postType, setPostType] = useState<'discussion' | 'question' | 'review'>('discussion');
   const [content, setContent] = useState('');
   const [media, setMedia] = useState<MediaAttachment[]>([]);
   const [tags, setTags] = useState<string[]>([]);
@@ -103,6 +105,7 @@ export default function CommunityWriteFormV2({ onSubmit }: CommunityWriteFormV2P
       content: content.trim(),
       media: media.length > 0 ? media : undefined,
       tags: tags.length > 0 ? tags : undefined,
+      post_type: postType,
     });
 
     if (success) {
@@ -110,12 +113,50 @@ export default function CommunityWriteFormV2({ onSubmit }: CommunityWriteFormV2P
       setMedia([]);
       setTags([]);
       setTagInput('');
+      setPostType('discussion'); // 제출 후 기본값으로 리셋
     }
     setSubmitting(false);
   };
 
   return (
     <form onSubmit={handleSubmit} className="rounded-xl border border-border bg-white p-6">
+      {/* 글 타입 선택 */}
+      <div className="mb-4 flex gap-2">
+        <button
+          type="button"
+          onClick={() => setPostType('discussion')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            postType === 'discussion'
+              ? 'bg-primary text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+          }`}
+        >
+          일반
+        </button>
+        <button
+          type="button"
+          onClick={() => setPostType('review')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            postType === 'review'
+              ? 'bg-primary text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+          }`}
+        >
+          리뷰
+        </button>
+        <button
+          type="button"
+          onClick={() => setPostType('question')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            postType === 'question'
+              ? 'bg-primary text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+          }`}
+        >
+          질문
+        </button>
+      </div>
+
       {/* 본문 입력 */}
       <textarea
         value={content}

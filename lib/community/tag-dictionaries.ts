@@ -7,41 +7,123 @@
 // ==========================================
 export const AI_TOOL_ALIASES: Record<string, string[]> = {
   // 대화형 AI
-  'chatgpt': ['chatgpt', 'chat gpt', 'gpt', 'gpt-4', 'gpt4', 'gpt-3.5', '챗gpt', '챗지피티', 'openai'],
-  'claude': ['claude', 'claude ai', '클로드', 'anthropic'],
-  'gemini': ['gemini', 'bard', '제미나이', '바드', 'google ai'],
-  'copilot': ['copilot', 'bing chat', '코파일럿', 'microsoft copilot'],
+  'chatgpt': [
+    'chatgpt', 'chat gpt', 'chat-gpt',
+    'gpt', 'gpt-4', 'gpt4', 'gpt-3.5', 'gpt3.5',
+    '챗gpt', '챗지피티', '지피티', '챗 지피티',
+    'openai', 'open ai',
+  ],
+  'claude': [
+    'claude', 'claude ai', 'claude-ai',
+    '클로드', '쿨루드', '클로드ai',
+    'claude code', 'claudecode', 'claude-code',
+    '클로드코드', '클로드 code', '클로드 코드',
+    'anthropic',
+  ],
+  'gemini': [
+    'gemini', 'gemini ai', 'gemini-ai',
+    '제미나이', '제미니', '지미나이', '지미니',
+    'bard', '바드',
+    'google ai', 'google gemini', '구글 제미나이', '구글 지미니',
+  ],
+  'copilot': [
+    'copilot', 'co-pilot', 'co pilot',
+    '코파일럿', '코-파일럿', '코 파일럿',
+    'bing chat', '빙챗', '빙 챗',
+    'microsoft copilot', '마이크로소프트 코파일럿', 'ms copilot',
+  ],
 
   // 이미지 생성
-  'midjourney': ['midjourney', '미드저니', 'mj'],
-  'dalle': ['dall-e', 'dalle', 'dall e', '달리'],
-  'stable-diffusion': ['stable diffusion', 'sd', '스테이블 디퓨전'],
-  'leonardo-ai': ['leonardo', 'leonardo ai', '레오나르도'],
+  'midjourney': [
+    'midjourney', 'mid-journey', 'mid journey',
+    '미드저니', '미드-저니', '미드 저니',
+    'mj',
+  ],
+  'dalle': [
+    'dall-e', 'dalle', 'dall e', 'dalle-2', 'dalle-3',
+    '달리', '달-리', '달 리', '달리2', '달리3',
+  ],
+  'stable-diffusion': [
+    'stable diffusion', 'stablediffusion', 'stable-diffusion',
+    '스테이블 디퓨전', '스테이블디퓨전', '스테이블-디퓨전',
+    'sd', 'sd1.5', 'sdxl',
+  ],
+  'leonardo-ai': [
+    'leonardo', 'leonardo ai', 'leonardo-ai',
+    '레오나르도', '레오나르도ai', '레오나르도 ai',
+  ],
 
   // 영상 생성
-  'runway': ['runway', '런웨이', 'runway ml'],
-  'pika': ['pika', 'pika labs', '피카'],
-  'synthesia': ['synthesia', '신세시아'],
+  'runway': [
+    'runway', 'runway ml', 'runwayml',
+    '런웨이', '런웨이ml', '런웨이 ml',
+  ],
+  'pika': [
+    'pika', 'pika labs', 'pikalabs',
+    '피카', '피카랩스', '피카 랩스',
+  ],
+  'synthesia': [
+    'synthesia',
+    '신세시아', '신시시아', '신테시아',
+  ],
 
   // 음악 생성
-  'suno': ['suno', 'suno ai', '수노'],
-  'udio': ['udio', '우디오'],
+  'suno': [
+    'suno', 'suno ai', 'sunoai',
+    '수노', '수노ai', '수노 ai', '슈노',
+  ],
+  'udio': [
+    'udio', 'udio ai', 'udioai',
+    '우디오', '유디오', '우디오ai',
+  ],
 
   // 코딩 도구
-  'github-copilot': ['github copilot', 'copilot', '깃허브 코파일럿'],
-  'cursor': ['cursor', 'cursor ai', '커서'],
-  'v0': ['v0', 'v0.dev', 'vercel v0'],
-  'replit': ['replit', '레플릿'],
+  'github-copilot': [
+    'github copilot', 'github-copilot', 'githubcopilot',
+    '깃허브 코파일럿', '깃허브코파일럿', '깃헙 코파일럿',
+    'gh copilot',
+  ],
+  'cursor': [
+    'cursor', 'cursor ai', 'cursor-ai', 'cursorai',
+    '커서', '커서ai', '커서 ai',
+  ],
+  'v0': [
+    'v0', 'v0.dev', 'v0dev',
+    'vercel v0', '버셀 v0', '버셀v0',
+    '브이제로', 'v제로',
+  ],
+  'replit': [
+    'replit', 'repl.it', 'repl',
+    '레플릿', '레플', '리플릿',
+  ],
 
   // 번역/글쓰기
-  'deepl': ['deepl', '딥엘', '디플'],
-  'notion-ai': ['notion ai', 'notion', '노션 ai'],
-  'jasper': ['jasper', 'jasper ai'],
+  'deepl': [
+    'deepl', 'deep l',
+    '딥엘', '디플', '딥 엘',
+  ],
+  'notion-ai': [
+    'notion ai', 'notion-ai', 'notionai', 'notion',
+    '노션 ai', '노션ai', '노션',
+  ],
+  'jasper': [
+    'jasper', 'jasper ai', 'jasper-ai', 'jasperai',
+    '재스퍼', '재스퍼ai', '재스퍼 ai',
+  ],
 
   // 한국 서비스
-  'wrtn': ['뤼튼', 'wrtn', 'riton', '라이튼'],
-  'clova-x': ['클로바x', 'clova x', 'clovax', 'naver clova'],
-  'askup': ['askup', '애스크업', '에스크업'],
+  'wrtn': [
+    '뤼튼', 'wrtn', 'riton', '라이튼', '류튼',
+    '뤼튼ai', '뤼튼 ai',
+  ],
+  'clova-x': [
+    '클로바x', '클로바 x', 'clova x', 'clovax', 'clova-x',
+    'naver clova', '네이버 클로바', '네이버클로바',
+  ],
+  'askup': [
+    'askup', 'ask up', 'ask-up',
+    '애스크업', '에스크업', '아스크업', '애스크 업',
+  ],
 };
 
 // ==========================================

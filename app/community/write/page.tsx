@@ -15,6 +15,7 @@ export default function CommunityWritePage() {
     content: string;
     media?: MediaAttachment[];
     tags?: string[];
+    post_type?: 'discussion' | 'question' | 'review';
   }) => {
     try {
       const res = await fetch('/api/community/v2', {
@@ -24,6 +25,7 @@ export default function CommunityWritePage() {
           content: data.content,
           media: data.media,
           manual_tags: data.tags,
+          post_type: data.post_type || 'discussion',
         }),
       });
 
@@ -73,7 +75,7 @@ export default function CommunityWritePage() {
           user_name: '로컬 사용자',
           target_type: 'general',
           target_id: 'general',
-          post_type: 'discussion',
+          post_type: data.post_type || 'discussion',
           title: autoTitle,
           content: data.content,
           media: data.media || [],
