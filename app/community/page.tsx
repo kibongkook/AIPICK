@@ -28,7 +28,10 @@ function CommunityContent() {
     ai: searchParams.get('ai') || undefined,
     keyword: searchParams.get('keyword') || undefined,
     sort: (searchParams.get('sort') as any) || 'latest',
+    post_type: searchParams.get('post_type') as 'discussion' | 'question' | 'review' | undefined,
   };
+
+  const currentPostType = searchParams.get('post_type') || 'all';
 
   useEffect(() => {
     fetchPosts();
@@ -42,6 +45,7 @@ function CommunityContent() {
       if (filters.ai) params.set('ai', filters.ai);
       if (filters.keyword) params.set('keyword', filters.keyword);
       if (filters.sort) params.set('sort', filters.sort);
+      if (filters.post_type) params.set('post_type', filters.post_type);
 
       // 페이지네이션 파라미터 추가
       params.set('limit', POSTS_PER_PAGE.toString());
@@ -246,6 +250,76 @@ function CommunityContent() {
             <p className="text-sm text-gray-600 mt-1">
               AI 활용 노하우를 공유하고 배워보세요
             </p>
+          </div>
+        </div>
+      </div>
+
+      {/* 글 타입 필터 */}
+      <div className="bg-white border-b border-border">
+        <div className="container mx-auto px-4 py-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex gap-2">
+              <button
+                onClick={() => {
+                  const params = new URLSearchParams(searchParams.toString());
+                  params.delete('post_type');
+                  params.set('page', '1');
+                  router.push(`/community?${params}`);
+                }}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  currentPostType === 'all'
+                    ? 'bg-primary text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                전체
+              </button>
+              <button
+                onClick={() => {
+                  const params = new URLSearchParams(searchParams.toString());
+                  params.set('post_type', 'discussion');
+                  params.set('page', '1');
+                  router.push(`/community?${params}`);
+                }}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  currentPostType === 'discussion'
+                    ? 'bg-primary text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                일반
+              </button>
+              <button
+                onClick={() => {
+                  const params = new URLSearchParams(searchParams.toString());
+                  params.set('post_type', 'review');
+                  params.set('page', '1');
+                  router.push(`/community?${params}`);
+                }}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  currentPostType === 'review'
+                    ? 'bg-primary text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                리뷰
+              </button>
+              <button
+                onClick={() => {
+                  const params = new URLSearchParams(searchParams.toString());
+                  params.set('post_type', 'question');
+                  params.set('page', '1');
+                  router.push(`/community?${params}`);
+                }}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  currentPostType === 'question'
+                    ? 'bg-primary text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                질문
+              </button>
+            </div>
           </div>
         </div>
       </div>

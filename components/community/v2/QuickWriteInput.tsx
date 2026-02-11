@@ -245,8 +245,8 @@ export default function QuickWriteInput({ onSubmit }: QuickWriteInputProps) {
         ))}
 
         {/* 인라인 태그 입력 */}
-        <div className="inline-flex items-center gap-1">
-          <Hash className="h-3 w-3 text-gray-400" />
+        <div className="inline-flex items-center gap-1 flex-1 min-w-0">
+          <Hash className="h-3 w-3 text-gray-400 flex-shrink-0" />
           <input
             ref={tagInputRef}
             type="text"
@@ -255,7 +255,8 @@ export default function QuickWriteInput({ onSubmit }: QuickWriteInputProps) {
             onKeyDown={handleTagKeyDown}
             onBlur={handleAddTag}
             placeholder="태그 입력"
-            className="w-20 px-1 py-0.5 text-xs border-0 focus:outline-none placeholder:text-gray-300"
+            style={{ width: tagInput ? `${Math.max(80, tagInput.length * 8)}px` : '80px' }}
+            className="px-1 py-0.5 text-xs border-0 focus:outline-none placeholder:text-gray-300"
           />
         </div>
       </div>
