@@ -254,11 +254,12 @@ function CommunityContent() {
         </div>
       </div>
 
-      {/* 글 타입 필터 */}
-      <div className="bg-white border-b border-border">
+      {/* 필터 바 - 통합 */}
+      <div className="bg-white">
         <div className="container mx-auto px-4 py-4">
           <div className="max-w-4xl mx-auto">
-            <div className="flex gap-2">
+            {/* 글 타입 필터 */}
+            <div className="flex gap-2 mb-4">
               <button
                 onClick={() => {
                   const params = new URLSearchParams(searchParams.toString());
@@ -320,19 +321,14 @@ function CommunityContent() {
                 질문
               </button>
             </div>
-          </div>
-        </div>
-      </div>
 
-      {/* 필터 바 - max-width 적용 */}
-      <div className="bg-white border-b border-border">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+            {/* 기존 필터바 (전체 버튼 제거) */}
             <CommunityFilterBar
               filters={filters}
               availableGoals={availableGoals}
               availableAIs={availableAIs}
               onFilterChange={handleFilterChange}
+              hideGoalFilter={true}
             />
           </div>
         </div>

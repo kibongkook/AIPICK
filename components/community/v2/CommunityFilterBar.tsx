@@ -9,6 +9,7 @@ interface CommunityFilterBarProps {
   availableGoals: CommunityTag[];
   availableAIs: CommunityTag[];
   onFilterChange: (filters: Partial<CommunityFilters>) => void;
+  hideGoalFilter?: boolean;
 }
 
 export default function CommunityFilterBar({
@@ -16,39 +17,42 @@ export default function CommunityFilterBar({
   availableGoals,
   availableAIs,
   onFilterChange,
+  hideGoalFilter = false,
 }: CommunityFilterBarProps) {
   const { goal, ai, keyword, sort = 'latest' } = filters;
 
   return (
-    <div className="py-4">
-      {/* 목적 필터 */}
-      <div className="flex gap-2 mb-4 overflow-x-auto scrollbar-hide">
-        <button
-          onClick={() => onFilterChange({ goal: undefined })}
-          className={cn(
-            'shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors',
-            !goal
-              ? 'bg-primary text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-          )}
-        >
-          전체
-        </button>
-        {availableGoals.map(tag => (
+    <div>
+      {/* 목적 필터 - 선택적 표시 */}
+      {!hideGoalFilter && (
+        <div className="flex gap-2 mb-4 overflow-x-auto scrollbar-hide">
           <button
-            key={tag.id}
-            onClick={() => onFilterChange({ goal: tag.tag_value })}
+            onClick={() => onFilterChange({ goal: undefined })}
             className={cn(
               'shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors',
-              goal === tag.tag_value
+              !goal
                 ? 'bg-primary text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             )}
           >
-            {tag.tag_display}
+            전체
           </button>
-        ))}
-      </div>
+          {availableGoals.map(tag => (
+            <button
+              key={tag.id}
+              onClick={() => onFilterChange({ goal: tag.tag_value })}
+              className={cn(
+                'shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors',
+                goal === tag.tag_value
+                  ? 'bg-primary text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              )}
+            >
+              {tag.tag_display}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* AI 서비스 + 검색 + 정렬 */}
       <div className="flex items-center gap-3">
