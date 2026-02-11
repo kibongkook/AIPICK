@@ -194,7 +194,7 @@ export const COMMUNITY_SECTION_LABEL = '커뮤니티';
 
 export const COMMUNITY_POST_TYPES = {
   rating: { label: '평가', icon: 'Star', color: 'bg-yellow-100 text-yellow-700' },
-  discussion: { label: '자유글', icon: 'MessageSquare', color: 'bg-blue-100 text-blue-700' },
+  discussion: { label: '일반', icon: 'MessageSquare', color: 'bg-blue-100 text-blue-700' },
   tip: { label: '팁', icon: 'Lightbulb', color: 'bg-emerald-100 text-emerald-700' },
   question: { label: '질문', icon: 'HelpCircle', color: 'bg-purple-100 text-purple-700' },
 } as const;

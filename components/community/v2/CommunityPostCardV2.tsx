@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ThumbsUp, MessageSquare, Bookmark, Eye, Check, MessageCircleQuestion } from 'lucide-react';
 import { cn, getAvatarColor } from '@/lib/utils';
+import { COMMUNITY_POST_TYPES } from '@/lib/constants';
 import type { CommunityPost as CommunityPostType, CommunityTag } from '@/types';
 import TagPill from './TagPill';
 
@@ -53,21 +54,32 @@ export default function CommunityPostCardV2({
     ? contentLines.slice(1).join('\n').trim()
     : '';
 
+  // post_type 설정
+  const typeConfig = COMMUNITY_POST_TYPES[post.post_type as keyof typeof COMMUNITY_POST_TYPES];
+
   return (
     <Link href={`/community/${post.id}`}>
       <div className="rounded-xl border border-border bg-white p-4 hover:shadow-md transition-shadow">
-        {/* 태그 */}
-        {post.tags && post.tags.length > 0 && (
-          <div className="flex flex-wrap items-center gap-1.5 mb-3">
-            {post.tags.map(tag => (
-              <TagPill
-                key={tag.id}
-                tag={tag}
-                onClick={onTagClick}
-              />
-            ))}
-          </div>
-        )}
+        {/* 글 타입 + 태그 */}
+        <div className="flex flex-wrap items-center gap-1.5 mb-3">
+          {/* 글 타입 표시 */}
+          <span className={cn('inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium shrink-0', typeConfig?.color || 'bg-gray-100 text-gray-600')}>
+            {typeConfig?.label || post.post_type}
+          </span>
+
+          {/* 태그들 */}
+          {post.tags && post.tags.length > 0 && (
+            <>
+              {post.tags.map(tag => (
+                <TagPill
+                  key={tag.id}
+                  tag={tag}
+                  onClick={onTagClick}
+                />
+              ))}
+            </>
+          )}
+        </div>
 
         {/* 제목 (1줄) */}
         <h3 className="text-base font-bold text-foreground mb-2 hover:text-primary transition-colors line-clamp-1">
