@@ -17,7 +17,7 @@ import {
   getTools,
   getTopToolsByCategorySlug,
   getRecentCommunityPosts,
-  getDailyPicks, getTrendingQuestions, getCommunityStats,
+  getDailyPicks, getCommunityStats,
   getTrendingTools,
 } from '@/lib/supabase/queries';
 
@@ -27,7 +27,6 @@ import EditorPickRotation from '@/components/home/EditorPickRotation';
 import TrendingToolsRotation from '@/components/home/TrendingToolsRotation';
 import CommunityPostsRotation from '@/components/home/CommunityPostsRotation';
 import AINewsSection from '@/components/home/AINewsSection';
-import TrendingQuestionsPlaceholder from '@/components/home/TrendingQuestionsPlaceholder';
 import CommunityStatsBanner from '@/components/home/CommunityStatsBanner';
 import LeaderboardWidget from '@/components/user/LeaderboardWidget';
 import { AI_RECIPES } from '@/data/recipes';
@@ -39,14 +38,13 @@ const SIDEBAR_PURPOSES = MAIN_PAGE_PURPOSES.slice(0, 5);
 export default async function Home() {
   const [
     editorPicks, trendingTools,
-    communityPosts, dailyPicks, trendingQuestions, communityStats,
+    communityPosts, dailyPicks, communityStats,
     ...restArr
   ] = await Promise.all([
     getEditorPicks(MAIN_EDITOR_PICKS_COUNT),
     getTrendingTools(4),
     getRecentCommunityPosts(4),
     getDailyPicks(8),
-    getTrendingQuestions(5),
     getCommunityStats(),
     // 사이드바 카테고리별 랭킹
     ...SIDEBAR_CATEGORY_RANKINGS.map(r => getTopToolsByCategorySlug(r.slug, 5)),
@@ -102,9 +100,6 @@ export default async function Home() {
 
             {/* 6. AI 뉴스 */}
             <AINewsSection />
-
-            {/* 7. 커뮤니티 질문 */}
-            <TrendingQuestionsPlaceholder questions={trendingQuestions} />
           </div>
 
           {/* 사이드바 (1/3) */}
