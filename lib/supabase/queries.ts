@@ -66,6 +66,7 @@ const seedRaw = seedData as Record<string, unknown>;
 const seed = {
   tools: seedData.tools as unknown as Tool[],
   categories: seedData.categories as unknown as Category[],
+  tool_categories: seedRaw.tool_categories as any[] | undefined,
   // 새 2단계 분류
   user_types: seedRaw.user_types as UserType[] | undefined,
   purpose_tool_recommendations: seedRaw.purpose_tool_recommendations as PurposeToolRecommendation[] | undefined,
@@ -84,6 +85,71 @@ const seed = {
   role_showcases: seedRaw.role_showcases as RoleShowcase[] | undefined,
   role_use_cases: seedRaw.role_use_cases as RoleUseCaseShowcase[] | undefined,
 };
+
+// ==========================================
+// 다중 카테고리 헬퍼 함수
+// ==========================================
+
+/**
+ * Seed 데이터에서 도구에 카테고리 정보를 첨부
+ */
+function attachCategoriesToTools(tools: Tool[]): Tool[] {
+  if (!seed.tool_categories) {
+    // tool_categories가 없으면 레거시 category_id 사용
+    return tools.map(tool => {
+      const category = seed.categories.find(c => c.id === (tool as any).category_id);
+      return {
+        ...tool,
+        categories: category ? [{ ...category, is_primary: true }] : [],
+        primary_category_id: (tool as any).category_id
+      };
+    });
+  }
+
+  return tools.map(tool => {
+    const toolCategoryMappings = seed.tool_categories!.filter(tc => tc.tool_id === tool.id);
+    const categories = toolCategoryMappings
+      .map(tc => {
+        const category = seed.categories.find(c => c.id === tc.category_id);
+        return category ? { ...category, is_primary: tc.is_primary } : null;
+      })
+      .filter(Boolean)
+      .sort((a, b) => {
+        if (a!.is_primary !== b!.is_primary) return b!.is_primary ? 1 : -1;
+        return 0;
+      }) as any[];
+
+    const primaryCategory = categories.find(c => c.is_primary);
+
+    return {
+      ...tool,
+      categories,
+      primary_category_id: primaryCategory?.id
+    };
+  });
+}
+
+/**
+ * Supabase에서 도구 조회 시 카테고리 JOIN 쿼리
+ */
+const TOOL_WITH_CATEGORIES_SELECT = `
+  *,
+  tool_categories!inner (
+    category_id,
+    is_primary,
+    sort_order,
+    categories:category_id (
+      id,
+      name,
+      slug,
+      icon,
+      description,
+      color,
+      sort_order,
+      created_at
+    )
+  )
+`;
 
 // ==========================================
 // 카테고리
@@ -112,48 +178,70 @@ export async function getCategoryBySlug(slug: string): Promise<Category | undefi
 export async function getTools(): Promise<Tool[]> {
   const supabase = await db();
   if (supabase) {
+    // TODO: Supabase multi-category query - 임시로 기본 쿼리 사용
     const { data } = await supabase.from('tools').select('*');
     if (data?.length) return data as Tool[];
   }
-  return seed.tools;
+  return attachCategoriesToTools(seed.tools);
 }
 
 export async function getToolById(id: string): Promise<Tool | undefined> {
   const supabase = await db();
   if (supabase) {
+    // TODO: Supabase multi-category query - 임시로 기본 쿼리 사용
     const { data } = await supabase.from('tools').select('*').eq('id', id).single();
     if (data) return data as Tool;
   }
-  return seed.tools.find((t) => t.id === id);
+  const tool = seed.tools.find((t) => t.id === id);
+  if (!tool) return undefined;
+  return attachCategoriesToTools([tool])[0];
 }
 
 export async function getToolBySlug(slug: string): Promise<Tool | undefined> {
   const supabase = await db();
   if (supabase) {
+    // TODO: Supabase multi-category query
     const { data } = await supabase.from('tools').select('*').eq('slug', slug).single();
     if (data) return data as Tool;
   }
-  return seed.tools.find((t) => t.slug === slug);
+  const tool = seed.tools.find((t) => t.slug === slug);
+  if (!tool) return undefined;
+  return attachCategoriesToTools([tool])[0];
 }
 
 export async function getToolsByCategory(categoryId: string): Promise<Tool[]> {
   const supabase = await db();
   if (supabase) {
+    // TODO: Supabase multi-category query using tool_categories table
     const { data } = await supabase
-      .from('tools')
-      .select('*')
-      .eq('category_id', categoryId)
-      .order('visit_count', { ascending: false });
-    if (data?.length) return data as Tool[];
+      .from('tool_categories')
+      .select('tool_id, tools (*)')
+      .eq('category_id', categoryId);
+    if (data?.length) {
+      const tools = data.map((item: any) => item.tools).filter(Boolean);
+      return tools as Tool[];
+    }
   }
-  return seed.tools
-    .filter((t) => t.category_id === categoryId)
-    .sort((a, b) => b.visit_count - a.visit_count);
+
+  // Seed data에서 tool_categories를 통해 필터링
+  if (seed.tool_categories) {
+    const toolIds = seed.tool_categories
+      .filter(tc => tc.category_id === categoryId)
+      .map(tc => tc.tool_id);
+    const tools = seed.tools.filter(t => toolIds.includes(t.id));
+    return attachCategoriesToTools(tools).sort((a, b) => b.visit_count - a.visit_count);
+  }
+
+  // 레거시: category_id 사용
+  return attachCategoriesToTools(
+    seed.tools.filter((t) => (t as any).category_id === categoryId)
+  ).sort((a, b) => b.visit_count - a.visit_count);
 }
 
 export async function getEditorPicks(limit = 6): Promise<Tool[]> {
   const supabase = await db();
   if (supabase) {
+    // TODO: Supabase multi-category query
     const { data } = await supabase
       .from('tools')
       .select('*')
@@ -162,33 +250,63 @@ export async function getEditorPicks(limit = 6): Promise<Tool[]> {
       .limit(limit);
     if (data?.length) return data as Tool[];
   }
-  return seed.tools
-    .filter((t) => t.is_editor_pick)
-    .sort((a, b) => b.rating_avg - a.rating_avg)
-    .slice(0, limit);
+  return attachCategoriesToTools(
+    seed.tools
+      .filter((t) => t.is_editor_pick)
+      .sort((a, b) => b.rating_avg - a.rating_avg)
+      .slice(0, limit)
+  );
 }
 
 export async function getSimilarTools(tool: Tool, limit = 3): Promise<Tool[]> {
   const supabase = await db();
-  if (supabase) {
-    const { data } = await supabase
-      .from('tools')
-      .select('*')
-      .eq('category_id', tool.category_id)
-      .neq('id', tool.id)
-      .order('rating_avg', { ascending: false })
-      .limit(limit);
-    if (data?.length) return data as Tool[];
+  const primaryCategoryId = tool.categories?.find(c => c.is_primary)?.id || tool.categories?.[0]?.id;
+
+  if (supabase && primaryCategoryId) {
+    // Find tools in the same primary category
+    const { data: toolIds } = await supabase
+      .from('tool_categories')
+      .select('tool_id')
+      .eq('category_id', primaryCategoryId)
+      .eq('is_primary', true);
+
+    if (toolIds?.length) {
+      const ids = toolIds.map(tc => tc.tool_id).filter(id => id !== tool.id);
+      const { data } = await supabase
+        .from('tools')
+        .select('*')
+        .in('id', ids)
+        .order('rating_avg', { ascending: false })
+        .limit(limit);
+      if (data?.length) return data as Tool[];
+    }
   }
-  return seed.tools
-    .filter((t) => t.category_id === tool.category_id && t.id !== tool.id)
-    .sort((a, b) => b.rating_avg - a.rating_avg)
-    .slice(0, limit);
+
+  // Seed fallback
+  if (seed.tool_categories && primaryCategoryId) {
+    const toolIds = seed.tool_categories
+      .filter(tc => tc.category_id === primaryCategoryId && tc.is_primary)
+      .map(tc => tc.tool_id)
+      .filter(id => id !== tool.id);
+    const tools = seed.tools.filter(t => toolIds.includes(t.id));
+    return attachCategoriesToTools(tools)
+      .sort((a, b) => b.rating_avg - a.rating_avg)
+      .slice(0, limit);
+  }
+
+  // Legacy fallback
+  return attachCategoriesToTools(
+    seed.tools
+      .filter((t) => (t as any).category_id === primaryCategoryId && t.id !== tool.id)
+      .sort((a, b) => b.rating_avg - a.rating_avg)
+      .slice(0, limit)
+  );
 }
 
 export async function getLatestTools(limit = 4): Promise<Tool[]> {
   const supabase = await db();
   if (supabase) {
+    // TODO: Supabase multi-category query
     const { data } = await supabase
       .from('tools')
       .select('*')
@@ -196,9 +314,11 @@ export async function getLatestTools(limit = 4): Promise<Tool[]> {
       .limit(limit);
     if (data?.length) return data as Tool[];
   }
-  return [...seed.tools]
-    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-    .slice(0, limit);
+  return attachCategoriesToTools(
+    [...seed.tools]
+      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      .slice(0, limit)
+  );
 }
 
 // ==========================================
@@ -252,8 +372,18 @@ export async function getTopToolsByCategorySlug(slug: string, limit = 4): Promis
   }
   const seedCat = seed.categories.find((c) => c.slug === slug);
   if (!seedCat) return [];
-  return [...seed.tools]
-    .filter((t) => t.category_id === seedCat.id)
+
+  let tools = [...seed.tools];
+  if (seed.tool_categories) {
+    const toolIds = seed.tool_categories
+      .filter(tc => tc.category_id === seedCat.id)
+      .map(tc => tc.tool_id);
+    tools = tools.filter((t) => toolIds.includes(t.id));
+  } else {
+    tools = tools.filter((t) => (t as any).category_id === seedCat.id);
+  }
+
+  return attachCategoriesToTools(tools)
     .sort((a, b) => b.ranking_score - a.ranking_score)
     .slice(0, limit);
 }
@@ -264,6 +394,7 @@ export async function getTopToolsByCategorySlug(slug: string, limit = 4): Promis
 export async function getRankings(categorySlug?: string): Promise<(Tool & { ranking: number })[]> {
   const supabase = await db();
   if (supabase) {
+    // TODO: Update to use tool_categories for multi-category support
     let query = supabase.from('tools').select('*');
 
     if (categorySlug) {
@@ -273,7 +404,16 @@ export async function getRankings(categorySlug?: string): Promise<(Tool & { rank
         .eq('slug', categorySlug)
         .single();
       if (cat) {
-        query = query.eq('category_id', cat.id);
+        // Use tool_categories for filtering
+        const { data: toolIds } = await supabase
+          .from('tool_categories')
+          .select('tool_id')
+          .eq('category_id', cat.id);
+
+        if (toolIds?.length) {
+          const ids = toolIds.map(tc => tc.tool_id);
+          query = query.in('id', ids);
+        }
       }
     }
 
@@ -287,11 +427,21 @@ export async function getRankings(categorySlug?: string): Promise<(Tool & { rank
   let tools = [...seed.tools];
   if (categorySlug) {
     const cat = seed.categories.find((c) => c.slug === categorySlug);
-    if (cat) {
-      tools = tools.filter((t) => t.category_id === cat.id);
+    if (cat && seed.tool_categories) {
+      // Use tool_categories
+      const toolIds = seed.tool_categories
+        .filter(tc => tc.category_id === cat.id)
+        .map(tc => tc.tool_id);
+      tools = tools.filter((t) => toolIds.includes(t.id));
+    } else if (cat) {
+      // Fallback to legacy category_id
+      tools = tools.filter((t) => (t as any).category_id === cat.id);
     }
   }
-  return tools
+
+  const toolsWithCategories = attachCategoriesToTools(tools);
+
+  return toolsWithCategories
     .sort((a, b) => {
       const scoreA = (a.hybrid_score || a.ranking_score || 0);
       const scoreB = (b.hybrid_score || b.ranking_score || 0);
@@ -661,10 +811,19 @@ export async function getToolsByPurpose(purposeSlug: string, limit?: number): Pr
   // Seed fallback: find category by slug
   const seedCat = seed.categories.find((c) => c.slug === purposeSlug);
   if (!seedCat) return [];
-  const tools = [...seed.tools]
-    .filter((t) => t.category_id === seedCat.id)
-    .sort((a, b) => b.ranking_score - a.ranking_score);
-  return limit ? tools.slice(0, limit) : tools;
+
+  let tools = [...seed.tools];
+  if (seed.tool_categories) {
+    const toolIds = seed.tool_categories
+      .filter(tc => tc.category_id === seedCat.id)
+      .map(tc => tc.tool_id);
+    tools = tools.filter(t => toolIds.includes(t.id));
+  } else {
+    tools = tools.filter((t) => (t as any).category_id === seedCat.id);
+  }
+
+  const toolsWithCategories = attachCategoriesToTools(tools).sort((a, b) => b.ranking_score - a.ranking_score);
+  return limit ? toolsWithCategories.slice(0, limit) : toolsWithCategories;
 }
 
 // ==========================================
@@ -802,7 +961,10 @@ function searchToolsSeed(filters: SearchFilters): Tool[] {
     const catIds = filters.category
       .map((slug) => seed.categories.find((c) => c.slug === slug)?.id)
       .filter(Boolean);
-    results = results.filter((t) => catIds.includes(t.category_id));
+    results = results.filter((t) =>
+      t.categories?.some(c => catIds.includes(c.id)) ||
+      catIds.includes((t as any).category_id) // Legacy fallback
+    );
   }
 
   if (filters.supports_korean) {

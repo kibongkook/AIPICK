@@ -48,7 +48,8 @@ export default async function ToolDetailPage({ params }: Props) {
   if (!tool) notFound();
 
   const categories = await getCategories();
-  const category = categories.find((c) => c.id === tool.category_id);
+  const primaryCategory = tool.categories?.find(c => c.is_primary) || tool.categories?.[0];
+  const category = categories.find((c) => c.id === primaryCategory?.id);
   const [similarTools, benchmarks] = await Promise.all([
     getSimilarTools(tool, 3),
     tool.has_benchmark_data ? getToolBenchmarks(tool.id) : Promise.resolve([]),

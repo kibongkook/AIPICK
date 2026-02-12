@@ -192,6 +192,7 @@ export async function POST(request: NextRequest) {
     target_type = 'general',
     target_id,
     manual_tags = [],
+    post_type = 'discussion',
   } = body;
 
   // 검증
@@ -228,7 +229,7 @@ export async function POST(request: NextRequest) {
       feature_ratings,
       target_type,
       target_id,
-      post_type: 'discussion',
+      post_type,
     })
     .select()
     .single();

@@ -2,12 +2,12 @@
 
 import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Search } from 'lucide-react';
+import { Search, Plus } from 'lucide-react';
 import Link from 'next/link';
 import CommunityFilterBar from '@/components/community/v2/CommunityFilterBar';
 import CommunityPostCardV2 from '@/components/community/v2/CommunityPostCardV2';
 import QuickWriteInput from '@/components/community/v2/QuickWriteInput';
-import type { CommunityPost, CommunityTag, CommunityFilters, MediaAttachment } from '@/types';
+import type { CommunityPost, CommunityTag, CommunityFilters, MediaAttachment, CommunityPostType } from '@/types';
 
 const STORAGE_KEY = 'aipick_community_v2';
 
@@ -29,7 +29,7 @@ function CommunityContent() {
     ai: searchParams.get('ai') || undefined,
     keyword: searchParams.get('keyword') || undefined,
     sort: (searchParams.get('sort') as any) || 'latest',
-    post_type: searchParams.get('post_type') as 'discussion' | 'question' | 'review' | undefined,
+    post_type: searchParams.get('post_type') as CommunityPostType | undefined,
   };
 
   const currentPostType = searchParams.get('post_type') || 'all';
@@ -233,7 +233,7 @@ function CommunityContent() {
     content: string;
     media?: MediaAttachment[];
     tags?: string[];
-    post_type?: 'discussion' | 'question' | 'review';
+    post_type?: CommunityPostType;
   }) => {
     try {
       const res = await fetch('/api/community/v2', {
@@ -336,11 +336,21 @@ function CommunityContent() {
       {/* 헤더 */}
       <div className="bg-white border-b border-border">
         <div className="container mx-auto px-4 py-6">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-foreground">커뮤니티</h1>
-            <p className="text-sm text-gray-600 mt-1">
-              AI 활용 노하우를 공유하고 배워보세요
-            </p>
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <span className="text-4xl">💬</span>
+                <h1 className="text-2xl font-bold text-foreground">커뮤니티</h1>
+              </div>
+              <Link
+                href="/community/write"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
+              >
+                <Plus className="h-5 w-5" />
+                글쓰기
+              </Link>
+            </div>
+            <p className="text-base text-gray-600">AI 활용 노하우를 공유하고 배워보세요</p>
           </div>
         </div>
       </div>

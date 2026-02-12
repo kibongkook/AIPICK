@@ -440,3 +440,57 @@ export const NOTIFICATION_TYPES = {
   like_received: { label: '좋아요', icon: 'ThumbsUp' },
   mention: { label: '멘션', icon: 'AtSign' },
 } as const;
+
+// ==========================================
+// 도발 시스템
+// ==========================================
+export const PROVOCATION_SECTION_LABEL = '도발';
+
+export const PROVOCATION_HEADERS = [
+  "여러분이 원하는 기능을 추가하세요",
+  "사용자가 AIPICK을 수정할 수 있습니다",
+  "AIPICK을 엉망으로 만들어 보세요",
+  "당신의 아이디어로 AIPICK을 지배하세요",
+  "개발자보다 당신이 더 잘 알고 있습니다",
+  "이 사이트, 이제 당신 것입니다",
+  "불만 있으면 직접 고치세요",
+  "독재는 끝났습니다. 민주주의의 시작",
+  "개발자는 당신의 노예입니다",
+  "마음에 안 들면 뒤집어엎으세요",
+  "당신이 CEO입니다",
+  "혁명을 일으키세요",
+  "이 사이트를 당신 마음대로 바꾸세요",
+  "개발자를 부려먹으세요",
+  "당신의 명령을 기다립니다",
+  "폭군은 사라졌습니다",
+  "이제 당신이 결정합니다",
+  "망가뜨릴 권리, 고칠 의무",
+  "사용자 > 개발자",
+  "여기는 무법지대입니다"
+] as const;
+
+export const PROVOCATION_CATEGORIES = {
+  feature: { label: '기능 추가', icon: 'Plus', color: 'bg-blue-100 text-blue-700' },
+  design: { label: '디자인 개선', icon: 'Palette', color: 'bg-purple-100 text-purple-700' },
+  bug: { label: '버그 수정', icon: 'Bug', color: 'bg-red-100 text-red-700' },
+  performance: { label: '성능 개선', icon: 'Zap', color: 'bg-yellow-100 text-yellow-700' },
+  mobile: { label: '모바일 개선', icon: 'Smartphone', color: 'bg-emerald-100 text-emerald-700' },
+  other: { label: '기타', icon: 'MoreHorizontal', color: 'bg-gray-100 text-gray-700' },
+} as const;
+
+export const PROVOCATION_STATUSES = {
+  submitted: { label: '제출됨', color: 'bg-gray-100 text-gray-700' },
+  voting: { label: '투표 중', color: 'bg-blue-100 text-blue-700' },
+  accepted: { label: '채택됨', color: 'bg-green-100 text-green-700' },
+  in_development: { label: '개발 중', color: 'bg-purple-100 text-purple-700' },
+  completed: { label: '완료됨', color: 'bg-emerald-100 text-emerald-700' },
+  rejected: { label: '거부됨', color: 'bg-red-100 text-red-700' },
+} as const;
+
+export const MIN_PROVOCATION_TITLE_LENGTH = 5;
+export const MAX_PROVOCATION_TITLE_LENGTH = 100;
+export const MIN_PROVOCATION_DESCRIPTION_LENGTH = 10;
+export const MAX_PROVOCATION_DESCRIPTION_LENGTH = 2000;
+export const MAX_PROVOCATION_IMAGES = 3;
+export const VOTING_DURATION_DAYS = 7;
+export const MIN_ACCEPTANCE_VOTE_RATIO = 0.6; // 60% 찬성 필요

@@ -42,6 +42,9 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             <Link href="/community" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
               커뮤니티
             </Link>
+            <Link href="/provocation" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors flex items-center gap-1.5">
+              <span>🔥</span> 도발
+            </Link>
             <Link href="/guides" onClick={onClose} className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface hover:text-primary transition-colors">
               가이드
             </Link>

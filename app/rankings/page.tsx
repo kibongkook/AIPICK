@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Trophy, Star, Users } from 'lucide-react';
-import { SITE_NAME } from '@/lib/constants';
+import { SITE_NAME, SIDEBAR_CATEGORY_RANKINGS } from '@/lib/constants';
 import { getRankings, getCategories } from '@/lib/supabase/queries';
 import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
 import type { Tool } from '@/types';
@@ -19,7 +19,11 @@ interface Props {
 export default async function RankingsPage({ searchParams }: Props) {
   const { category } = await searchParams;
   const rankedTools = await getRankings(category);
-  const categories = await getCategories();
+  const allCategories = await getCategories();
+
+  // 메인 페이지와 동일한 12개 카테고리만 표시 (SIDEBAR_CATEGORY_RANKINGS 기준)
+  const sidebarSlugs = SIDEBAR_CATEGORY_RANKINGS.map(r => r.slug) as readonly string[];
+  const categories = allCategories.filter(cat => (sidebarSlugs as readonly string[]).includes(cat.slug));
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -79,7 +83,8 @@ export default async function RankingsPage({ searchParams }: Props) {
 
         {/* 랭킹 행 */}
         {rankedTools.map((tool) => {
-          const cat = categories.find((c) => c.id === tool.category_id);
+          const primaryCategory = tool.categories?.find(c => c.is_primary) || tool.categories?.[0];
+          const cat = categories.find((c) => c.id === primaryCategory?.id);
           const trendDir = tool.trend_direction || 'stable';
           const trendMag = tool.trend_magnitude || 0;
 

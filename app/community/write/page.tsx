@@ -1,21 +1,24 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
+import { Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ArrowLeft, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import CommunityWriteFormV2 from '@/components/community/v2/CommunityWriteFormV2';
-import type { CommunityPost, MediaAttachment } from '@/types';
+import type { CommunityPost, MediaAttachment, CommunityPostType } from '@/types';
 
 const STORAGE_KEY = 'aipick_community_v2';
 
-export default function CommunityWritePage() {
+function CommunityWriteContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const typeParam = searchParams.get('type') as CommunityPostType | null;
 
   const handleSubmit = async (data: {
     content: string;
     media?: MediaAttachment[];
     tags?: string[];
-    post_type?: 'discussion' | 'question' | 'review';
+    post_type?: CommunityPostType;
   }) => {
     try {
       const res = await fetch('/api/community/v2', {
@@ -128,8 +131,23 @@ export default function CommunityWritePage() {
           커뮤니티로 돌아가기
         </Link>
 
-        <CommunityWriteFormV2 onSubmit={handleSubmit} />
+        <CommunityWriteFormV2
+          onSubmit={handleSubmit}
+          initialPostType={typeParam || undefined}
+        />
       </div>
     </div>
+  );
+}
+
+export default function CommunityWritePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    }>
+      <CommunityWriteContent />
+    </Suspense>
   );
 }

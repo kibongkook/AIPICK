@@ -59,7 +59,7 @@ export default async function AdminToolsPage() {
                 </td>
                 <td className="px-5 py-3 text-gray-500">
                   <span className="rounded bg-gray-100 px-2 py-0.5 text-xs">
-                    {tool.category_id}
+                    {tool.categories?.find(c => c.is_primary)?.name || tool.categories?.[0]?.name || '-'}
                   </span>
                 </td>
                 <td className="px-5 py-3">

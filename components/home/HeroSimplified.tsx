@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Search, MessageCircleQuestion } from 'lucide-react';
+import { Search, MessageCircleQuestion, Flame } from 'lucide-react';
 import { SOCIAL_PROOF_MESSAGES } from '@/lib/constants';
 
 interface HeroSimplifiedProps {
@@ -20,6 +20,13 @@ const ENTRY_POINTS = [
     icon: MessageCircleQuestion,
     href: '/community',
     color: 'from-purple-500 to-pink-500',
+  },
+  {
+    title: '🔥 도발',
+    description: 'AIPICK 개발에 직접 참여하세요',
+    icon: Flame,
+    href: '/provocation',
+    color: 'from-orange-500 to-red-500',
   },
 ] as const;
 
@@ -42,8 +49,8 @@ export default function HeroSimplified({ toolCount }: HeroSimplifiedProps) {
             {SOCIAL_PROOF_MESSAGES.hero_sub}
           </p>
 
-          {/* 2개 진입점 카드 */}
-          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-lg mx-auto">
+          {/* 진입점 카드 */}
+          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 max-w-3xl mx-auto">
             {ENTRY_POINTS.map((ep) => (
               <Link
                 key={ep.title}

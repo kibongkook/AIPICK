@@ -76,7 +76,7 @@ export interface Tool {
   slug: string;
   description: string;
   long_description: string | null;
-  category_id: string;
+  // category_id: string; // DEPRECATED: 다중 카테고리 지원으로 제거됨
   url: string;
   logo_url: string | null;
   pricing_type: PricingType;
@@ -109,10 +109,26 @@ export interface Tool {
   sample_output_prompt: string | null;
   created_at: string;
   updated_at: string;
+  // 다중 카테고리 지원
+  categories?: CategoryWithPrimary[];
+  primary_category_id?: string;
+}
+
+export interface CategoryWithPrimary extends Category {
+  is_primary?: boolean;
+}
+
+export interface ToolCategory {
+  tool_id: string;
+  category_id: string;
+  is_primary: boolean;
+  sort_order: number;
+  created_at: string;
 }
 
 export interface ToolWithCategory extends Tool {
-  category: Category;
+  category: Category;  // 레거시 호환: primary category를 반환
+  categories: CategoryWithPrimary[];
 }
 
 // ==========================================
@@ -439,6 +455,7 @@ export interface CommunityFilters {
   sort?: 'latest' | 'popular' | 'saved';
   target_type?: string;
   target_id?: string;
+  post_type?: CommunityPostType;
 }
 
 // ==========================================
@@ -718,4 +735,66 @@ export interface RoleUseCaseShowcase {
   sort_order: number;
   tool?: Tool;
   role_showcase?: RoleShowcase;
+}
+
+// ==========================================
+// 도발 시스템
+// ==========================================
+export type ProvocationCategory = 'feature' | 'design' | 'bug' | 'performance' | 'mobile' | 'other';
+export type ProvocationStatus = 'submitted' | 'voting' | 'accepted' | 'in_development' | 'completed' | 'rejected';
+export type VoteType = 'up' | 'down';
+
+export interface Provocation {
+  id: string;
+  user_id: string;
+  user_name: string;
+
+  title: string;
+  category: ProvocationCategory;
+  description: string;
+  expected_effect: string | null;
+  reference_url: string | null;
+  images: string[];
+
+  status: ProvocationStatus;
+  vote_up_count: number;
+  vote_down_count: number;
+  comment_count: number;
+
+  voting_round_id: number | null;
+  voting_start_date: string | null;
+  voting_end_date: string | null;
+
+  rejection_reason: string | null;
+
+  created_at: string;
+  updated_at: string;
+
+  // 클라이언트 전용 필드
+  user_vote?: VoteType | null;
+  vote_ratio?: number;
+}
+
+export interface ProvocationVote {
+  id: string;
+  provocation_id: string;
+  user_id: string;
+  vote_type: VoteType;
+  created_at: string;
+}
+
+export interface VotingRound {
+  id: number;
+  start_date: string;
+  end_date: string;
+  status: 'active' | 'completed';
+  winner_ids: string[];
+  created_at: string;
+}
+
+export interface ProvocationFilters {
+  status?: ProvocationStatus;
+  category?: ProvocationCategory;
+  keyword?: string;
+  sort?: 'latest' | 'popular' | 'votes';
 }

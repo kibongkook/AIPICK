@@ -72,7 +72,8 @@ export default async function ToolShowcaseStrip({ toolSlug, tool }: ToolShowcase
   // 폴백: sample_output이 있으면 예시 결과 표시
   if (!tool?.sample_output) return null;
 
-  const isCode = tool.category_id === 'cat-coding-tools';
+  const primaryCategory = tool.categories?.find(c => c.is_primary) || tool.categories?.[0];
+  const isCode = primaryCategory?.slug === 'coding';
 
   return (
     <section className="mb-8">

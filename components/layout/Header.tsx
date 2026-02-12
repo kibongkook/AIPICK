@@ -39,6 +39,9 @@ export default function Header() {
           <Link href="/community" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
             커뮤니티
           </Link>
+          <Link href="/provocation" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors flex items-center gap-1">
+            <span>🔥</span> 도발
+          </Link>
 
           <SearchBar className="w-52" />
         </nav>

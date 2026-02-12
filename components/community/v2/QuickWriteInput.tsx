@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, Paperclip, X, Hash } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
-import type { MediaAttachment } from '@/types';
+import type { MediaAttachment, CommunityPostType } from '@/types';
 
 const PLACEHOLDER_MESSAGES = [
   'AI 세상에 오신 소감을 공유해주세요',
@@ -21,13 +21,13 @@ interface QuickWriteInputProps {
     content: string;
     media?: MediaAttachment[];
     tags?: string[];
-    post_type?: 'discussion' | 'question' | 'review';
+    post_type?: CommunityPostType;
   }) => Promise<boolean>;
 }
 
 export default function QuickWriteInput({ onSubmit }: QuickWriteInputProps) {
   const { user } = useAuth();
-  const [postType, setPostType] = useState<'discussion' | 'question' | 'review'>('discussion');
+  const [postType, setPostType] = useState<CommunityPostType>('discussion');
   const [content, setContent] = useState('');
   const [media, setMedia] = useState<MediaAttachment[]>([]);
   const [tags, setTags] = useState<string[]>([]);
@@ -163,9 +163,9 @@ export default function QuickWriteInput({ onSubmit }: QuickWriteInputProps) {
         </button>
         <button
           type="button"
-          onClick={() => setPostType('review')}
+          onClick={() => setPostType('rating')}
           className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-            postType === 'review'
+            postType === 'rating'
               ? 'bg-primary text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
           }`}

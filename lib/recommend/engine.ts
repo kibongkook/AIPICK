@@ -180,14 +180,17 @@ function scoreCategoryMatch(
   // Primary categories (first in list = most relevant)
   const primarySlug = dbCategorySlugs[0];
   const primaryId = categoryIdMap.get(primarySlug);
-  if (primaryId && tool.category_id === primaryId) {
+  const toolCategoryIds = tool.categories?.map(c => c.id) || [];
+  const primaryCategoryId = tool.categories?.find(c => c.is_primary)?.id || tool.categories?.[0]?.id;
+
+  if (primaryId && (primaryCategoryId === primaryId || toolCategoryIds.includes(primaryId))) {
     return CATEGORY_EXACT_SCORE;
   }
 
   // Related categories
   for (let i = 1; i < dbCategorySlugs.length; i++) {
     const relatedId = categoryIdMap.get(dbCategorySlugs[i]);
-    if (relatedId && tool.category_id === relatedId) {
+    if (relatedId && toolCategoryIds.includes(relatedId)) {
       return CATEGORY_RELATED_SCORE;
     }
   }

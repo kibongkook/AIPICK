@@ -19,17 +19,31 @@ interface CommentSectionProps {
   postId: string;
   commentCount: number;
   onCommentCountChange?: (newCount: number) => void;
+  contentType?: 'community' | 'provocation'; // 댓글이 달릴 콘텐츠 유형
 }
 
-const COMMENTS_STORAGE_KEY = 'aipick_comments';
-const USER_COMMENT_LIKES_KEY = 'aipick_user_comment_likes';
-
-export default function CommentSection({ postId, commentCount, onCommentCountChange }: CommentSectionProps) {
+export default function CommentSection({
+  postId,
+  commentCount,
+  onCommentCountChange,
+  contentType = 'community'
+}: CommentSectionProps) {
   const { user } = useAuth();
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  // contentType에 따라 storage key 설정
+  const COMMENTS_STORAGE_KEY = contentType === 'provocation'
+    ? 'aipick_provocation_comments'
+    : 'aipick_comments';
+  const USER_COMMENT_LIKES_KEY = contentType === 'provocation'
+    ? 'aipick_user_provocation_comment_likes'
+    : 'aipick_user_comment_likes';
+  const POSTS_STORAGE_KEY = contentType === 'provocation'
+    ? 'aipick_provocations'
+    : 'aipick_community_v2';
 
   useEffect(() => {
     loadComments();
@@ -59,7 +73,7 @@ export default function CommentSection({ postId, commentCount, onCommentCountCha
         id: `comment-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
         post_id: postId,
         user_id: user.id,
-        user_name: user.user_metadata?.name || user.email?.split('@')[0] || 'User',
+        user_name: (user as any).user_metadata?.name || user.email?.split('@')[0] || 'User',
         content: newComment.trim(),
         like_count: 0,
         created_at: new Date().toISOString(),
@@ -71,15 +85,14 @@ export default function CommentSection({ postId, commentCount, onCommentCountCha
       localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(allComments));
 
       // 게시글의 댓글 수 업데이트
-      const POSTS_KEY = 'aipick_community_v2';
-      const posts = JSON.parse(localStorage.getItem(POSTS_KEY) || '[]');
+      const posts = JSON.parse(localStorage.getItem(POSTS_STORAGE_KEY) || '[]');
       const updatedPosts = posts.map((p: any) => {
         if (p.id === postId) {
           return { ...p, comment_count: (p.comment_count || 0) + 1 };
         }
         return p;
       });
-      localStorage.setItem(POSTS_KEY, JSON.stringify(updatedPosts));
+      localStorage.setItem(POSTS_STORAGE_KEY, JSON.stringify(updatedPosts));
 
       // 상태 업데이트
       setComments([...comments, comment]);
