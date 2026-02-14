@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Link from 'next/link';
-import { BookOpen, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { BookOpen, ChevronLeft, ChevronRight, ArrowRight, Sparkles } from 'lucide-react';
 import { AI_RECIPES } from '@/data/recipes';
 import RecipeCard from '@/components/recipe/RecipeCard';
 import RecipeCommunitySection from './RecipeCommunitySection';
@@ -12,8 +12,24 @@ interface RecipeCarouselProps {
   communityPosts: CommunityPost[];
 }
 
+/**
+ * 주 번호 기반으로 Featured Recipe 인덱스를 계산
+ * 매주 다른 레시피가 초기 Featured로 표시됨
+ */
+const getWeeklyFeaturedIndex = (totalRecipes: number): number => {
+  if (totalRecipes === 0) return 0;
+
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 1);
+  const diff = now.getTime() - start.getTime();
+  const oneWeek = 1000 * 60 * 60 * 24 * 7;
+  const weekNumber = Math.floor(diff / oneWeek);
+
+  return weekNumber % totalRecipes;
+};
+
 export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(getWeeklyFeaturedIndex(AI_RECIPES.length));
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
   const [startX, setStartX] = useState(0);
@@ -22,6 +38,9 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
   const containerRef = useRef<HTMLDivElement>(null);
 
   if (AI_RECIPES.length === 0) return null;
+
+  const featuredIndex = getWeeklyFeaturedIndex(AI_RECIPES.length);
+  const isFeatured = currentIndex === featuredIndex;
 
   const currentRecipe = AI_RECIPES[currentIndex];
   const prevIndex = (currentIndex - 1 + AI_RECIPES.length) % AI_RECIPES.length;
@@ -131,6 +150,12 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
         <div className="flex items-center gap-2">
           <BookOpen className="h-5 w-5 text-primary" />
           <h2 className="text-lg font-extrabold text-foreground">AI 레시피</h2>
+          {isFeatured && (
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white text-[10px] font-bold">
+              <Sparkles className="h-2.5 w-2.5" />
+              이번 주 추천
+            </span>
+          )}
         </div>
         <Link
           href="/recipes"
@@ -141,7 +166,7 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
         </Link>
       </div>
       <p className="text-xs text-gray-400 mb-4 -mt-2">
-        여러 AI를 조합해 원하는 결과물을 만드는 단계별 가이드
+        여러 AI를 조합해 원하는 결과물을 만드는 단계별 가이드 · 매주 새로운 추천 레시피
       </p>
 
       {/* 캐러셀 */}
