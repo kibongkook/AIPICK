@@ -8,37 +8,27 @@ export const SITE_DESCRIPTION = '당신과 같은 전문가들이 매일 확인�
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://aipick.kr';
 
 // ==========================================
-// 1단계: 목적별 카테고리 (Primary Entry)
-// "지금 뭐 하려고 하세요?"
+// 통일 카테고리 (12개)
+// seed.json categories와 동일한 체계
 // ==========================================
-export const PURPOSE_CATEGORIES = [
+export const TOOL_CATEGORIES = [
+  { name: '대화형 AI', slug: 'chat', icon: 'MessageSquare', description: 'ChatGPT, Claude 등 범용 AI 챗봇', color: 'from-blue-600 to-indigo-600' },
   { name: '글쓰기 · 문서 · 요약', slug: 'writing', icon: 'PenTool', description: '블로그, 보고서, 번역, 요약까지', color: 'from-blue-500 to-blue-600' },
   { name: '디자인 · 이미지', slug: 'design', icon: 'Image', description: '로고, 썸네일, 일러스트 생성', color: 'from-purple-500 to-pink-600' },
   { name: '영상 · 콘텐츠 제작', slug: 'video', icon: 'Video', description: '영상 편집, 자막, 음악까지', color: 'from-red-500 to-orange-600' },
-  { name: '업무 자동화', slug: 'automation', icon: 'Zap', description: '반복 작업 줄이고 효율 높이기', color: 'from-amber-500 to-yellow-600' },
+  { name: '음악 · 오디오', slug: 'music', icon: 'Music', description: '음악 생성, 음성 합성, 오디오 편집', color: 'from-pink-500 to-rose-600' },
   { name: '코딩 · 개발', slug: 'coding', icon: 'Code', description: '코드 생성, 디버깅, 리뷰', color: 'from-emerald-500 to-teal-600' },
-  { name: '조사 · 리서치', slug: 'research', icon: 'Search', description: '자료 조사, 논문 분석, 정리', color: 'from-cyan-500 to-blue-600' },
-  { name: '학습 · 공부', slug: 'learning', icon: 'GraduationCap', description: '과제, 시험 준비, 언어 학습', color: 'from-indigo-500 to-purple-600' },
+  { name: '업무 자동화', slug: 'automation', icon: 'Zap', description: '반복 작업 줄이고 효율 높이기', color: 'from-amber-500 to-yellow-600' },
+  { name: '번역 · 언어', slug: 'translation', icon: 'Languages', description: '다국어 번역, 언어 학습', color: 'from-cyan-500 to-blue-600' },
+  { name: '데이터 · 리서치', slug: 'data', icon: 'BarChart', description: '데이터 분석, 자료 조사, 논문 검색', color: 'from-teal-500 to-emerald-600' },
   { name: '발표자료 · PPT', slug: 'presentation', icon: 'Presentation', description: '슬라이드, 프레젠테이션 자동 생성', color: 'from-pink-500 to-rose-600' },
   { name: '마케팅 · 홍보', slug: 'marketing', icon: 'Megaphone', description: 'SNS, 광고, SEO, 카피라이팅', color: 'from-orange-500 to-red-600' },
   { name: '서비스 · 제품 만들기', slug: 'building', icon: 'Rocket', description: '프로토타입, MVP, 노코드 개발', color: 'from-violet-500 to-indigo-600' },
 ] as const;
 
-// 레거시 호환: 기존 카테고리 slug → 목적 slug 매핑
-export const LEGACY_CATEGORY_TO_PURPOSE: Record<string, string> = {
-  'general-ai': 'writing',       // 만능 AI → 글쓰기 (주 용도)
-  'text-generation': 'writing',
-  'image-generation': 'design',
-  'video-editing': 'video',
-  'coding-tools': 'coding',
-  'music-generation': 'video',    // 음악 → 영상/콘텐츠 제작
-  'data-analysis': 'research',
-  'translation': 'writing',
-  'others': 'automation',
-};
-
-// 기존 코드 호환을 위해 CATEGORIES도 유지 (PURPOSE_CATEGORIES 기반으로 재구성)
-export const CATEGORIES = PURPOSE_CATEGORIES.map((p, i) => ({
+// 레거시 호환: PURPOSE_CATEGORIES → TOOL_CATEGORIES
+export const PURPOSE_CATEGORIES = TOOL_CATEGORIES;
+export const CATEGORIES = TOOL_CATEGORIES.map((p) => ({
   name: p.name,
   slug: p.slug,
   icon: p.icon,
@@ -65,8 +55,8 @@ export const PRICING_CONFIG: Record<PricingType, { label: string; className: str
 // ==========================================
 // 히어로 목적 버튼 (메인 페이지 - 1단계 진입)
 // ==========================================
-export const HERO_PURPOSE_BUTTONS = PURPOSE_CATEGORIES.map(p => ({
-  label: p.name.split(' · ')[0],  // 짧은 이름
+export const HERO_PURPOSE_BUTTONS = TOOL_CATEGORIES.map(p => ({
+  label: p.name.split(' · ')[0],
   icon: p.icon,
   slug: p.slug,
 }));
@@ -74,7 +64,7 @@ export const HERO_PURPOSE_BUTTONS = PURPOSE_CATEGORIES.map(p => ({
 // ==========================================
 // 메인 페이지 인기 목적 섹션 (상위 5개)
 // ==========================================
-export const MAIN_PAGE_PURPOSES = PURPOSE_CATEGORIES.slice(0, 5).map(p => ({
+export const MAIN_PAGE_PURPOSES = TOOL_CATEGORIES.slice(0, 5).map(p => ({
   slug: p.slug,
   title: p.name,
   subtitle: p.description,
@@ -90,20 +80,10 @@ export const MAIN_PAGE_CATEGORIES_REDUCED = MAIN_PAGE_PURPOSES.slice(0, 3);
 // 사이드바 카테고리별 랭킹 설정
 // DB 카테고리 slug 기준
 // ==========================================
-export const SIDEBAR_CATEGORY_RANKINGS = [
-  { label: '범용 AI', slug: 'chat' },
-  { label: '이미지 생성', slug: 'design' },
-  { label: '영상 생성', slug: 'video' },
-  { label: '코딩', slug: 'coding' },
-  { label: '글쓰기', slug: 'writing' },
-  { label: '번역', slug: 'translation' },
-  { label: '음성 AI', slug: 'voice' },
-  { label: '음악', slug: 'music' },
-  { label: '자동화', slug: 'automation' },
-  { label: '리서치', slug: 'research' },
-  { label: '마케팅', slug: 'marketing' },
-  { label: '교육', slug: 'learning' },
-] as const;
+export const SIDEBAR_CATEGORY_RANKINGS = TOOL_CATEGORIES.map(c => ({
+  label: c.name.split(' · ')[0],
+  slug: c.slug,
+}));
 
 // ==========================================
 // 2단계: 사용자 타입 (Skill & Context)
@@ -310,7 +290,7 @@ export const DISCOVERY_CONFIG = {
 } as const;
 
 export const BENCHMARK_APPLICABLE_CATEGORIES = [
-  'general-ai', 'text-generation', 'coding-tools', 'translation',
+  'chat', 'writing', 'coding', 'translation',
 ] as const;
 
 // ==========================================
@@ -529,7 +509,7 @@ export const PERSONA_CARDS = [
     subtitle: '공부의 게임체인저',
     icon: 'GraduationCap',
     color: 'from-emerald-500 to-teal-600',
-    href: '/category/learning',
+    href: '/category/translation',
     killerSlugs: ['perplexity', 'deepl', 'gamma'] as const,
   },
   {

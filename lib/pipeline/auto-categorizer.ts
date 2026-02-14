@@ -9,9 +9,13 @@ type PurposeSlug = (typeof PURPOSE_CATEGORIES)[number]['slug'];
 
 // 카테고리별 키워드 사전
 const CATEGORY_KEYWORDS: Record<PurposeSlug, string[]> = {
+  chat: [
+    'chatbot', 'chat', 'assistant', 'conversational', 'gpt', 'llm',
+    'ai assistant', 'general ai', 'multi-purpose', 'question', 'answer',
+  ],
   writing: [
     'writing', 'writer', 'text', 'document', 'blog', 'article', 'copywriting',
-    'grammar', 'translate', 'translation', 'summarize', 'summary', 'paraphrase',
+    'grammar', 'summarize', 'summary', 'paraphrase',
     'proofread', 'essay', 'content writing', 'report', 'notion', 'note',
   ],
   design: [
@@ -21,28 +25,31 @@ const CATEGORY_KEYWORDS: Record<PurposeSlug, string[]> = {
   ],
   video: [
     'video', 'film', 'movie', 'animation', 'subtitle', 'caption', 'edit video',
-    'music', 'audio', 'sound', 'voice', 'podcast', 'tts', 'text-to-speech',
-    'speech', 'youtube', 'stream', 'clip', 'reel',
+    'youtube', 'stream', 'clip', 'reel',
   ],
-  automation: [
-    'automation', 'automate', 'workflow', 'integration', 'zapier', 'bot',
-    'scrape', 'schedule', 'pipeline', 'no-code', 'nocode', 'task automation',
-    'rpa', 'productivity', 'efficiency', 'macro',
+  music: [
+    'music', 'audio', 'sound', 'voice', 'podcast', 'tts', 'text-to-speech',
+    'speech', 'song', 'melody', 'beat', 'vocal', 'synthesizer',
   ],
   coding: [
     'code', 'coding', 'programming', 'developer', 'debug', 'github copilot',
     'ide', 'terminal', 'api', 'software', 'deploy', 'devops', 'compiler',
     'repository', 'git', 'frontend', 'backend', 'full-stack',
   ],
-  research: [
+  automation: [
+    'automation', 'automate', 'workflow', 'integration', 'zapier', 'bot',
+    'scrape', 'schedule', 'pipeline', 'no-code', 'nocode', 'task automation',
+    'rpa', 'productivity', 'efficiency', 'macro',
+  ],
+  translation: [
+    'translate', 'translation', 'language', 'multilingual', 'localization',
+    'interpreter', 'dictionary', 'language learning', 'learn', 'tutor',
+    'education', 'study', 'quiz', 'flashcard', 'course', 'exam',
+  ],
+  data: [
     'research', 'search', 'analysis', 'data', 'paper', 'journal', 'academic',
     'citation', 'scholar', 'survey', 'insight', 'analytics', 'intelligence',
-    'crawl', 'scraping', 'web search',
-  ],
-  learning: [
-    'learn', 'education', 'study', 'tutor', 'quiz', 'flashcard', 'course',
-    'language learning', 'exam', 'homework', 'practice', 'mentor', 'teach',
-    'training', 'skill', 'certification',
+    'crawl', 'scraping', 'web search', 'visualization', 'dashboard',
   ],
   presentation: [
     'presentation', 'slide', 'ppt', 'powerpoint', 'keynote', 'deck',

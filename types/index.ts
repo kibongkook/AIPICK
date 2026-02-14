@@ -15,11 +15,13 @@ export type MediaType = 'image' | 'video';
 export type TrendDirection = 'up' | 'down' | 'stable' | 'new';
 
 // ==========================================
-// 1단계: 목적별 카테고리 (Purpose)
+// 통일 카테고리 (12개) — seed.json categories와 동일
 // ==========================================
 export type PurposeSlug =
-  | 'writing' | 'design' | 'video' | 'automation' | 'coding'
-  | 'research' | 'learning' | 'presentation' | 'marketing' | 'building';
+  | 'chat' | 'writing' | 'design' | 'video' | 'music' | 'coding'
+  | 'automation' | 'translation' | 'data' | 'presentation' | 'marketing' | 'building';
+
+export type CategorySlug = PurposeSlug;
 
 export interface Category {
   id: string;

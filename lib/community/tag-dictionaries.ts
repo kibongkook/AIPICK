@@ -180,22 +180,15 @@ export const GOAL_KEYWORDS: Record<string, string[]> = {
     'python', 'javascript', 'java', 'react', 'next',
   ],
 
-  'research': [
-    // 조사
+  'data': [
+    // 조사/리서치
     '조사', '리서치', '분석', '연구',
-    // 자료
+    // 자료/데이터
     '자료', '정보', '데이터', '논문',
     // 동사
     '찾다', '검색', '알아보다',
-  ],
-
-  'learning': [
-    // 학습
-    '학습', '공부', '배우다', '학습하다',
-    // 교육
-    '과제', '숙제', '시험', '문제',
-    // 언어
-    '영어', '일본어', '중국어', '언어',
+    // 분석
+    '시각화', '대시보드', '통계',
   ],
 
   'presentation': [
@@ -300,13 +293,15 @@ export function getAIToolDisplay(slug: string): string {
  */
 export function getGoalDisplay(slug: string): string {
   const displayMap: Record<string, string> = {
+    'chat': '대화형 AI',
     'writing': '글쓰기',
     'design': '디자인',
     'video': '영상',
-    'automation': '자동화',
+    'music': '음악·오디오',
     'coding': '코딩',
-    'research': '리서치',
-    'learning': '학습',
+    'automation': '자동화',
+    'translation': '번역',
+    'data': '데이터·리서치',
     'presentation': '발표',
     'marketing': '마케팅',
     'building': '제품만들기',

@@ -12,7 +12,7 @@
     {
       "id": "7fbbbeb2-d3c7-4920-af6b-4680f78f1a61",
       "slug": "writing",
-      "name": "글쓰기 · 문서 작성",
+      "name": "글쓰기 · 문서 · 요약",
       "description": "블로그, 보고서, 노트 작성",
       "icon": "✍️",
       "order": 2,
@@ -21,19 +21,10 @@
     {
       "id": "5025a911-0505-4394-a778-587445327ade",
       "slug": "translation",
-      "name": "번역",
+      "name": "번역 · 언어",
       "description": "다국어 번역 및 언어 학습",
       "icon": "🌍",
       "order": 3,
-      "created_at": "2026-02-10T10:03:10.701Z"
-    },
-    {
-      "id": "abdcd10c-02d6-4830-bb06-f0db65093353",
-      "slug": "voice",
-      "name": "음성 AI",
-      "description": "TTS, STT, 음성 클로닝",
-      "icon": "🎤",
-      "order": 4,
       "created_at": "2026-02-10T10:03:10.701Z"
     },
     {
@@ -48,7 +39,7 @@
     {
       "id": "a0a4d567-c8a5-4b6f-b135-b13b558b6e6f",
       "slug": "video",
-      "name": "영상 생성 · 편집",
+      "name": "영상 · 콘텐츠 제작",
       "description": "영상 제작, 편집, AI 아바타",
       "icon": "🎬",
       "order": 6,
@@ -57,8 +48,8 @@
     {
       "id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "slug": "music",
-      "name": "음악 생성",
-      "description": "AI 음악, 배경음, 효과음 제작",
+      "name": "음악 · 오디오",
+      "description": "음악 생성, 음성 합성, 오디오 편집",
       "icon": "🎵",
       "order": 7,
       "created_at": "2026-02-10T10:03:10.701Z"
@@ -82,19 +73,10 @@
       "created_at": "2026-02-10T10:03:10.701Z"
     },
     {
-      "id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
-      "slug": "data-analysis",
-      "name": "데이터 분석",
-      "description": "BI, 데이터 시각화, 분석",
-      "icon": "📊",
-      "order": 10,
-      "created_at": "2026-02-10T10:03:10.702Z"
-    },
-    {
       "id": "8dc40214-996b-401f-a8bd-fead730c4292",
-      "slug": "research",
-      "name": "조사 · 리서치",
-      "description": "정보 검색, 자료 조사",
+      "slug": "data",
+      "name": "데이터 · 리서치",
+      "description": "데이터 분석, 자료 조사, 논문 검색",
       "icon": "🔍",
       "order": 11,
       "created_at": "2026-02-10T10:03:10.702Z"
@@ -124,24 +106,6 @@
       "description": "프로토타입, MVP, 노코드 개발",
       "icon": "🏗️",
       "order": 14,
-      "created_at": "2026-02-10T10:03:10.702Z"
-    },
-    {
-      "id": "8fe946e1-e686-4efa-a51a-2aff6d240f88",
-      "slug": "learning",
-      "name": "교육 · 학습",
-      "description": "학습 도구, 과제 도우미",
-      "icon": "📚",
-      "order": 15,
-      "created_at": "2026-02-10T10:03:10.702Z"
-    },
-    {
-      "id": "98d51ac5-bd69-45f6-8651-48346755cfc6",
-      "slug": "entertainment",
-      "name": "엔터테인먼트",
-      "description": "게임, 대화, 재미",
-      "icon": "🎮",
-      "order": 16,
       "created_at": "2026-02-10T10:03:10.702Z"
     }
   ],
@@ -1194,7 +1158,7 @@
       "slug": "character-ai",
       "description": "AI 캐릭터와 대화할 수 있는 플랫폼. 캐릭터 생성·공유, 롤플레이, c1+ 고급 모델",
       "long_description": null,
-      "category_id": "98d51ac5-bd69-45f6-8651-48346755cfc6",
+      "category_id": "e052e3cb-1613-4dc3-95c9-8fb66fa1bda8",
       "url": "https://character.ai",
       "logo_url": "https://icons.duckduckgo.com/ip3/character.ai.ico",
       "pricing_type": "Freemium",
@@ -1246,7 +1210,7 @@
       "slug": "otter-ai",
       "description": "AI 기반 회의 전사·요약 도구로, 실시간 음성 인식과 자동 회의록 생성 제공",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://otter.ai",
       "logo_url": "https://icons.duckduckgo.com/ip3/otter.ai.ico",
       "pricing_type": "Freemium",
@@ -1298,7 +1262,7 @@
       "slug": "fireflies-ai",
       "description": "AI 회의 비서 도구로, 회의 녹음·전사·요약·액션 아이템 추출을 자동화",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://fireflies.ai",
       "logo_url": "https://icons.duckduckgo.com/ip3/fireflies.ai.ico",
       "pricing_type": "Freemium",
@@ -1350,7 +1314,7 @@
       "slug": "tldv",
       "description": "회의 녹음·전사 도구로, AI 기반 하이라이트 추출과 클립 공유에 특화",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://tldv.io",
       "logo_url": "https://icons.duckduckgo.com/ip3/tldv.io.ico",
       "pricing_type": "Freemium",
@@ -1402,7 +1366,7 @@
       "slug": "clova-note",
       "description": "네이버의 AI 음성 기록 서비스로, 한국어 음성 인식과 회의록 자동 생성에 특화",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://clovanote.naver.com",
       "logo_url": "https://icons.duckduckgo.com/ip3/clovanote.naver.com.ico",
       "pricing_type": "Free",
@@ -1610,7 +1574,7 @@
       "slug": "typecast",
       "description": "AI 음성 합성 플랫폼으로, 다양한 한국어 음성으로 텍스트를 자연스러운 음성으로 변환",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://typecast.ai",
       "logo_url": "https://icons.duckduckgo.com/ip3/typecast.ai.ico",
       "pricing_type": "Freemium",
@@ -2966,7 +2930,7 @@
       "slug": "elevenlabs",
       "description": "최고 품질 AI 음성 합성. 29개 언어, 음성 클론, 텍스트→음성 변환",
       "long_description": "AI 음성 합성 및 클로닝 플랫폼으로, 자연스러운 다국어 음성을 생성하고 자신의 목소리를 복제할 수 있습니다. 29개 언어를 지원하며, 유튜브, 팟캐스트, 오디오북 제작에 널리 사용됩니다. Voice Lab에서 감정, 억양, 속도를 세밀하게 조정할 수 있습니다.",
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://elevenlabs.io",
       "logo_url": "https://icons.duckduckgo.com/ip3/elevenlabs.io.ico",
       "pricing_type": "Freemium",
@@ -4531,7 +4495,7 @@
       "slug": "tableau",
       "description": "Salesforce의 엔터프라이즈급 데이터 시각화 및 BI 분석 플랫폼",
       "long_description": null,
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "url": "https://www.tableau.com",
       "logo_url": "https://icons.duckduckgo.com/ip3/tableau.com.ico",
       "pricing_type": "Freemium",
@@ -4634,7 +4598,7 @@
       "slug": "obviously-ai",
       "description": "코딩 없이 클릭만으로 ML 예측 모델을 생성하는 노코드 머신러닝 플랫폼",
       "long_description": null,
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "url": "https://www.obviously.ai",
       "logo_url": "https://icons.duckduckgo.com/ip3/obviously.ai.ico",
       "pricing_type": "Freemium",
@@ -4685,7 +4649,7 @@
       "slug": "rows-ai",
       "description": "AI가 내장된 스프레드시트로, 자연어 명령으로 데이터 분석 및 자동화 가능",
       "long_description": null,
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "url": "https://rows.com",
       "logo_url": "https://icons.duckduckgo.com/ip3/rows.com.ico",
       "pricing_type": "Freemium",
@@ -4940,7 +4904,7 @@
       "slug": "monkeylearn",
       "description": "텍스트 분류, 감성 분석, 키워드 추출 등 노코드 텍스트 분석 AI 플랫폼",
       "long_description": null,
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "url": "https://monkeylearn.com",
       "logo_url": "https://icons.duckduckgo.com/ip3/monkeylearn.com.ico",
       "pricing_type": "Freemium",
@@ -4991,7 +4955,7 @@
       "slug": "power-bi",
       "description": "Microsoft의 비즈니스 인텔리전스 플랫폼으로, Copilot AI 분석 기능 내장",
       "long_description": null,
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "url": "https://powerbi.microsoft.com",
       "logo_url": "https://icons.duckduckgo.com/ip3/powerbi.microsoft.com.ico",
       "pricing_type": "Freemium",
@@ -5043,7 +5007,7 @@
       "slug": "hex",
       "description": "SQL과 Python 노트북 기반 AI 데이터 분석 및 협업 플랫폼",
       "long_description": null,
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "url": "https://hex.tech",
       "logo_url": "https://icons.duckduckgo.com/ip3/hex.tech.ico",
       "pricing_type": "Freemium",
@@ -6583,7 +6547,7 @@
       "slug": "coqui-tts",
       "description": "Coqui TTS - AI 도구",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://coqui.ai",
       "logo_url": "https://www.google.com/s2/favicons?domain=coqui.ai&sz=128",
       "pricing_type": "Freemium",
@@ -6863,7 +6827,7 @@
       "slug": "speechify",
       "description": "Speechify - AI 도구",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://speechify.com",
       "logo_url": "https://www.google.com/s2/favicons?domain=speechify.com&sz=128",
       "pricing_type": "Freemium",
@@ -7183,7 +7147,7 @@
       "slug": "play-ht",
       "description": "Play.ht - AI 도구",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://play.ht",
       "logo_url": "https://www.google.com/s2/favicons?domain=play.ht&sz=128",
       "pricing_type": "Freemium",
@@ -7343,7 +7307,7 @@
       "slug": "murf-ai",
       "description": "Murf AI - AI 도구",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://murf.ai",
       "logo_url": "https://www.google.com/s2/favicons?domain=murf.ai&sz=128",
       "pricing_type": "Freemium",
@@ -7463,7 +7427,7 @@
       "slug": "resemble-ai",
       "description": "Resemble AI - AI 도구",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://resemble.ai",
       "logo_url": "https://www.google.com/s2/favicons?domain=resemble.ai&sz=128",
       "pricing_type": "Freemium",
@@ -7583,7 +7547,7 @@
       "slug": "datarobot",
       "description": "DataRobot - AI 도구",
       "long_description": null,
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "url": "https://datarobot.com",
       "logo_url": "https://www.google.com/s2/favicons?domain=datarobot.com&sz=128",
       "pricing_type": "Freemium",
@@ -7703,7 +7667,7 @@
       "slug": "lovo",
       "description": "LOVO - AI 도구",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://lovo.ai",
       "logo_url": "https://www.google.com/s2/favicons?domain=lovo.ai&sz=128",
       "pricing_type": "Freemium",
@@ -7783,7 +7747,7 @@
       "slug": "listnr",
       "description": "Listnr - AI 도구",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://listnr.ai",
       "logo_url": "https://www.google.com/s2/favicons?domain=listnr.ai&sz=128",
       "pricing_type": "Freemium",
@@ -9063,7 +9027,7 @@
       "slug": "equals",
       "description": "데이터 분석",
       "long_description": null,
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "url": "https://equals.com",
       "logo_url": "https://www.google.com/s2/favicons?domain=equals.com&sz=128",
       "pricing_type": "Freemium",
@@ -9103,7 +9067,7 @@
       "slug": "lookup",
       "description": "AI 데이터 분석가",
       "long_description": null,
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "url": "https://uselookup.com",
       "logo_url": "https://www.google.com/s2/favicons?domain=uselookup.com&sz=128",
       "pricing_type": "Freemium",
@@ -9143,7 +9107,7 @@
       "slug": "coefficient",
       "description": "데이터 동기화",
       "long_description": null,
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "url": "https://coefficient.io",
       "logo_url": "https://www.google.com/s2/favicons?domain=coefficient.io&sz=128",
       "pricing_type": "Freemium",
@@ -9823,7 +9787,7 @@
       "slug": "scenario",
       "description": "게임 아셋 생성",
       "long_description": null,
-      "category_id": "98d51ac5-bd69-45f6-8651-48346755cfc6",
+      "category_id": "e052e3cb-1613-4dc3-95c9-8fb66fa1bda8",
       "url": "https://scenario.com",
       "logo_url": "https://www.google.com/s2/favicons?domain=scenario.com&sz=128",
       "pricing_type": "Freemium",
@@ -9863,7 +9827,7 @@
       "slug": "rosebud-ai",
       "description": "게임 개발",
       "long_description": null,
-      "category_id": "98d51ac5-bd69-45f6-8651-48346755cfc6",
+      "category_id": "e052e3cb-1613-4dc3-95c9-8fb66fa1bda8",
       "url": "https://rosebud.ai",
       "logo_url": "https://www.google.com/s2/favicons?domain=rosebud.ai&sz=128",
       "pricing_type": "Freemium",
@@ -10223,7 +10187,7 @@
       "slug": "podcastle",
       "description": "팟캐스트 편집",
       "long_description": null,
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "url": "https://podcastle.ai",
       "logo_url": "https://www.google.com/s2/favicons?domain=podcastle.ai&sz=128",
       "pricing_type": "Freemium",
@@ -10885,7 +10849,7 @@
     },
     {
       "id": "ptr-research-beginner-1",
-      "purpose_slug": "research",
+      "purpose_slug": "data",
       "user_type_slug": "beginner",
       "tool_id": "550e8400-e29b-41d4-a716-446655440004",
       "recommendation_level": "essential",
@@ -10895,7 +10859,7 @@
     },
     {
       "id": "ptr-research-beginner-2",
-      "purpose_slug": "research",
+      "purpose_slug": "data",
       "user_type_slug": "beginner",
       "tool_id": "550e8400-e29b-41d4-a716-446655440190",
       "recommendation_level": "essential",
@@ -10905,7 +10869,7 @@
     },
     {
       "id": "ptr-research-beginner-3",
-      "purpose_slug": "research",
+      "purpose_slug": "data",
       "user_type_slug": "beginner",
       "tool_id": "550e8400-e29b-41d4-a716-446655440003",
       "recommendation_level": "recommended",
@@ -10915,7 +10879,7 @@
     },
     {
       "id": "ptr-research-beginner-4",
-      "purpose_slug": "research",
+      "purpose_slug": "data",
       "user_type_slug": "beginner",
       "tool_id": "550e8400-e29b-41d4-a716-446655440104",
       "recommendation_level": "optional",
@@ -10925,7 +10889,7 @@
     },
     {
       "id": "ptr-research-student-1",
-      "purpose_slug": "research",
+      "purpose_slug": "data",
       "user_type_slug": "student",
       "tool_id": "550e8400-e29b-41d4-a716-446655440004",
       "recommendation_level": "essential",
@@ -10935,7 +10899,7 @@
     },
     {
       "id": "ptr-research-student-2",
-      "purpose_slug": "research",
+      "purpose_slug": "data",
       "user_type_slug": "student",
       "tool_id": "550e8400-e29b-41d4-a716-446655440190",
       "recommendation_level": "essential",
@@ -10945,7 +10909,7 @@
     },
     {
       "id": "ptr-research-student-3",
-      "purpose_slug": "research",
+      "purpose_slug": "data",
       "user_type_slug": "student",
       "tool_id": "550e8400-e29b-41d4-a716-446655440050",
       "recommendation_level": "recommended",
@@ -10955,7 +10919,7 @@
     },
     {
       "id": "ptr-learning-student-1",
-      "purpose_slug": "learning",
+      "purpose_slug": "chat",
       "user_type_slug": "student",
       "tool_id": "550e8400-e29b-41d4-a716-446655440001",
       "recommendation_level": "essential",
@@ -10965,7 +10929,7 @@
     },
     {
       "id": "ptr-learning-student-2",
-      "purpose_slug": "learning",
+      "purpose_slug": "chat",
       "user_type_slug": "student",
       "tool_id": "550e8400-e29b-41d4-a716-446655440002",
       "recommendation_level": "essential",
@@ -10975,7 +10939,7 @@
     },
     {
       "id": "ptr-learning-student-3",
-      "purpose_slug": "learning",
+      "purpose_slug": "chat",
       "user_type_slug": "student",
       "tool_id": "550e8400-e29b-41d4-a716-446655440115",
       "recommendation_level": "recommended",
@@ -10985,7 +10949,7 @@
     },
     {
       "id": "ptr-learning-student-4",
-      "purpose_slug": "learning",
+      "purpose_slug": "chat",
       "user_type_slug": "student",
       "tool_id": "550e8400-e29b-41d4-a716-446655440003",
       "recommendation_level": "recommended",
@@ -10995,7 +10959,7 @@
     },
     {
       "id": "ptr-learning-parent-1",
-      "purpose_slug": "learning",
+      "purpose_slug": "chat",
       "user_type_slug": "parent",
       "tool_id": "550e8400-e29b-41d4-a716-446655440001",
       "recommendation_level": "essential",
@@ -11005,7 +10969,7 @@
     },
     {
       "id": "ptr-learning-parent-2",
-      "purpose_slug": "learning",
+      "purpose_slug": "chat",
       "user_type_slug": "parent",
       "tool_id": "550e8400-e29b-41d4-a716-446655440062",
       "recommendation_level": "recommended",
@@ -11015,7 +10979,7 @@
     },
     {
       "id": "ptr-learning-parent-3",
-      "purpose_slug": "learning",
+      "purpose_slug": "chat",
       "user_type_slug": "parent",
       "tool_id": "550e8400-e29b-41d4-a716-446655440070",
       "recommendation_level": "recommended",
@@ -11295,7 +11259,7 @@
     },
     {
       "id": "ptr-research-daily-1",
-      "purpose_slug": "research",
+      "purpose_slug": "data",
       "user_type_slug": "daily-user",
       "tool_id": "550e8400-e29b-41d4-a716-446655440004",
       "recommendation_level": "essential",
@@ -11305,7 +11269,7 @@
     },
     {
       "id": "ptr-research-daily-2",
-      "purpose_slug": "research",
+      "purpose_slug": "data",
       "user_type_slug": "daily-user",
       "tool_id": "550e8400-e29b-41d4-a716-446655440190",
       "recommendation_level": "essential",
@@ -11315,7 +11279,7 @@
     },
     {
       "id": "ptr-research-daily-3",
-      "purpose_slug": "research",
+      "purpose_slug": "data",
       "user_type_slug": "daily-user",
       "tool_id": "550e8400-e29b-41d4-a716-446655440050",
       "recommendation_level": "recommended",
@@ -11325,7 +11289,7 @@
     },
     {
       "id": "ptr-research-daily-4",
-      "purpose_slug": "research",
+      "purpose_slug": "data",
       "user_type_slug": "daily-user",
       "tool_id": "550e8400-e29b-41d4-a716-446655440198",
       "recommendation_level": "optional",
@@ -13203,14 +13167,14 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440001",
-      "category_id": "e9f8c3a1-4b6d-4f2e-9c5a-7e8d9f0a1b2c",
+      "category_id": "118a92a9-2e3e-490a-a5ca-059026ceb89c",
       "is_primary": false,
       "sort_order": 2,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440001",
-      "category_id": "f1a2b3c4-5d6e-4f7a-8b9c-0d1e2f3a4b5c",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "is_primary": false,
       "sort_order": 3,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13231,14 +13195,14 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440002",
-      "category_id": "e9f8c3a1-4b6d-4f2e-9c5a-7e8d9f0a1b2c",
+      "category_id": "118a92a9-2e3e-490a-a5ca-059026ceb89c",
       "is_primary": false,
       "sort_order": 2,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440002",
-      "category_id": "f1a2b3c4-5d6e-4f7a-8b9c-0d1e2f3a4b5c",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "is_primary": false,
       "sort_order": 3,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13259,14 +13223,14 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440003",
-      "category_id": "e9f8c3a1-4b6d-4f2e-9c5a-7e8d9f0a1b2c",
+      "category_id": "118a92a9-2e3e-490a-a5ca-059026ceb89c",
       "is_primary": false,
       "sort_order": 2,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440003",
-      "category_id": "f1a2b3c4-5d6e-4f7a-8b9c-0d1e2f3a4b5c",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "is_primary": false,
       "sort_order": 3,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13280,7 +13244,7 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440004",
-      "category_id": "f1a2b3c4-5d6e-4f7a-8b9c-0d1e2f3a4b5c",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "is_primary": false,
       "sort_order": 1,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13399,35 +13363,35 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440115",
-      "category_id": "98d51ac5-bd69-45f6-8651-48346755cfc6",
+      "category_id": "e052e3cb-1613-4dc3-95c9-8fb66fa1bda8",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440116",
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440117",
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440118",
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440119",
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13455,7 +13419,7 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440123",
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13630,7 +13594,7 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440147",
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "is_primary": false,
       "sort_order": 1,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13644,7 +13608,7 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440149",
-      "category_id": "abdcd10c-02d6-4830-bb06-f0db65093353",
+      "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13678,24 +13642,10 @@
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
-      "tool_id": "550e8400-e29b-41d4-a716-446655440030",
-      "category_id": "e9f8c3a1-4b6d-4f2e-9c5a-7e8d9f0a1b2c",
-      "is_primary": false,
-      "sort_order": 1,
-      "created_at": "2026-01-15T00:00:00Z"
-    },
-    {
       "tool_id": "550e8400-e29b-41d4-a716-446655440031",
       "category_id": "118a92a9-2e3e-490a-a5ca-059026ceb89c",
       "is_primary": true,
       "sort_order": 0,
-      "created_at": "2026-01-15T00:00:00Z"
-    },
-    {
-      "tool_id": "550e8400-e29b-41d4-a716-446655440031",
-      "category_id": "e9f8c3a1-4b6d-4f2e-9c5a-7e8d9f0a1b2c",
-      "is_primary": false,
-      "sort_order": 1,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
@@ -13707,7 +13657,7 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440032",
-      "category_id": "e9f8c3a1-4b6d-4f2e-9c5a-7e8d9f0a1b2c",
+      "category_id": "118a92a9-2e3e-490a-a5ca-059026ceb89c",
       "is_primary": false,
       "sort_order": 1,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13749,7 +13699,7 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440164",
-      "category_id": "e9f8c3a1-4b6d-4f2e-9c5a-7e8d9f0a1b2c",
+      "category_id": "118a92a9-2e3e-490a-a5ca-059026ceb89c",
       "is_primary": false,
       "sort_order": 1,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13815,13 +13765,6 @@
       "category_id": "61b550b2-1563-407b-a059-b8957ba0fa5d",
       "is_primary": true,
       "sort_order": 0,
-      "created_at": "2026-01-15T00:00:00Z"
-    },
-    {
-      "tool_id": "550e8400-e29b-41d4-a716-446655440041",
-      "category_id": "c3d4e5f6-7a8b-4c9d-0e1f-2a3b4c5d6e7f",
-      "is_primary": false,
-      "sort_order": 1,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
@@ -13896,7 +13839,7 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440052",
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13910,14 +13853,14 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440191",
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440192",
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
@@ -13959,21 +13902,21 @@
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440197",
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440198",
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {
       "tool_id": "550e8400-e29b-41d4-a716-446655440199",
-      "category_id": "ca1a1250-a8e3-4dd6-8994-bda300aec46a",
+      "category_id": "8dc40214-996b-401f-a8bd-fead730c4292",
       "is_primary": true,
       "sort_order": 0,
       "created_at": "2026-01-15T00:00:00Z"
@@ -14053,13 +13996,6 @@
       "category_id": "b4c4412f-805c-409b-8cd4-de074f47ee58",
       "is_primary": true,
       "sort_order": 0,
-      "created_at": "2026-01-15T00:00:00Z"
-    },
-    {
-      "tool_id": "550e8400-e29b-41d4-a716-446655440210",
-      "category_id": "d83f8a62-2f56-43a6-8c8b-3f40c4d8f6d0",
-      "is_primary": false,
-      "sort_order": 1,
       "created_at": "2026-01-15T00:00:00Z"
     },
     {

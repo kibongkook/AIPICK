@@ -10,7 +10,7 @@ import type {
   MatchDetails,
   PurposeToolRecommendation,
 } from '@/types';
-import { PURPOSE_CATEGORIES } from '@/lib/constants';
+import { TOOL_CATEGORIES } from '@/lib/constants';
 
 // ==========================================
 // Input Types
@@ -27,29 +27,11 @@ export interface RecommendInput {
 }
 
 // ==========================================
-// Purpose → DB Category Slug Mapping
-// Maps Wizard purpose slugs to seed category slugs
-// ==========================================
-
-const PURPOSE_TO_DB_CATEGORIES: Record<string, string[]> = {
-  writing: ['writing', 'chat', 'translation'],
-  design: ['design'],
-  video: ['video', 'music', 'voice'],
-  automation: ['automation'],
-  coding: ['coding'],
-  research: ['research', 'data-analysis', 'chat'],
-  learning: ['chat', 'translation', 'research'],
-  presentation: ['chat', 'design', 'automation'],
-  marketing: ['chat', 'writing', 'design'],
-  building: ['coding', 'automation'],
-};
-
-// ==========================================
-// Purpose Korean Name Map (for reasons)
+// Category Korean Name Map (for reasons)
 // ==========================================
 
 const PURPOSE_NAME_MAP: Record<string, string> = Object.fromEntries(
-  PURPOSE_CATEGORIES.map((p) => [p.slug, p.name.split(' · ')[0]])
+  TOOL_CATEGORIES.map((p) => [p.slug, p.name.split(' · ')[0]])
 );
 
 // ==========================================
@@ -174,25 +156,21 @@ function scoreCategoryMatch(
   purposeSlug: string,
   categoryIdMap: Map<string, string>,
 ): number {
-  const dbCategorySlugs = PURPOSE_TO_DB_CATEGORIES[purposeSlug];
-  if (!dbCategorySlugs) return 0;
+  // 통일된 카테고리 체계: purpose slug = DB category slug
+  const targetCatId = categoryIdMap.get(purposeSlug);
+  if (!targetCatId) return 0;
 
-  // Primary categories (first in list = most relevant)
-  const primarySlug = dbCategorySlugs[0];
-  const primaryId = categoryIdMap.get(primarySlug);
-  const toolCategoryIds = tool.categories?.map(c => c.id) || [];
-  const primaryCategoryId = tool.categories?.find(c => c.is_primary)?.id || tool.categories?.[0]?.id;
+  const toolCategorySlugs = tool.categories?.map(c => c.slug) || [];
+  const primarySlug = tool.categories?.find(c => c.is_primary)?.slug || tool.categories?.[0]?.slug;
 
-  if (primaryId && (primaryCategoryId === primaryId || toolCategoryIds.includes(primaryId))) {
+  // 정확히 일치하는 카테고리
+  if (primarySlug === purposeSlug) {
     return CATEGORY_EXACT_SCORE;
   }
 
-  // Related categories
-  for (let i = 1; i < dbCategorySlugs.length; i++) {
-    const relatedId = categoryIdMap.get(dbCategorySlugs[i]);
-    if (relatedId && toolCategoryIds.includes(relatedId)) {
-      return CATEGORY_RELATED_SCORE;
-    }
+  // 보조 카테고리에 포함
+  if (toolCategorySlugs.includes(purposeSlug)) {
+    return CATEGORY_RELATED_SCORE;
   }
 
   return 0;

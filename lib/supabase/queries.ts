@@ -12,7 +12,7 @@ import type {
   CategoryShowcase, ToolShowcase, RoleShowcase, RoleUseCaseShowcase,
   DailyPick, CommunityPost,
 } from '@/types';
-import { HERO_KEYWORDS, LEGACY_CATEGORY_TO_PURPOSE } from '@/lib/constants';
+import { HERO_KEYWORDS } from '@/lib/constants';
 import seedData from '@/data/seed.json';
 
 // ==========================================
