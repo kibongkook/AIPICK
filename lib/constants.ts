@@ -408,16 +408,23 @@ export const POST_TYPE_FILTERS = [
 // ==========================================
 export const RECIPE_CATEGORIES = {
   music: { label: '음악 제작', icon: 'Music', color: 'from-pink-500 to-rose-600' },
+  audio: { label: '오디오', icon: 'Headphones', color: 'from-purple-500 to-pink-600' },
   video: { label: '영상 제작', icon: 'Video', color: 'from-red-500 to-orange-600' },
   image: { label: '이미지/캐릭터', icon: 'Image', color: 'from-purple-500 to-pink-600' },
+  design: { label: '디자인', icon: 'Palette', color: 'from-pink-500 to-violet-600' },
+  writing: { label: '글쓰기', icon: 'PenTool', color: 'from-emerald-500 to-teal-600' },
+  blog: { label: '블로그/아티클', icon: 'FileText', color: 'from-emerald-500 to-teal-600' },
   marketing: { label: '마케팅', icon: 'Megaphone', color: 'from-orange-500 to-red-600' },
   presentation: { label: '발표자료', icon: 'Presentation', color: 'from-blue-500 to-indigo-600' },
-  blog: { label: '블로그/아티클', icon: 'PenTool', color: 'from-emerald-500 to-teal-600' },
   social: { label: '숏폼/SNS', icon: 'Smartphone', color: 'from-violet-500 to-purple-600' },
   education: { label: '교육 콘텐츠', icon: 'GraduationCap', color: 'from-cyan-500 to-blue-600' },
   ecommerce: { label: '상품 사진', icon: 'ShoppingBag', color: 'from-amber-500 to-yellow-600' },
   podcast: { label: '팟캐스트', icon: 'Mic', color: 'from-indigo-500 to-purple-600' },
-  brand: { label: '브랜드/로고', icon: 'Palette', color: 'from-pink-500 to-violet-600' },
+  brand: { label: '브랜드/로고', icon: 'Sparkles', color: 'from-pink-500 to-violet-600' },
+  business: { label: '비즈니스', icon: 'Briefcase', color: 'from-blue-600 to-indigo-700' },
+  coding: { label: '코딩', icon: 'Code', color: 'from-gray-700 to-slate-800' },
+  data: { label: '데이터', icon: 'BarChart', color: 'from-green-600 to-emerald-700' },
+  personal: { label: '개인/라이프', icon: 'User', color: 'from-blue-500 to-indigo-600' },
   comic: { label: '만화/웹툰', icon: 'BookOpen', color: 'from-rose-500 to-pink-600' },
   '3d': { label: '3D 모델', icon: 'Box', color: 'from-teal-500 to-cyan-600' },
 } as const;
@@ -504,7 +511,7 @@ export const PERSONA_CARDS = [
     subtitle: '업무 효율 10배 올리기',
     icon: 'Briefcase',
     color: 'from-blue-500 to-indigo-600',
-    href: '/jobs/marketer',
+    href: '/category/automation',
     killerSlugs: ['chatgpt', 'claude', 'notion-ai'] as const,
   },
   {
@@ -513,7 +520,7 @@ export const PERSONA_CARDS = [
     subtitle: '아이디어를 작품으로',
     icon: 'Palette',
     color: 'from-purple-500 to-pink-600',
-    href: '/jobs/video-creator',
+    href: '/category/design',
     killerSlugs: ['midjourney', 'runway-ml', 'suno-ai'] as const,
   },
   {
@@ -522,7 +529,7 @@ export const PERSONA_CARDS = [
     subtitle: '공부의 게임체인저',
     icon: 'GraduationCap',
     color: 'from-emerald-500 to-teal-600',
-    href: '/education/college',
+    href: '/category/learning',
     killerSlugs: ['perplexity', 'deepl', 'gamma'] as const,
   },
   {
@@ -531,7 +538,7 @@ export const PERSONA_CARDS = [
     subtitle: '코딩 속도 5배',
     icon: 'Code',
     color: 'from-orange-500 to-red-600',
-    href: '/jobs/ai-developer',
+    href: '/category/coding',
     killerSlugs: ['cursor', 'github-copilot', 'claude'] as const,
   },
 ] as const;

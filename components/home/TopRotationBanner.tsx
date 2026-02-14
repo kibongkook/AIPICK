@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import {
   TrendingUp, Users, ArrowRight,
@@ -25,6 +25,62 @@ const PERSONA_STYLES = {
   student: { bg: 'bg-emerald-50/50', border: 'border-emerald-200', iconBg: 'bg-emerald-100', iconColor: 'text-emerald-600', badge: 'bg-emerald-100 text-emerald-700', indicatorActive: 'bg-emerald-500', accentColor: 'text-emerald-600' },
   developer: { bg: 'bg-orange-50/50', border: 'border-orange-200', iconBg: 'bg-orange-100', iconColor: 'text-orange-600', badge: 'bg-orange-100 text-orange-700', indicatorActive: 'bg-orange-500', accentColor: 'text-orange-600' },
 } as const;
+
+const DRAG_THRESHOLD = 50;
+
+/** 드래그로 넘기기 공통 훅 — 클릭/드래그 확실히 분리 */
+function useSwipe(length: number, setIndex: React.Dispatch<React.SetStateAction<number>>) {
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const hasDragged = useRef(false);
+
+  const onStart = useCallback((clientX: number) => {
+    isDragging.current = true;
+    startX.current = clientX;
+    hasDragged.current = false;
+  }, []);
+
+  const onMove = useCallback((clientX: number) => {
+    if (!isDragging.current) return;
+    if (Math.abs(clientX - startX.current) > 10) {
+      hasDragged.current = true;
+    }
+  }, []);
+
+  const onEnd = useCallback((clientX: number) => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    const offset = clientX - startX.current;
+    if (hasDragged.current && Math.abs(offset) > DRAG_THRESHOLD) {
+      if (offset < 0) {
+        setIndex(prev => (prev + 1) % length);
+      } else {
+        setIndex(prev => (prev - 1 + length) % length);
+      }
+    }
+    // hasDragged를 약간 지연 후 리셋 (클릭 이벤트가 먼저 처리되도록)
+    setTimeout(() => { hasDragged.current = false; }, 100);
+  }, [length, setIndex]);
+
+  const handlers = {
+    onMouseDown: (e: React.MouseEvent) => { e.preventDefault(); onStart(e.clientX); },
+    onMouseMove: (e: React.MouseEvent) => { if (isDragging.current) e.preventDefault(); onMove(e.clientX); },
+    onMouseUp: (e: React.MouseEvent) => onEnd(e.clientX),
+    onMouseLeave: (e: React.MouseEvent) => { if (isDragging.current) onEnd(e.clientX); },
+    onTouchStart: (e: React.TouchEvent) => onStart(e.touches[0].clientX),
+    onTouchMove: (e: React.TouchEvent) => onMove(e.touches[0].clientX),
+    onTouchEnd: (e: React.TouchEvent) => onEnd(e.changedTouches[0].clientX),
+    // 캡처 단계에서 드래그 후 클릭 차단 (Link 이벤트보다 먼저 실행)
+    onClickCapture: (e: React.MouseEvent) => {
+      if (hasDragged.current) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    },
+  };
+
+  return handlers;
+}
 
 function getTrendingReason(tool: Tool): string {
   const parts: string[] = [];
@@ -52,6 +108,7 @@ export default function TopRotationBanner({ trendingTools, allTools }: TopRotati
 
 function TrendingSection({ tools }: { tools: Tool[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const swipeHandlers = useSwipe(tools.length, setCurrentIndex);
 
   useEffect(() => {
     if (tools.length <= 1) return;
@@ -91,47 +148,54 @@ function TrendingSection({ tools }: { tools: Tool[] }) {
         )}
       </div>
 
-      {/* 도구 카드 */}
-      <Link
-        href={`/tools/${tool.slug}`}
-        className="block rounded-lg border border-red-200 bg-gradient-to-r from-red-50/50 to-white p-4 group hover:border-red-400 hover:shadow-md transition-all"
+      {/* 도구 카드 - 드래그 가능 */}
+      <div
+        {...swipeHandlers}
+        className="select-none cursor-grab active:cursor-grabbing"
       >
-        <div className="flex items-center gap-3 mb-3">
-          {tool.logo_url ? (
-            <img src={tool.logo_url} alt={tool.name} className="h-12 w-12 rounded-lg object-cover shadow-sm" />
-          ) : (
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-red-500 text-white text-xl font-bold shadow-sm">
-              {tool.name.charAt(0)}
-            </div>
-          )}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-base font-bold text-foreground group-hover:text-red-600 transition-colors truncate">
-                {tool.name}
-              </h3>
-              <span className="text-xs font-bold px-1.5 py-0.5 rounded-full bg-red-100 text-red-700 shrink-0">
-                ▲ HOT
-              </span>
-            </div>
-            {tool.rating_avg > 0 && (
-              <span className="text-xs text-gray-400">⭐ {tool.rating_avg.toFixed(1)}</span>
+        <Link
+          href={`/tools/${tool.slug}`}
+          className="block rounded-lg border border-red-200 bg-gradient-to-r from-red-50/50 to-white p-4 group hover:border-red-400 hover:shadow-md transition-all"
+          draggable={false}
+        >
+          <div className="flex items-center gap-3 mb-3">
+            {tool.logo_url ? (
+              <img src={tool.logo_url} alt={tool.name} className="h-12 w-12 rounded-lg object-cover shadow-sm pointer-events-none" draggable={false} />
+            ) : (
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-red-500 text-white text-xl font-bold shadow-sm">
+                {tool.name.charAt(0)}
+              </div>
             )}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-1">
+                <h3 className="text-base font-bold text-foreground group-hover:text-red-600 transition-colors truncate">
+                  {tool.name}
+                </h3>
+                <span className="text-xs font-bold px-1.5 py-0.5 rounded-full bg-red-100 text-red-700 shrink-0">
+                  ▲ HOT
+                </span>
+              </div>
+              {tool.rating_avg > 0 && (
+                <span className="text-xs text-gray-400">⭐ {tool.rating_avg.toFixed(1)}</span>
+              )}
+            </div>
           </div>
-        </div>
 
-        <p className="text-sm text-gray-600 line-clamp-1 mb-2">{tool.description}</p>
+          <p className="text-sm text-gray-600 line-clamp-1 mb-2">{tool.description}</p>
 
-        <p className="text-xs font-semibold text-red-600 flex items-center gap-1">
-          <TrendingUp className="h-3.5 w-3.5" />
-          {reason}
-        </p>
-      </Link>
+          <p className="text-xs font-semibold text-red-600 flex items-center gap-1">
+            <TrendingUp className="h-3.5 w-3.5" />
+            {reason}
+          </p>
+        </Link>
+      </div>
     </div>
   );
 }
 
 function PersonalizedSection({ allTools }: { allTools: Tool[] }) {
   const [personaIndex, setPersonaIndex] = useState(0);
+  const swipeHandlers = useSwipe(PERSONA_CARDS.length, setPersonaIndex);
 
   useEffect(() => {
     if (PERSONA_CARDS.length <= 1) return;
@@ -176,46 +240,52 @@ function PersonalizedSection({ allTools }: { allTools: Tool[] }) {
         )}
       </div>
 
-      {/* 페르소나 카드 */}
-      <Link
-        href={persona.href}
-        className={`block rounded-lg border p-4 group transition-all hover:shadow-md ${style.border} ${style.bg}`}
+      {/* 페르소나 카드 - 드래그 가능 */}
+      <div
+        {...swipeHandlers}
+        className="select-none cursor-grab active:cursor-grabbing"
       >
-        <div className="flex items-center gap-3 mb-3">
-          <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center ${style.iconBg}`}>
-            <Icon className={`w-6 h-6 ${style.iconColor}`} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-0.5">
-              <h3 className={`text-base font-bold ${style.accentColor} truncate`}>
-                {persona.title}
-              </h3>
-              <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full ${style.badge} shrink-0`}>
-                추천
-              </span>
+        <Link
+          href={persona.href}
+          className={`block rounded-lg border p-4 group transition-all hover:shadow-md ${style.border} ${style.bg}`}
+          draggable={false}
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center ${style.iconBg}`}>
+              <Icon className={`w-6 h-6 ${style.iconColor}`} />
             </div>
-            <p className="text-xs text-gray-600 truncate">{persona.subtitle}</p>
-          </div>
-        </div>
-
-        {killerTools.length > 0 && (
-          <div className="flex gap-2 mb-2 flex-wrap">
-            {killerTools.slice(0, 3).map(tool => (
-              <div key={tool.id} className="flex items-center gap-1.5 bg-white/80 rounded-md px-2 py-1 border border-gray-100">
-                {tool.logo_url && (
-                  <img src={tool.logo_url} alt={tool.name} className="w-4 h-4 rounded object-contain" />
-                )}
-                <span className="text-xs text-gray-700 font-medium">{tool.name}</span>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-0.5">
+                <h3 className={`text-base font-bold ${style.accentColor} truncate`}>
+                  {persona.title}
+                </h3>
+                <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full ${style.badge} shrink-0`}>
+                  추천
+                </span>
               </div>
-            ))}
+              <p className="text-xs text-gray-600 truncate">{persona.subtitle}</p>
+            </div>
           </div>
-        )}
 
-        <div className={`flex items-center justify-between ${style.accentColor} text-sm font-semibold mt-2`}>
-          <span>맞춤 AI 보기</span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </div>
-      </Link>
+          {killerTools.length > 0 && (
+            <div className="flex gap-2 mb-2 flex-wrap">
+              {killerTools.slice(0, 3).map(tool => (
+                <div key={tool.id} className="flex items-center gap-1.5 bg-white/80 rounded-md px-2 py-1 border border-gray-100">
+                  {tool.logo_url && (
+                    <img src={tool.logo_url} alt={tool.name} className="w-4 h-4 rounded object-contain pointer-events-none" draggable={false} />
+                  )}
+                  <span className="text-xs text-gray-700 font-medium">{tool.name}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className={`flex items-center justify-between ${style.accentColor} text-sm font-semibold mt-2`}>
+            <span>맞춤 AI 보기</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </Link>
+      </div>
     </div>
   );
 }

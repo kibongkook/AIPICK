@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { BookOpen, ChevronLeft, ChevronRight, ArrowRight, Sparkles } from 'lucide-react';
+import { BookOpen, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { AI_RECIPES } from '@/data/recipes';
 import RecipeCard from '@/components/recipe/RecipeCard';
 import RecipeCommunitySection from './RecipeCommunitySection';
@@ -30,8 +30,27 @@ const getWeeklyFeaturedIndex = (totalRecipes: number): number => {
   return weekNumber % totalRecipes;
 };
 
+// 카테고리 필터 정의 (실제 사용 빈도 기반)
+const RECIPE_FILTERS = [
+  { id: 'writing', label: '글쓰기', categories: ['writing', 'blog', 'social'] },
+  { id: 'document', label: '문서 작성', categories: ['presentation', 'business', 'brand'] },
+  { id: 'image', label: '이미지 생성', categories: ['image', 'design'] },
+  { id: 'video', label: '동영상 생성', categories: ['video'] },
+  { id: 'music', label: '노래 생성', categories: ['music', 'audio', 'podcast'] },
+  { id: 'automation', label: '자동화', categories: ['data', 'marketing', 'ecommerce'] },
+  { id: 'education', label: '교육', categories: ['education', 'personal'] },
+  { id: 'coding', label: '코딩', categories: ['coding'] },
+] as const;
+
 export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(getWeeklyFeaturedIndex(AI_RECIPES.length));
+  const [selectedFilter, setSelectedFilter] = useState<string>(() => {
+    // sessionStorage에서 마지막 필터 복원
+    if (typeof window !== 'undefined') {
+      return sessionStorage.getItem('recipeFilter') || 'writing';
+    }
+    return 'writing';
+  });
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
   const [startX, setStartX] = useState(0);
@@ -39,16 +58,37 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
   const [isAnimating, setIsAnimating] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  if (AI_RECIPES.length === 0) return null;
+  // 필터링된 레시피 목록
+  const filteredRecipes = AI_RECIPES.filter(recipe => {
+    const filterConfig = RECIPE_FILTERS.find(f => f.id === selectedFilter);
+    return filterConfig?.categories.includes(recipe.category);
+  });
 
-  const featuredIndex = getWeeklyFeaturedIndex(AI_RECIPES.length);
-  const isFeatured = currentIndex === featuredIndex;
+  // 컴포넌트 마운트 시 마지막 인덱스 복원
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedIndex = sessionStorage.getItem('recipeIndex');
+      if (savedIndex) {
+        setCurrentIndex(parseInt(savedIndex, 10));
+      }
+    }
+  }, []);
 
-  const currentRecipe = AI_RECIPES[currentIndex];
-  const prevIndex = (currentIndex - 1 + AI_RECIPES.length) % AI_RECIPES.length;
-  const nextIndex = (currentIndex + 1) % AI_RECIPES.length;
-  const prevRecipe = AI_RECIPES[prevIndex];
-  const nextRecipe = AI_RECIPES[nextIndex];
+  // 필터/인덱스 변경 시 sessionStorage에 저장
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('recipeFilter', selectedFilter);
+      sessionStorage.setItem('recipeIndex', currentIndex.toString());
+    }
+  }, [selectedFilter, currentIndex]);
+
+  if (filteredRecipes.length === 0) return null;
+
+  const currentRecipe = filteredRecipes[currentIndex];
+  const prevIndex = (currentIndex - 1 + filteredRecipes.length) % filteredRecipes.length;
+  const nextIndex = (currentIndex + 1) % filteredRecipes.length;
+  const prevRecipe = filteredRecipes[prevIndex];
+  const nextRecipe = filteredRecipes[nextIndex];
 
   // 현재 레시피에서 사용하는 도구 목록 추출
   const recipeTools = Array.from(
@@ -60,13 +100,40 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
   );
 
   const handlePrev = () => {
-    if (isDragging) return;  // 드래그 중에만 차단, 빠른 클릭 허용
-    setCurrentIndex(prev => (prev - 1 + AI_RECIPES.length) % AI_RECIPES.length);
+    if (isDragging) return;
+
+    if (currentIndex === 0) {
+      // 현재 필터의 첫 번째 레시피 → 이전 필터로 전환
+      const currentFilterIndex = RECIPE_FILTERS.findIndex(f => f.id === selectedFilter);
+      const prevFilterIndex = (currentFilterIndex - 1 + RECIPE_FILTERS.length) % RECIPE_FILTERS.length;
+      const prevFilter = RECIPE_FILTERS[prevFilterIndex];
+
+      // 이전 필터의 레시피 개수 계산
+      const prevFilterRecipes = AI_RECIPES.filter(recipe =>
+        prevFilter.categories.includes(recipe.category)
+      );
+
+      setSelectedFilter(prevFilter.id);
+      setCurrentIndex(prevFilterRecipes.length - 1); // 마지막 레시피로 이동
+    } else {
+      setCurrentIndex(prev => prev - 1);
+    }
   };
 
   const handleNext = () => {
     if (isDragging) return;
-    setCurrentIndex(prev => (prev + 1) % AI_RECIPES.length);
+
+    if (currentIndex === filteredRecipes.length - 1) {
+      // 현재 필터의 마지막 레시피 → 다음 필터로 전환
+      const currentFilterIndex = RECIPE_FILTERS.findIndex(f => f.id === selectedFilter);
+      const nextFilterIndex = (currentFilterIndex + 1) % RECIPE_FILTERS.length;
+      const nextFilter = RECIPE_FILTERS[nextFilterIndex];
+
+      setSelectedFilter(nextFilter.id);
+      setCurrentIndex(0); // 첫 번째 레시피로 이동
+    } else {
+      setCurrentIndex(prev => prev + 1);
+    }
   };
 
   const handleDragStart = (clientX: number) => {
@@ -94,12 +161,35 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
     // Threshold: 50px 이상 드래그하면 다음/이전으로 이동
     if (hasDragged) {
       if (dragOffset < -50) {
+        // 다음으로 드래그
         setIsAnimating(true);
-        setCurrentIndex(prev => (prev + 1) % AI_RECIPES.length);
+        if (currentIndex === filteredRecipes.length - 1) {
+          // 다음 필터로 전환
+          const currentFilterIndex = RECIPE_FILTERS.findIndex(f => f.id === selectedFilter);
+          const nextFilterIndex = (currentFilterIndex + 1) % RECIPE_FILTERS.length;
+          const nextFilter = RECIPE_FILTERS[nextFilterIndex];
+          setSelectedFilter(nextFilter.id);
+          setCurrentIndex(0);
+        } else {
+          setCurrentIndex(prev => prev + 1);
+        }
         setTimeout(() => setIsAnimating(false), 600);
       } else if (dragOffset > 50) {
+        // 이전으로 드래그
         setIsAnimating(true);
-        setCurrentIndex(prev => (prev - 1 + AI_RECIPES.length) % AI_RECIPES.length);
+        if (currentIndex === 0) {
+          // 이전 필터로 전환
+          const currentFilterIndex = RECIPE_FILTERS.findIndex(f => f.id === selectedFilter);
+          const prevFilterIndex = (currentFilterIndex - 1 + RECIPE_FILTERS.length) % RECIPE_FILTERS.length;
+          const prevFilter = RECIPE_FILTERS[prevFilterIndex];
+          const prevFilterRecipes = AI_RECIPES.filter(recipe =>
+            prevFilter.categories.includes(recipe.category)
+          );
+          setSelectedFilter(prevFilter.id);
+          setCurrentIndex(prevFilterRecipes.length - 1);
+        } else {
+          setCurrentIndex(prev => prev - 1);
+        }
         setTimeout(() => setIsAnimating(false), 600);
       }
     }
@@ -151,13 +241,9 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <BookOpen className="h-5 w-5 text-primary" />
-          <h2 className="text-lg font-extrabold text-foreground">AI 레시피</h2>
-          {isFeatured && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white text-[10px] font-bold">
-              <Sparkles className="h-2.5 w-2.5" />
-              이번 주 추천
-            </span>
-          )}
+          <h2 className="text-lg font-extrabold text-foreground">
+            AI 레시피 <span className="text-xs font-normal text-gray-400">· AI 조합 단계별 가이드 · 매주 새로운 추천</span>
+          </h2>
         </div>
         <Link
           href="/recipes"
@@ -167,14 +253,31 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
           <ArrowRight className="h-3 w-3" />
         </Link>
       </div>
-      <p className="text-xs text-gray-400 mb-4 -mt-2">
-        여러 AI를 조합해 원하는 결과물을 만드는 단계별 가이드 · 매주 새로운 추천 레시피
-      </p>
+
+      {/* 필터 버튼 */}
+      <div className="flex items-center gap-2 mb-4 overflow-x-auto scrollbar-hide">
+        {RECIPE_FILTERS.map(filter => (
+          <button
+            key={filter.id}
+            onClick={() => {
+              setSelectedFilter(filter.id);
+              setCurrentIndex(0); // 필터 변경 시 첫 번째 레시피로 이동
+            }}
+            className={`px-3 py-1 text-xs font-medium rounded-full whitespace-nowrap transition-all ${
+              selectedFilter === filter.id
+                ? 'bg-primary text-white'
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
 
       {/* 캐러셀 */}
       <div className="relative mb-6">
         {/* 이전 버튼 */}
-        {AI_RECIPES.length > 1 && (
+        {filteredRecipes.length > 1 && (
           <button
             onClick={handlePrev}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-md flex items-center justify-center transition-all hover:scale-110"
@@ -239,7 +342,7 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
         </div>
 
         {/* 다음 버튼 */}
-        {AI_RECIPES.length > 1 && (
+        {filteredRecipes.length > 1 && (
           <button
             onClick={handleNext}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-md flex items-center justify-center transition-all hover:scale-110"
@@ -250,9 +353,9 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
         )}
 
         {/* 인디케이터 */}
-        {AI_RECIPES.length > 1 && (
+        {filteredRecipes.length > 1 && (
           <div className="flex items-center justify-center gap-2 mt-4">
-            {AI_RECIPES.map((_, index) => (
+            {filteredRecipes.map((_, index) => (
               <button
                 key={index}
                 onClick={() => {
