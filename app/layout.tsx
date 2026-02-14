@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants';
 import { AuthProvider } from '@/lib/auth/AuthContext';
-import Header from '@/components/layout/Header';
+import MainSidebar from '@/components/layout/MainSidebar';
+import TopBar from '@/components/layout/TopBar';
 import Footer from '@/components/layout/Footer';
 import BottomTabBar from '@/components/layout/BottomTabBar';
 import { WebsiteJsonLd } from '@/components/seo/JsonLd';
@@ -60,12 +61,30 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
       </head>
-      <body className="antialiased min-h-screen flex flex-col">
+      <body className="antialiased min-h-screen bg-gray-50">
         <WebsiteJsonLd />
         <AuthProvider>
-          <Header />
-          <main className="flex-1 pb-14 md:pb-0">{children}</main>
-          <Footer />
+          {/* Reddit 스타일 레이아웃: 사이드바 + 메인 영역 */}
+          <div className="flex min-h-screen">
+            {/* 왼쪽 사이드바 (고정) */}
+            <MainSidebar />
+
+            {/* 오른쪽 메인 영역 */}
+            <div className="flex-1 flex flex-col min-w-0">
+              {/* 상단 바 (검색 + 탭) */}
+              <TopBar />
+
+              {/* 메인 콘텐츠 */}
+              <main className="flex-1 pb-14 md:pb-0">
+                {children}
+              </main>
+
+              {/* 푸터 */}
+              <Footer />
+            </div>
+          </div>
+
+          {/* 모바일 하단 탭바 */}
           <BottomTabBar />
         </AuthProvider>
       </body>

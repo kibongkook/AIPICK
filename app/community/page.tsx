@@ -2,7 +2,7 @@
 
 import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Search, Plus } from 'lucide-react';
+import { Search } from 'lucide-react';
 import Link from 'next/link';
 import CommunityFilterBar from '@/components/community/v2/CommunityFilterBar';
 import CommunityPostCardV2 from '@/components/community/v2/CommunityPostCardV2';
@@ -337,18 +337,9 @@ function CommunityContent() {
       <div className="bg-white border-b border-border">
         <div className="container mx-auto px-4 py-6">
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <span className="text-4xl">💬</span>
-                <h1 className="text-2xl font-bold text-foreground">커뮤니티</h1>
-              </div>
-              <Link
-                href="/community/write"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
-              >
-                <Plus className="h-5 w-5" />
-                글쓰기
-              </Link>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-4xl">💬</span>
+              <h1 className="text-2xl font-bold text-foreground">커뮤니티</h1>
             </div>
             <p className="text-base text-gray-600">AI 활용 노하우를 공유하고 배워보세요</p>
           </div>

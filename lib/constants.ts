@@ -494,3 +494,109 @@ export const MAX_PROVOCATION_DESCRIPTION_LENGTH = 2000;
 export const MAX_PROVOCATION_IMAGES = 3;
 export const VOTING_DURATION_DAYS = 7;
 export const MIN_ACCEPTANCE_VOTE_RATIO = 0.6; // 60% 찬성 필요
+
+// ==========================================
+// 페르소나 카드 (홈페이지 로테이션)
+// ==========================================
+export const PERSONA_CARDS = [
+  {
+    id: 'professional',
+    title: '직장인 · 전문가',
+    subtitle: '업무 효율 10배 올리기',
+    icon: 'Briefcase',
+    color: 'from-blue-500 to-indigo-600',
+    href: '/jobs/marketer',
+    killerSlugs: ['chatgpt', 'claude', 'notion-ai'] as const,
+  },
+  {
+    id: 'creator',
+    title: '크리에이터',
+    subtitle: '아이디어를 작품으로',
+    icon: 'Palette',
+    color: 'from-purple-500 to-pink-600',
+    href: '/jobs/video-creator',
+    killerSlugs: ['midjourney', 'runway-ml', 'suno-ai'] as const,
+  },
+  {
+    id: 'student',
+    title: '학생',
+    subtitle: '공부의 게임체인저',
+    icon: 'GraduationCap',
+    color: 'from-emerald-500 to-teal-600',
+    href: '/education/college',
+    killerSlugs: ['perplexity', 'deepl', 'gamma'] as const,
+  },
+  {
+    id: 'developer',
+    title: '개발자',
+    subtitle: '코딩 속도 5배',
+    icon: 'Code',
+    color: 'from-orange-500 to-red-600',
+    href: '/jobs/ai-developer',
+    killerSlugs: ['cursor', 'github-copilot', 'claude'] as const,
+  },
+] as const;
+
+// ==========================================
+// 사이드바 메뉴 구조 (Reddit 스타일)
+// ==========================================
+export const SIDEBAR_MENU_SECTIONS = [
+  {
+    title: 'AI 레시피',
+    icon: 'BookOpen',
+    href: '/recipes',
+    color: 'text-purple-600',
+  },
+  {
+    title: 'AI 찾기',
+    icon: 'Target',
+    href: '/discover',
+    color: 'text-blue-600',
+  },
+  {
+    title: '랭킹',
+    icon: 'TrendingUp',
+    href: '/rankings',
+    color: 'text-orange-600',
+  },
+  {
+    title: '커뮤니티',
+    icon: 'MessageCircle',
+    href: '/community',
+    color: 'text-green-600',
+  },
+  {
+    title: '뉴스',
+    icon: 'Newspaper',
+    href: '/news',
+    color: 'text-cyan-600',
+  },
+  {
+    title: '비교',
+    icon: 'GitCompare',
+    href: '/compare',
+    color: 'text-gray-600',
+  },
+  {
+    title: '도발',
+    icon: 'Flame',
+    href: '/provocation',
+    color: 'text-red-500',
+  },
+] as const;
+
+export const SIDEBAR_USER_MENU = [
+  { label: '북마크', href: '/bookmarks', icon: 'Bookmark' },
+  { label: '내 리뷰', href: '/profile?tab=reviews', icon: 'Star' },
+  { label: '내 댓글', href: '/profile?tab=comments', icon: 'MessageSquare' },
+  { label: '내 컬렉션', href: '/collections', icon: 'FolderOpen' },
+] as const;
+
+// ==========================================
+// 상단 탭 메뉴 (메인 피드 필터)
+// ==========================================
+export const FEED_TABS = [
+  { id: 'today', label: '오늘의 PICK', icon: 'Calendar' },
+  { id: 'trending', label: '급상승', icon: 'TrendingUp' },
+  { id: 'personalized', label: '당신에게 맞는 AI', icon: 'Target' },
+] as const;

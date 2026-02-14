@@ -13,6 +13,15 @@ function CommunityWriteContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const typeParam = searchParams.get('type') as CommunityPostType | null;
+  const recipeParam = searchParams.get('recipe');
+  const toolsParam = searchParams.get('tools');
+  const tagsParam = searchParams.get('tags');
+
+  // URL 파라미터로부터 기본 태그 생성
+  const initialTags: string[] = [];
+  if (recipeParam) initialTags.push(recipeParam);
+  if (toolsParam) initialTags.push(...toolsParam.split(',').filter(Boolean));
+  if (tagsParam) initialTags.push(...decodeURIComponent(tagsParam).split(',').filter(Boolean));
 
   const handleSubmit = async (data: {
     content: string;
@@ -134,6 +143,7 @@ function CommunityWriteContent() {
         <CommunityWriteFormV2
           onSubmit={handleSubmit}
           initialPostType={typeParam || undefined}
+          initialTags={initialTags.length > 0 ? initialTags : undefined}
         />
       </div>
     </div>

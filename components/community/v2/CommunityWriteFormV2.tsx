@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { Send, Hash, X } from 'lucide-react';
+import { Send, Hash, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { LoginPrompt } from '@/components/auth/AuthGuard';
 import MarkdownToolbar from './MarkdownToolbar';
@@ -16,16 +16,18 @@ interface CommunityWriteFormV2Props {
     post_type?: CommunityPostType;
   }) => Promise<boolean>;
   initialPostType?: CommunityPostType;
+  initialTags?: string[];
 }
 
-export default function CommunityWriteFormV2({ onSubmit, initialPostType }: CommunityWriteFormV2Props) {
+export default function CommunityWriteFormV2({ onSubmit, initialPostType, initialTags }: CommunityWriteFormV2Props) {
   const { user } = useAuth();
   const [postType, setPostType] = useState<CommunityPostType>(initialPostType || 'discussion');
   const [content, setContent] = useState('');
   const [media, setMedia] = useState<MediaAttachment[]>([]);
-  const [tags, setTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>(initialTags || []);
   const [tagInput, setTagInput] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [showToolbar, setShowToolbar] = useState(false);
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const tagInputRef = useRef<HTMLInputElement>(null);
 
@@ -116,17 +118,6 @@ export default function CommunityWriteFormV2({ onSubmit, initialPostType }: Comm
         </button>
       </div>
 
-      {/* 마크다운 툴바 */}
-      <div className="mb-2">
-        <MarkdownToolbar
-          textareaRef={contentRef}
-          onImageClick={() => {
-            // MediaUploader로 스크롤 또는 포커스
-            contentRef.current?.blur();
-          }}
-        />
-      </div>
-
       {/* 본문 입력 */}
       <textarea
         ref={contentRef}
@@ -137,9 +128,28 @@ export default function CommunityWriteFormV2({ onSubmit, initialPostType }: Comm
         minLength={1}
         maxLength={10000}
         rows={6}
-        className="w-full px-4 py-3 border border-border rounded-lg text-base focus:border-primary focus:outline-none resize-none mb-3"
+        className="w-full px-4 py-3 border border-border rounded-lg text-base focus:border-primary focus:outline-none resize-none mb-2"
       />
-      <p className="text-xs text-gray-400 mb-4">{content.length}/10000</p>
+
+      {/* 마크다운 툴바 (접기/펼치기) */}
+      <div className="mb-3">
+        <button
+          type="button"
+          onClick={() => setShowToolbar(!showToolbar)}
+          className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700 transition-colors mb-2"
+        >
+          {showToolbar ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+          {showToolbar ? '서식 도구 숨기기' : '서식 도구 표시'}
+        </button>
+        {showToolbar && (
+          <MarkdownToolbar
+            textareaRef={contentRef}
+            onImageClick={() => {
+              contentRef.current?.blur();
+            }}
+          />
+        )}
+      </div>
 
       {/* 태그 영역 - 최대 10줄까지 wrap */}
       <div className="mb-4 flex flex-wrap items-center gap-1.5 min-h-[32px] max-h-[320px] overflow-y-auto p-2 border border-border rounded-lg">
