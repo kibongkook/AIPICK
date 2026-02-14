@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Sparkles, Star, Zap, Check } from 'lucide-react';
-import { PURPOSE_CATEGORIES, USER_TYPES } from '@/lib/constants';
+import { PURPOSE_CATEGORIES, CATEGORY_USE_CASES } from '@/lib/constants';
 import type { RecommendedTool } from '@/types';
 import { cn, getAvatarColor, formatRating } from '@/lib/utils';
 import DynamicIcon from '@/components/ui/DynamicIcon';
@@ -25,10 +25,24 @@ export default function Wizard() {
   const [results, setResults] = useState<RecommendedTool[]>([]);
   const [loading, setLoading] = useState(false);
 
+  // 사이드바/헤더에서 "AI 찾기" 클릭 시 위자드 초기화
+  useEffect(() => {
+    const handleNavClick = (e: MouseEvent) => {
+      const link = (e.target as HTMLElement).closest('a');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (href === '/discover' && step !== 1) {
+        setState({ purpose: '', userType: '' });
+        setStep(1);
+        setResults([]);
+      }
+    };
+    document.addEventListener('click', handleNavClick);
+    return () => document.removeEventListener('click', handleNavClick);
+  }, [step]);
+
   const totalSteps = 2;
   const currentStep = typeof step === 'number' ? step : totalSteps;
-
-  const skillTypes = USER_TYPES.filter(u => u.group === 'skill');
 
   const fetchResults = useCallback(async (purpose: string, userType: string) => {
     setLoading(true);
@@ -68,6 +82,10 @@ export default function Wizard() {
     setStep(1);
     setResults([]);
   };
+
+  // Step 2 동적 옵션: 선택된 카테고리에 맞는 세부 질문
+  const useCases = CATEGORY_USE_CASES[state.purpose] || [];
+  const selectedCategory = PURPOSE_CATEGORIES.find((c) => c.slug === state.purpose);
 
   return (
     <div className="mx-auto max-w-2xl">
@@ -126,30 +144,30 @@ export default function Wizard() {
         </StepContainer>
       )}
 
-      {/* Step 2: 사용 목적 (Usage Goal) — 선택하면 자동 결과 */}
+      {/* Step 2: 동적 세부 질문 — 카테고리별로 다른 옵션 */}
       {step === 2 && (
         <StepContainer
-          title="어떤 방식으로 AI를 활용하고 싶으세요?"
-          subtitle="목표에 맞는 AI를 추천해드립니다"
+          title={`${selectedCategory?.name || ''} — 어떤 용도인가요?`}
+          subtitle="용도에 맞는 AI를 추천해드립니다"
         >
           <div className="space-y-3">
-            {skillTypes.map((ut) => (
+            {useCases.map((useCase) => (
               <button
-                key={ut.slug}
-                onClick={() => selectUserType(ut.slug)}
+                key={useCase.userTypeSlug}
+                onClick={() => selectUserType(useCase.userTypeSlug)}
                 className={cn(
                   'flex w-full items-center gap-4 rounded-xl border p-4 text-left transition-all hover:shadow-md',
-                  state.userType === ut.slug
+                  state.userType === useCase.userTypeSlug
                     ? 'border-primary bg-primary/5 ring-2 ring-primary/20'
                     : 'border-border hover:border-primary/50'
                 )}
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 shrink-0">
-                  <DynamicIcon name={ut.icon} className="h-5 w-5 text-primary" />
+                  <DynamicIcon name={useCase.icon} className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <span className="text-sm font-semibold text-foreground block">{ut.name}</span>
-                  <span className="text-[11px] text-gray-400">{ut.description}</span>
+                  <span className="text-sm font-semibold text-foreground block">{useCase.label}</span>
+                  <span className="text-[11px] text-gray-400">{useCase.description}</span>
                 </div>
               </button>
             ))}
@@ -160,7 +178,16 @@ export default function Wizard() {
       {/* 결과 */}
       {step === 'result' && (
         <div>
-          <div className="mb-8 text-center">
+          {/* 뒤로가기 */}
+          <button
+            onClick={goBack}
+            className="flex items-center gap-1 text-xs text-gray-400 hover:text-primary transition-colors mb-4"
+          >
+            <ArrowLeft className="h-3 w-3" />
+            다른 용도 선택
+          </button>
+
+          <div className="mb-6 text-center">
             {loading ? (
               <>
                 <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
@@ -183,10 +210,30 @@ export default function Wizard() {
           </div>
 
           {!loading && results.length > 0 && (
-            <div className="space-y-4">
-              {results.map((result, index) => (
-                <ResultCard key={result.tool.id} result={result} rank={index + 1} />
-              ))}
+            <div>
+              {/* TOP 3 강조 */}
+              <div className="mb-2">
+                <span className="text-xs font-bold text-primary uppercase tracking-wide">TOP PICKS</span>
+              </div>
+              <div className="space-y-3 mb-6">
+                {results.slice(0, 3).map((result, index) => (
+                  <TopResultCard key={result.tool.id} result={result} rank={index + 1} />
+                ))}
+              </div>
+
+              {/* 나머지 (compact) */}
+              {results.length > 3 && (
+                <>
+                  <div className="mb-2">
+                    <span className="text-xs font-medium text-gray-400">이런 것도 있어요</span>
+                  </div>
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    {results.slice(3).map((result, index) => (
+                      <CompactResultCard key={result.tool.id} result={result} rank={index + 4} />
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           )}
 
@@ -210,10 +257,10 @@ export default function Wizard() {
                 처음부터 다시
               </button>
               <Link
-                href="/discover"
+                href={`/category/${state.purpose}`}
                 className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-hover transition-colors"
               >
-                전체 AI 보기
+                {selectedCategory?.name || '카테고리'} 전체 보기
               </Link>
             </div>
           )}
@@ -233,27 +280,33 @@ function StepContainer({ title, subtitle, children }: { title: string; subtitle:
   );
 }
 
-function ResultCard({ result, rank }: { result: RecommendedTool; rank: number }) {
-  const { tool, matchScore, reasons, matchDetails } = result;
+/* ================================================
+   TOP 3 결과 카드 — 강조 스타일
+   ================================================ */
+function TopResultCard({ result, rank }: { result: RecommendedTool; rank: number }) {
+  const { tool, matchScore, reasons } = result;
   const pricingVariant = tool.pricing_type === 'Free' ? 'free' : tool.pricing_type === 'Freemium' ? 'freemium' : 'paid';
   const scorePercent = Math.round(matchScore);
 
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="block rounded-xl border border-border bg-white p-5 shadow-sm hover:shadow-md transition-shadow"
+      className={cn(
+        'block rounded-xl border bg-white p-5 shadow-sm hover:shadow-md transition-shadow',
+        rank === 1 ? 'border-primary/30 ring-1 ring-primary/10' : 'border-border'
+      )}
     >
       <div className="flex items-start gap-4">
         {/* 랭크 + 매칭 점수 */}
         <div className="flex flex-col items-center gap-1 shrink-0">
           <span className={cn(
-            'flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white',
-            rank === 1 ? 'bg-yellow-400' : rank === 2 ? 'bg-gray-300' : rank === 3 ? 'bg-amber-600' : 'bg-gray-200 text-gray-600'
+            'flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white',
+            rank === 1 ? 'bg-yellow-400 ring-2 ring-yellow-200' : rank === 2 ? 'bg-gray-300 ring-2 ring-gray-200' : 'bg-amber-600 ring-2 ring-amber-200'
           )}>
             {rank}
           </span>
           <span className={cn(
-            'text-[11px] font-bold',
+            'text-xs font-bold',
             scorePercent >= 80 ? 'text-emerald-600' : scorePercent >= 60 ? 'text-blue-600' : 'text-gray-500'
           )}>
             {scorePercent}%
@@ -274,15 +327,18 @@ function ResultCard({ result, rank }: { result: RecommendedTool; rank: number })
             <Badge variant={pricingVariant} className="text-[10px]">
               {tool.pricing_type === 'Free' ? '무료' : tool.pricing_type === 'Freemium' ? '부분 무료' : '유료'}
             </Badge>
+            {rank === 1 && (
+              <span className="text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">TOP PICK</span>
+            )}
           </div>
 
           {/* 설명 */}
-          <p className="mt-1 text-xs text-gray-500 line-clamp-1">{tool.description}</p>
+          <p className="mt-1 text-xs text-gray-500 line-clamp-2">{tool.description}</p>
 
           {/* 추천 이유 */}
           {reasons.length > 0 && (
             <div className="mt-2 flex flex-wrap gap-1.5">
-              {reasons.slice(0, 4).map((reason, i) => (
+              {reasons.map((reason, i) => (
                 <span
                   key={i}
                   className="inline-flex items-center gap-0.5 rounded-full bg-primary/5 px-2 py-0.5 text-[10px] font-medium text-primary"
@@ -298,7 +354,7 @@ function ResultCard({ result, rank }: { result: RecommendedTool; rank: number })
           {tool.free_quota_detail && tool.pricing_type !== 'Paid' && (
             <p className="mt-2 flex items-center gap-1 text-xs text-emerald-700">
               <Zap className="h-3 w-3" />
-              {tool.free_quota_detail.slice(0, 60)}
+              {tool.free_quota_detail.slice(0, 80)}
             </p>
           )}
 
@@ -309,7 +365,6 @@ function ResultCard({ result, rank }: { result: RecommendedTool; rank: number })
               {formatRating(tool.rating_avg)}
             </span>
             <span>{tool.review_count}개 리뷰</span>
-            <MatchBar details={matchDetails} />
           </div>
         </div>
       </div>
@@ -317,24 +372,52 @@ function ResultCard({ result, rank }: { result: RecommendedTool; rank: number })
   );
 }
 
-function MatchBar({ details }: { details: RecommendedTool['matchDetails'] }) {
-  const segments = [
-    { value: details.purposeMatch ?? details.categoryMatch ?? 0, max: 40, color: 'bg-blue-500', label: '목적' },
-    { value: details.userTypeMatch ?? details.personaMatch ?? 0, max: 40, color: 'bg-purple-500', label: '숙련도' },
-    { value: details.budgetMatch, max: 15, color: 'bg-emerald-500', label: '예산' },
-    { value: details.koreanMatch, max: 10, color: 'bg-orange-500', label: '한국어' },
-    { value: details.qualitySignal, max: 20, color: 'bg-yellow-500', label: '품질' },
-  ];
+/* ================================================
+   나머지 결과 카드 — 컴팩트 스타일
+   ================================================ */
+function CompactResultCard({ result, rank }: { result: RecommendedTool; rank: number }) {
+  const { tool, matchScore, reasons } = result;
+  const pricingVariant = tool.pricing_type === 'Free' ? 'free' : tool.pricing_type === 'Freemium' ? 'freemium' : 'paid';
 
   return (
-    <div className="ml-auto flex items-center gap-0.5" title="매칭 상세">
-      {segments.map((seg) => (
-        <div
-          key={seg.label}
-          className={cn('h-1.5 w-3 rounded-full', seg.value > seg.max * 0.3 ? seg.color : 'bg-gray-200')}
-          title={`${seg.label}: ${Math.round(seg.value)}/${seg.max}`}
-        />
-      ))}
-    </div>
+    <Link
+      href={`/tools/${tool.slug}`}
+      className="flex items-center gap-3 rounded-lg border border-border bg-white p-3 hover:shadow-sm transition-shadow"
+    >
+      {/* 랭크 */}
+      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 text-[10px] font-bold text-gray-500 shrink-0">
+        {rank}
+      </span>
+
+      {/* 로고 */}
+      {tool.logo_url ? (
+        <img src={tool.logo_url} alt={tool.name} className="h-8 w-8 rounded-lg object-cover shrink-0" />
+      ) : (
+        <div className={cn('flex h-8 w-8 items-center justify-center rounded-lg text-white text-xs font-bold shrink-0', getAvatarColor(tool.name))}>
+          {tool.name.charAt(0)}
+        </div>
+      )}
+
+      {/* 정보 */}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-1.5">
+          <span className="text-sm font-medium text-foreground truncate">{tool.name}</span>
+          <Badge variant={pricingVariant} className="text-[9px] shrink-0">
+            {tool.pricing_type === 'Free' ? '무료' : tool.pricing_type === 'Freemium' ? '부분무료' : '유료'}
+          </Badge>
+        </div>
+        {reasons[0] && (
+          <span className="text-[11px] text-gray-400 truncate block">{reasons[0]}</span>
+        )}
+      </div>
+
+      {/* 매칭 점수 */}
+      <span className={cn(
+        'text-xs font-bold shrink-0',
+        Math.round(matchScore) >= 60 ? 'text-primary' : 'text-gray-400'
+      )}>
+        {Math.round(matchScore)}%
+      </span>
+    </Link>
   );
 }

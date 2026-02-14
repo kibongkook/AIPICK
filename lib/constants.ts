@@ -100,6 +100,88 @@ export const USER_TYPES = [
   { name: '팀 · 회사', slug: 'team', icon: 'Building', description: '팀 단위로 AI를 도입하는 분', group: 'role' },
 ] as const;
 
+// ==========================================
+// 카테고리별 동적 세부 질문 (AI 찾기 위자드 Step 2)
+// 각 userTypeSlug는 DB purpose_tool_recommendations의 user_type_slug에 매핑
+// ==========================================
+export interface CategoryUseCase {
+  label: string;
+  userTypeSlug: string;
+  icon: string;
+  description: string;
+}
+
+export const CATEGORY_USE_CASES: Record<string, CategoryUseCase[]> = {
+  // ── 대화형 AI ──
+  // OpenAI 연구: 업무용 30%, 개인용 70%. 주요 용도: 질문·조언(49%), 정보검색(24%), 작업실행(40%)
+  chat: [
+    { label: '업무에 AI를 활용하고 싶어요', userTypeSlug: 'daily-user', icon: 'Briefcase', description: '보고서 작성, 브레인스토밍, 이메일 초안' },
+    { label: '다양한 AI를 써보고 싶어요', userTypeSlug: 'beginner', icon: 'Sparkles', description: '어떤 AI가 나에게 맞는지 비교해보기' },
+    { label: '정보 검색·리서치가 목적이에요', userTypeSlug: 'student', icon: 'Search', description: '출처 있는 답변, 자료 조사, 학습' },
+  ],
+  // ── 글쓰기 ──
+  // OpenAI: 글쓰기가 업무용 ChatGPT 사용의 42% 차지
+  writing: [
+    { label: '업무 문서·이메일·보고서', userTypeSlug: 'daily-user', icon: 'Briefcase', description: '기획서, 보고서, 비즈니스 이메일 작성' },
+    { label: '블로그·SNS 콘텐츠 작성', userTypeSlug: 'beginner', icon: 'PenTool', description: '블로그 글, 인스타/유튜브 스크립트' },
+    { label: '학술 논문·과제·리포트', userTypeSlug: 'student', icon: 'GraduationCap', description: '논문, 과제, 학술 글쓰기 보조' },
+  ],
+  // ── 디자인 ──
+  design: [
+    { label: '썸네일·SNS 이미지 만들기', userTypeSlug: 'beginner', icon: 'Image', description: '유튜브 썸네일, 인스타 포스트, 배너' },
+    { label: '전문 디자인·상업용 작업', userTypeSlug: 'freelancer', icon: 'Palette', description: '로고, 브랜딩, 고해상도 이미지 생성' },
+  ],
+  // ── 영상 ──
+  video: [
+    { label: '간단한 영상 편집·자막 추가', userTypeSlug: 'beginner', icon: 'Video', description: '자동 자막, 숏폼 편집, 클립 만들기' },
+    { label: '전문 영상 제작·고급 편집', userTypeSlug: 'freelancer', icon: 'Clapperboard', description: 'AI 영상 생성, VFX, 전문 편집' },
+  ],
+  // ── 음악·오디오 ──
+  music: [
+    { label: 'AI로 음악 만들어보기', userTypeSlug: 'beginner', icon: 'Music', description: '텍스트로 곡 생성, 배경음악 만들기' },
+    { label: '전문 음악·음성 제작', userTypeSlug: 'freelancer', icon: 'Headphones', description: 'TTS 음성 합성, 프로급 음악 제작' },
+  ],
+  // ── 코딩 ──
+  // StackOverflow: 개발자 84%가 AI 도구 사용, 51%가 매일 사용
+  coding: [
+    { label: '코딩 없이 앱·웹사이트 만들기', userTypeSlug: 'beginner', icon: 'Rocket', description: '노코드/로우코드, 프롬프트로 개발' },
+    { label: '코드 작성·리뷰 도우미', userTypeSlug: 'expert', icon: 'Terminal', description: 'AI 코드 자동완성, 디버깅, 리뷰' },
+  ],
+  // ── 업무 자동화 ──
+  // 한국: 직장인 61.5%가 업무에 AI 활용, 반복 작업 감소가 핵심
+  automation: [
+    { label: '반복 업무 자동화하고 싶어요', userTypeSlug: 'daily-user', icon: 'Zap', description: '이메일, 일정, 데이터 입력 자동화' },
+    { label: '혼자서 다 해야 하는 상황이에요', userTypeSlug: 'freelancer', icon: 'User', description: '1인 기업, 올인원 업무 자동화' },
+    { label: '팀 워크플로우 개선', userTypeSlug: 'team', icon: 'Users', description: '팀 협업, 프로젝트 관리 자동화' },
+  ],
+  // ── 번역 ──
+  translation: [
+    { label: '간단한 텍스트·일상 번역', userTypeSlug: 'beginner', icon: 'Globe', description: '웹페이지, 메시지, 간단한 문장' },
+    { label: '업무·문서 전문 번역', userTypeSlug: 'daily-user', icon: 'FileText', description: '계약서, 기술문서, 비즈니스 번역' },
+  ],
+  // ── 데이터·리서치 ──
+  data: [
+    { label: '정보 검색·자료 수집', userTypeSlug: 'beginner', icon: 'Search', description: '논문 찾기, 트렌드 조사, 팩트체크' },
+    { label: '학술 논문·리서치', userTypeSlug: 'student', icon: 'GraduationCap', description: '논문 검색, 문헌 리뷰, 학술 분석' },
+    { label: '업무 데이터 분석·시각화', userTypeSlug: 'daily-user', icon: 'BarChart', description: '엑셀 분석, 대시보드, 보고서 생성' },
+  ],
+  // ── 발표자료 ──
+  presentation: [
+    { label: '빠르게 발표자료 만들기', userTypeSlug: 'beginner', icon: 'Presentation', description: '주제만 입력하면 슬라이드 자동 생성' },
+    { label: '업무 프레젠테이션·보고서', userTypeSlug: 'daily-user', icon: 'Briefcase', description: '투자 피칭, 사업 보고서, 제안서' },
+  ],
+  // ── 마케팅 ──
+  marketing: [
+    { label: 'SNS·블로그 마케팅', userTypeSlug: 'beginner', icon: 'Megaphone', description: '인스타, 유튜브, 블로그 콘텐츠' },
+    { label: '광고·SEO·전문 마케팅', userTypeSlug: 'freelancer', icon: 'Target', description: '광고 카피, SEO 최적화, 퍼포먼스 마케팅' },
+  ],
+  // ── 서비스 만들기 ──
+  building: [
+    { label: '노코드로 서비스 만들기', userTypeSlug: 'beginner', icon: 'Rocket', description: 'MVP, 랜딩페이지, 프로토타입' },
+    { label: 'AI 활용 개발 (개발자용)', userTypeSlug: 'expert', icon: 'Terminal', description: 'AI 코딩 에이전트, 풀스택 개발' },
+  ],
+};
+
 // 레거시 호환: 기존 직군/학년 코드가 참조하는 상수 유지
 export const JOB_CATEGORIES = USER_TYPES.filter(u => u.group === 'role' || (u.slug as string) === 'daily-user' || (u.slug as string) === 'expert').map(u => ({
   name: u.name,

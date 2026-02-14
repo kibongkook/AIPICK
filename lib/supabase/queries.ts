@@ -109,6 +109,17 @@ function attachCategoriesToTools(tools: Tool[]): Tool[] {
 
   return tools.map(tool => {
     const toolCategoryMappings = seed.tool_categories!.filter(tc => tc.tool_id === tool.id);
+
+    // tool_categories에 매핑이 없으면 레거시 category_id로 폴백
+    if (toolCategoryMappings.length === 0) {
+      const category = seed.categories.find(c => c.id === (tool as any).category_id);
+      return {
+        ...tool,
+        categories: category ? [{ ...category, is_primary: true }] : [],
+        primary_category_id: (tool as any).category_id
+      };
+    }
+
     const categories = toolCategoryMappings
       .map(tc => {
         const category = seed.categories.find(c => c.id === tc.category_id);
