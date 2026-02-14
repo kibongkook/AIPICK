@@ -1,17 +1,14 @@
 'use client';
 
 import { Suspense, useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { Plus, Loader2, ChevronLeft, ChevronRight, TrendingUp } from 'lucide-react';
+import { Loader2, ChevronLeft, ChevronRight, TrendingUp } from 'lucide-react';
 import { PROVOCATION_HEADERS } from '@/lib/constants';
 import { getLocalProvocations, filterAndSortProvocations, saveLocalVote, getUserVote } from '@/lib/provocation/localStorage';
 import ProvocationCard from '@/components/provocation/ProvocationCard';
+import ProvocationForm from '@/components/provocation/ProvocationForm';
 import type { Provocation } from '@/types';
 
 function ProvocationContent() {
-  const router = useRouter();
-
   const [allProvocations, setAllProvocations] = useState<Provocation[]>([]);
   const [topProvocations, setTopProvocations] = useState<Provocation[]>([]);
   const [loading, setLoading] = useState(true);
@@ -163,24 +160,20 @@ function ProvocationContent() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* 헤더 */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <span className="text-4xl">🔥</span>
-              <h1 className="text-2xl font-bold text-foreground">도발</h1>
-            </div>
-            <Link
-              href="/provocation/write"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
-            >
-              <Plus className="h-5 w-5" />
-              도발하기
-            </Link>
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="text-4xl">🔥</span>
+            <h1 className="text-2xl font-bold text-foreground">도발</h1>
           </div>
           <p className="text-base text-gray-600">{randomHeader}</p>
           <p className="text-sm text-gray-500 mt-1">
             AIPICK 개발에 직접 참여하세요. 제안 → 투표 → 개발 → 완료
           </p>
+        </div>
+
+        {/* 인라인 글쓰기 폼 */}
+        <div className="mb-8">
+          <ProvocationForm compact onSuccess={() => fetchProvocations()} />
         </div>
 
         {loading ? (
@@ -224,15 +217,8 @@ function ProvocationContent() {
               </div>
 
               {currentProvocations.length === 0 ? (
-                <div className="text-center py-20">
-                  <p className="text-gray-500 mb-4">아직 제안이 없습니다</p>
-                  <Link
-                    href="/provocation/write"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-                  >
-                    <Plus className="h-5 w-5" />
-                    첫 제안 시작하기
-                  </Link>
+                <div className="text-center py-12">
+                  <p className="text-gray-400">아직 제안이 없습니다. 위 폼에서 첫 도발을 시작해보세요!</p>
                 </div>
               ) : (
                 <>

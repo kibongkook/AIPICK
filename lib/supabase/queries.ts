@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // ==========================================
 // AIPICK 데이터 페칭 레이어
 // Supabase 설정 시 실제 DB 사용, 미설정 시 seed.json 폴백
@@ -922,7 +923,7 @@ export async function searchTools(filters: SearchFilters): Promise<Tool[]> {
 
       const { data } = await query;
       if (data?.length) {
-        let results = data as Tool[];
+        const results = data as Tool[];
         if (filters.sort === 'free_first') {
           const order: Record<string, number> = { Free: 0, Freemium: 1, Paid: 2 };
           results.sort((a, b) => (order[a.pricing_type] ?? 2) - (order[b.pricing_type] ?? 2) || b.ranking_score - a.ranking_score);

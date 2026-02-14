@@ -89,7 +89,7 @@ export default function MainSidebar({ className = '' }: MainSidebarProps) {
         {SIDEBAR_MENU_SECTIONS.map((section) => {
           const IconComponent = ICON_MAP[section.icon as keyof typeof ICON_MAP];
           const isExpanded = expandedSections.has(section.title);
-          const hasItems = 'items' in section && section.items && section.items.length > 0;
+          const hasItems = 'items' in section && (section as any).items && (section as any).items.length > 0;
 
           // 단일 링크 섹션
           if ('href' in section && section.href) {
@@ -110,16 +110,17 @@ export default function MainSidebar({ className = '' }: MainSidebarProps) {
             );
           }
 
-          // 확장 가능한 섹션
+          // 확장 가능한 섹션 (현재 모든 항목이 단일 링크이므로 도달하지 않음)
+          const sectionAny = section as any;
           return (
-            <div key={section.title} className="mb-1">
+            <div key={sectionAny.title} className="mb-1">
               <button
-                onClick={() => toggleSection(section.title)}
+                onClick={() => toggleSection(sectionAny.title)}
                 className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
               >
                 <div className="flex items-center gap-3">
                   {IconComponent && <IconComponent className="h-4 w-4" />}
-                  <span className="text-sm font-medium">{section.title}</span>
+                  <span className="text-sm font-medium">{sectionAny.title}</span>
                 </div>
                 {hasItems && (
                   <div>
@@ -134,7 +135,7 @@ export default function MainSidebar({ className = '' }: MainSidebarProps) {
 
               {hasItems && isExpanded && (
                 <div className="mt-1 ml-6 space-y-1">
-                  {section.items.map((item) => {
+                  {sectionAny.items.map((item: any) => {
                     const ItemIcon = item.icon && ICON_MAP[item.icon as keyof typeof ICON_MAP];
 
                     return (

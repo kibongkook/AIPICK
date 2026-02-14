@@ -61,7 +61,7 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
   // 필터링된 레시피 목록
   const filteredRecipes = AI_RECIPES.filter(recipe => {
     const filterConfig = RECIPE_FILTERS.find(f => f.id === selectedFilter);
-    return filterConfig?.categories.includes(recipe.category);
+    return (filterConfig?.categories as readonly string[]).includes(recipe.category);
   });
 
   // 컴포넌트 마운트 시 마지막 인덱스 복원
@@ -110,7 +110,7 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
 
       // 이전 필터의 레시피 개수 계산
       const prevFilterRecipes = AI_RECIPES.filter(recipe =>
-        prevFilter.categories.includes(recipe.category)
+        (prevFilter.categories as readonly string[]).includes(recipe.category)
       );
 
       setSelectedFilter(prevFilter.id);
@@ -183,7 +183,7 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
           const prevFilterIndex = (currentFilterIndex - 1 + RECIPE_FILTERS.length) % RECIPE_FILTERS.length;
           const prevFilter = RECIPE_FILTERS[prevFilterIndex];
           const prevFilterRecipes = AI_RECIPES.filter(recipe =>
-            prevFilter.categories.includes(recipe.category)
+            (prevFilter.categories as readonly string[]).includes(recipe.category)
           );
           setSelectedFilter(prevFilter.id);
           setCurrentIndex(prevFilterRecipes.length - 1);

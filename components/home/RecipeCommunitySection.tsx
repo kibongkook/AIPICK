@@ -58,7 +58,7 @@ export default function RecipeCommunitySection({ recipe, recipeTools }: RecipeCo
     setFilteredPosts(filtered);
   }, [posts, recipe.slug]);
 
-  const handleQuickPost = async (data: { content: string; post_type: string }) => {
+  const handleQuickPost = async (data: { content: string; post_type?: string }) => {
     try {
       // localStorage에 저장
       const newPost: CommunityPost = {

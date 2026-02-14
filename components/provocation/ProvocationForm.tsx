@@ -15,9 +15,10 @@ import type { MediaAttachment } from '@/types';
 
 interface ProvocationFormProps {
   onSuccess?: (provocationId: string) => void;
+  compact?: boolean;
 }
 
-export default function ProvocationForm({ onSuccess }: ProvocationFormProps) {
+export default function ProvocationForm({ onSuccess, compact = false }: ProvocationFormProps) {
   const router = useRouter();
   const { user } = useAuth();
 
@@ -112,41 +113,51 @@ export default function ProvocationForm({ onSuccess }: ProvocationFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-xl border border-border bg-white p-6">
+    <form onSubmit={handleSubmit} className={`rounded-xl border border-border bg-white ${compact ? 'p-4' : 'p-6'}`}>
       {/* 본문 입력 */}
       <textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        placeholder="무슨 생각을 하고 계신가요?"
+        placeholder={compact ? '이런 기능이 있으면 좋겠다! 자유롭게 도발해보세요.' : '무슨 생각을 하고 계신가요?'}
         required
         minLength={MIN_PROVOCATION_DESCRIPTION_LENGTH}
         maxLength={MAX_PROVOCATION_DESCRIPTION_LENGTH}
-        rows={6}
-        className="w-full px-4 py-3 border border-border rounded-lg text-base focus:border-primary focus:outline-none resize-none mb-3"
+        rows={compact ? 3 : 6}
+        className={`w-full px-4 py-3 border border-border rounded-lg text-sm focus:border-primary focus:outline-none resize-none ${compact ? 'mb-2' : 'mb-3'}`}
       />
-      <p className="text-xs text-gray-400 mb-4">{content.length}/{MAX_PROVOCATION_DESCRIPTION_LENGTH}</p>
 
-      {/* 미디어 업로더 */}
-      <div className="mb-4">
-        <MediaUploader
-          media={media}
-          onAdd={(attachment) => setMedia([...media, attachment])}
-          onRemove={(index) => setMedia(media.filter((_, i) => i !== index))}
-        />
-      </div>
-
-      {/* 하단 액션 */}
-      <div className="flex items-center justify-end">
-        {/* 제출 버튼 */}
+      {/* 하단: 글자수 + 미디어 + 버튼 한 줄 */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <p className="text-xs text-gray-400">{content.length}/{MAX_PROVOCATION_DESCRIPTION_LENGTH}</p>
+          {!compact && (
+            <MediaUploader
+              media={media}
+              onAdd={(attachment) => setMedia([...media, attachment])}
+              onRemove={(index) => setMedia(media.filter((_, i) => i !== index))}
+            />
+          )}
+        </div>
         <button
           type="submit"
           disabled={!content.trim() || submitting}
-          className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="flex items-center gap-2 px-5 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
-          <Send className="h-4 w-4" />
-          {submitting ? '등록 중...' : '등록'}
+          <Send className="h-3.5 w-3.5" />
+          {submitting ? '등록 중...' : '도발하기'}
         </button>
       </div>
+
+      {/* 미디어 업로더 (compact가 아닐 때 위에 표시) */}
+      {compact && media.length > 0 && (
+        <div className="mt-2">
+          <MediaUploader
+            media={media}
+            onAdd={(attachment) => setMedia([...media, attachment])}
+            onRemove={(index) => setMedia(media.filter((_, i) => i !== index))}
+          />
+        </div>
+      )}
     </form>
   );
 }

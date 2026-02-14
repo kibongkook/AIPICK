@@ -632,7 +632,8 @@ export type RecipeDifficulty = 'easy' | 'medium' | 'hard';
 export type RecipeCategory =
   | 'music' | 'video' | 'image' | 'marketing' | 'presentation'
   | 'blog' | 'social' | 'education' | 'ecommerce' | 'podcast'
-  | 'brand' | 'comic' | '3d';
+  | 'brand' | 'comic' | '3d'
+  | 'writing' | 'design' | 'audio' | 'coding' | 'business' | 'data' | 'personal';
 
 export interface RecipeStep {
   step: number;

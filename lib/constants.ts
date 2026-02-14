@@ -121,7 +121,7 @@ export const USER_TYPES = [
 ] as const;
 
 // 레거시 호환: 기존 직군/학년 코드가 참조하는 상수 유지
-export const JOB_CATEGORIES = USER_TYPES.filter(u => u.group === 'role' || u.slug === 'daily-user' || u.slug === 'expert').map(u => ({
+export const JOB_CATEGORIES = USER_TYPES.filter(u => u.group === 'role' || (u.slug as string) === 'daily-user' || (u.slug as string) === 'expert').map(u => ({
   name: u.name,
   slug: u.slug,
   icon: u.icon,
