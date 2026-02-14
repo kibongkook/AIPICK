@@ -110,10 +110,9 @@ export const SIDEBAR_CATEGORY_RANKINGS = [
 // "당신은 어떤 상황에서 쓰나요?"
 // ==========================================
 export const USER_TYPES = [
-  { name: '완전 초보인데, 새로운 눈을 뜨고 싶어요', slug: 'beginner', icon: 'Sparkles', description: 'AI를 처음 접하는 분 — 쉽고 범용적인 도구부터', group: 'skill' },
-  { name: '조금 써봤는데, 고수가 되고 싶어요', slug: 'intermediate', icon: 'Zap', description: '기본은 알지만 더 효율적으로 활용하고 싶은 분', group: 'skill' },
-  { name: '자주 사용하는데, 고급 스킬이 필요해요', slug: 'daily-user', icon: 'Briefcase', description: '매일 업무에 쓰는데 전문 도구가 필요한 분', group: 'skill' },
-  { name: '나 자신을 AI로 변신하고 싶어요', slug: 'expert', icon: 'Crown', description: 'AI를 마스터해서 워크플로우를 자동화하고 싶은 분', group: 'skill' },
+  { name: '질문 답변만 받고 있는데 더 잘 쓰고 싶어요', slug: 'chat-user', icon: 'MessageCircle', description: 'AI를 처음 접하는 분 — 쉽고 범용적인 도구부터', group: 'skill' },
+  { name: '여러가지 AI로 좋은 결과물을 만들고 싶어요', slug: 'multi-ai-user', icon: 'Layers', description: '기본은 알지만 더 효율적으로 활용하고 싶은 분', group: 'skill' },
+  { name: '요즘은 개나소나 개발도 한다던데... 저도 해보고 싶어요', slug: 'aspiring-developer', icon: 'Code', description: '개발에 관심 있는 분 — AI로 코딩 시작하기', group: 'skill' },
   { name: '학생', slug: 'student', icon: 'GraduationCap', description: '중·고·대학생', group: 'role' },
   { name: '선생님 · 강사', slug: 'teacher', icon: 'Users', description: '교사, 교수, 학원 강사', group: 'role' },
   { name: '학부모', slug: 'parent', icon: 'Heart', description: '자녀 교육에 AI를 활용하는 분', group: 'role' },

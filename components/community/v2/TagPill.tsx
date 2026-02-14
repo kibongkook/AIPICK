@@ -12,9 +12,9 @@ interface TagPillProps {
 }
 
 const TAG_TYPE_COLORS: Record<TagType, string> = {
-  GOAL: 'bg-blue-100 text-blue-700 hover:bg-blue-200',
-  AI_TOOL: 'bg-purple-100 text-purple-700 hover:bg-purple-200',
-  FEATURE: 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200',
+  GOAL: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+  AI_TOOL: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+  FEATURE: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
   KEYWORD: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
 };
 

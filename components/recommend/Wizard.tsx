@@ -101,7 +101,7 @@ export default function Wizard() {
           title="지금 뭐 하려고 하세요?"
           subtitle="목적을 선택하면 바로 다음으로 넘어갑니다"
         >
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {PURPOSE_CATEGORIES.map((cat) => (
               <button
                 key={cat.slug}
@@ -126,11 +126,11 @@ export default function Wizard() {
         </StepContainer>
       )}
 
-      {/* Step 2: 숙련도 (Skill Level) — 선택하면 자동 결과 */}
+      {/* Step 2: 사용 목적 (Usage Goal) — 선택하면 자동 결과 */}
       {step === 2 && (
         <StepContainer
-          title="AI를 얼마나 써보셨나요?"
-          subtitle="숙련도에 맞게 추천해드립니다"
+          title="어떤 방식으로 AI를 활용하고 싶으세요?"
+          subtitle="목표에 맞는 AI를 추천해드립니다"
         >
           <div className="space-y-3">
             {skillTypes.map((ut) => (

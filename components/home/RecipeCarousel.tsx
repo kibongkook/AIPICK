@@ -39,35 +39,13 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
   );
 
   const handlePrev = () => {
-    if (isAnimating || isDragging) return;
-    setIsAnimating(true);
-
-    // 오른쪽으로 슬라이드 애니메이션
-    const containerWidth = containerRef.current?.offsetWidth || 600;
-    setDragOffset(containerWidth);
-
-    // 약간의 딜레이 후 인덱스 변경
-    setTimeout(() => {
-      setCurrentIndex(prev => (prev - 1 + AI_RECIPES.length) % AI_RECIPES.length);
-      setDragOffset(0);
-      setTimeout(() => setIsAnimating(false), 600);
-    }, 50);
+    if (isDragging) return;  // 드래그 중에만 차단, 빠른 클릭 허용
+    setCurrentIndex(prev => (prev - 1 + AI_RECIPES.length) % AI_RECIPES.length);
   };
 
   const handleNext = () => {
-    if (isAnimating || isDragging) return;
-    setIsAnimating(true);
-
-    // 왼쪽으로 슬라이드 애니메이션
-    const containerWidth = containerRef.current?.offsetWidth || 600;
-    setDragOffset(-containerWidth);
-
-    // 약간의 딜레이 후 인덱스 변경
-    setTimeout(() => {
-      setCurrentIndex(prev => (prev + 1) % AI_RECIPES.length);
-      setDragOffset(0);
-      setTimeout(() => setIsAnimating(false), 600);
-    }, 50);
+    if (isDragging) return;
+    setCurrentIndex(prev => (prev + 1) % AI_RECIPES.length);
   };
 
   const handleDragStart = (clientX: number) => {
@@ -278,7 +256,11 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
       </div>
 
       {/* 레시피 관련 커뮤니티 전체 섹션 */}
-      <RecipeCommunitySection recipe={currentRecipe} recipeTools={recipeTools} />
+      <RecipeCommunitySection
+        key={currentRecipe.slug}
+        recipe={currentRecipe}
+        recipeTools={recipeTools}
+      />
     </section>
   );
 }

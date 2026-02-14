@@ -1,13 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Search, MessageSquare } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import Link from 'next/link';
-import CommunityFilterBar from '@/components/community/v2/CommunityFilterBar';
 import CommunityPostCardV2 from '@/components/community/v2/CommunityPostCardV2';
 import QuickWriteInput from '@/components/community/v2/QuickWriteInput';
-import type { CommunityPost, CommunityTag, AIRecipe } from '@/types';
+import type { CommunityPost, AIRecipe } from '@/types';
 
 const STORAGE_KEY = 'aipick_community_v2';
 
@@ -17,13 +15,8 @@ interface RecipeCommunitySectionProps {
 }
 
 export default function RecipeCommunitySection({ recipe, recipeTools }: RecipeCommunitySectionProps) {
-  const router = useRouter();
   const [posts, setPosts] = useState<CommunityPost[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<CommunityPost[]>([]);
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const [selectedGoal, setSelectedGoal] = useState<string | undefined>();
-  const [selectedAI, setSelectedAI] = useState<string | undefined>();
-  const [sortBy, setSortBy] = useState<'latest' | 'popular' | 'saved'>('latest');
 
   // localStorage에서 커뮤니티 글 로드
   useEffect(() => {
@@ -51,58 +44,19 @@ export default function RecipeCommunitySection({ recipe, recipeTools }: RecipeCo
 
   // 필터링 로직
   useEffect(() => {
-    let filtered = [...posts];
-
-    // 레시피 관련 태그로 필터링
-    const recipeTagValues = [
-      recipe.slug,
-      ...recipeTools,
-      ...recipe.tags.map(t => t.toLowerCase())
-    ];
-
-    filtered = filtered.filter(post => {
-      // 1. 태그 기반 매칭
-      if (post.tags && post.tags.length > 0) {
-        const postTagValues = post.tags.map(t => t.tag_value.toLowerCase());
-        if (recipeTagValues.some(tag => postTagValues.includes(tag))) {
-          return true;
-        }
-      }
-
-      // 2. 검색어 매칭
-      const postContent = `${post.title || ''} ${post.content}`.toLowerCase();
-      if (searchKeyword && !postContent.includes(searchKeyword.toLowerCase())) {
-        return false;
-      }
-
-      return false;
+    let filtered = posts.filter(post => {
+      // 레시피 slug가 태그에 포함되어 있는지 확인 (필수)
+      const hasRecipeSlug = post.tags?.some(
+        tag => tag.tag_value.toLowerCase() === recipe.slug.toLowerCase()
+      );
+      return hasRecipeSlug;
     });
 
-    // 추가 필터 적용
-    if (selectedGoal) {
-      filtered = filtered.filter(post =>
-        post.tags?.some(tag => tag.tag_type === 'GOAL' && tag.tag_value === selectedGoal)
-      );
-    }
-
-    if (selectedAI) {
-      filtered = filtered.filter(post =>
-        post.tags?.some(tag => tag.tag_type === 'AI_TOOL' && tag.tag_value === selectedAI)
-      );
-    }
-
-    // 정렬
-    if (sortBy === 'popular') {
-      filtered.sort((a, b) => b.popularity_score - a.popularity_score);
-    } else if (sortBy === 'saved') {
-      filtered = filtered.filter(post => post.has_bookmarked);
-      filtered.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-    } else {
-      filtered.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-    }
+    // 최신순 정렬
+    filtered.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
     setFilteredPosts(filtered);
-  }, [posts, searchKeyword, selectedGoal, selectedAI, sortBy, recipe, recipeTools]);
+  }, [posts, recipe.slug]);
 
   const handleQuickPost = async (data: { content: string; post_type: string }) => {
     try {
@@ -151,15 +105,6 @@ export default function RecipeCommunitySection({ recipe, recipeTools }: RecipeCo
     }
   };
 
-  // 사용 가능한 태그 추출
-  const availableGoals: CommunityTag[] = Array.from(
-    new Set(posts.flatMap(p => p.tags?.filter(t => t.tag_type === 'GOAL') || []))
-  );
-
-  const availableAIs: CommunityTag[] = Array.from(
-    new Set(posts.flatMap(p => p.tags?.filter(t => t.tag_type === 'AI_TOOL') || []))
-  );
-
   return (
     <div className="mt-8">
       {/* 헤더 */}
@@ -171,38 +116,10 @@ export default function RecipeCommunitySection({ recipe, recipeTools }: RecipeCo
         {recipe.title}에 대한 질문, 팁, 경험을 공유해보세요
       </p>
 
-      {/* 검색바 */}
-      <div className="mb-4">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-          <input
-            type="text"
-            value={searchKeyword}
-            onChange={(e) => setSearchKeyword(e.target.value)}
-            placeholder="키워드 검색"
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm"
-          />
-        </div>
-      </div>
-
       {/* 빠른 글쓰기 */}
       <div className="mb-6">
         <QuickWriteInput onSubmit={handleQuickPost} />
       </div>
-
-      {/* 필터바 */}
-      <CommunityFilterBar
-        filters={{
-          goal: selectedGoal,
-          ai: selectedAI,
-          sort: sortBy,
-        }}
-        availableGoals={availableGoals}
-        availableAIs={availableAIs}
-        onGoalChange={setSelectedGoal}
-        onAIChange={setSelectedAI}
-        onSortChange={setSortBy as any}
-      />
 
       {/* 글 목록 */}
       <div className="space-y-3 mt-4">

@@ -156,13 +156,13 @@ export default function CommunityWriteFormV2({ onSubmit, initialPostType, initia
         {tags.map((tag, index) => (
           <span
             key={index}
-            className="inline-flex items-center gap-1 px-2 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-medium"
+            className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium"
           >
             #{tag}
             <button
               type="button"
               onClick={() => setTags(tags.filter((_, i) => i !== index))}
-              className="hover:text-purple-900"
+              className="hover:text-gray-900"
             >
               <X className="h-2.5 w-2.5" />
             </button>
