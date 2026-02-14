@@ -12,6 +12,9 @@ interface RecipeCarouselProps {
   communityPosts: CommunityPost[];
 }
 
+// 상수 정의 (매직 넘버 제거)
+const MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
+
 /**
  * 주 번호 기반으로 Featured Recipe 인덱스를 계산
  * 매주 다른 레시피가 초기 Featured로 표시됨
@@ -22,8 +25,7 @@ const getWeeklyFeaturedIndex = (totalRecipes: number): number => {
   const now = new Date();
   const start = new Date(now.getFullYear(), 0, 1);
   const diff = now.getTime() - start.getTime();
-  const oneWeek = 1000 * 60 * 60 * 24 * 7;
-  const weekNumber = Math.floor(diff / oneWeek);
+  const weekNumber = Math.floor(diff / MILLISECONDS_PER_WEEK);
 
   return weekNumber % totalRecipes;
 };
