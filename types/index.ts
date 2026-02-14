@@ -13,6 +13,7 @@ export type CommunityPostType = 'rating' | 'discussion' | 'tip' | 'question';
 export type CommunityTargetType = 'tool' | 'news' | 'guide' | 'general';
 export type MediaType = 'image' | 'video';
 export type TrendDirection = 'up' | 'down' | 'stable' | 'new';
+export type ConfidenceLevel = 'high' | 'medium' | 'low' | 'none';
 
 // ==========================================
 // 통일 카테고리 (12개) — seed.json categories와 동일
@@ -109,6 +110,15 @@ export interface Tool {
   model_identifiers: string[];
   sample_output: string | null;
   sample_output_prompt: string | null;
+  // 외부 식별자 (평점 수집용)
+  app_store_id: string | null;
+  play_store_id: string | null;
+  trustpilot_domain: string | null;
+  g2_slug: string | null;
+  // 신뢰도 시스템
+  confidence_level: ConfidenceLevel;
+  confidence_source_count: number;
+  rating_sources: string[];
   created_at: string;
   updated_at: string;
   // 다중 카테고리 지원

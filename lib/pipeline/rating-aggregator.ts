@@ -1,82 +1,118 @@
 // ==========================================
-// 외부 평점 집계기 (무료 소스 전용)
-// Product Hunt, GitHub, 벤치마크, Artificial Analysis
+// 외부 평점 집계기 v2 (6-소스 시스템)
+// App Store, Play Store, G2, Trustpilot, Product Hunt, AIPICK
 // 실제 외부 데이터를 기반으로 rating_avg를 계산
 // 모든 가중치는 DB(scoring_weights)에서 런타임 로드
 // ==========================================
 
+import {
+  DEFAULT_RATING_WEIGHTS,
+  RATING_MIN_REVIEWS,
+  CONFIDENCE_THRESHOLDS,
+} from '@/lib/constants';
+import type { ConfidenceLevel } from '@/types';
 import type { ScoringWeightsMap } from '@/lib/scoring/weights';
 
 /**
- * 외부 소스별 원본 평점 데이터
+ * 외부 소스별 원본 평점 데이터 (6-소스)
  */
 export interface ExternalRatingData {
-  /** Product Hunt 리뷰 평점 (0-5) */
-  ph_rating: number | null;
-  /** Product Hunt 투표 수 */
-  ph_votes: number;
-  /** Product Hunt 리뷰 수 */
-  ph_reviews: number;
-  /** GitHub 스타 수 */
-  github_stars: number;
-  /** HuggingFace 벤치마크 평균 점수 (0-100) */
-  benchmark_avg: number | null;
-  /** Artificial Analysis 품질 인덱스 (0-100) */
-  aa_quality_index: number | null;
-  /** G2 평점 (0-5, 유료 API 연동 시 사용) */
+  /** Apple App Store 평점 (1-5) */
+  app_store_rating: number | null;
+  /** App Store 리뷰 수 */
+  app_store_reviews: number;
+  /** Google Play Store 평점 (1-5) */
+  play_store_rating: number | null;
+  /** Play Store 리뷰 수 */
+  play_store_reviews: number;
+  /** G2 평점 (1-5) */
   g2_rating: number | null;
   /** G2 리뷰 수 */
   g2_reviews: number;
+  /** Trustpilot 평점 (1-5) */
+  trustpilot_rating: number | null;
+  /** Trustpilot 리뷰 수 */
+  trustpilot_reviews: number;
+  /** Product Hunt 평점 (1-5) */
+  ph_rating: number | null;
+  /** Product Hunt 리뷰 수 */
+  ph_reviews: number;
+  /** AIPICK 자체 평점 (1-5) */
+  aipick_rating: number | null;
+  /** AIPICK 리뷰 수 */
+  aipick_reviews: number;
 }
 
 /**
  * 집계된 평점 결과
  */
 export interface AggregatedRating {
-  /** 종합 평점 (1.0 - 5.0) */
+  /** 종합 평점 (1.0 - 5.0), 데이터 없으면 0 */
   rating_avg: number;
-  /** 종합 리뷰/피드백 수 */
-  review_count: number;
-  /** 인기도 점수 (방문 수 대체) */
-  popularity_score: number;
+  /** 종합 리뷰 수 (모든 소스 합산) */
+  total_review_count: number;
   /** 평점 계산에 사용된 소스 목록 */
   rating_sources: string[];
-  /** 신뢰도 등급: high(3+ 소스), medium(2 소스), low(1 소스), none(0) */
-  confidence: 'high' | 'medium' | 'low' | 'none';
+  /** 신뢰도 등급 */
+  confidence: ConfidenceLevel;
 }
 
-// ==========================================
-// 하드코딩 폴백 가중치 (DB 미설정 시)
-// DB key: rating_agg_ph → 40 등
-// ==========================================
-const DEFAULT_RATING_WEIGHTS = {
-  rating_agg_ph: 40,
-  rating_agg_benchmark: 25,
-  rating_agg_aa: 15,
-  rating_agg_github: 20,
-  rating_agg_g2: 0,
-} as const;
-
 /**
- * DB 가중치 맵에서 평점 집계용 가중치를 추출합니다.
- * DB 값이 없으면 하드코딩 폴백을 사용합니다.
+ * 소스별 설정
  */
-function getRatingWeight(weights: ScoringWeightsMap | null, key: string): number {
-  if (weights && weights[key] !== undefined) {
-    return weights[key];
-  }
-  return (DEFAULT_RATING_WEIGHTS as Record<string, number>)[key] ?? 0;
+interface RatingSource {
+  key: string;
+  rating: number | null;
+  reviewCount: number;
+  weightKey: keyof typeof DEFAULT_RATING_WEIGHTS;
 }
 
 /**
- * 무료 외부 데이터를 기반으로 종합 평점을 계산합니다.
+ * DB 가중치 맵 또는 기본 상수에서 평점 집계용 가중치를 가져옵니다.
+ * DB에 rating_agg_* 키가 있으면 사용, 없으면 DEFAULT_RATING_WEIGHTS 폴백.
+ */
+function getRatingWeight(
+  dbWeights: ScoringWeightsMap | null,
+  sourceKey: keyof typeof DEFAULT_RATING_WEIGHTS
+): number {
+  const dbKey = `rating_agg_${sourceKey}`;
+  if (dbWeights && dbWeights[dbKey] !== undefined) {
+    return dbWeights[dbKey];
+  }
+  return DEFAULT_RATING_WEIGHTS[sourceKey];
+}
+
+/**
+ * 소스의 리뷰 수가 최소 기준을 충족하는지 확인합니다.
+ */
+function meetsMinReviews(sourceKey: string, reviewCount: number): boolean {
+  const minRequired = RATING_MIN_REVIEWS[sourceKey] ?? 0;
+  return reviewCount >= minRequired;
+}
+
+/**
+ * 신뢰도 등급을 소스 수 기반으로 결정합니다.
+ */
+function calculateConfidence(sourceCount: number): ConfidenceLevel {
+  if (sourceCount >= CONFIDENCE_THRESHOLDS.HIGH_MIN_SOURCES) return 'high';
+  if (sourceCount >= CONFIDENCE_THRESHOLDS.MEDIUM_MIN_SOURCES) return 'medium';
+  if (sourceCount >= CONFIDENCE_THRESHOLDS.LOW_MIN_SOURCES) return 'low';
+  return 'none';
+}
+
+/**
+ * 6개 외부 소스의 평점을 가중 평균으로 집계합니다.
  *
- * 가중치는 DB(scoring_weights, category='rating_aggregation')에서 로드.
- * - PH 리뷰 평점: 0-5 스케일 그대로
- * - 벤치마크 점수: 0-100 → 1-5 스케일로 변환
- * - AA 품질 인덱스: 0-100 → 1-5 스케일로 변환
- * - GitHub 인기도: 로그 스케일로 1-5 변환
- * - G2: DB에서 가중치 > 0일 때만 활성화
+ * 소스별 기본 비중 (DEFAULT_RATING_WEIGHTS):
+ * - App Store: 30% (최소 100리뷰)
+ * - Play Store: 25% (최소 100리뷰)
+ * - G2: 20% (최소 10리뷰)
+ * - Trustpilot: 10% (최소 20리뷰)
+ * - Product Hunt: 10% (최소 5리뷰)
+ * - AIPICK 자체: 5% (최소 5리뷰)
+ *
+ * 없는 소스의 비중은 있는 소스에 비례 재분배.
+ * 모든 소스가 없으면 rating_avg = 0 반환.
  *
  * @param data - 외부 소스 원본 데이터
  * @param dbWeights - DB에서 로드한 가중치 맵 (null이면 폴백 사용)
@@ -85,123 +121,112 @@ export function aggregateRating(
   data: ExternalRatingData,
   dbWeights: ScoringWeightsMap | null = null
 ): AggregatedRating {
-  const sources: { name: string; rating: number; weight: number }[] = [];
+  // 6개 소스 정의
+  const allSources: RatingSource[] = [
+    { key: 'app_store', rating: data.app_store_rating, reviewCount: data.app_store_reviews, weightKey: 'app_store' },
+    { key: 'play_store', rating: data.play_store_rating, reviewCount: data.play_store_reviews, weightKey: 'play_store' },
+    { key: 'g2', rating: data.g2_rating, reviewCount: data.g2_reviews, weightKey: 'g2' },
+    { key: 'trustpilot', rating: data.trustpilot_rating, reviewCount: data.trustpilot_reviews, weightKey: 'trustpilot' },
+    { key: 'product_hunt', rating: data.ph_rating, reviewCount: data.ph_reviews, weightKey: 'product_hunt' },
+    { key: 'aipick', rating: data.aipick_rating, reviewCount: data.aipick_reviews, weightKey: 'aipick' },
+  ];
 
-  const wPh = getRatingWeight(dbWeights, 'rating_agg_ph');
-  const wBenchmark = getRatingWeight(dbWeights, 'rating_agg_benchmark');
-  const wAa = getRatingWeight(dbWeights, 'rating_agg_aa');
-  const wGithub = getRatingWeight(dbWeights, 'rating_agg_github');
-  const wG2 = getRatingWeight(dbWeights, 'rating_agg_g2');
+  // 유효한 소스만 필터 (평점 있고, 최소 리뷰 수 충족)
+  const validSources: { key: string; rating: number; weight: number; reviewCount: number }[] = [];
 
-  // 1. Product Hunt 리뷰 평점
-  if (wPh > 0 && data.ph_rating !== null && data.ph_rating > 0 && data.ph_reviews >= 3) {
-    sources.push({
-      name: 'product_hunt',
-      rating: Math.min(data.ph_rating, 5),
-      weight: wPh,
-    });
+  for (const source of allSources) {
+    if (
+      source.rating !== null &&
+      source.rating > 0 &&
+      source.rating <= 5 &&
+      meetsMinReviews(source.key, source.reviewCount)
+    ) {
+      const weight = getRatingWeight(dbWeights, source.weightKey);
+      if (weight > 0) {
+        validSources.push({
+          key: source.key,
+          rating: Math.min(source.rating, 5),
+          weight,
+          reviewCount: source.reviewCount,
+        });
+      }
+    }
   }
 
-  // 2. G2 평점 (유료 API — DB에서 가중치 > 0일 때만 활성화)
-  if (wG2 > 0 && data.g2_rating !== null && data.g2_rating > 0 && data.g2_reviews >= 5) {
-    sources.push({
-      name: 'g2',
-      rating: Math.min(data.g2_rating, 5),
-      weight: wG2,
-    });
-  }
+  // 전체 리뷰 수 합산
+  const totalReviewCount = allSources.reduce((sum, s) => sum + s.reviewCount, 0);
 
-  // 3. 벤치마크 품질 (0-100 → 1-5)
-  if (wBenchmark > 0 && data.benchmark_avg !== null && data.benchmark_avg > 0) {
-    const benchmarkRating = scoreToRating(data.benchmark_avg, 40, 90);
-    sources.push({
-      name: 'benchmark',
-      rating: benchmarkRating,
-      weight: wBenchmark,
-    });
-  }
-
-  // 4. Artificial Analysis 품질 (0-100 → 1-5)
-  if (wAa > 0 && data.aa_quality_index !== null && data.aa_quality_index > 0) {
-    const aaRating = scoreToRating(data.aa_quality_index, 30, 90);
-    sources.push({
-      name: 'artificial_analysis',
-      rating: aaRating,
-      weight: wAa,
-    });
-  }
-
-  // 5. GitHub 인기도 (로그 스케일)
-  if (wGithub > 0 && data.github_stars >= 100) {
-    const ghRating = starsToRating(data.github_stars);
-    sources.push({
-      name: 'github',
-      rating: ghRating,
-      weight: wGithub,
-    });
-  }
-
-  // 가중 평균 계산 (사용 가능한 소스만)
-  if (sources.length === 0) {
+  // 유효한 소스 없음 → 평점 0
+  if (validSources.length === 0) {
     return {
       rating_avg: 0,
-      review_count: data.ph_reviews + data.g2_reviews,
-      popularity_score: estimatePopularity(data),
+      total_review_count: totalReviewCount,
       rating_sources: [],
       confidence: 'none',
     };
   }
 
-  const totalWeight = sources.reduce((sum, s) => sum + s.weight, 0);
-  const weightedSum = sources.reduce((sum, s) => sum + s.rating * s.weight, 0);
+  // 가중 평균 계산 (비중 재분배: 있는 소스의 weight 합이 denominator)
+  const totalWeight = validSources.reduce((sum, s) => sum + s.weight, 0);
+  const weightedSum = validSources.reduce((sum, s) => sum + s.rating * s.weight, 0);
   const rating = Math.round((weightedSum / totalWeight) * 10) / 10;
-
-  const confidence: AggregatedRating['confidence'] =
-    sources.length >= 3 ? 'high' :
-    sources.length >= 2 ? 'medium' : 'low';
 
   return {
     rating_avg: Math.max(1, Math.min(5, rating)),
-    review_count: data.ph_reviews + data.g2_reviews,
-    popularity_score: estimatePopularity(data),
-    rating_sources: sources.map((s) => s.name),
-    confidence,
+    total_review_count: totalReviewCount,
+    rating_sources: validSources.map((s) => s.key),
+    confidence: calculateConfidence(validSources.length),
   };
 }
 
 /**
- * 0-100 점수를 1-5 평점으로 변환합니다.
- * @param score 원본 점수
- * @param lowBound 1.0에 해당하는 하한값
- * @param highBound 5.0에 해당하는 상한값
+ * tool_external_scores 테이블의 데이터를 ExternalRatingData로 변환합니다.
+ * 크론에서 수집한 raw 데이터를 평점 집계기 입력 형식으로 매핑.
  */
-function scoreToRating(score: number, lowBound: number, highBound: number): number {
-  const clamped = Math.max(lowBound, Math.min(highBound, score));
-  const normalized = (clamped - lowBound) / (highBound - lowBound);
-  return 1 + normalized * 4; // 1.0 ~ 5.0
-}
+export function buildRatingDataFromScores(
+  scores: Array<{ source_key: string; normalized_score: number; raw_data: Record<string, unknown> | null }>
+): ExternalRatingData {
+  const data: ExternalRatingData = {
+    app_store_rating: null,
+    app_store_reviews: 0,
+    play_store_rating: null,
+    play_store_reviews: 0,
+    g2_rating: null,
+    g2_reviews: 0,
+    trustpilot_rating: null,
+    trustpilot_reviews: 0,
+    ph_rating: null,
+    ph_reviews: 0,
+    aipick_rating: null,
+    aipick_reviews: 0,
+  };
 
-/**
- * GitHub 스타 수를 1-5 평점으로 변환합니다.
- * 로그 스케일 사용 (100=1.0, 1K=2.5, 10K=3.5, 100K=4.5, 1M=5.0)
- */
-function starsToRating(stars: number): number {
-  if (stars < 100) return 1;
-  const logStars = Math.log10(stars);
-  // log10(100)=2, log10(1M)=6 → 2-6 범위를 1-5로 매핑
-  const rating = 1 + ((logStars - 2) / 4) * 4;
-  return Math.max(1, Math.min(5, Math.round(rating * 10) / 10));
-}
+  for (const score of scores) {
+    const raw = score.raw_data ?? {};
 
-/**
- * 외부 지표를 기반으로 인기도 점수를 추정합니다.
- * visit_count 대체용 (실제 트래픽 데이터 없이 추정)
- */
-function estimatePopularity(data: ExternalRatingData): number {
-  return (
-    data.ph_votes * 10 +
-    data.github_stars +
-    data.ph_reviews * 50 +
-    data.g2_reviews * 100
-  );
+    switch (score.source_key) {
+      case 'app_store':
+        data.app_store_rating = (raw.rating as number) ?? null;
+        data.app_store_reviews = (raw.review_count as number) ?? 0;
+        break;
+      case 'play_store':
+        data.play_store_rating = (raw.rating as number) ?? null;
+        data.play_store_reviews = (raw.review_count as number) ?? 0;
+        break;
+      case 'g2':
+        data.g2_rating = (raw.rating as number) ?? null;
+        data.g2_reviews = (raw.review_count as number) ?? 0;
+        break;
+      case 'trustpilot':
+        data.trustpilot_rating = (raw.rating as number) ?? null;
+        data.trustpilot_reviews = (raw.review_count as number) ?? 0;
+        break;
+      case 'product_hunt':
+        data.ph_rating = (raw.rating as number) ?? null;
+        data.ph_reviews = (raw.review_count as number) ?? 0;
+        break;
+    }
+  }
+
+  return data;
 }

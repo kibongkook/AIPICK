@@ -122,7 +122,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "GPT-4o mini 무제한 무료(기본), GPT-5.2 제한적 무료(5시간 윈도우), 파일·이미지 업로드, 웹 검색, GPT Store 접근, 시간당 30턴",
       "monthly_price": 20,
-      "rating_avg": 4.7,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 355000000,
       "tags": [
@@ -173,7 +173,14 @@
         "코드 작성 시 \"주석과 함께 설명해줘\"라고 요청하면 이해하기 쉬운 코드를 받을 수 있습니다",
         "GPT-4의 웹 브라우징 기능으로 최신 정보를 검색하여 답변받을 수 있습니다",
         "이미지 생성(DALL-E), 데이터 분석, 문서 업로드 기능을 활용하여 멀티모달 작업이 가능합니다"
-      ]
+      ],
+      "app_store_id": "6448311069",
+      "play_store_id": "com.openai.chatgpt",
+      "trustpilot_domain": "chat.openai.com",
+      "g2_slug": "chatgpt",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440002",
@@ -187,7 +194,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Claude Sonnet 4.5 일일 약 30회 무료, 파일 업로드 5개/대화, Projects 기능 제한적 사용 가능",
       "monthly_price": 20,
-      "rating_avg": 4.8,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 176000000,
       "tags": [
@@ -236,7 +243,14 @@
         "복잡한 논리 추론이 필요한 작업(법률, 수학, 철학)에서 더 정확한 답변을 제공합니다",
         "Projects 기능으로 팀원들과 대화를 공유하고 협업할 수 있습니다",
         "한국어 번역 품질이 우수하여 전문 문서 번역에 활용하기 좋습니다"
-      ]
+      ],
+      "app_store_id": "6473753684",
+      "play_store_id": "com.anthropic.claude",
+      "trustpilot_domain": "claude.ai",
+      "g2_slug": "claude",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440003",
@@ -250,7 +264,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Gemini 2.5 Flash 무료(일 250회), 2.5 Pro 무료(일 100회), 이미지 생성 하루 50회, 100만 토큰 컨텍스트, Google 검색 연동 무료",
       "monthly_price": 19.99,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 280000000,
       "tags": [
@@ -299,7 +313,14 @@
         "이미지를 업로드하여 내용 설명, OCR, 번역 등을 요청할 수 있습니다",
         "YouTube 영상 URL을 제공하면 영상 요약 및 타임스탬프 정리가 가능합니다",
         "Google Colab과 연동하여 데이터 분석 코드를 바로 실행할 수 있습니다"
-      ]
+      ],
+      "app_store_id": "6477141240",
+      "play_store_id": "com.google.android.apps.bard",
+      "trustpilot_domain": "gemini.google.com",
+      "g2_slug": "google-gemini",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440004",
@@ -313,7 +334,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 검색 무제한, Pro Search 소량 무료 할당, 파일 업로드 제한적, 검색 히스토리 무료",
       "monthly_price": 20,
-      "rating_avg": 4.8,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 30000000,
       "tags": [
@@ -356,7 +377,14 @@
         "Collections 기능으로 관련 검색 결과를 주제별로 정리하고 공유할 수 있습니다",
         "Pro 버전에서는 모델 선택 옵션으로 GPT-4, Claude Opus 등을 상황에 맞게 사용할 수 있습니다",
         "학술 논문, 최신 뉴스 검색 시 Academic/News 필터를 활용하면 정확도가 높아집니다"
-      ]
+      ],
+      "app_store_id": "6714467650",
+      "play_store_id": "ai.perplexity.app.android",
+      "trustpilot_domain": "perplexity.ai",
+      "g2_slug": "perplexity-ai",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440070",
@@ -370,7 +398,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "GPT-4o 무제한 무료, 이미지 생성 무료, 캐릭터 챗 무료, 광고 기반 수익 모델",
       "monthly_price": null,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 49664127,
       "tags": [
@@ -408,7 +436,14 @@
       "sample_output_prompt": "기후변화가 경제에 미치는 영향을 3줄로 요약해줘",
       "sample_output": "기후변화는 한국 경제에도 직접적 영향을 미치고 있어요. 여름 폭염으로 농작물 피해가 늘고 에너지 소비가 급증하고 있죠.\n글로벌 탄소국경세 도입으로 수출 중심 한국 기업들의 부담이 커지고 있어요.\n하지만 K-배터리, 수소경제 등 한국의 친환경 기술이 새로운 먹거리가 되고 있답니다!",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "wrtn.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440100",
@@ -422,7 +457,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "GPT-4o 기반 무료 채팅, 이미지 생성(DALL-E 3) 하루 15회, 웹 검색 연동 무료",
       "monthly_price": 20,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 149601913,
       "tags": [
@@ -460,7 +495,14 @@
       "sample_output_prompt": "기후변화가 경제에 미치는 영향을 3줄로 요약해줘",
       "sample_output": "기후변화는 공급망 불안정과 원자재 가격 변동을 초래하여 기업 운영 비용을 증가시킵니다.\n정부 규제와 탄소세 도입은 산업 구조 재편을 가속화하고 있습니다.\n동시에 클린테크 분야에서 새로운 비즈니스 모델과 투자 기회가 확대되고 있습니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": "6738322791",
+      "play_store_id": "com.microsoft.copilot",
+      "trustpilot_domain": "copilot.microsoft.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440101",
@@ -474,7 +516,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "텍스트 질문 10회/2시간 무료, 이미지 생성 10회/2시간, 이미지 분석 3회/일, THINK 모드 10회/24시간",
       "monthly_price": 8,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 54115011,
       "tags": [
@@ -516,7 +558,14 @@
       "sample_output_prompt": "기후변화가 경제에 미치는 영향을 3줄로 요약해줘",
       "sample_output": "솔직히 말해서, 기후변화 비용은 어마어마합니다 — 자연재해 복구에만 매년 수천억 달러가 들어갑니다.\n석유·석탄 회사들은 힘든 시기를 보내고 있지만, 테슬라 같은 친환경 기업은 호황이죠.\n결론: 기후변화에 투자하지 않으면 더 큰 대가를 치르게 됩니다. X에서도 이 주제가 뜨겁습니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "grok.x.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440102",
@@ -530,7 +579,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 크레딧으로 GPT-4o/Claude 등 제한적 무료 사용, 자체 모델(Sage) 무제한 무료",
       "monthly_price": 19.99,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 56319597,
       "tags": [
@@ -568,7 +617,14 @@
       "sample_output_prompt": "기후변화가 경제에 미치는 영향을 3줄로 요약해줘",
       "sample_output": "[Claude 답변] 기후변화로 인한 경제적 피해는 개도국에 특히 집중되어 글로벌 불평등을 심화시킵니다.\n[GPT-4 답변] 기후 리스크 프라이싱이 금융시장의 핵심 변수로 부상하고 있습니다.\n[종합] 두 AI 모두 기후변화가 위기이자 기회라는 점에 동의합니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "poe.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440103",
@@ -582,7 +638,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "Llama 3.1, Mistral, Command R+ 등 오픈소스 모델 완전 무료 무제한 사용",
       "monthly_price": null,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 27644229,
       "tags": [
@@ -620,7 +676,14 @@
       "sample_output_prompt": "기후변화가 경제에 미치는 영향을 3줄로 요약해줘",
       "sample_output": "기후변화는 농업 수확량 감소, 해수면 상승으로 인한 부동산 가치 하락 등 직접적 경제 손실을 유발합니다.\n에너지 전환에 필요한 막대한 투자 비용은 단기적으로 경제에 부담이 됩니다.\n그러나 장기적으로 지속가능한 경제 시스템 구축은 새로운 혁신과 성장을 이끌어냅니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "huggingface.co",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440104",
@@ -634,7 +697,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "AI 검색 무제한 무료, Smart Mode(GPT-4 기반) 일 5회 무료, 이미지 생성 일 3회",
       "monthly_price": 15,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 47239741,
       "tags": [
@@ -672,7 +735,14 @@
       "sample_output_prompt": "기후변화가 경제에 미치는 영향을 3줄로 요약해줘",
       "sample_output": "기후변화는 보험 비용 상승, 농업 생산성 저하, 관광산업 위축 등 다방면에서 경제적 타격을 줍니다.\n세계은행은 2030년까지 기후변화로 1.3억 명이 극빈층으로 전락할 수 있다고 경고합니다.\n탄소 시장 규모는 2025년 기준 1조 달러를 돌파하며 새로운 경제 영역으로 성장 중입니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "you.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440105",
@@ -686,7 +756,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "AI 봇 빌더 완전 무료, GPT-4o 기반 봇 생성·배포 무료, 플러그인·워크플로우 무료",
       "monthly_price": null,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 58209282,
       "tags": [
@@ -724,7 +794,14 @@
       "sample_output_prompt": "기후변화가 경제에 미치는 영향을 3줄로 요약해줘",
       "sample_output": "🤖 [기후변화 분석 봇] 분석 결과:\n1. 피해 규모: 자연재해 관련 경제 손실이 10년간 2배 이상 증가했습니다.\n2. 산업 전환: 글로벌 에너지 시장에서 재생에너지 비중이 30%를 돌파했습니다.\n3. 기회 영역: 기후테크 스타트업 투자가 전년 대비 40% 증가했습니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "coze.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440106",
@@ -738,7 +815,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "한국형 AI 챗봇 완전 무료, 한국어 대화·요약·번역 무료 제공",
       "monthly_price": null,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 63136000,
       "tags": [
@@ -776,7 +853,14 @@
       "sample_output_prompt": "기후변화가 경제에 미치는 영향을 3줄로 요약해줘",
       "sample_output": "기후변화 때문에 농산물 가격이 오르고, 태풍이나 홍수 피해 복구 비용이 엄청 늘어나고 있어요.\n석탄이나 석유 같은 에너지 산업은 줄어들고, 대신 태양광·풍력 같은 새 산업이 커지고 있어요.\n한마디로 기후변화는 경제를 완전히 새로운 방향으로 바꾸고 있는 거예요.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "dwijibgi.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440107",
@@ -790,7 +874,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "200만 토큰 컨텍스트 완전 무료, PDF·문서 파일 분석 무료, 웹 검색 연동 무료",
       "monthly_price": null,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 18022510,
       "tags": [
@@ -828,7 +912,14 @@
       "sample_output_prompt": "기후변화가 경제에 미치는 영향을 3줄로 요약해줘",
       "sample_output": "기후변화는 극단적 기상 이벤트를 증가시켜 전 세계적으로 막대한 경제적 손실을 초래하고 있습니다.\n국제 탄소 규제가 강화되면서 수출 기업의 비용 구조와 경쟁력이 재편되고 있습니다.\n이에 따라 청정에너지, 탄소포집 등 기후 솔루션 시장이 빠르게 확대되는 추세입니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "kimi.moonshot.cn",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440005",
@@ -842,7 +933,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Free/Plus 플랜에서 AI 제한적 체험 가능, 전체 AI 기능은 Business($20/user/월) 이상",
       "monthly_price": 10,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 80000000,
       "tags": [
@@ -885,7 +976,14 @@
         "초안 작성 시 \"계속 작성하기\"로 문맥에 맞는 문장을 자동 생성할 수 있습니다",
         "표 데이터를 선택하여 \"인사이트 찾기\"로 데이터 분석 결과를 얻을 수 있습니다",
         "다국어 문서는 \"번역\" 기능으로 즉시 한국어/영어로 변환할 수 있습니다"
-      ]
+      ],
+      "app_store_id": "1232780281",
+      "play_store_id": "notion.id",
+      "trustpilot_domain": "notion.so",
+      "g2_slug": "notion-ai",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440110",
@@ -899,7 +997,7 @@
       "pricing_type": "Paid",
       "free_quota_detail": "무료 플랜 없음. 7일 무료 체험 후 월 $39.",
       "monthly_price": 39,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 13547979,
       "tags": [
@@ -937,7 +1035,14 @@
       "sample_output_prompt": "신제품 런칭 SNS 홍보 문구를 3개 작성해줘",
       "sample_output": "1. [제품명] 출시! 업계를 뒤흔들 혁신이 시작됩니다. 당신의 비즈니스에 날개를 달아줄 준비가 되었습니다. CTA: 지금 사전예약 →\n2. \"이걸 기다렸다!\" — 베타 테스터 95%가 극찬한 [제품명]. 한정 수량 런칭 특가로 만나보세요.\n3. 경쟁사와의 차이? [제품명]을 써보면 알게 됩니다. 30일 무료 체험으로 직접 확인하세요.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "jasper.ai",
+      "g2_slug": "jasper",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440111",
@@ -951,7 +1056,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 2,000단어 무료 생성, 채팅 기능 무제한 무료, 90개 이상 템플릿 무료",
       "monthly_price": 36,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 28318332,
       "tags": [
@@ -989,7 +1094,14 @@
       "sample_output_prompt": "신제품 런칭 SNS 홍보 문구를 3개 작성해줘",
       "sample_output": "🎯 인스타그램용:\n\"변화는 작은 선택에서 시작됩니다. [제품명]으로 오늘부터 달라지세요.\"\n\n🐦 트위터용:\n\"[제품명] 런칭 🎉 첫 1000명 한정 50% 할인! 링크 클릭 →\"\n\n📘 페이스북용:\n\"3년간의 연구 끝에 탄생한 [제품명]. 10만 명의 사전 신청이 증명한 기대감을 직접 경험해보세요.\"",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "copy.ai",
+      "g2_slug": "copy-ai",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440112",
@@ -1003,7 +1115,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 10,000단어 무료 생성, GPT-4 기반 25회/월 무료, Chatsonic 검색 기능 포함",
       "monthly_price": 16,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 25748190,
       "tags": [
@@ -1041,7 +1153,14 @@
       "sample_output_prompt": "신제품 런칭 SNS 홍보 문구를 3개 작성해줘",
       "sample_output": "1. 🔥 [제품명] 공식 런칭! AI가 분석한 당신의 니즈에 딱 맞는 솔루션. 지금 시작하면 첫 달 무료!\n2. 💪 더 이상 고민하지 마세요. [제품명]이 당신의 문제를 해결합니다. 24시간 한정 런칭 특가!\n3. 🏆 [카테고리] 1위를 목표로 만들었습니다. [제품명]의 시작을 함께 하세요. #GameChanger",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "writesonic.com",
+      "g2_slug": "writesonic",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440113",
@@ -1055,7 +1174,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 문법·맞춤법 교정 무제한 무료, AI 작문(GrammarlyGO) 월 100회 무료, 브라우저 확장 무료",
       "monthly_price": 12,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 120000000,
       "tags": [
@@ -1098,7 +1217,14 @@
         "빨간색 밑줄은 필수 수정, 노란색은 선택 수정 사항을 의미합니다",
         "Premium의 \"Tone Detector\"로 자신의 글이 어떤 인상을 주는지 확인할 수 있습니다",
         "자주 틀리는 패턴을 학습하여 개인 맞춤 제안을 제공합니다"
-      ]
+      ],
+      "app_store_id": "1044906395",
+      "play_store_id": "com.grammarly.android.keyboard",
+      "trustpilot_domain": "grammarly.com",
+      "g2_slug": "grammarly",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440114",
@@ -1112,7 +1238,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "패러프레이징 125단어까지 무료, 문법 검사 무료 무제한, 요약 1,200단어까지 무료",
       "monthly_price": 9.95,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 33717968,
       "tags": [
@@ -1150,7 +1276,14 @@
       "sample_output_prompt": "홍보 문구를 다른 톤으로 패러프레이징해줘",
       "sample_output": "원문: \"혁신적인 신제품을 지금 만나보세요\"\n\n📝 Standard: \"새롭게 출시된 혁신 제품을 확인해보세요\"\n📝 Fluency: \"혁신적인 새 제품을 지금 바로 경험해보세요\"\n📝 Formal: \"혁신을 담은 신제품을 소개해 드립니다\"\n📝 Creative: \"세상을 바꿀 신제품, 지금 이 순간 공개합니다\"\n📝 Concise: \"혁신 신제품 출시. 지금 확인하세요\"",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "quillbot.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440115",
@@ -1164,7 +1297,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 캐릭터 대화 무제한 무료, 캐릭터 생성 무료, c1+ 고급 모델은 유료(c.ai+ $9.99/월)",
       "monthly_price": 9.99,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 12120096,
       "tags": [
@@ -1202,7 +1335,14 @@
       "sample_output_prompt": "마케팅 전문가 캐릭터로 홍보 조언해줘",
       "sample_output": "[마케팅 전문가 Alex 🎩]\n\n안녕! 마케팅 15년 차 Alex야. 신제품 런칭이라고?\n\n내 조언은 이래:\n1. FOMO를 자극해 — \"한정 수량\", \"오늘만\" 같은 키워드를 꼭 넣어\n2. 사회적 증거를 활용해 — 베타 테스터 후기를 함께 올려\n3. 스토리텔링을 해 — 제품이 아니라 변화를 팔아야 해\n\n어떤 제품인지 말해주면 더 구체적으로 도와줄게!",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": "1607227956",
+      "play_store_id": null,
+      "trustpilot_domain": "character.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440116",
@@ -1216,7 +1356,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 300분 음성 전사 무료, 실시간 회의 요약 무료, Zoom·Teams·Meet 연동 무료",
       "monthly_price": 16.99,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 53087009,
       "tags": [
@@ -1254,7 +1394,14 @@
       "sample_output_prompt": "마케팅 팀 회의 녹음을 텍스트로 변환해줘",
       "sample_output": "📝 회의록 자동 생성 (마케팅 팀 신제품 런칭 회의)\n\n[00:01] 김팀장: 신제품 SNS 마케팅 전략 논의하겠습니다.\n[00:15] 이대리: 인스타그램 릴스 위주로 가는 게 좋을 것 같습니다.\n[01:02] 박과장: 인플루언서 협업도 병행하죠. 예산은 500만 원 선에서.\n[02:30] 김팀장: 좋습니다. 다음 주 월요일까지 시안 준비해주세요.\n\n📌 Action Items:\n• 이대리: 릴스 콘텐츠 시안 3개 (마감: 월요일)\n• 박과장: 인플루언서 리스트업 (마감: 금요일)",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "otter.ai",
+      "g2_slug": "otter-ai",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440117",
@@ -1268,7 +1415,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 800분 저장 공간 무료, AI 회의 요약 무료, 무제한 전사(크레딧 제한), CRM 연동 무료",
       "monthly_price": 18,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 43864483,
       "tags": [
@@ -1306,7 +1453,14 @@
       "sample_output_prompt": "줌 미팅 녹화본을 요약해줘",
       "sample_output": "🔥 Meeting Summary — 신제품 런칭 킥오프\n📅 2026-02-07 | ⏱️ 45분 | 👥 참석 6명\n\n핵심 논의사항:\n• 런칭일: 3월 15일 확정\n• 타깃: 25-35세 직장인\n• 예산: 디지털 마케팅 2000만 원\n\n결정사항:\n✅ SNS 채널: 인스타그램 + 유튜브 숏츠\n✅ 인플루언서: 마이크로 인플루언서 10명 섭외\n\n후속 조치:\n⬜ 미디어 플랜 수립 (담당: 마케팅팀, 기한: 2/14)",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "fireflies.ai",
+      "g2_slug": "fireflies-ai",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440118",
@@ -1320,7 +1474,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "회의 녹음·전사 무제한 무료, AI 요약 월 10회 무료, 클립 생성·공유 무료",
       "monthly_price": 18,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 70617789,
       "tags": [
@@ -1358,7 +1512,14 @@
       "sample_output_prompt": "구글미트 회의 녹화를 요약해줘",
       "sample_output": "📹 tl;dv 회의 요약\n🏷️ 신제품 런칭 마케팅 전략\n\n⏱️ 타임스탬프 요약:\n[03:22] 💡 핵심 타깃 고객 페르소나 정의\n[08:45] 📊 경쟁사 마케팅 분석 결과 공유\n[15:10] 🎯 차별화 포인트 3가지 합의\n[22:00] 📅 런칭 타임라인 및 마일스톤 확정\n\n🤖 AI 인사이트: 이번 회의에서 \"차별화\"가 12회 언급되었습니다. 팀의 최우선 관심사로 보입니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "tldv.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440119",
@@ -1372,7 +1533,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "음성 기록 무제한 무료, 한국어 음성 인식 무료, 화자 분리 무료, 회의록 자동 생성 무료",
       "monthly_price": null,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 39900168,
       "tags": [
@@ -1410,7 +1571,14 @@
       "sample_output_prompt": "회의 녹음 파일을 텍스트로 변환해줘",
       "sample_output": "🎙️ CLOVA Note 변환 결과\n\n화자 분리 (3명 감지):\n\n화자1(김팀장): 이번 신제품 홍보는 MZ세대를 타깃으로 잡겠습니다.\n화자2(이대리): 틱톡 챌린지를 기획하면 바이럴 효과가 클 것 같아요.\n화자3(박사원): 제가 해시태그 트렌드 분석해서 내일까지 공유드리겠습니다.\n화자1(김팀장): 좋아요. 다들 금요일까지 시안 하나씩 준비합시다.\n\n📊 인식 정확도: 97.2% | 소요 시간: 12초",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": "1620786367",
+      "play_store_id": "com.naver.clova.note",
+      "trustpilot_domain": "clovanote.naver.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440120",
@@ -1424,7 +1592,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 10,000자 무료 생성, 40개 이상 사용 사례 템플릿 무료, 20개 톤 설정 가능",
       "monthly_price": 9,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 14355647,
       "tags": [
@@ -1462,7 +1630,14 @@
       "sample_output_prompt": "신제품 런칭 SNS 홍보 문구를 3개 작성해줘",
       "sample_output": "🎨 톤: 열정적 & 설득적\n\n1. 드디어 베일을 벗습니다! [제품명]은 당신이 기다려온 바로 그 제품입니다. 첫 출시 기념, 지금 가입하면 평생 할인!\n2. \"이게 가능해?\" 라는 말이 절로 나옵니다. [제품명]의 놀라운 기능을 직접 경험해보세요. 7일 무료 체험 →\n3. 당신의 하루를 바꿀 작은 혁신, [제품명]. 이미 10,000명이 대기 중입니다. 늦지 않게 합류하세요!",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "rytr.me",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440121",
@@ -1476,7 +1651,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "하루 10회 리라이트 무료, 요약 3회/일 무료, 브라우저 확장 무료",
       "monthly_price": 9.99,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 36448335,
       "tags": [
@@ -1514,7 +1689,14 @@
       "sample_output_prompt": "홍보 문구를 더 임팩트있게 다듬어줘",
       "sample_output": "원문: \"새 제품이 나왔으니 많이 사용해 주세요\"\n\n🔄 Rewrite 옵션:\n• 캐주얼: \"우리가 만든 최고의 제품, 지금 바로 써봐!\"\n• 포멀: \"새롭게 출시된 제품을 경험해 보시기 바랍니다\"\n• 짧게: \"신제품 출시. 지금 체험하세요\"\n• 길게: \"오랜 준비 끝에 선보이는 신제품을 많은 분들이 사용해 주시면 감사하겠습니다\"\n• 임팩트: \"게임 체인저 등장. 지금 시작하지 않으면 후회합니다\"",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "wordtune.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440122",
@@ -1528,7 +1710,7 @@
       "pricing_type": "Paid",
       "free_quota_detail": "무료 플랜 없음. 초기 크레딧(약 4,000단어) 후 월 $10.",
       "monthly_price": 10,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 78115848,
       "tags": [
@@ -1566,7 +1748,14 @@
       "sample_output_prompt": "신제품을 소개하는 스토리텔링 글을 써줘",
       "sample_output": "김지수는 매일 아침 같은 루틴에 지쳐 있었다. 커피를 내리고, 노트북을 켜고, 끝없는 업무에 파묻히는 일상.\n\n그날도 그랬다. 적어도 [제품명]을 발견하기 전까지는.\n\n\"이걸 왜 이제야 알았지?\"\n\n처음 써본 날, 퇴근 시간이 2시간 당겨졌다. 일주일 뒤, 팀 전체가 쓰기 시작했다.\n\n변화는 조용히, 하지만 확실하게 찾아왔다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "sudowrite.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440123",
@@ -1580,7 +1769,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "AI 음성 합성 월 10분 무료, 다양한 한국어 음성 캐릭터 체험 가능, 워터마크 포함",
       "monthly_price": 8.99,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 77648142,
       "tags": [
@@ -1618,7 +1807,14 @@
       "sample_output_prompt": "홍보 영상 내레이션을 AI 음성으로 만들어줘",
       "sample_output": "🎙️ AI 보이스 생성 완료\n\n선택 음성: \"서연\" (20대 여성, 밝고 활기찬 톤)\n텍스트: \"새로운 시작, [제품명]과 함께하세요. 지금 런칭 기념 50% 할인 중!\"\n\n⏱️ 길이: 5.2초\n🎚️ 속도: 1.0x | 감정: 밝음 80%\n🔊 파일: narration_promo_01.wav\n\n💡 추천 음성: \"민준\" (30대 남성, 신뢰감 있는 톤)도 이 문구에 잘 어울립니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "typecast.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440010",
@@ -1632,7 +1828,7 @@
       "pricing_type": "Paid",
       "free_quota_detail": "무료 플랜 없음(2023년 중단). Basic $10/월(3.3시간 Fast GPU), Standard $30/월(15시간+무제한 Relax)",
       "monthly_price": 10,
-      "rating_avg": 4.6,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 50000000,
       "tags": [
@@ -1676,7 +1872,14 @@
         "같은 프롬프트로 4가지 변형을 생성 후 마음에 드는 것을 Upscale하여 고해상도로 만들 수 있습니다",
         "Discord의 Midjourney Showcase 채널에서 다른 사용자들의 프롬프트를 참고할 수 있습니다",
         "--v 6 파라미터로 최신 V6 모델을 사용하면 더 사실적인 결과를 얻을 수 있습니다"
-      ]
+      ],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "midjourney.com",
+      "g2_slug": "midjourney",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440011",
@@ -1690,7 +1893,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "ChatGPT 무료 플랜에서 GPT-4o 이미지 생성 제한적 무료, Plus 구독 시 확대, API는 이미지당 $0.04~$0.08",
       "monthly_price": 20,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 46333893,
       "tags": [
@@ -1727,7 +1930,14 @@
       "sample_output_prompt": "비 오는 도쿄 골목길, 네온사인 반사, 시네마틱 스타일",
       "sample_output": "🖼️ 이미지 1장이 생성되었습니다 (1024x1024)\n\n빗방울이 떨어지는 도쿄의 좁은 골목길입니다. 양쪽 건물에서 빨강, 보라, 초록빛 네온사인이 빛나고, 물웅덩이에 네온 빛이 선명하게 반사됩니다. 한 사람이 투명 우산을 쓰고 골목 깊숙이 걸어가는 뒷모습이 보입니다. 따뜻하면서도 몽환적인 분위기의 시네마틱 구도입니다.\n\n💡 프롬프트가 안전 정책에 맞게 자동 조정되었습니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "openai.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440012",
@@ -1741,7 +1951,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "오픈소스 모델 완전 무료(로컬 GPU 필요), DreamStudio 웹에서 신규 가입 시 25크레딧 제공",
       "monthly_price": 10,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 25746623,
       "tags": [
@@ -1783,7 +1993,14 @@
       "sample_output_prompt": "비 오는 도쿄 골목길, 네온사인 반사, 시네마틱 스타일",
       "sample_output": "🖼️ 이미지 생성 완료 (SDXL 1.0, 1024x1024)\n\n네온 불빛으로 물든 도쿄 골목의 야경. 비에 젖은 도로 표면이 거울처럼 네온사인을 반사합니다. 자판기의 은은한 빛, 전선 위로 떨어지는 빗줄기, 골목 끝 이자카야의 노렌이 보입니다. 높은 대비와 깊은 그림자로 분위기 있는 시네마틱 톤.\n\n⚙️ Sampler: DPM++ 2M Karras | Steps: 30 | CFG: 7.5",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "stability.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440130",
@@ -1797,7 +2014,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 150토큰 무료(리셋 UTC 자정, 이월 불가), 대기 시간 8-20분, 다양한 모델 무료 사용",
       "monthly_price": 15,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 44392733,
       "tags": [
@@ -1835,7 +2052,14 @@
       "sample_output_prompt": "비 오는 도쿄 골목길, 네온사인 반사, 시네마틱 스타일",
       "sample_output": "🖼️ 4장 생성 완료 (Leonardo Diffusion XL)\n\n도쿄 시부야 인근 골목의 우중 풍경. 네온사인 글자들이 빗물에 번져 추상적인 빛의 패턴을 만듭니다. 포장마차 지붕에서 떨어지는 빗물, 자전거가 세워진 골목 입구, 먼 곳의 도쿄타워 실루엣.\n\n🎨 사용 모델: Leonardo Diffusion XL\n✨ AI Canvas에서 부분 수정 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "leonardo.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440131",
@@ -1849,7 +2073,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 플랜 제공(일일 생성 횟수 제한), Basic $11.99/월, Pro $85.99/월",
       "monthly_price": 8,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 21644271,
       "tags": [
@@ -1887,7 +2111,14 @@
       "sample_output_prompt": "비 오는 도쿄 골목길, 네온사인 반사, 시네마틱 스타일",
       "sample_output": "🖼️ 4장 생성 완료\n\n비 오는 도쿄 골목길에 \"ラーメン\"(라멘), \"居酒屋\"(이자카야) 등 일본어 텍스트가 선명한 네온사인으로 표현됩니다. 텍스트 렌더링이 정확하게 구현되어 실제 간판처럼 보입니다. 젖은 보도블록 위 빛 반사와 함께 영화 같은 분위기.\n\n💡 Ideogram의 강점: 이미지 내 텍스트가 정확하게 렌더링됩니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "ideogram.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440132",
@@ -1901,7 +2132,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 체험 크레딧 제공, 유료 구독자($9.99/월~) 무제한 AI 이미지·영상 생성, 2K 해상도",
       "monthly_price": 9.99,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 164683624,
       "tags": [
@@ -1939,7 +2170,14 @@
       "sample_output_prompt": "비 오는 도쿄 골목길, 네온사인 반사, 시네마틱 스타일",
       "sample_output": "🖼️ 4장 생성 완료 (Firefly Image 3)\n\n상업적으로 안전한 이미지가 생성되었습니다. 비 내리는 도쿄 골목의 시네마틱 야경으로, 네온 간판의 따뜻한 빛이 빗물에 반사됩니다. 골목 양쪽의 작은 가게들, 중앙의 빗물 웅덩이, 은은한 안개 효과.\n\n✅ 상업적 사용 가능 (Content Credentials 포함)\n🎨 생성형 채우기로 부분 편집 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "firefly.adobe.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440133",
@@ -1953,7 +2191,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 50장 무료 생성, 실시간 캔버스 무료 사용, 업스케일 기능 일부 무료",
       "monthly_price": 8,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 63712067,
       "tags": [
@@ -1991,7 +2229,14 @@
       "sample_output_prompt": "비 오는 도쿄 골목길, 네온사인 반사, 시네마틱 스타일",
       "sample_output": "🖼️ 실시간 생성 중... 완료!\n\n프롬프트를 입력하는 동안 실시간으로 이미지가 변화합니다. 최종 결과: 네온 빛이 가득한 도쿄 야경 골목. 비에 젖은 지면의 반사광이 특히 인상적이며, 따뜻한 색감의 시네마틱 톤.\n\n🎛️ 실시간 편집: 스타일 강도, 색감, 구도를 슬라이더로 즉시 조절 가능\n🔄 업스케일: 4K 해상도로 변환 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "krea.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440134",
@@ -2005,7 +2250,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 500장 무료 생성, 다양한 모델·필터 무료 사용, 캔버스 편집 무료",
       "monthly_price": 15,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 58474437,
       "tags": [
@@ -2043,7 +2288,14 @@
       "sample_output_prompt": "비 오는 도쿄 골목길, 네온사인 반사, 시네마틱 스타일",
       "sample_output": "🖼️ 이미지 생성 완료\n\n도쿄 골목길의 몽환적인 우중 야경. 혼합 조명(네온 + 가로등)이 만드는 다채로운 색감, 비에 젖은 아스팔트의 반사광이 특징입니다. 캔버스에서 직접 편집하거나 다른 이미지와 합성할 수 있습니다.\n\n🎨 필터: Cinematic | 모델: Playground v2.5\n💰 일일 무료 생성 500장 중 1장 사용",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "playground.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440135",
@@ -2057,7 +2309,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "GPT-4o/DALL-E 기반 이미지 생성 무료, Microsoft 계정 필요, 부스트 포인트로 빠른 생성",
       "monthly_price": null,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 54408033,
       "tags": [
@@ -2095,7 +2347,14 @@
       "sample_output_prompt": "비 오는 도쿄 골목길, 네온사인 반사, 시네마틱 스타일",
       "sample_output": "🖼️ 4장 생성 완료 (DALL-E 기반)\n\n비가 내리는 도쿄 골목길의 야경입니다. 다양한 색상의 네온사인이 물에 비치는 모습이 인상적입니다. 우산을 든 사람과 자판기가 있는 전형적인 일본 골목 분위기.\n\n⚡ 부스트 1개 사용 (빠른 생성)\n💰 Microsoft Rewards 포인트로 부스트 충전 가능\n🔗 Copilot에서 바로 생성됨",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "bing.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440136",
@@ -2109,7 +2368,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Flux.2 Klein/Dev 모델 오픈소스 무료(로컬 실행), Pro 모델은 API 과금($0.01/이미지~)",
       "monthly_price": 10,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 19991296,
       "tags": [
@@ -2147,7 +2406,14 @@
       "sample_output_prompt": "비 오는 도쿄 골목길, 네온사인 반사, 시네마틱 스타일",
       "sample_output": "🖼️ 이미지 생성 완료 (FLUX.1 [dev])\n\n극도로 사실적인 도쿄 골목 야경. 빗방울 하나하나의 디테일, 네온사인의 정확한 텍스트 렌더링, 물웅덩이 반사의 물리적 정확성이 돋보입니다. 사진과 구분이 어려운 수준의 포토리얼리즘.\n\n⚙️ 모델: FLUX.1 [dev] | 해상도: 1024x1024\n🔓 오픈소스: 로컬에서도 실행 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "flux1.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440137",
@@ -2161,7 +2427,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "미리보기 해상도 무제한 무료, 고해상도 다운로드 월 1장 무료, API 50회 무료 체험",
       "monthly_price": 9.99,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 41118464,
       "tags": [
@@ -2199,7 +2465,14 @@
       "sample_output_prompt": "제품 사진에서 배경을 제거해줘",
       "sample_output": "✅ 배경 제거 완료!\n\n처리 결과:\n• 원본: product_photo.jpg (3.2MB)\n• 결과: product_photo_nobg.png (1.8MB, 투명 배경)\n• 처리 시간: 2.3초\n• 엣지 품질: ★★★★★ (머리카락/미세한 경계까지 깔끔하게 처리)\n\n💡 추천: 흰 배경, 그라데이션 배경, 또는 커스텀 배경을 적용할 수 있습니다.\n📐 해상도: 원본 유지 (4000x3000px)",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "remove.bg",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440138",
@@ -2213,7 +2486,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "배경 제거 무제한 무료(워터마크 포함), AI 배경 생성 무료, 상품 사진 편집 기본 기능 무료",
       "monthly_price": 12.99,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 19788423,
       "tags": [
@@ -2251,7 +2524,14 @@
       "sample_output_prompt": "제품 사진 배경을 스튜디오 배경으로 교체해줘",
       "sample_output": "✅ 배경 교체 완료!\n\n• 배경 제거 → 스튜디오 배경 적용\n• 선택된 배경: 그라데이션 화이트 스튜디오\n• 그림자 효과: 자동 추가됨 (자연스러운 드롭 섀도우)\n• 해상도: 2000x2000px (SNS 최적화)\n\n🎨 추가 옵션:\n• AI 배경 생성: \"대리석 테이블 위\" 등 텍스트로 배경 생성 가능\n• 일괄 처리: 최대 100장 동시 편집 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "photoroom.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440139",
@@ -2265,7 +2545,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 도구(배경 제거, 업스케일 등) 무료, Stable Diffusion XL 이미지 생성 일부 무료, 고해상도는 유료",
       "monthly_price": 9,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 65448533,
       "tags": [
@@ -2303,7 +2583,14 @@
       "sample_output_prompt": "제품 사진을 리라이팅하고 배경을 변경해줘",
       "sample_output": "✅ 처리 완료!\n\n1️⃣ 배경 제거: 깔끔하게 분리됨\n2️⃣ 리라이팅: 자연광 스튜디오 조명으로 변경\n   - 광원 방향: 좌측 상단 45°\n   - 조명 강도: 중간\n3️⃣ 새 배경: 부드러운 베이지 그라데이션 적용\n\n🎨 Stable Diffusion 기반 AI 처리\n💡 Uncrop으로 이미지 확장도 가능합니다",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "clipdrop.co",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440020",
@@ -2317,7 +2604,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 125크레딧(일회성, 갱신 없음). Gen-4 Turbo·텍스트→이미지만 가능, Gen-4 영상은 유료",
       "monthly_price": 15,
-      "rating_avg": 4.6,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 15000000,
       "tags": [
@@ -2359,7 +2646,14 @@
         "Inpainting으로 비디오의 특정 영역만 AI로 수정하거나 제거할 수 있습니다",
         "Motion Brush로 정지 이미지에 움직임을 추가하여 생동감 있는 비디오로 만들 수 있습니다",
         "Green Screen 도구로 배경을 자동 제거하고 원하는 배경으로 교체할 수 있습니다"
-      ]
+      ],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "runwayml.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440021",
@@ -2373,7 +2667,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "모든 기능 완전 무료(Pro 제외), 워터마크 없음, AI 자막·배경 제거·음악 생성 포함",
       "monthly_price": null,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 25602550,
       "tags": [
@@ -2410,7 +2704,14 @@
       "sample_output_prompt": "카페 브이로그 영상을 편집해줘",
       "sample_output": "✂️ AI 자동 편집 완료!\n\n• 원본: 15분 카페 브이로그 원본\n• 결과: 1분 30초 하이라이트 편집본\n• 적용 효과:\n  - 자동 컷 편집 (어색한 구간 제거)\n  - 트렌딩 BGM: \"Cozy Afternoon\" 자동 매칭\n  - 자막 자동 생성 (한국어, 스타일: 네온)\n  - 트랜지션: 스무스 줌 + 디졸브\n\n📱 세로 영상(9:16)으로 릴스/숏츠 최적화됨",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": "1500855883",
+      "play_store_id": "com.lemon.lvoverseas",
+      "trustpilot_domain": "capcut.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440022",
@@ -2424,7 +2725,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 120분 음성 인식 무료+자막 자동 생성",
       "monthly_price": 9.99,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 24595711,
       "tags": [
@@ -2461,7 +2762,14 @@
       "sample_output_prompt": "영상에 자동 자막을 넣어줘",
       "sample_output": "📝 AI 자막 생성 완료!\n\n• 영상 길이: 15초\n• 인식된 텍스트:\n  [00:01] \"오늘은 성수동에 새로 오픈한 카페에 왔어요\"\n  [00:05] \"시그니처 메뉴인 바닐라 라떼를 주문했습니다\"\n  [00:10] \"분위기가 정말 좋네요, 추천합니다\"\n\n🎨 자막 스타일: 모던 고딕 (배경: 반투명 검정)\n✅ 음성 인식 정확도: 98.5%\n📤 내보내기: MP4, SRT, TXT 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "vrew.voyagerx.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440140",
@@ -2475,7 +2783,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 플랜 제공(월 크레딧 제한, 480p, 워터마크). 유료 $8/월부터, 상업 사용은 유료만",
       "monthly_price": 8,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 13537797,
       "tags": [
@@ -2512,7 +2820,14 @@
       "sample_output_prompt": "카페에서 커피를 마시는 15초 시네마틱 영상",
       "sample_output": "🎬 영상 생성 완료 (3초 클립)\n\n아늑한 카페 안, 나무 테이블 위에 놓인 카푸치노 한 잔. 라떼아트 위로 시나몬 가루가 뿌려지는 모습이 슬로우모션으로 표현됩니다. 배경에서 부드러운 보케 빛이 흐릅니다.\n\n✨ 추가 효과 가능:\n• 카메라 모션: 좌→우 패닝\n• 스타일 변환: 애니메이션/3D 렌더 등\n• 영상 확장: 추가 3초 연장 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "pika.art",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440141",
@@ -2526,7 +2841,7 @@
       "pricing_type": "Paid",
       "free_quota_detail": "무료 플랜 없음. ChatGPT Plus($20/월) 구독 시 480p 영상 무제한. Pro($200/월) 시 10,000크레딧·1080p",
       "monthly_price": 20,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 11472244,
       "tags": [
@@ -2564,7 +2879,14 @@
       "sample_output_prompt": "카페에서 커피를 마시는 15초 시네마틱 영상",
       "sample_output": "🎬 영상 생성 완료 (15초, 1080p)\n\n부드러운 자연광이 들어오는 도쿄풍 카페. 한 여성이 창가 자리에서 라떼를 한 모금 마시고 미소 짓습니다. 카메라가 서서히 줌아웃하며 카페 전체의 아늑한 분위기를 담습니다. 배경에서 다른 손님들이 자연스럽게 움직이고, 바리스타가 커피를 내리는 모습이 보입니다.\n\n⚙️ 해상도: 1920x1080 | 시간: 15초\n🎨 물리 시뮬레이션: 김, 액체 움직임 사실적 표현",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "sora.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440142",
@@ -2578,7 +2900,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 30크레딧 무료(약 10개 영상), 5초 클립, Standard $9.99/월(120크레딧), Pro $49.99/월(400크레딧)",
       "monthly_price": 9.99,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 7864758,
       "tags": [
@@ -2615,7 +2937,14 @@
       "sample_output_prompt": "카페에서 커피를 마시는 15초 시네마틱 영상",
       "sample_output": "🎬 Dream Machine 영상 생성 (5초 클립)\n\n3D 공간감이 뛰어난 카페 씬. 카메라가 에스프레소 머신에서 시작해 천천히 이동하며, 바리스타의 손이 라떼아트를 완성하는 과정을 보여줍니다. 일관된 3D 공간에서 자연스러운 카메라 무빙.\n\n📸 이미지→영상 변환도 가능: 카페 사진을 업로드하면 해당 장면을 움직이는 영상으로 변환합니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "lumalabs.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440143",
@@ -2629,7 +2958,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 66크레딧 무료(24시간 리셋, 이월 불가), 720p, 워터마크, 대기 시간 5-30분. 유료 $6.99/월~",
       "monthly_price": 6.99,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 7755343,
       "tags": [
@@ -2666,7 +2995,14 @@
       "sample_output_prompt": "카페에서 커피를 마시는 15초 시네마틱 영상",
       "sample_output": "🎬 영상 생성 완료 (10초, 1080p)\n\n빈티지 인테리어의 카페에서 젊은 남성이 핸드드립 커피를 즐기는 장면. 드리퍼에서 커피가 한 방울씩 떨어지는 극도로 사실적인 움직임. 인물의 표정 변화와 손동작이 자연스럽게 표현됩니다.\n\n⚙️ 모드: 고품질 | 시간: 10초\n🎨 립싱크, 포즈 참조 기능도 지원",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "klingai.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440144",
@@ -2680,7 +3016,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 3개 영상 무료(크레딧 제한). Creator $29/월(200크레딧), Business $149/월",
       "monthly_price": 29,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 18956519,
       "tags": [
@@ -2717,7 +3053,14 @@
       "sample_output_prompt": "AI 아바타가 카페 신메뉴를 소개하는 영상 만들어줘",
       "sample_output": "🎬 AI 아바타 영상 생성 완료 (30초)\n\n선택 아바타: \"지수\" (한국인 여성, 캐주얼 의상)\n배경: 카페 인테리어\n\n[지수 아바타가 카메라를 보며 자연스럽게 말합니다]\n\"안녕하세요! 오늘 새로 출시된 바닐라 오트 라떼를 소개해드릴게요. 고소한 오트밀크에 달콤한 바닐라 시럽이 어우러진 이 메뉴는...\"\n\n🗣️ 음성: 한국어 자연 TTS\n👄 립싱크: 자동 동기화 완료\n🌍 번역: 영어, 일본어 등 40개국어 자동 더빙 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "heygen.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440145",
@@ -2731,7 +3074,7 @@
       "pricing_type": "Paid",
       "free_quota_detail": "무료 플랜 없음. 무료 데모 1개 체험 후 월 $22.",
       "monthly_price": 22,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 14204494,
       "tags": [
@@ -2768,7 +3111,14 @@
       "sample_output_prompt": "AI 아바타로 카페 직원 교육 영상을 만들어줘",
       "sample_output": "🎬 교육 영상 생성 완료 (2분)\n\n아바타: \"민준\" (한국인 남성, 비즈니스 캐주얼)\n배경: 화이트보드가 있는 교육 공간\n\n[민준 아바타가 PPT 슬라이드를 보여주며 설명합니다]\n\"커피 추출의 기본 원리를 알아보겠습니다. 첫째, 원두의 분쇄도에 따라 맛이 크게 달라집니다...\"\n\n📊 슬라이드 자동 삽입: 5장\n🌍 자동 번역: 120개 이상 언어 지원\n📝 스크립트 편집만으로 영상 수정 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "synthesia.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440146",
@@ -2782,7 +3132,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "5분 무료 크레딧+AI 아바타 영상 생성",
       "monthly_price": 5.99,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 25585158,
       "tags": [
@@ -2819,7 +3169,14 @@
       "sample_output_prompt": "제품 사진에 말하는 아바타를 합성해줘",
       "sample_output": "🎬 토킹 아바타 생성 완료 (15초)\n\n입력 이미지: 카페 바리스타 사진\n결과: 사진 속 인물이 자연스럽게 말하는 영상\n\n\"저희 카페의 새 메뉴를 소개합니다. 콜드브루에 수제 바닐라 크림을 올린 시그니처 음료예요.\"\n\n👄 립싱크 자연스러움: 95%\n🎭 표정 변화: 미소 + 눈 깜빡임\n💡 단 1장의 사진만으로 영상 생성 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "d-id.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440147",
@@ -2833,7 +3190,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 1시간 전사+10분 영상 편집 무료",
       "monthly_price": 24,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 15132057,
       "tags": [
@@ -2871,7 +3228,14 @@
       "sample_output_prompt": "카페 브이로그 영상에서 \"음...\" 같은 필러를 제거해줘",
       "sample_output": "✂️ 필러 워드 자동 제거 완료!\n\n📊 분석 결과:\n• 총 영상 길이: 5분 32초\n• 감지된 필러: \"음...\" 8회, \"어...\" 5회, \"그...\" 3회\n• 무음 구간: 12개 (총 45초)\n• 제거 후 길이: 4분 15초\n\n📝 텍스트 기반 편집: 스크립트에서 텍스트를 삭제하면 해당 영상 구간이 자동 삭제됩니다.\n🔊 Studio Sound: 배경 노이즈도 AI로 제거됨",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "descript.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440148",
@@ -2885,7 +3249,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 60분 업로드 무료+AI 쇼츠 자동 편집",
       "monthly_price": 15,
-      "rating_avg": 4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 27079599,
       "tags": [
@@ -2922,7 +3286,14 @@
       "sample_output_prompt": "30분 유튜브 영상에서 숏폼 클립을 추출해줘",
       "sample_output": "✂️ AI 클립 추출 완료!\n\n원본: 30분 카페 투어 유튜브 영상\n추출된 클립 5개:\n\n🥇 클립 1 (바이럴 점수 92): \"숨겨진 성수동 카페 BEST 3\" (58초)\n🥈 클립 2 (바이럴 점수 87): \"5000원으로 즐기는 스페셜티 커피\" (45초)\n🥉 클립 3 (바이럴 점수 81): \"바리스타가 추천하는 원두 고르는 법\" (52초)\n\n📱 자동 세로 변환 (9:16) 완료\n📝 자막 자동 생성 + 키워드 하이라이트",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "opus.pro",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440149",
@@ -2936,7 +3307,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 10,000 크레딧(~20분 오디오), 커스텀 음성 3개 생성, 기본 TTS 무료",
       "monthly_price": 5,
-      "rating_avg": 4.7,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 25000000,
       "tags": [
@@ -2979,7 +3350,14 @@
         "Voice Settings에서 Stability(안정성)와 Similarity(유사도)를 조절하여 원하는 톤을 찾을 수 있습니다",
         "긴 텍스트는 문단별로 나눠 생성하면 더 자연스러운 억양을 얻을 수 있습니다",
         "Projects 기능으로 여러 음성을 조합하여 대화형 오디오 콘텐츠를 만들 수 있습니다"
-      ]
+      ],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "elevenlabs.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440150",
@@ -2993,7 +3371,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 5분 영상 무료+AI 나레이션 텍스트-영상 변환",
       "monthly_price": 28,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 29614569,
       "tags": [
@@ -3030,7 +3408,14 @@
       "sample_output_prompt": "카페 소개 블로그 글을 영상으로 변환해줘",
       "sample_output": "🎬 블로그→영상 변환 완료 (1분 30초)\n\n입력: 카페 소개 블로그 글 (800자)\n결과:\n• AI가 문단별 장면을 자동 구성\n• 스톡 영상: 카페 인테리어, 커피 제조 과정 등 8개 클립 자동 매칭\n• 내레이션: AI 음성 \"은서\" (한국어 여성)\n• 자막: 자동 생성 (한국어)\n• BGM: \"Warm Coffee Morning\" 자동 선곡\n\n📱 가로/세로/정사각형 버전 동시 생성",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "fliki.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440151",
@@ -3044,7 +3429,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "주 4개 영상 무료(워터마크)+텍스트로 영상 생성",
       "monthly_price": 25,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 15455913,
       "tags": [
@@ -3081,7 +3466,14 @@
       "sample_output_prompt": "카페 홍보 유튜브 영상을 만들어줘",
       "sample_output": "🎬 AI 영상 생성 완료 (3분)\n\n프롬프트: \"성수동 카페 홍보 영상, 감성적인 분위기\"\n\n자동 생성된 구성:\n1. [인트로] 드론 뷰 카페 외관 (5초)\n2. [메뉴 소개] 시그니처 음료 클로즈업 (30초)\n3. [인테리어] 카페 내부 투어 (40초)\n4. [고객 리뷰] 인터뷰 스타일 (30초)\n5. [아웃트로] 위치 정보 + CTA (15초)\n\n🎵 BGM + 자막 + 트랜지션 모두 AI 자동 적용\n✏️ 텍스트 명령으로 수정: \"인트로를 더 짧게 해줘\"",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "invideo.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440152",
@@ -3095,7 +3487,7 @@
       "pricing_type": "Paid",
       "free_quota_detail": "무료 체험 가능(워터마크). 일시불 $199.99.",
       "monthly_price": null,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 10752623,
       "tags": [
@@ -3132,7 +3524,14 @@
       "sample_output_prompt": "오래된 카페 영상을 4K로 업스케일해줘",
       "sample_output": "🔍 AI 업스케일 완료!\n\n• 원본: 720p (1280x720), 15초\n• 결과: 4K (3840x2160), 15초\n• 사용 모델: Proteus v4 (실사 영상 최적화)\n\n📊 개선 사항:\n• 해상도: 4배 향상\n• 노이즈 제거: 93% 감소\n• 선명도: 디테일 복원 (간판 텍스트, 원두 질감)\n• FPS: 24fps → 60fps 보간 (선택 적용)\n\n⏱️ 처리 시간: GPU 가속으로 2분 30초",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "topazlabs.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440030",
@@ -3146,7 +3545,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 2,000회 코드 자동완성+50회 프리미엄 채팅 무료. Pro $10/월, Pro+ $39/월(모든 모델)",
       "monthly_price": 10,
-      "rating_avg": 4.7,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 20000000,
       "tags": [
@@ -3194,7 +3593,14 @@
         "여러 제안 중 Tab으로 순회하며 가장 적합한 코드를 선택할 수 있습니다",
         "보안 취약점이나 버그가 있는 코드는 Copilot이 경고하고 수정안을 제시합니다",
         "GitHub Issues와 연동하여 이슈 내용을 바탕으로 PR 코드를 자동 생성할 수 있습니다"
-      ]
+      ],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "github.com",
+      "g2_slug": "github-copilot",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440031",
@@ -3208,7 +3614,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Hobby 무료: 2,000회 자동완성+50회 슬로우 요청/월, 7일 Pro 체험. Pro $20/월(크레딧 $20 풀)",
       "monthly_price": 20,
-      "rating_avg": 4.8,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 5000000,
       "tags": [
@@ -3256,7 +3662,14 @@
         "@codebase를 입력하여 전체 프로젝트를 AI가 참조하도록 할 수 있습니다",
         "Tab 자동완성이 Copilot보다 더 정확하며, 멀티라인 제안도 제공합니다",
         "Settings에서 GPT-4와 Claude 중 선택하여 작업에 맞는 모델을 사용할 수 있습니다"
-      ]
+      ],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "cursor.sh",
+      "g2_slug": "cursor-ai",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440032",
@@ -3270,7 +3683,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 플랜 브라우저 IDE+AI 기본 지원",
       "monthly_price": 25,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 20616937,
       "tags": [
@@ -3307,7 +3720,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\n// Replit Agent가 전체 프로젝트를 설정하며 생성\nimport { createContext, useContext, useState, ReactNode } from 'react';\n\nconst ThemeCtx = createContext({ dark: false, toggle: () => {} });\n\nexport function ThemeProvider({ children }: { children: ReactNode }) {\n  const [dark, setDark] = useState(false);\n  return (\n    <ThemeCtx.Provider value={{ dark, toggle: () => setDark(d => !d) }}>\n      <div className={dark ? 'dark' : ''}>{children}</div>\n    </ThemeCtx.Provider>\n  );\n}\n\nexport const DarkToggle = () => {\n  const { dark, toggle } = useContext(ThemeCtx);\n  return <button onClick={toggle}>{dark ? '라이트' : '다크'}모드</button>;\n};\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "replit.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440160",
@@ -3321,7 +3741,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 코드 자동완성 무료 무제한+로컬 모델 지원",
       "monthly_price": 12,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 34664516,
       "tags": [
@@ -3358,7 +3778,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\nimport React, { useState, useEffect } from 'react';\n\ninterface DarkModeToggleProps {\n  defaultDark?: boolean;\n}\n\nconst DarkModeToggle: React.FC<DarkModeToggleProps> = ({ defaultDark = false }) => {\n  const [isDarkMode, setIsDarkMode] = useState(defaultDark);\n\n  useEffect(() => {\n    document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');\n  }, [isDarkMode]);\n\n  return (\n    <button onClick={() => setIsDarkMode(prev => !prev)}>\n      {isDarkMode ? '🌞 라이트 모드' : '🌜 다크 모드'}\n    </button>\n  );\n};\n\nexport default DarkModeToggle;\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "tabnine.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440161",
@@ -3372,7 +3799,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료: 25 프롬프트 크레딧/월+탭 자동완성 무제한+프리뷰·배포 무제한. Pro $15/월",
       "monthly_price": 15,
-      "rating_avg": 4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 33132245,
       "tags": [
@@ -3409,7 +3836,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\n// Cascade AI가 코드베이스 분석 후 생성\nimport { useLocalStorage } from '@/hooks/useLocalStorage';\n\nexport function DarkModeToggle() {\n  const [theme, setTheme] = useLocalStorage('theme', 'light');\n  const isDark = theme === 'dark';\n\n  const handleToggle = () => {\n    const next = isDark ? 'light' : 'dark';\n    setTheme(next);\n    document.documentElement.dataset.theme = next;\n  };\n\n  return (\n    <button onClick={handleToggle} className=\"theme-toggle\" aria-pressed={isDark}>\n      <span className=\"sr-only\">다크모드 {isDark ? '끄기' : '켜기'}</span>\n      {isDark ? '☀️' : '🌙'}\n    </button>\n  );\n}\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "codeium.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440162",
@@ -3423,7 +3857,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 코드 제안 무제한+보안 스캔 무료",
       "monthly_price": 19,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 37864716,
       "tags": [
@@ -3460,7 +3894,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\nimport { useState, useCallback } from 'react';\n\ntype Theme = 'light' | 'dark';\n\nexport const DarkModeToggle = () => {\n  const [theme, setTheme] = useState<Theme>('light');\n\n  const toggleTheme = useCallback(() => {\n    setTheme(prev => {\n      const next = prev === 'light' ? 'dark' : 'light';\n      document.documentElement.className = next;\n      return next;\n    });\n  }, []);\n\n  return (\n    <button onClick={toggleTheme} role=\"switch\" aria-checked={theme === 'dark'}>\n      {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}\n    </button>\n  );\n};\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "aws.amazon.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440163",
@@ -3474,7 +3915,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 플랜 제공(일일 토큰 제한), 풀스택 앱 자동 생성·배포, 유료 플랜 더 많은 토큰",
       "monthly_price": 20,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 37210341,
       "tags": [
@@ -3511,7 +3952,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\n// bolt.new가 즉시 실행 가능한 전체 앱을 생성합니다\nimport { useState } from 'react';\nimport './styles.css';\n\nexport default function App() {\n  const [dark, setDark] = useState(false);\n\n  return (\n    <div className={`app ${dark ? 'dark' : 'light'}`}>\n      <button\n        className=\"toggle-btn\"\n        onClick={() => setDark(!dark)}\n      >\n        {dark ? '🌞' : '🌙'} {dark ? 'Light' : 'Dark'} Mode\n      </button>\n    </div>\n  );\n}\n// ▶️ 브라우저에서 바로 실행 가능한 미리보기가 표시됩니다\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "bolt.new",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440164",
@@ -3525,7 +3973,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 $5 크레딧/월(기본 AI 사용), Premium $20/월, Team $30/user/월",
       "monthly_price": 20,
-      "rating_avg": 4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 13821711,
       "tags": [
@@ -3563,7 +4011,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\nimport { Moon, Sun } from \"lucide-react\";\nimport { Button } from \"@/components/ui/button\";\nimport { useTheme } from \"next-themes\";\n\nexport function DarkModeToggle() {\n  const { theme, setTheme } = useTheme();\n\n  return (\n    <Button\n      variant=\"ghost\"\n      size=\"icon\"\n      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}\n    >\n      <Sun className=\"h-5 w-5 rotate-0 scale-100 transition dark:-rotate-90 dark:scale-0\" />\n      <Moon className=\"absolute h-5 w-5 rotate-90 scale-0 transition dark:rotate-0 dark:scale-100\" />\n    </Button>\n  );\n}\n// shadcn/ui 기반 컴포넌트 + 미리보기 제공\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "v0.dev",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440165",
@@ -3577,7 +4032,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 5개 프로젝트 무료+풀스택 앱 자동 생성",
       "monthly_price": 20,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 29542237,
       "tags": [
@@ -3614,7 +4069,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\n// Lovable이 디자인 시스템과 함께 전체 기능을 생성합니다\nimport { Switch } from '@/components/ui/switch';\nimport { Label } from '@/components/ui/label';\nimport { useThemeStore } from '@/stores/theme';\n\nexport function DarkModeToggle() {\n  const { isDark, toggle } = useThemeStore();\n\n  return (\n    <div className=\"flex items-center gap-3 p-4 rounded-xl bg-card\">\n      <Sun className=\"w-4 h-4 text-muted-foreground\" />\n      <Switch checked={isDark} onCheckedChange={toggle} />\n      <Moon className=\"w-4 h-4 text-muted-foreground\" />\n      <Label className=\"sr-only\">다크모드 토글</Label>\n    </div>\n  );\n}\n// ▶️ Supabase 연동 + 배포까지 자동 처리됩니다\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "lovable.dev",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440166",
@@ -3628,7 +4090,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "VS Code/JetBrains AI 코딩 확장 완전 무료 오픈소스",
       "monthly_price": null,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 37072443,
       "tags": [
@@ -3666,7 +4128,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\n// Continue가 VS Code 내에서 코드 컨텍스트를 참조하여 생성\nimport { useState, useEffect } from 'react';\n\nexport function DarkModeToggle() {\n  const [isDark, setIsDark] = useState(\n    () => window.matchMedia('(prefers-color-scheme: dark)').matches\n  );\n\n  useEffect(() => {\n    document.documentElement.classList.toggle('dark', isDark);\n  }, [isDark]);\n\n  return (\n    <button onClick={() => setIsDark(d => !d)} className=\"theme-btn\">\n      {isDark ? '라이트 모드로' : '다크 모드로'}\n    </button>\n  );\n}\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "continue.dev",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440167",
@@ -3680,7 +4149,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "코드 스니펫 관리+AI 코파일럿 무료",
       "monthly_price": 5,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 35957507,
       "tags": [
@@ -3717,7 +4186,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\n// Pieces가 저장된 스니펫에서 유사 패턴을 참조하여 생성\nimport { useState } from 'react';\n\nconst THEMES = { light: '☀️ 라이트', dark: '🌙 다크' } as const;\ntype Theme = keyof typeof THEMES;\n\nexport function DarkModeToggle() {\n  const [theme, setTheme] = useState<Theme>('light');\n\n  return (\n    <button onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}>\n      {THEMES[theme]}\n    </button>\n  );\n}\n// 💡 이 스니펫이 Pieces 라이브러리에 자동 저장되었습니다\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "pieces.app",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440168",
@@ -3731,7 +4207,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 500회 자동완성+20회 채팅 무료+코드베이스 이해",
       "monthly_price": 9,
-      "rating_avg": 4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 36123951,
       "tags": [
@@ -3768,7 +4244,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\n// Sourcegraph Cody가 리포지토리 전체를 분석하여 생성\nimport { type FC } from 'react';\nimport { useDarkMode } from 'usehooks-ts';\n\nexport const DarkModeToggle: FC = () => {\n  const { isDarkMode, toggle } = useDarkMode();\n\n  return (\n    <button\n      onClick={toggle}\n      className={`px-4 py-2 rounded-md transition-colors ${\n        isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'\n      }`}\n    >\n      {isDarkMode ? '☀️ Light' : '🌙 Dark'}\n    </button>\n  );\n};\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "sourcegraph.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440169",
@@ -3782,7 +4265,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "코드 생성+코드 검색 무료+AI 채팅",
       "monthly_price": 1.99,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 37556616,
       "tags": [
@@ -3819,7 +4302,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\nimport { useState } from 'react';\n\nfunction DarkModeToggle() {\n  const [dark, setDark] = useState(false);\n\n  return (\n    <div style={{\n      background: dark ? '#1a1a2e' : '#ffffff',\n      padding: '20px',\n      minHeight: '100vh',\n      transition: 'all 0.3s'\n    }}>\n      <button\n        onClick={() => setDark(!dark)}\n        style={{ padding: '10px 20px', cursor: 'pointer', borderRadius: '8px' }}\n      >\n        {dark ? '☀️ 라이트 모드' : '🌙 다크 모드'}\n      </button>\n    </div>\n  );\n}\nexport default DarkModeToggle;\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "blackbox.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440170",
@@ -3833,7 +4323,7 @@
       "pricing_type": "Paid",
       "free_quota_detail": "무료 플랜 없음. 월 $500 구독 필요. 자율 코딩 AI 에이전트.",
       "monthly_price": 500,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 15184949,
       "tags": [
@@ -3870,7 +4360,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```\n🤖 Devin이 작업을 시작합니다...\n\n계획:\n1. ✅ 프로젝트 구조 분석\n2. ✅ ThemeContext 생성 (contexts/ThemeContext.tsx)\n3. ✅ DarkModeToggle 컴포넌트 생성\n4. ✅ CSS 변수 기반 테마 시스템 구현\n5. ✅ App.tsx에 ThemeProvider 적용\n6. ✅ 테스트 코드 작성 (DarkModeToggle.test.tsx)\n7. ✅ 모든 테스트 통과 확인\n\nPR #42 생성 완료: \"feat: Add dark mode toggle with theme system\"\n변경 파일 4개 | +127 -3\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "devin.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440171",
@@ -3884,7 +4381,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "API 기반 과금(Claude Sonnet 4.5 사용 시 입력 $3/출력 $15 per 1M토큰). Max 구독으로도 사용 가능",
       "monthly_price": null,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 33599382,
       "tags": [
@@ -3921,7 +4418,14 @@
       "sample_output_prompt": "React로 다크모드 토글 버튼 컴포넌트를 만들어줘",
       "sample_output": "```tsx\n// Claude Code가 터미널에서 직접 파일을 생성합니다\nimport { useCallback, useSyncExternalStore } from 'react';\n\nconst subscribe = (cb: () => void) => {\n  const mq = window.matchMedia('(prefers-color-scheme: dark)');\n  mq.addEventListener('change', cb);\n  return () => mq.removeEventListener('change', cb);\n};\n\nexport function DarkModeToggle() {\n  const systemDark = useSyncExternalStore(subscribe,\n    () => window.matchMedia('(prefers-color-scheme: dark)').matches\n  );\n  const toggle = useCallback(() => {\n    document.documentElement.classList.toggle('dark');\n  }, []);\n\n  return <button onClick={toggle}>{systemDark ? '☀️' : '🌙'}</button>;\n}\n// 파일 저장 완료: components/DarkModeToggle.tsx\n```",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "docs.anthropic.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440040",
@@ -3935,7 +4439,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 50크레딧(약 10곡, UTC 자정 리셋, 이월 불가), v4.5 모델, 개인 사용만 가능. Pro $10/월(v5, 상업 사용)",
       "monthly_price": 10,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 12000000,
       "tags": [
@@ -3977,7 +4481,14 @@
         "Extend 기능으로 마음에 드는 곡을 더 길게 확장할 수 있습니다",
         "가사를 직접 입력하면 그에 맞는 멜로디를 자동 생성합니다",
         "여러 버전을 생성하여 가장 마음에 드는 것을 선택하는 것이 좋습니다"
-      ]
+      ],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "suno.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440041",
@@ -3991,7 +4502,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 10크레딧+월 100 백업 크레딧(약 3곡/일), 다운로드 현재 제한적. Standard $10/월(2,400크레딧)",
       "monthly_price": 10,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 7721828,
       "tags": [
@@ -4028,7 +4539,14 @@
       "sample_output_prompt": "잔잔한 로파이 비트, 비 오는 카페 분위기",
       "sample_output": "🎵 트랙 생성 완료 (33초 x 2 클립)\n\n\"비 내리는 창가에서\"\n장르: Lo-fi / Chill\n\n♪ 비닐 크래클 사운드와 함께 시작하는 따뜻한 로파이 비트. 어쿠스틱 기타의 부드러운 아르페지오가 주 멜로디를 이끌고, 깊은 리버브가 걸린 보컬 샘플이 몽환적인 분위기를 만듭니다. 808 킥과 하이햇의 느긋한 리듬.\n\n🔄 Extend로 풀 트랙(4분)까지 확장 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "udio.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440042",
@@ -4042,7 +4560,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 3곡 무료+저작권은 AIVA 귀속(무료 시)",
       "monthly_price": 11,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 14420015,
       "tags": [
@@ -4079,7 +4597,14 @@
       "sample_output_prompt": "잔잔한 로파이 비트, 비 오는 카페 분위기",
       "sample_output": "🎵 작곡 완료 (3분)\n\n\"Café Nocturne\" — AIVA 오리지널\n장르: Ambient / Lo-fi\n\n♪ 클래식 작곡 AI답게 피아노 중심의 섬세한 구성입니다. Intro에서 단독 피아노 멜로디, A 섹션에서 첼로가 합류, B 섹션에서 가벼운 일렉트로닉 비트가 추가됩니다. 전체적으로 드뷔시 풍의 인상주의 느낌.\n\n🎼 MIDI + 악보(PDF) 다운로드 가능\n📝 악기별 개별 편집 지원",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "aiva.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440180",
@@ -4093,7 +4618,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 25곡 무료+로열티프리 배경음악 생성",
       "monthly_price": 11.69,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 8357788,
       "tags": [
@@ -4130,7 +4655,14 @@
       "sample_output_prompt": "잔잔한 로파이 비트, 비 오는 카페 분위기",
       "sample_output": "🎵 스트리밍 생성 중... 완료!\n\n무한 로파이 스트림 생성됨\n분위기: Chill, Rainy, Café\n\n♪ AI가 실시간으로 끊김 없는 로파이 비트를 생성합니다. 매 순간 새로운 멜로디와 리듬 패턴이 자연스럽게 이어집니다. 비 오는 카페에 어울리는 따뜻한 패드 사운드와 부드러운 드럼 루프.\n\n⏱️ 길이: 무제한 (실시간 생성)\n📺 유튜브/팟캐스트 BGM 로열티 프리",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "mubert.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440181",
@@ -4144,7 +4676,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 미리듣기+커스텀 배경음악 AI 생성",
       "monthly_price": 16.99,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 8833149,
       "tags": [
@@ -4181,7 +4713,14 @@
       "sample_output_prompt": "잔잔한 로파이 비트, 비 오는 카페 분위기",
       "sample_output": "🎵 커스텀 트랙 생성 완료\n\n설정: Lo-fi | 분위기: Chill | BPM: 75 | Key: C Major\n길이: 3분 00초\n\n♪ 구간별 에너지:\n[Intro 0:00-0:15] ■□□□□ — 피아노만\n[Verse 0:15-1:00] ■■□□□ — 드럼 추가\n[Build 1:00-1:30] ■■■□□ — 베이스 합류\n[Drop 1:30-2:15] ■■■■□ — 풀 사운드\n[Outro 2:15-3:00] ■■□□□ — 페이드아웃\n\n🎛️ 각 구간 에너지/악기를 드래그로 조절 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "soundraw.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440182",
@@ -4195,7 +4734,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 곡 생성 무제한+스트리밍 배포(수익 공유)",
       "monthly_price": null,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 29081944,
       "tags": [
@@ -4232,7 +4771,14 @@
       "sample_output_prompt": "잔잔한 로파이 비트, 비 오는 카페 분위기",
       "sample_output": "🎵 30초만에 트랙 생성!\n\n\"Rainy Window\" — by You × Boomy AI\n스타일: Lo-fi Chill Beats\n\n♪ 감성적인 일렉트릭 피아노와 부드러운 808 드럼이 조화를 이루는 로파이 트랙입니다. 레인 앰비언스와 카페 소음 레이어가 입체적인 공간감을 만듭니다.\n\n🚀 음원 유통: Spotify, Apple Music 등에 바로 배포 가능\n💰 수익화: 스트리밍 수익 공유 모델",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "boomy.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440183",
@@ -4246,7 +4792,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 10곡 무료 다운로드+로열티프리",
       "monthly_price": 7.49,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 26811741,
       "tags": [
@@ -4283,7 +4829,14 @@
       "sample_output_prompt": "잔잔한 로파이 비트, 비 오는 카페 분위기",
       "sample_output": "🎵 스튜디오 퀄리티 트랙 생성 완료\n\n템플릿: Lo-fi Dreams\nBPM: 80 | Key: D Minor | 길이: 2분 45초\n\n♪ 프로페셔널한 믹싱이 적용된 로파이 비트입니다. 따뜻한 로즈 사운드, 빈티지 드럼 머신, 서브 베이스가 카페 분위기를 완성합니다. 마스터링된 WAV 파일로 바로 사용 가능.\n\n🎚️ 스템 분리: 드럼, 베이스, 멜로디 개별 다운로드\n✅ 로열티 프리 라이선스 포함",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "soundful.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440184",
@@ -4297,7 +4850,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 15분 무료 음악 생성+영상 씬 기반 작곡",
       "monthly_price": 6,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 20420907,
       "tags": [
@@ -4334,7 +4887,14 @@
       "sample_output_prompt": "잔잔한 로파이 비트, 비 오는 카페 분위기",
       "sample_output": "🎵 무드 기반 음악 생성 완료\n\n프로젝트: \"카페 BGM\"\n무드: Calm → Peaceful → Warm\n장르: Lo-fi / Jazz\n길이: 4분 00초\n\n♪ 영상 씬에 맞춰 음악의 감정이 자연스럽게 변화합니다. 시작은 피아노 솔로로 잔잔하게, 중반부에 브러시 드럼과 업라이트 베이스가 합류하며, 끝은 다시 피아노만 남아 여운을 줍니다.\n\n🎬 영상 타임라인에 자동 싱크 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "beatoven.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440185",
@@ -4348,7 +4908,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 3곡 무료 다운로드+AI 음악 추천",
       "monthly_price": 7.99,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 28183081,
       "tags": [
@@ -4385,7 +4945,14 @@
       "sample_output_prompt": "잔잔한 로파이 비트, 비 오는 카페 분위기",
       "sample_output": "🎵 AI 작곡 완료\n\n\"Urban Rain\" — Loudly AI Studio\n장르: Lo-fi Hip Hop | BPM: 72 | Key: A Minor\n길이: 3분 15초\n\n♪ 소셜 미디어에 최적화된 로파이 트랙입니다. 카페 앰비언스를 배경으로 촉촉한 로즈 코드와 테이프 새츄레이션 효과가 특징입니다.\n\n📱 SNS 맞춤 버전: 15초/30초/60초 자동 편집\n🤝 콜라보: 다른 크리에이터의 트랙과 매시업 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "loudly.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440050",
@@ -4399,7 +4966,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 15개 메시지 무료, 데이터 분석 및 시각화 가능, 파일 업로드 25MB 제한",
       "monthly_price": 20,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 29729541,
       "tags": [
@@ -4436,7 +5003,14 @@
       "sample_output_prompt": "월별 매출 데이터에서 트렌드를 분석해줘",
       "sample_output": "📊 데이터 분석 완료!\n\n업로드: sales_2025.csv (12개월, 1,247행)\n\n핵심 인사이트:\n• 전체 트렌드: 연간 매출 23% 성장 (전년 대비)\n• 최고 매출월: 11월 (₩4.2억, 블프 시즌)\n• 최저 매출월: 2월 (₩1.8억)\n• 계절 패턴: Q4 > Q3 > Q1 > Q2\n\n📈 예측: 현재 추세 유지 시 2026년 예상 매출 ₩38.5억\n⚠️ 이상치: 6월 매출 급감 (-34%), 원인 조사 필요\n\n🐍 분석에 사용된 Python 코드도 확인 가능합니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "julius.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440051",
@@ -4450,7 +5024,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 400 크레딧 무료(약 10개 프레젠테이션), AI 슬라이드 자동 생성 지원",
       "monthly_price": 10,
-      "rating_avg": 4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 21335411,
       "tags": [
@@ -4487,7 +5061,14 @@
       "sample_output_prompt": "신제품 소개 프레젠테이션을 만들어줘",
       "sample_output": "📊 Gamma 프레젠테이션 생성 완료 (10장)\n\n🤖 AI가 자동 구성한 슬라이드:\n1. 표지 — 임팩트 있는 헤드라인\n2. 문제 정의 — 고객 페인포인트\n3. 솔루션 — 제품 핵심 가치\n4. 주요 기능 3가지\n5. 스크린샷 / 데모\n6. 경쟁 우위\n7. 고객 후기\n8. 로드맵\n9. 가격 정책\n10. CTA — \"지금 시작하기\"\n\n🎨 테마: Modern Gradient\n🔗 웹 링크로 바로 공유 가능 (반응형)",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "gamma.app",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440052",
@@ -4501,7 +5082,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Tableau Public 완전 무료(공개 대시보드만), 데이터 시각화 및 공유 가능",
       "monthly_price": 70,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 27226194,
       "tags": [
@@ -4538,7 +5119,14 @@
       "sample_output_prompt": "월별 매출 데이터를 대시보드로 시각화해줘",
       "sample_output": "📊 대시보드 생성 완료!\n\n구성 요소 (4개 시트):\n\n1️⃣ 월별 매출 추이 (라인 차트)\n   — 전년 동월 대비 증감률 표시\n2️⃣ 카테고리별 매출 비중 (트리맵)\n   — 상위 5개 카테고리 하이라이트\n3️⃣ 지역별 매출 분포 (지도)\n   — 색상 강도로 매출 규모 표현\n4️⃣ 핵심 KPI 카드\n   — 총 매출, 성장률, 고객 수, 객단가\n\n🔗 Tableau Public에 게시 완료\n📱 모바일 레이아웃 자동 최적화",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "tableau.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440190",
@@ -4552,7 +5140,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "소스 기반 AI 분석 완전 무료, PDF/문서 업로드 무제한, Audio Overview 기능 제공",
       "monthly_price": null,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 56236849,
       "tags": [
@@ -4590,7 +5178,14 @@
       "sample_output_prompt": "업로드한 기후변화 보고서 3개를 종합 요약해줘",
       "sample_output": "📚 3개 소스 종합 분석 결과:\n\n핵심 주제: 기후변화의 경제적 영향은 크게 ①직접 피해(자연재해), ②전환 비용(에너지 구조 변환), ③기회 창출(녹색 산업)로 구분됩니다.\n\n소스 간 공통점: 모든 보고서가 2030년을 기후 대응의 임계점으로 보고 있습니다.\n소스 간 차이점: 피해 규모 추정에서 보수적 시나리오와 극단적 시나리오 간 3배 이상 차이가 납니다.\n\n🎙️ Audio Overview를 생성하면 팟캐스트 형식으로 들을 수 있습니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "notebooklm.google.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440191",
@@ -4604,7 +5199,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 체험 제공, 노코드 ML 예측 모델 생성 가능, 데이터 업로드 제한 있음",
       "monthly_price": 75,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 21634871,
       "tags": [
@@ -4641,7 +5236,14 @@
       "sample_output_prompt": "고객 이탈을 예측하는 모델을 만들어줘",
       "sample_output": "🤖 ML 모델 학습 완료! (코드 없이 자동 생성)\n\n모델: 고객 이탈 예측 (Customer Churn Prediction)\n알고리즘: 자동 선택 → XGBoost\n정확도: 91.3%\n\n📊 주요 이탈 요인 (Feature Importance):\n1. 최근 3개월 구매 빈도 감소 (32%)\n2. 고객 서비스 문의 횟수 (24%)\n3. 구독 기간 (18%)\n4. 할인 쿠폰 미사용 (15%)\n\n🎯 예측 결과: 현재 고객 중 237명(12.4%)이 이탈 고위험군\n📡 API 엔드포인트 자동 생성됨",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "obviously.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440192",
@@ -4655,7 +5257,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 플랜 100행 제한, AI 데이터 분석 스프레드시트 기본 기능 제공",
       "monthly_price": 8,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 30514020,
       "tags": [
@@ -4692,7 +5294,14 @@
       "sample_output_prompt": "스프레드시트에서 매출 트렌드를 분석해줘",
       "sample_output": "📊 AI 분석 결과 (스프레드시트 내 실행)\n\n=AI_ANALYZE(A1:D365, \"매출 트렌드 분석\")\n\n💡 인사이트:\n• 주중 vs 주말 매출 비율: 65:35\n• 매출 상위 제품 TOP 3: 아메리카노, 라떼, 케이크세트\n• 월평균 성장률: +3.2%\n• 다음 달 예상 매출: ₩2,850만 (±5%)\n\n📈 자동 생성된 차트가 B15 셀에 삽입되었습니다.\n🔄 데이터 업데이트 시 분석이 자동으로 갱신됩니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "rows.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440193",
@@ -4706,7 +5315,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 체험 제공, AI 프레젠테이션 자동 디자인 및 스마트 레이아웃 적용",
       "monthly_price": 12,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 17720184,
       "tags": [
@@ -4743,7 +5352,14 @@
       "sample_output_prompt": "매출 분석 결과를 프레젠테이션으로 만들어줘",
       "sample_output": "📊 프레젠테이션 생성 완료 (12 슬라이드)\n\n자동 생성된 구성:\n1. 표지 — \"2025 매출 분석 리포트\"\n2. Executive Summary\n3. 월별 매출 추이 (차트 자동 삽입)\n4. 카테고리별 분석\n5. 지역별 성과\n6. YoY 성장률 비교\n7-10. 주요 인사이트 (각 1장)\n11. 액션 플랜\n12. Q&A\n\n🎨 디자인: 자동 정렬 + 컬러 팔레트 최적화\n✨ Smart Slide: 데이터 입력만으로 레이아웃 자동 조정",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "beautiful.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440194",
@@ -4757,7 +5373,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 3개 프레젠테이션 무료 생성, Google Slides 연동, 기본 테마 제공",
       "monthly_price": 10,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 18897056,
       "tags": [
@@ -4794,7 +5410,14 @@
       "sample_output_prompt": "매출 보고서 텍스트를 슬라이드로 변환해줘",
       "sample_output": "📊 Google Slides로 변환 완료 (8 슬라이드)\n\n입력: 매출 보고서 텍스트 (2,000자)\n\n자동 구성:\n1. 제목 슬라이드\n2. 핵심 수치 요약 (KPI 카드 형식)\n3. 성장 추이 (자동 차트 생성)\n4. 제품별 매출 비교\n5. 성공 요인 분석\n6. 개선 필요 영역\n7. 내년 전략\n8. 마무리\n\n🎨 테마: Professional Blue\n📝 발표자 노트 자동 생성됨",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "slidesai.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440195",
@@ -4808,7 +5431,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 500 크레딧 무료, AI 프레젠테이션 및 페이지 생성 가능, 기본 템플릿 제공",
       "monthly_price": 10,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 36560288,
       "tags": [
@@ -4845,7 +5468,14 @@
       "sample_output_prompt": "분기 매출 분석을 AI 프레젠테이션으로 만들어줘",
       "sample_output": "📊 AI 스토리텔링 프레젠테이션 완료\n\n\"Q4 2025 매출 분석: 성장의 비밀\"\n\n🎬 AI가 스토리 라인을 자동 구성:\n→ 도입: \"이번 분기는 예상을 뛰어넘었습니다\"\n→ 전개: 데이터 기반 인사이트 3개\n→ 클라이맥스: 핵심 성공 요인\n→ 결론: 다음 분기 액션 아이템\n\n각 슬라이드에 AI가 생성한 일러스트와 차트가 자동 배치됩니다.\n🔗 웹 링크로 공유 가능 (반응형 디자인)",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "tome.app",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440196",
@@ -4859,7 +5489,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 프레젠테이션 무료 생성, AI 디자인 제안 기능 제공, 공개 프레젠테이션만 가능",
       "monthly_price": 12,
-      "rating_avg": 4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 29063378,
       "tags": [
@@ -4896,7 +5526,14 @@
       "sample_output_prompt": "매출 데이터로 줌인/줌아웃 프레젠테이션을 만들어줘",
       "sample_output": "📊 Prezi 프레젠테이션 생성 완료\n\n🔍 비선형 줌 구조:\n[전체 뷰] 2025 매출 총괄 → 줌인\n  ├─ [Q1] ₩7.2억 → 줌인 → 세부 분석\n  ├─ [Q2] ₩6.8억 → 줌인 → 이탈 원인 분석\n  ├─ [Q3] ₩8.1억 → 줌인 → 성장 전략\n  └─ [Q4] ₩9.5억 → 줌인 → 성공 사례\n\n✨ 공간적 줌 애니메이션으로 데이터 간 관계를 직관적으로 표현\n🎥 화상 발표 모드: 발표자 얼굴 + 슬라이드 동시 표시",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "prezi.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440197",
@@ -4910,7 +5547,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 300쿼리 무료, 텍스트 분류 및 감성 분석 기본 모델 제공",
       "monthly_price": 299,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 13790631,
       "tags": [
@@ -4947,7 +5584,14 @@
       "sample_output_prompt": "고객 리뷰 1000건의 감성 분석을 해줘",
       "sample_output": "📊 감성 분석 완료 (1,000건)\n\n전체 결과:\n• 😊 긍정: 623건 (62.3%)\n• 😐 중립: 241건 (24.1%)\n• 😞 부정: 136건 (13.6%)\n\n주요 토픽 (자동 분류):\n1. \"맛/품질\" — 긍정 78%\n2. \"가격\" — 부정 45%\n3. \"서비스\" — 긍정 71%\n4. \"배송\" — 부정 52%\n\n⚠️ 부정 키워드 TOP 3: \"비싸다\", \"늦다\", \"불친절\"\n📈 월별 감성 추이 차트 생성됨",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "monkeylearn.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440198",
@@ -4961,7 +5605,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Desktop 버전 완전 무료, Copilot AI 분석 기능 포함, 클라우드 공유는 Pro 필요",
       "monthly_price": 10,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 18506158,
       "tags": [
@@ -4999,7 +5643,14 @@
       "sample_output_prompt": "여러 데이터 소스를 통합 대시보드로 만들어줘",
       "sample_output": "📊 Power BI 대시보드 게시 완료!\n\n연결된 데이터 소스:\n• Excel: 매출 데이터\n• SQL Server: 고객 DB\n• Google Analytics: 웹 트래픽\n\n대시보드 구성:\n📈 실시간 매출 현황 (카드 + 게이지)\n📊 채널별 매출 비교 (막대 차트)\n🗺️ 지역별 성과 (맵 비주얼)\n📋 상세 테이블 (드릴다운 지원)\n\n🤖 Copilot: \"지난달 대비 매출이 가장 많이 오른 지역은?\" 자연어 질의 가능\n🔄 데이터 자동 새로고침: 매 1시간",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "powerbi.microsoft.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440199",
@@ -5013,7 +5664,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 계정 제공, SQL/Python 노트북 기본 기능, AI 데이터 분석 지원",
       "monthly_price": 28,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 36431364,
       "tags": [
@@ -5051,7 +5702,14 @@
       "sample_output_prompt": "매출 데이터를 SQL로 분석하고 시각화해줘",
       "sample_output": "📊 Hex 노트북 실행 완료\n\n```sql\nSELECT DATE_TRUNC('month', order_date) AS month,\n       SUM(amount) AS revenue,\n       COUNT(DISTINCT customer_id) AS customers\nFROM orders\nWHERE order_date >= '2025-01-01'\nGROUP BY 1 ORDER BY 1;\n```\n\n📈 결과 시각화 (인터랙티브 차트):\n• 매출: 1월 ₩1.9억 → 12월 ₩3.2억 (+68%)\n• 고객 수: 1월 1,200명 → 12월 2,100명\n• 객단가: ₩158,000 → ₩152,000 (소폭 하락)\n\n🔗 팀원에게 노트북 링크 공유됨\n📱 앱으로도 대시보드 확인 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "hex.tech",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440060",
@@ -5065,7 +5723,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "웹 번역기 1회 1,500자 제한, API Free 월 500,000자, 문서 번역 월 3개, 용어집 1개",
       "monthly_price": 8.74,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 31485217,
       "tags": [
@@ -5102,7 +5760,14 @@
       "sample_output_prompt": "'The early bird catches the worm' → 자연스러운 한국어로",
       "sample_output": "🌐 번역 결과:\n\n\"일찍 일어나는 새가 벌레를 잡는다\"\n\n💡 대안 번역:\n• \"부지런한 사람이 기회를 잡는다\"\n• \"일찍 시작하는 사람이 성공한다\"\n\n📊 번역 품질: ★★★★★\n🎯 뉘앙스: 한국어 속담 \"일찍 일어나는 새가 벌레를 잡는다\"와 정확히 대응하는 표현입니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": "1552407475",
+      "play_store_id": "com.deepl.mobiletranslator",
+      "trustpilot_domain": "deepl.com",
+      "g2_slug": "deepl",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440061",
@@ -5116,7 +5781,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "웹/앱 번역 완전 무료(횟수 무제한), 이미지 번역 및 대화 번역 무료",
       "monthly_price": null,
-      "rating_avg": 4.4,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 39766867,
       "tags": [
@@ -5153,7 +5818,14 @@
       "sample_output_prompt": "'The early bird catches the worm' → 자연스러운 한국어로",
       "sample_output": "🌐 번역 결과:\n\n\"일찍 일어나는 새가 벌레를 잡는다\"\n\n🇰🇷 한국 맞춤:\n• 속담 매칭: \"일찍 일어나는 새가 먹이를 잡는다\"\n• 의역: \"선착순이 장땡이다\"\n\n🔊 발음 듣기: [▶️]\n📖 단어장에 추가됨\n🖼️ 이미지 번역, 문서 번역도 지원합니다",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": "1147874819",
+      "play_store_id": "com.naver.labs.translator",
+      "trustpilot_domain": "papago.naver.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440062",
@@ -5167,7 +5839,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "웹/앱 번역 완전 무료(무제한), 문서 번역 무료 지원",
       "monthly_price": null,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 117826639,
       "tags": [
@@ -5204,7 +5876,14 @@
       "sample_output_prompt": "'The early bird catches the worm' → 자연스러운 한국어로",
       "sample_output": "🌐 번역 결과:\n\n\"일찍 일어나는 새가 벌레를 잡습니다\"\n\n🔄 다른 언어 번역:\n• 🇯🇵 日: 早起きは三文の徳\n• 🇨🇳 中: 早起的鸟儿有虫吃\n• 🇪🇸 Es: Al que madruga, Dios le ayuda\n\n📝 133개 언어 지원\n🔊 음성 읽기 가능\n💡 Gemini 연동으로 맥락 설명 제공",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": "414706506",
+      "play_store_id": "com.google.android.apps.translate",
+      "trustpilot_domain": "translate.google.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440200",
@@ -5218,7 +5897,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 5,000자 무료 AI 글쓰기 보조, 문체 개선 및 문법 교정 지원",
       "monthly_price": 8.74,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 65009015,
       "tags": [
@@ -5255,7 +5934,14 @@
       "sample_output_prompt": "번역된 한국어 문장을 더 자연스럽게 다듬어줘",
       "sample_output": "✍️ DeepL Write 교정 결과:\n\n원문: \"일찍 일어나는 새가 벌레를 잡습니다\"\n\n📝 제안:\n1. \"부지런한 사람이 기회를 잡는 법이다\" (자연스러운 의역)\n2. \"먼저 움직이는 사람이 성과를 얻는다\" (비즈니스 맥락)\n3. \"일찍 시작할수록 유리하다\" (간결한 표현)\n\n🎯 톤 조절:\n• 격식체: \"일찍 기상하는 자가 기회를 선점합니다\"\n• 캐주얼: \"빨리 시작하는 게 이득이지!\"",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "deepl.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440201",
@@ -5269,7 +5955,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 AI 번역 무료, 전문 번역가 연결 서비스 제공, 한국어 특화",
       "monthly_price": 9.99,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 62763264,
       "tags": [
@@ -5306,7 +5992,14 @@
       "sample_output_prompt": "'The early bird catches the worm' → 자연스러운 한국어로",
       "sample_output": "🌐 AI + 전문 번역가 결과:\n\n🤖 AI 번역: \"일찍 일어나는 새가 벌레를 잡는다\"\n👤 전문가 감수: \"부지런한 사람이 성공의 기회를 잡는다\"\n\n📊 번역 이력:\n• 동일 문장 번역 요청 142회\n• 가장 선호된 번역: \"일찍 일어나는 새가 벌레를 잡는다\" (67%)\n\n💬 크라우드 소싱: 원어민 번역가에게 추가 검수 요청 가능\n💰 전문 번역 의뢰: 건당 ₩3,000~",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "flitto.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440202",
@@ -5320,7 +6013,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 플랜 무제한 번역, AI 번역 엔진 및 전문 용어집 기본 제공",
       "monthly_price": 59,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 25365529,
       "tags": [
@@ -5357,7 +6050,14 @@
       "sample_output_prompt": "'The early bird catches the worm' → 자연스러운 한국어로 (마케팅 문맥)",
       "sample_output": "🌐 SmartCAT 번역 결과:\n\n📋 Translation Memory 검색: 유사 번역 3건 발견\n\n✅ 권장 번역 (마케팅 문맥):\n\"먼저 시작하는 사람이 앞서갑니다\"\n\n📊 QA 체크:\n• 용어 일관성: ✅ 통과\n• 브랜드 톤: ✅ 적합\n• 글자 수 제한: ✅ 범위 내\n\n🔄 TM에 저장됨 — 다음 번역 시 자동 제안됩니다\n👥 번역가 워크플로우: 번역→리뷰→승인 단계 관리",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "smartcat.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440203",
@@ -5371,7 +6071,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "오픈소스 번역 완전 무료, Google Translate 대안, 개인정보 보호 중점",
       "monthly_price": null,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 77305989,
       "tags": [
@@ -5408,7 +6108,14 @@
       "sample_output_prompt": "'The early bird catches the worm' → 자연스러운 한국어로",
       "sample_output": "🌐 번역 결과:\n\n\"일찍 일어나는 새가 벌레를 잡는다\"\n\n🔓 오픈소스 번역 엔진\n• 개인정보 보호: 번역 데이터 서버 미저장\n• API: 무료 사용 가능\n• 셀프 호스팅 가능\n\n⚠️ 참고: 속어나 관용적 표현은 직역될 수 있습니다.\n💡 정확도 향상을 위해 짧은 문장으로 나누어 번역하는 것을 권장합니다.",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "lingva.ml",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440204",
@@ -5422,7 +6129,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 텍스트 번역 무료, 음성 번역 지원, 오프라인 번역은 유료",
       "monthly_price": 5.99,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 53723725,
       "tags": [
@@ -5459,7 +6166,14 @@
       "sample_output_prompt": "'The early bird catches the worm' → 자연스러운 한국어로",
       "sample_output": "🌐 번역 결과:\n\n\"일찍 일어나는 새가 벌레를 잡는다\"\n\n🎙️ 음성 번역: [▶️ 재생]\n⌚ Apple Watch에서도 확인 가능\n📸 카메라 번역: 간판/메뉴판을 촬영하면 실시간 번역\n\n🗣️ 대화 모드:\n영어 → 한국어 실시간 통역 지원\n\"The early bird...\" → \"일찍 일어나는 새가...\" (0.3초)\n\n💡 오프라인 번역 팩: 한국어 다운로드 가능 (45MB)",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "itranslate.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440071",
@@ -5473,7 +6187,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "AI 디자인 일 3회, Magic Write 프로젝트당 2회, 배경 제거 월 5회, 5GB 저장소. Pro $12.99/월",
       "monthly_price": 12.99,
-      "rating_avg": 4.6,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 180000000,
       "tags": [
@@ -5515,7 +6229,14 @@
         "Magic Eraser로 사진 속 불필요한 객체를 클릭만으로 제거할 수 있습니다",
         "Brand Kit 설정 후 \"Apply brand kit\"를 누르면 모든 디자인에 브랜드 색상과 폰트가 자동 적용됩니다",
         "Magic Write로 마케팅 문구, 이메일, SNS 캡션을 AI가 자동 작성해줍니다"
-      ]
+      ],
+      "app_store_id": "897446215",
+      "play_store_id": "com.canva.editor",
+      "trustpilot_domain": "canva.com",
+      "g2_slug": "canva",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440072",
@@ -5529,7 +6250,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 100 작업 무료, Zap 5개, AI 챗봇 2개, 단일 스텝 자동화만 가능",
       "monthly_price": 19.99,
-      "rating_avg": 4.5,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 45000000,
       "tags": [
@@ -5571,7 +6292,14 @@
         "Formatter 도구와 AI를 조합하여 비정형 데이터를 정형 데이터로 변환할 수 있습니다",
         "Paths 기능으로 AI 응답에 따라 다른 작업을 실행하도록 분기할 수 있습니다",
         "자주 사용하는 프롬프트는 템플릿으로 저장하여 재사용할 수 있습니다"
-      ]
+      ],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "zapier.com",
+      "g2_slug": "zapier",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440210",
@@ -5585,7 +6313,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 1,000 작업 무료, 자동화 시나리오 2개 생성 가능",
       "monthly_price": 9,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 25795219,
       "tags": [
@@ -5623,7 +6351,14 @@
       "sample_output_prompt": "새 주문 접수 시 재고 확인 → 발송 알림 자동화",
       "sample_output": "⚡ 시나리오 생성 완료!\n\n[Shopify] 새 주문 접수\n    ↓\n[Router] 주문 금액 분기\n    ├─ 10만원 이상 → [Slack] VIP 팀 알림\n    └─ 10만원 미만 → [Slack] 일반 팀 알림\n    ↓\n[Google Sheets] 주문 내역 기록\n    ↓\n[Gmail] 고객에게 발송 안내 메일\n\n✅ 테스트 실행 성공\n🔄 실행: 즉시 (Webhook 기반)\n📊 모듈 5개 | 월 1,000 operations 무료",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "make.com",
+      "g2_slug": "make-formerly-integromat",
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440211",
@@ -5637,7 +6372,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "25개 영상 무료, AI 요약 및 챕터 자동 생성, 5분 녹화 제한",
       "monthly_price": 12.5,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 16547827,
       "tags": [
@@ -5674,7 +6409,14 @@
       "sample_output_prompt": "5분 화면 녹화 영상을 요약해줘",
       "sample_output": "📹 Loom AI 요약 완료!\n\n영상: \"새 기능 업데이트 설명\" (5분 12초)\n\n📝 자동 요약:\n이번 업데이트의 핵심은 대시보드 UI 개편입니다. 사이드바 네비게이션이 추가되었고, 실시간 알림 기능이 도입되었습니다. 배포는 다음 주 수요일 예정입니다.\n\n⏱️ 챕터 자동 생성:\n[0:00] 인트로 및 배경\n[1:15] UI 변경사항 데모\n[3:30] 알림 기능 설명\n[4:45] 배포 일정\n\n✅ 자동 자막 + CTA 버튼 삽입됨",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "loom.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440212",
@@ -5688,7 +6430,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "3개 보드 무료, AI 마인드맵 및 아이디어 생성 기본 제공",
       "monthly_price": 8,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 38093480,
       "tags": [
@@ -5726,7 +6468,14 @@
       "sample_output_prompt": "브레인스토밍 보드를 자동 정리해줘",
       "sample_output": "🧠 AI 보드 정리 완료!\n\n원본: 포스트잇 47개 (브레인스토밍 결과)\n\n📋 AI 자동 분류 (5개 클러스터):\n├─ 🎯 제품 기능 (12개)\n├─ 🎨 UI/UX 개선 (9개)\n├─ 📈 마케팅 아이디어 (11개)\n├─ 🔧 기술 과제 (8개)\n└─ 💡 기타 (7개)\n\n🗺️ 마인드맵 자동 생성됨\n📊 투표 결과: \"AI 챗봇 도입\"이 최다 득표\n🔗 Jira 티켓으로 자동 변환 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "miro.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440213",
@@ -5740,7 +6489,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무제한 폼 생성 무료, AI 폼 자동 생성, 무제한 응답 수집",
       "monthly_price": 29,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 36795238,
       "tags": [
@@ -5777,7 +6526,14 @@
       "sample_output_prompt": "고객 만족도 설문 폼을 만들어줘",
       "sample_output": "📋 설문 폼 생성 완료!\n\n\"고객 만족도 조사\"\n\n자동 생성된 질문:\n1. 전반적인 만족도는? (1-5 별점)\n2. 가장 만족스러운 점은? (객관식)\n3. 개선이 필요한 부분은? (복수 선택)\n4. 추천 의향 (NPS 0-10)\n5. 추가 의견 (주관식)\n\n🎨 디자인: 미니멀 화이트\n📊 응답 실시간 집계 + 차트 자동 생성\n🔗 공유 링크: tally.so/r/xxx\n💰 무료 (무제한 폼, 무제한 응답)",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "tally.so",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440214",
@@ -5791,7 +6547,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 10개 응답 무료, AI 설문 자동 생성, 기본 템플릿 제공",
       "monthly_price": 25,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 24197415,
       "tags": [
@@ -5828,7 +6584,14 @@
       "sample_output_prompt": "신제품 사전 예약 폼을 만들어줘",
       "sample_output": "📋 Typeform 생성 완료!\n\n\"[제품명] 사전 예약 신청\"\n\n대화형 질문 흐름:\n1. \"안녕하세요! 어떤 제품에 관심이 있으신가요?\" (객관식)\n2. \"주로 어떤 용도로 사용하실 예정인가요?\" (복수 선택)\n3. \"이메일을 남겨주시면 출시 알림을 보내드릴게요\" (이메일 입력)\n4. \"감사합니다! 🎉 사전 예약이 완료되었습니다\"\n\n📊 분석: 평균 완료율 78% (업계 평균 대비 +23%)\n🔗 로직 점프: 응답에 따라 다른 질문 표시\n🎨 디자인: 브랜드 커스텀 테마",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "typeform.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440215",
@@ -5842,7 +6605,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무제한 가이드 무료 생성, AI 화면 캡처 및 매뉴얼 자동 생성",
       "monthly_price": 23,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 28190143,
       "tags": [
@@ -5879,7 +6642,14 @@
       "sample_output_prompt": "프로그램 사용법을 자동으로 문서화해줘",
       "sample_output": "📝 가이드 자동 생성 완료!\n\n\"주문 관리 시스템 사용 가이드\" (8단계)\n\n1. 📸 관리자 페이지에 로그인합니다\n   [스크린샷 자동 캡처 + 클릭 위치 빨간 원 표시]\n2. 📸 좌측 메뉴에서 \"주문 관리\"를 클릭합니다\n   [스크린샷 + 하이라이트]\n3. 📸 날짜 범위를 설정합니다\n   ...\n\n✅ 총 8단계, 스크린샷 8장 자동 포함\n📤 내보내기: PDF, Notion, Confluence\n🔗 공유 링크 생성됨 | 조회수 추적 가능",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "scribehow.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440216",
@@ -5893,7 +6663,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 일정 자동화 무료, AI 스케줄링 및 습관 추적 기본 제공",
       "monthly_price": 8,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 33553318,
       "tags": [
@@ -5930,7 +6700,14 @@
       "sample_output_prompt": "이번 주 일정을 최적화해줘",
       "sample_output": "📅 일정 최적화 완료!\n\n이번 주 분석:\n• 회의: 12개 (총 8.5시간)\n• 집중 작업 시간: 6시간 → 최적화 후 14시간\n• 방어된 시간: 점심 (12-1시), 집중시간 (오전 9-11시)\n\n🔄 자동 조정된 항목:\n• 1:1 미팅 → 화/목 오후로 묶음\n• \"기획서 작성\" → 수요일 오전 집중시간 블록\n• \"운동\" → 월/수/금 18:00 자동 배치\n\n📊 습관 트래킹: 이번 주 목표 달성률 82%\n⚡ 일정 충돌 시 자동 재조정됩니다",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "reclaim.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440217",
@@ -5944,7 +6721,7 @@
       "pricing_type": "Paid",
       "free_quota_detail": "무료 플랜 없음. 14일 무료 체험 후 월 $30.",
       "monthly_price": 30,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 26927874,
       "tags": [
@@ -5981,7 +6758,14 @@
       "sample_output_prompt": "밀린 이메일 100통을 빠르게 처리해줘",
       "sample_output": "📧 AI 이메일 분류 완료! (100통)\n\n📥 자동 분류 결과:\n• 🔴 즉시 회신 필요: 8통\n• 🟡 오늘 중 처리: 15통\n• 🟢 참고만: 42통\n• 🗑️ 중요하지 않음: 35통\n\n✍️ AI 회신 초안 (즉시 회신 8통):\n1. \"프로젝트 일정 문의\" → 회신 초안 생성됨 [Send]\n2. \"미팅 일정 조율\" → 가능 시간 자동 제안 [Send]\n...\n\n⌨️ 단축키: J(다음), E(완료), H(스누즈)\n⏱️ 예상 처리 시간: 25분 (평소 2시간 → 79% 절약)",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "superhuman.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440218",
@@ -5995,7 +6779,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 AI 글쓰기 무료, Google Docs 스타일 에디터, AI 제안 기본 제공",
       "monthly_price": 8,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 21541299,
       "tags": [
@@ -6032,7 +6816,14 @@
       "sample_output_prompt": "블로그 글을 더 매끄럽게 다듬어줘",
       "sample_output": "✍️ Lex AI 편집 제안\n\n원문 분석:\n• 글 길이: 1,500자\n• 가독성 점수: 72/100\n• 톤: 다소 딱딱함\n\n📝 개선 제안:\n\n[단락 2] \"이 기술은 혁명적이다\" → \"이 기술이 바꿔놓은 것들은 생각보다 많다\"\n💡 이유: 과장 표현보다 구체적 서술이 신뢰감을 줍니다.\n\n[단락 4] 문장이 너무 깁니다 (87자) → 2개로 분리 제안\n\n[결론] \"앞으로가 기대된다\" → 더 구체적인 전망으로 수정 제안\n\n✅ 적용 후 가독성 점수: 89/100",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "lex.page",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440219",
@@ -6046,7 +6837,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "AI 기반 리서치 페이지 생성 무료, 공유 및 퍼블리시 무료",
       "monthly_price": null,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 35506683,
       "tags": [
@@ -6083,7 +6874,14 @@
       "sample_output_prompt": "신제품 런칭 마케팅 트렌드 리서치 페이지를 만들어줘",
       "sample_output": "📄 Perplexity Page 생성 완료: \"2026 신제품 런칭 마케팅 트렌드\"\n\n목차:\n1. 숏폼 콘텐츠의 지배 — 틱톡·릴스 중심 전략\n2. AI 퍼스널라이제이션 — 개인 맞춤 광고의 부상\n3. 커뮤니티 기반 마케팅 — 디스코드·카카오 오픈채팅 활용\n4. 지속가능성 메시지 — ESG 가치 소구\n\n📚 인용 소스 12개 | 자동 업데이트 활성화\n🔗 공유 가능한 퍼블릭 링크 생성됨",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "perplexity.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440220",
@@ -6097,7 +6895,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 문서 무료, AI 도우미 기본 제공, 자동화 기능 포함",
       "monthly_price": 10,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 29586314,
       "tags": [
@@ -6134,7 +6932,14 @@
       "sample_output_prompt": "프로젝트 관리 문서를 자동화해줘",
       "sample_output": "📄 Coda AI 자동화 설정 완료!\n\n\"프로젝트 트래커\" 문서 생성됨:\n\n📊 테이블: 태스크 관리\n• 상태 자동 업데이트: 기한 초과 → \"지연\" 자동 변경\n• 담당자 알림: 기한 3일 전 자동 리마인더\n• 진행률: 하위 태스크 기반 자동 계산\n\n🤖 AI 버튼 추가:\n• [회의록 요약] — 텍스트 입력 시 액션 아이템 자동 추출\n• [주간 리포트] — 이번 주 진행 상황 자동 생성\n\n🔗 Slack, Jira 연동 완료",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "coda.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440221",
@@ -6148,7 +6953,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 노트 무료, AI 자동 정리 및 연결 기능 기본 제공",
       "monthly_price": 8,
-      "rating_avg": 4.2,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 23026709,
       "tags": [
@@ -6185,7 +6990,14 @@
       "sample_output_prompt": "흩어진 메모에서 관련 정보를 찾아줘",
       "sample_output": "🧠 Mem AI 검색 결과\n\n쿼리: \"신제품 런칭 관련\"\n\n연관 메모 자동 발견 (7개):\n1. 📝 \"제품 컨셉 회의 노트\" (1월 15일)\n2. 📝 \"경쟁사 분석 메모\" (1월 22일)\n3. 📝 \"가격 정책 아이디어\" (2월 1일)\n4. 📝 \"디자이너 미팅 후기\" (2월 3일)\n...\n\n💡 AI 인사이트:\n\"1월부터 축적된 메모를 종합하면, 핵심 차별점은 '가격 경쟁력'과 '사용 편의성'으로 수렴됩니다.\"\n\n🔗 Smart Connection으로 자동 링크됨",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "get.mem.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440222",
@@ -6199,7 +7011,7 @@
       "pricing_type": "Free",
       "free_quota_detail": "텍스트를 시각 다이어그램으로 변환 무료, 인포그래픽 생성 무료",
       "monthly_price": null,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 29201641,
       "tags": [
@@ -6236,7 +7048,14 @@
       "sample_output_prompt": "블로그 글의 핵심 내용을 다이어그램으로 만들어줘",
       "sample_output": "📊 비주얼 자동 생성 완료!\n\n입력: 블로그 글 (2,000자)\n\n생성된 다이어그램:\n1. 🔄 플로우차트 — 프로세스 5단계 시각화\n2. 📊 비교표 — 장단점 2열 정리\n3. 🎯 마인드맵 — 핵심 개념 관계도\n\n✨ 텍스트에서 핵심 키워드를 자동 추출하여\n시각적 다이어그램으로 변환했습니다.\n\n🎨 스타일: 클린 미니멀\n📥 내보내기: SVG, PNG, PDF",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "napkin.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440223",
@@ -6250,7 +7069,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 보드 제공, AI 플로우차트 및 와이어프레임 생성 기본 지원",
       "monthly_price": 10,
-      "rating_avg": 4.1,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 22773904,
       "tags": [
@@ -6288,7 +7107,14 @@
       "sample_output_prompt": "사용자 가입 플로우를 와이어프레임으로 만들어줘",
       "sample_output": "🎨 와이어프레임 생성 완료!\n\n\"사용자 가입 플로우\" (5개 화면)\n\n1. [랜딩 페이지] CTA 버튼 \"시작하기\"\n2. [이메일 입력] 소셜 로그인 옵션 (Google, Kakao)\n3. [프로필 설정] 이름, 직군, 관심사\n4. [온보딩 투어] 주요 기능 3단계 소개\n5. [대시보드] 개인화된 메인 화면\n\n📐 플로우차트 자동 연결:\n랜딩 → 이메일 → 프로필 → 온보딩 → 대시보드\n\n🤖 AI 제안: \"소셜 로그인 시 3번 화면으로 바로 이동\" 추천",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "whimsical.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440224",
@@ -6302,7 +7128,7 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 60분 무료 노이즈 캔슬링, AI 회의 메모 기본 제공",
       "monthly_price": 8,
-      "rating_avg": 4.3,
+      "rating_avg": 0,
       "review_count": 0,
       "visit_count": 23282172,
       "tags": [
@@ -6339,7 +7165,14 @@
       "sample_output_prompt": "화상 회의 중 배경 소음을 제거해줘",
       "sample_output": "🔇 노이즈 캔슬링 활성화됨!\n\n현재 제거 중인 소음:\n• 🔨 키보드 타이핑 소리 — 제거됨 ✅\n• 🐕 반려동물 소리 — 제거됨 ✅\n• 🚗 차량/교통 소음 — 제거됨 ✅\n• 👶 배경 대화 소리 — 제거됨 ✅\n\n📊 이번 회의 통계:\n• 소음 제거 횟수: 342회\n• 내 발화 시간: 12분 (전체의 28%)\n• 음성 품질 점수: 96/100\n\n💡 모든 화상회의 앱(Zoom, Meet, Teams)에서 작동",
       "bookmark_count": 0,
-      "usage_tips": []
+      "usage_tips": [],
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "krisp.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-1",
@@ -6379,7 +7212,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.086Z",
-      "updated_at": "2026-02-13T22:14:33.087Z"
+      "updated_at": "2026-02-13T22:14:33.087Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "agpt.co",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-2",
@@ -6419,7 +7259,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.087Z",
-      "updated_at": "2026-02-13T22:14:33.087Z"
+      "updated_at": "2026-02-13T22:14:33.087Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "langchain.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-3",
@@ -6459,7 +7306,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.087Z",
-      "updated_at": "2026-02-13T22:14:33.087Z"
+      "updated_at": "2026-02-13T22:14:33.087Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "ollama.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-4",
@@ -6499,7 +7353,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.087Z",
-      "updated_at": "2026-02-13T22:14:33.087Z"
+      "updated_at": "2026-02-13T22:14:33.087Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "gpt4all.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-5",
@@ -6539,7 +7400,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.087Z",
-      "updated_at": "2026-02-13T22:14:33.087Z"
+      "updated_at": "2026-02-13T22:14:33.087Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "llamaindex.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-6",
@@ -6579,7 +7447,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.087Z",
-      "updated_at": "2026-02-13T22:14:33.087Z"
+      "updated_at": "2026-02-13T22:14:33.087Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "coqui.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-7",
@@ -6619,7 +7494,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.087Z",
-      "updated_at": "2026-02-13T22:14:33.087Z"
+      "updated_at": "2026-02-13T22:14:33.087Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "suno.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-8",
@@ -6659,7 +7541,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "flowiseai.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-9",
@@ -6699,7 +7588,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "langflow.org",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-10",
@@ -6739,7 +7635,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "invoke.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-11",
@@ -6779,7 +7682,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "localai.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-12",
@@ -6819,7 +7729,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "aider.chat",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-13",
@@ -6859,7 +7776,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": "1209815023",
+      "play_store_id": "com.cliffweitzman.speechifyMobile",
+      "trustpilot_domain": "speechify.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-14",
@@ -6899,7 +7823,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "lmstudio.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-15",
@@ -6939,7 +7870,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "pi.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-16",
@@ -6979,7 +7917,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "n8n.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-17",
@@ -7019,7 +7964,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "adcreative.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-18",
@@ -7059,7 +8011,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "pitch.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-19",
@@ -7099,7 +8058,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "dreamstudio.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-20",
@@ -7139,7 +8105,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "pictory.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-21",
@@ -7179,7 +8152,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "play.ht",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-22",
@@ -7219,7 +8199,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "stableaudio.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-23",
@@ -7259,7 +8246,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "reverso.net",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-24",
@@ -7299,7 +8293,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "phind.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-25",
@@ -7339,7 +8340,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "murf.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-26",
@@ -7379,7 +8387,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "hyperwriteai.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-27",
@@ -7419,7 +8434,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "freepik.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-28",
@@ -7459,7 +8481,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "resemble.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-29",
@@ -7499,7 +8528,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "jenni.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-30",
@@ -7539,7 +8575,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "decktopus.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-31",
@@ -7579,7 +8622,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "datarobot.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-32",
@@ -7619,7 +8669,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "relay.app",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-33",
@@ -7659,7 +8716,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "predis.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-34",
@@ -7699,7 +8763,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "lovo.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-35",
@@ -7739,7 +8810,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "trypencil.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-36",
@@ -7779,7 +8857,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "listnr.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-37",
@@ -7819,7 +8904,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "uizard.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-38",
@@ -7859,7 +8951,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "diagram.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-39",
@@ -7899,7 +8998,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "usegalileo.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-40",
@@ -7939,7 +9045,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "magician.design",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-41",
@@ -7979,7 +9092,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.088Z",
-      "updated_at": "2026-02-13T22:14:33.088Z"
+      "updated_at": "2026-02-13T22:14:33.088Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "booth.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-42",
@@ -8019,7 +9139,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "cleanup.pictures",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-43",
@@ -8059,7 +9186,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "designify.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-44",
@@ -8099,7 +9233,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "captions.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-45",
@@ -8139,7 +9280,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "vizard.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-46",
@@ -8179,7 +9327,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "submagic.co",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-47",
@@ -8219,7 +9374,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "vidyo.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-48",
@@ -8259,7 +9421,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "wisecut.video",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-49",
@@ -8299,7 +9468,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "twelvelabs.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-50",
@@ -8339,7 +9515,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "compose.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-51",
@@ -8379,7 +9562,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "mem.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-52",
@@ -8419,7 +9609,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "reflect.app",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-53",
@@ -8459,7 +9656,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "craft.do",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-54",
@@ -8499,7 +9703,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "moonbeam.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-55",
@@ -8539,7 +9750,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "novelai.net",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-56",
@@ -8579,7 +9797,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "consensus.app",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-57",
@@ -8619,7 +9844,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "elicit.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-58",
@@ -8659,7 +9891,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "scholarcy.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-59",
@@ -8699,7 +9938,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "scispace.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-60",
@@ -8739,7 +9985,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "researchrabbit.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-61",
@@ -8779,7 +10032,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "semanticscholar.org",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-62",
@@ -8819,7 +10079,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "khanacademy.org",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-63",
@@ -8859,7 +10126,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": "570060128",
+      "play_store_id": "com.duolingo",
+      "trustpilot_domain": "duolingo.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-64",
@@ -8899,7 +10173,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "quizlet.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-65",
@@ -8939,7 +10220,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "studyable.app",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-66",
@@ -8979,7 +10267,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "knowt.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-67",
@@ -9019,7 +10314,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "revision.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-68",
@@ -9059,7 +10361,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "equals.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-69",
@@ -9099,7 +10408,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "uselookup.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-70",
@@ -9139,7 +10455,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "coefficient.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-71",
@@ -9179,7 +10502,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "intercom.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-72",
@@ -9219,7 +10549,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "zendesk.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-73",
@@ -9259,7 +10596,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "ada.cx",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-74",
@@ -9299,7 +10643,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "kustomer.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-75",
@@ -9339,7 +10690,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "surferseo.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-76",
@@ -9379,7 +10737,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "frase.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-77",
@@ -9419,7 +10784,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "marketmuse.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-78",
@@ -9459,7 +10831,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "clearscope.io",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-79",
@@ -9499,7 +10878,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "lavender.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-80",
@@ -9539,7 +10925,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "instantly.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-81",
@@ -9579,7 +10972,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "hirevue.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-82",
@@ -9619,7 +11019,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "paradox.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-83",
@@ -9659,7 +11066,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "eightfold.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-84",
@@ -9699,7 +11113,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "csm.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-85",
@@ -9739,7 +11160,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "spline.design",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-86",
@@ -9779,7 +11207,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "kaedim3d.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-87",
@@ -9819,7 +11254,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "scenario.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-88",
@@ -9859,7 +11301,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "rosebud.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-89",
@@ -9899,7 +11348,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "harvey.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-90",
@@ -9939,7 +11395,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "donotpay.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-91",
@@ -9979,7 +11442,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "casetext.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-92",
@@ -10019,7 +11489,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "nabla.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-93",
@@ -10059,7 +11536,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "glass.health",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-94",
@@ -10099,7 +11583,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "splashmusic.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-95",
@@ -10139,7 +11630,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "ampermusic.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-96",
@@ -10179,7 +11677,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "taplio.com",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     },
     {
       "id": "tool-97",
@@ -10219,7 +11724,14 @@
       "sample_output": null,
       "sample_output_prompt": null,
       "created_at": "2026-02-13T22:14:33.089Z",
-      "updated_at": "2026-02-13T22:14:33.089Z"
+      "updated_at": "2026-02-13T22:14:33.089Z",
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": "podcastle.ai",
+      "g2_slug": null,
+      "confidence_level": "none",
+      "confidence_source_count": 0,
+      "rating_sources": []
     }
   ],
   "user_types": [

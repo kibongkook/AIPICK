@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
 import { verifyCronAuth } from '@/lib/pipeline/fetcher-base';
 import { calculateHybridScore, loadScoringWeights } from '@/lib/scoring';
-import type { ToolMetrics, MaxValues } from '@/lib/scoring';
+import type { ToolMetrics } from '@/lib/scoring';
 
 /**
- * POST /api/cron/ranking - 하이브리드 랭킹 점수 재계산 + 주간 스냅샷
+ * POST /api/cron/ranking - 4-카테고리 하이브리드 랭킹 점수 재계산 + 주간 스냅샷
  *
- * 하이브리드 공식: 내부 점수(사용자 데이터) + 외부 점수(벤치마크/GitHub/PH)
+ * 4-카테고리: 사용자 리뷰(40%) + 인기도(25%) + 커뮤니티(25%) + 벤치마크(10%)
  * 모든 가중치는 scoring_weights 테이블에서 런타임 로드
  */
 export async function POST(request: NextRequest) {
@@ -28,29 +28,37 @@ export async function POST(request: NextRequest) {
   // 2. 모든 도구 조회
   const { data: tools, error: toolsError } = await supabase
     .from('tools')
-    .select('id, rating_avg, upvote_count, has_benchmark_data, supports_korean, category_id, visit_count, review_count');
+    .select('id, has_benchmark_data, visit_count, review_count, upvote_count');
 
   if (toolsError || !tools?.length) {
     return NextResponse.json({ error: toolsError?.message || 'No tools found' }, { status: 500 });
   }
 
-  // 3. 카테고리 slug 매핑 (LLM 판단용)
+  // 3. 카테고리 slug 매핑 (LLM 판단용) — 다중 카테고리에서 primary 카테고리 사용
+  const { data: toolCategories } = await supabase
+    .from('tool_categories')
+    .select('tool_id, category_id, is_primary');
+
   const { data: categories } = await supabase
     .from('categories')
     .select('id, slug');
   const catIdToSlug = new Map((categories || []).map((c) => [c.id, c.slug]));
 
-  // 4. 북마크 카운트 조회
-  const { data: bookmarkCounts } = await supabase
-    .from('bookmarks')
-    .select('tool_id');
+  // tool_id → primary category slug
+  const toolCatSlugMap = new Map<string, string>();
+  for (const tc of toolCategories || []) {
+    if (tc.is_primary) {
+      toolCatSlugMap.set(tc.tool_id, catIdToSlug.get(tc.category_id) || '');
+    }
+  }
+  // primary가 없는 경우 첫 번째 카테고리 사용
+  for (const tc of toolCategories || []) {
+    if (!toolCatSlugMap.has(tc.tool_id)) {
+      toolCatSlugMap.set(tc.tool_id, catIdToSlug.get(tc.category_id) || '');
+    }
+  }
 
-  const bookmarkMap = new Map<string, number>();
-  (bookmarkCounts || []).forEach((b) => {
-    bookmarkMap.set(b.tool_id, (bookmarkMap.get(b.tool_id) || 0) + 1);
-  });
-
-  // 5. 외부 점수 조회
+  // 4. 외부 점수 조회
   const { data: externalScores } = await supabase
     .from('tool_external_scores')
     .select('tool_id, source_key, normalized_score');
@@ -63,30 +71,20 @@ export async function POST(request: NextRequest) {
     externalMap.get(es.tool_id)!.set(es.source_key, Number(es.normalized_score));
   });
 
-  // 6. 정규화 최대값 계산
-  const maxValues: MaxValues = {
-    max_bookmark: Math.max(...Array.from(bookmarkMap.values()), 1),
-    max_upvote: Math.max(...tools.map((t) => t.upvote_count), 1),
-  };
-
-  // 7. 하이브리드 점수 계산 (4계층)
+  // 5. 하이브리드 점수 계산 (4-카테고리)
   const { isBenchmarkApplicable } = await import('@/lib/scoring/hybrid');
 
   const updates = tools.map((tool) => {
-    const categorySlug = catIdToSlug.get(tool.category_id) || '';
+    const categorySlug = toolCatSlugMap.get(tool.id) || '';
     const isLlm = isBenchmarkApplicable(categorySlug) || tool.has_benchmark_data;
 
     const toolMetrics: ToolMetrics = {
-      rating_avg: tool.rating_avg,
-      bookmark_count: bookmarkMap.get(tool.id) || 0,
-      upvote_count: tool.upvote_count,
-      supports_korean: tool.supports_korean ?? false,
       is_llm: isLlm,
       category_slug: categorySlug,
       external_scores: externalMap.get(tool.id) || new Map(),
     };
 
-    const result = calculateHybridScore(toolMetrics, weights, maxValues);
+    const result = calculateHybridScore(toolMetrics, weights);
 
     return {
       id: tool.id,
@@ -96,29 +94,32 @@ export async function POST(request: NextRequest) {
     };
   });
 
-  // 8. 점수순 정렬
+  // 6. 점수순 정렬
   updates.sort((a, b) => b.hybrid_score - a.hybrid_score);
 
-  // 9. DB 업데이트
+  // 7. DB 업데이트
   let updatedCount = 0;
   for (let i = 0; i < updates.length; i++) {
+    const u = updates[i];
     const { error } = await supabase
       .from('tools')
       .update({
-        hybrid_score: updates[i].hybrid_score,
-        // 하위 호환: internal/external을 tier 합산으로
-        internal_score: updates[i].tier4_score,
-        external_score: updates[i].tier1_score + updates[i].tier2_score + updates[i].tier3_score,
-        ranking_score: updates[i].ranking_score,
+        hybrid_score: u.hybrid_score,
+        // 하위 호환: internal/external을 카테고리별로 매핑
+        internal_score: u.review_score,
+        external_score: u.popularity_score + u.community_score + u.benchmark_score,
+        ranking_score: u.ranking_score,
+        confidence_level: u.confidence_level,
+        confidence_source_count: u.contributing_sources.length,
         prev_ranking: i + 1,
         updated_at: new Date().toISOString(),
       })
-      .eq('id', updates[i].id);
+      .eq('id', u.id);
 
     if (!error) updatedCount++;
   }
 
-  // 9. 주간 랭킹 스냅샷
+  // 8. 주간 랭킹 스냅샷
   const weekStart = getWeekStart();
   const snapshots = updates.map((u, i) => ({
     tool_id: u.id,
@@ -132,7 +133,7 @@ export async function POST(request: NextRequest) {
     .from('weekly_rankings')
     .upsert(snapshots, { onConflict: 'tool_id,week_start' });
 
-  // 10. 일별 트렌드 스냅샷
+  // 9. 일별 트렌드 스냅샷
   const today = new Date().toISOString().split('T')[0];
   const trendSnapshots = updates.map((u, i) => ({
     tool_id: u.id,
@@ -141,9 +142,9 @@ export async function POST(request: NextRequest) {
     ranking_score: u.hybrid_score,
     visit_count: tools.find((t) => t.id === u.id)?.visit_count || 0,
     review_count: tools.find((t) => t.id === u.id)?.review_count || 0,
-    bookmark_count: bookmarkMap.get(u.id) || 0,
+    bookmark_count: 0,
     upvote_count: tools.find((t) => t.id === u.id)?.upvote_count || 0,
-    external_score: u.tier1_score + u.tier2_score + u.tier3_score,
+    external_score: u.popularity_score + u.community_score + u.benchmark_score,
   }));
 
   await supabase

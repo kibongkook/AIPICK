@@ -1,173 +1,116 @@
-import { BENCHMARK_APPLICABLE_CATEGORIES } from '@/lib/constants';
-import { normalizeToScale, roundScore, clampScore } from './normalize';
+// ==========================================
+// 하이브리드 점수 계산기 v2 (4-카테고리 시스템)
+// 사용자 리뷰 40% + 인기도 25% + 커뮤니티 25% + 벤치마크 10%
+// ==========================================
+
+import { BENCHMARK_APPLICABLE_CATEGORIES, CONFIDENCE_THRESHOLDS } from '@/lib/constants';
+import { roundScore, clampScore } from './normalize';
 import { getWeight, type ScoringWeightsMap } from './weights';
+import type { ConfidenceLevel } from '@/types';
 
 // ==========================================
 // 타입 정의
 // ==========================================
 
 export interface ToolMetrics {
-  // AIPICK 내부 데이터 (4계층)
-  rating_avg: number;         // AIPICK 사용자 평점
-  bookmark_count: number;
-  upvote_count: number;
-  supports_korean: boolean;
-  // 메타
-  is_llm: boolean;            // LLM 여부 (1계층 적용 결정)
+  /** 도구가 LLM인지 여부 (벤치마크 카테고리 적용 결정) */
+  is_llm: boolean;
+  /** 카테고리 slug (벤치마크 적용 판단용) */
   category_slug?: string;
   /** source_key → normalized_score (0-100) */
   external_scores: Map<string, number>;
 }
 
 export interface MaxValues {
-  max_bookmark: number;
-  max_upvote: number;
+  // 현재 미사용, 향후 확장용
+  [key: string]: number;
 }
 
 export interface HybridScoreResult {
+  /** 종합 점수 (0-100) */
   hybrid_score: number;
-  tier1_score: number;  // 기술 품질
-  tier2_score: number;  // 커뮤니티 검증
-  tier3_score: number;  // 실용성
-  tier4_score: number;  // AIPICK 자체
+  /** 사용자 리뷰 카테고리 점수 */
+  review_score: number;
+  /** 인기도 카테고리 점수 */
+  popularity_score: number;
+  /** 커뮤니티 카테고리 점수 */
+  community_score: number;
+  /** 벤치마크 카테고리 점수 */
+  benchmark_score: number;
+  /** 신뢰도 등급 */
+  confidence_level: ConfidenceLevel;
+  /** 점수 산출에 기여한 소스 목록 */
+  contributing_sources: string[];
 }
 
 // ==========================================
-// 4계층 가중치 키 → 외부 소스 키 매핑
+// 카테고리별 소스 키 매핑
 // ==========================================
 
-/** 1계층: 기술 품질 (LLM 전용) */
-const TIER1_MAP: Record<string, string> = {
-  tier1_arena_elo: 'lmsys_arena',
-  tier1_benchmark: 'huggingface_llm',
-  tier1_artificial_analysis: 'artificial_analysis',
+/** 사용자 리뷰 카테고리 (가중치 키 → 외부 소스 키) */
+const REVIEW_SOURCE_MAP: Record<string, string> = {
+  review_app_store: 'app_store',
+  review_play_store: 'play_store',
+  review_g2: 'g2',
+  review_trustpilot: 'trustpilot',
+  review_product_hunt: 'product_hunt',
 };
 
-/** 2계층: 커뮤니티 검증 (전체) */
-const TIER2_MAP: Record<string, string> = {
-  tier2_ph_rating: 'product_hunt',
-  tier2_ph_votes: 'product_hunt_votes',
-  tier2_github: 'github',
-  tier2_hn_mentions: 'hackernews',
+/** 인기도 카테고리 */
+const POPULARITY_SOURCE_MAP: Record<string, string> = {
+  pop_tranco: 'tranco',
+  pop_pagerank: 'open_pagerank',
 };
 
-/** 3계층: 실용성 */
-const TIER3_LLM_MAP: Record<string, string> = {
-  tier3_pricing: 'openrouter',
+/** 커뮤니티 카테고리 */
+const COMMUNITY_SOURCE_MAP: Record<string, string> = {
+  comm_ph_upvotes: 'product_hunt_votes',
+  comm_github: 'github',
+  comm_hn_mentions: 'hackernews',
+};
+
+/** 벤치마크 카테고리 (LLM만) */
+const BENCHMARK_SOURCE_MAP: Record<string, string> = {
+  bench_lmsys_arena: 'lmsys_arena',
+  bench_huggingface: 'huggingface_llm',
 };
 
 // ==========================================
-// 1계층: 기술 품질 점수 (LLM 전용, 최대 35점)
+// 카테고리별 점수 계산
 // ==========================================
 
-function calculateTier1Score(
+/**
+ * 특정 카테고리의 점수를 계산합니다.
+ * 소스 맵의 가중치 키별로 외부 점수를 가져와 서브 가중 평균을 구합니다.
+ * 데이터가 없는 서브 소스는 자동 재분배됩니다.
+ *
+ * @returns [카테고리 내 정규화 점수 0-100, 기여한 소스 목록]
+ */
+function calculateCategoryScore(
   externalScores: Map<string, number>,
   weights: ScoringWeightsMap,
-  isLlm: boolean
-): number {
-  if (!isLlm) return 0; // 비-LLM은 0 (가중치가 2계층으로 재분배됨)
+  sourceMap: Record<string, string>
+): [number, string[]] {
+  const sources: { key: string; score: number; weight: number }[] = [];
 
-  let score = 0;
-  for (const [weightKey, sourceKey] of Object.entries(TIER1_MAP)) {
-    const normalizedScore = externalScores.get(sourceKey) ?? 0;
-    const weight = getWeight(weights, weightKey);
-    score += (normalizedScore * weight) / 100;
-  }
-  return score;
-}
-
-// ==========================================
-// 2계층: 커뮤니티 검증 점수 (전체, 최대 40점)
-// 비-LLM 도구: 1계층+3계층(pricing) 가중치가 여기로 재분배
-// ==========================================
-
-function calculateTier2Score(
-  externalScores: Map<string, number>,
-  weights: ScoringWeightsMap,
-  isLlm: boolean
-): number {
-  // 2계층 기본 가중치 합계
-  const tier2Keys = Object.keys(TIER2_MAP);
-  const baseTier2Weight = tier2Keys.reduce(
-    (sum, k) => sum + getWeight(weights, k), 0
-  );
-
-  // 비-LLM: 1계층(35%) + 3계층 pricing(10%) = 45%를 2계층으로 재분배
-  let redistributionFactor = 1;
-  if (!isLlm) {
-    const tier1Weight = Object.keys(TIER1_MAP).reduce(
-      (sum, k) => sum + getWeight(weights, k), 0
-    );
-    const tier3PricingWeight = getWeight(weights, 'tier3_pricing');
-    const redistributedWeight = tier1Weight + tier3PricingWeight;
-    redistributionFactor = baseTier2Weight > 0
-      ? (baseTier2Weight + redistributedWeight) / baseTier2Weight
-      : 1;
-  }
-
-  let score = 0;
-  for (const [weightKey, sourceKey] of Object.entries(TIER2_MAP)) {
-    const normalizedScore = externalScores.get(sourceKey) ?? 0;
-    let weight = getWeight(weights, weightKey);
-
-    if (!isLlm) {
-      weight *= redistributionFactor;
-    }
-
-    score += (normalizedScore * weight) / 100;
-  }
-  return score;
-}
-
-// ==========================================
-// 3계층: 실용성 점수 (최대 15점)
-// ==========================================
-
-function calculateTier3Score(
-  externalScores: Map<string, number>,
-  weights: ScoringWeightsMap,
-  isLlm: boolean,
-  supportsKorean: boolean
-): number {
-  let score = 0;
-
-  // pricing (LLM 전용)
-  if (isLlm) {
-    for (const [weightKey, sourceKey] of Object.entries(TIER3_LLM_MAP)) {
-      const normalizedScore = externalScores.get(sourceKey) ?? 0;
+  for (const [weightKey, sourceKey] of Object.entries(sourceMap)) {
+    const normalizedScore = externalScores.get(sourceKey);
+    if (normalizedScore !== undefined && normalizedScore > 0) {
       const weight = getWeight(weights, weightKey);
-      score += (normalizedScore * weight) / 100;
+      if (weight > 0) {
+        sources.push({ key: sourceKey, score: normalizedScore, weight });
+      }
     }
   }
 
-  // 한국어 지원 보너스 (전체)
-  if (supportsKorean) {
-    score += getWeight(weights, 'tier3_korean');
-  }
+  if (sources.length === 0) return [0, []];
 
-  return score;
-}
+  // 가중 평균 (비중 재분배: 있는 소스의 weight 합이 denominator)
+  const totalWeight = sources.reduce((sum, s) => sum + s.weight, 0);
+  const weightedSum = sources.reduce((sum, s) => sum + s.score * s.weight, 0);
+  const score = weightedSum / totalWeight;
 
-// ==========================================
-// 4계층: AIPICK 자체 점수 (최대 10점)
-// ==========================================
-
-function calculateTier4Score(
-  tool: ToolMetrics,
-  weights: ScoringWeightsMap,
-  maxValues: MaxValues
-): number {
-  // 사용자 평점 (0-5 → 0-100 정규화)
-  const ratingNorm = tool.rating_avg > 0 ? (tool.rating_avg / 5.0) * 100 : 0;
-  const ratingScore = (ratingNorm * getWeight(weights, 'tier4_user_rating')) / 100;
-
-  // 참여도 (북마크 + 업보트 합산)
-  const engagement = tool.bookmark_count + tool.upvote_count;
-  const maxEngagement = maxValues.max_bookmark + maxValues.max_upvote;
-  const engagementNorm = normalizeToScale(engagement, Math.max(maxEngagement, 1));
-  const engagementScore = (engagementNorm * getWeight(weights, 'tier4_engagement')) / 100;
-
-  return ratingScore + engagementScore;
+  return [Math.min(score, 100), sources.map(s => s.key)];
 }
 
 // ==========================================
@@ -175,35 +118,129 @@ function calculateTier4Score(
 // ==========================================
 
 /**
- * 4계층 하이브리드 점수를 계산합니다.
+ * 4-카테고리 하이브리드 점수를 계산합니다.
  *
- * - 1계층 (35점): 기술 품질 — Arena Elo, 벤치마크, AA (LLM만)
- * - 2계층 (40점): 커뮤니티 검증 — PH 평점/투표, GitHub, HN (전체)
- * - 3계층 (15점): 실용성 — 가성비, 한국어 지원
- * - 4계층 (10점): AIPICK 자체 — 사용자 평점, 참여도
+ * 카테고리 구성:
+ * - 사용자 리뷰 (40%): App Store, Play Store, G2, Trustpilot, PH
+ * - 인기도 (25%): Tranco 순위, Open PageRank
+ * - 커뮤니티 (25%): PH 업보트, GitHub Stars, HN 멘션
+ * - 벤치마크 (10%): LMSYS Arena, HuggingFace (LLM만)
  *
- * 비-LLM 도구: 1계층(35%) + 3계층 pricing(10%) → 2계층으로 재분배
+ * 비-LLM 도구: 벤치마크 10% → 나머지 카테고리에 비례 재분배
+ * 데이터 없는 카테고리: 비중이 있는 카테고리로 재분배
  * 총점: 0~100
  */
 export function calculateHybridScore(
   tool: ToolMetrics,
   weights: ScoringWeightsMap,
-  maxValues: MaxValues
+  _maxValues?: MaxValues
 ): HybridScoreResult {
-  const tier1 = calculateTier1Score(tool.external_scores, weights, tool.is_llm);
-  const tier2 = calculateTier2Score(tool.external_scores, weights, tool.is_llm);
-  const tier3 = calculateTier3Score(tool.external_scores, weights, tool.is_llm, tool.supports_korean);
-  const tier4 = calculateTier4Score(tool, weights, maxValues);
+  const allContributingSources: string[] = [];
 
-  const hybridScore = clampScore(tier1 + tier2 + tier3 + tier4);
+  // 각 카테고리 점수 계산 (0-100 정규화)
+  const [reviewRaw, reviewSources] = calculateCategoryScore(
+    tool.external_scores, weights, REVIEW_SOURCE_MAP
+  );
+  const [popularityRaw, popularitySources] = calculateCategoryScore(
+    tool.external_scores, weights, POPULARITY_SOURCE_MAP
+  );
+  const [communityRaw, communitySources] = calculateCategoryScore(
+    tool.external_scores, weights, COMMUNITY_SOURCE_MAP
+  );
+
+  // 벤치마크: LLM만 계산
+  let benchmarkRaw = 0;
+  let benchmarkSources: string[] = [];
+  if (tool.is_llm) {
+    [benchmarkRaw, benchmarkSources] = calculateCategoryScore(
+      tool.external_scores, weights, BENCHMARK_SOURCE_MAP
+    );
+  }
+
+  allContributingSources.push(
+    ...reviewSources, ...popularitySources, ...communitySources, ...benchmarkSources
+  );
+
+  // 카테고리 가중치 로드
+  let wReview = getWeight(weights, 'cat_user_reviews');
+  let wPopularity = getWeight(weights, 'cat_popularity');
+  let wCommunity = getWeight(weights, 'cat_community');
+  let wBenchmark = tool.is_llm ? getWeight(weights, 'cat_benchmarks') : 0;
+
+  // 데이터 없는 카테고리 비중 재분배
+  const categories = [
+    { score: reviewRaw, weight: wReview, hasData: reviewSources.length > 0 },
+    { score: popularityRaw, weight: wPopularity, hasData: popularitySources.length > 0 },
+    { score: communityRaw, weight: wCommunity, hasData: communitySources.length > 0 },
+    { score: benchmarkRaw, weight: wBenchmark, hasData: benchmarkSources.length > 0 },
+  ];
+
+  const activeCategories = categories.filter(c => c.hasData && c.weight > 0);
+  const inactiveWeight = categories
+    .filter(c => !c.hasData || c.weight === 0)
+    .reduce((sum, c) => sum + c.weight, 0);
+
+  // 비-LLM의 벤치마크 가중치도 재분배 대상에 포함
+  const benchmarkRedist = !tool.is_llm ? getWeight(weights, 'cat_benchmarks') : 0;
+  const totalRedistribute = inactiveWeight + benchmarkRedist;
+
+  if (activeCategories.length > 0 && totalRedistribute > 0) {
+    const activeWeightSum = activeCategories.reduce((sum, c) => sum + c.weight, 0);
+    const redistributionFactor = (activeWeightSum + totalRedistribute) / activeWeightSum;
+
+    for (const cat of activeCategories) {
+      cat.weight *= redistributionFactor;
+    }
+  }
+
+  // 최종 점수 계산
+  const totalWeight = activeCategories.reduce((sum, c) => sum + c.weight, 0);
+  let hybridScore = 0;
+
+  if (totalWeight > 0) {
+    const weightedSum = activeCategories.reduce(
+      (sum, c) => sum + (c.score * c.weight), 0
+    );
+    hybridScore = weightedSum / totalWeight;
+  }
+
+  // 각 카테고리의 최종 기여 점수 (가중치 반영)
+  const reviewContrib = reviewSources.length > 0
+    ? (reviewRaw * (activeCategories.find(c => c.score === reviewRaw)?.weight ?? wReview)) / Math.max(totalWeight, 1) * 100
+    : 0;
+  const popularityContrib = popularitySources.length > 0
+    ? (popularityRaw * (activeCategories.find(c => c.score === popularityRaw)?.weight ?? wPopularity)) / Math.max(totalWeight, 1) * 100
+    : 0;
+  const communityContrib = communitySources.length > 0
+    ? (communityRaw * (activeCategories.find(c => c.score === communityRaw)?.weight ?? wCommunity)) / Math.max(totalWeight, 1) * 100
+    : 0;
+  const benchmarkContrib = benchmarkSources.length > 0
+    ? (benchmarkRaw * (activeCategories.find(c => c.score === benchmarkRaw)?.weight ?? wBenchmark)) / Math.max(totalWeight, 1) * 100
+    : 0;
+
+  // 신뢰도: 기여 소스 수 기반
+  const uniqueSources = [...new Set(allContributingSources)];
+  const confidence = calculateConfidenceFromSources(uniqueSources.length);
 
   return {
-    hybrid_score: roundScore(hybridScore),
-    tier1_score: roundScore(tier1),
-    tier2_score: roundScore(tier2),
-    tier3_score: roundScore(tier3),
-    tier4_score: roundScore(tier4),
+    hybrid_score: roundScore(clampScore(hybridScore)),
+    review_score: roundScore(reviewContrib),
+    popularity_score: roundScore(popularityContrib),
+    community_score: roundScore(communityContrib),
+    benchmark_score: roundScore(benchmarkContrib),
+    confidence_level: confidence,
+    contributing_sources: uniqueSources,
   };
+}
+
+/**
+ * 소스 수 기반으로 신뢰도를 판단합니다.
+ */
+function calculateConfidenceFromSources(sourceCount: number): ConfidenceLevel {
+  if (sourceCount >= CONFIDENCE_THRESHOLDS.HIGH_MIN_SOURCES) return 'high';
+  if (sourceCount >= CONFIDENCE_THRESHOLDS.MEDIUM_MIN_SOURCES) return 'medium';
+  if (sourceCount >= CONFIDENCE_THRESHOLDS.LOW_MIN_SOURCES) return 'low';
+  return 'none';
 }
 
 /**

@@ -1,19 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
 import { verifyCronAuth, markSourceRunning, markSourceComplete, type FetcherResult } from '@/lib/pipeline/fetcher-base';
-import { aggregateRating, type ExternalRatingData } from '@/lib/pipeline/rating-aggregator';
+import { aggregateRating, buildRatingDataFromScores } from '@/lib/pipeline/rating-aggregator';
 import { loadWeightsByCategory } from '@/lib/scoring/weights';
 
 const SOURCE_KEY = 'rating_aggregator';
 
 /**
- * POST /api/cron/aggregate-ratings - 외부 소스 기반 실제 평점 집계
+ * POST /api/cron/aggregate-ratings - 6-소스 기반 평점 집계
  *
- * Product Hunt, GitHub, 벤치마크, Artificial Analysis, G2 등의
- * 실제 외부 데이터를 수집하여 각 도구의 rating_avg, review_count,
- * visit_count(popularity)를 업데이트합니다.
+ * App Store, Play Store, G2, Trustpilot, Product Hunt, AIPICK 자체 평점을
+ * 가중 평균으로 집계하여 각 도구의 rating_avg, review_count,
+ * rating_sources, confidence_level을 업데이트합니다.
  *
- * 실행 순서: github-stats, product-hunt, benchmarks 등이 먼저 실행된 후
+ * 실행 순서: 각 소스별 크론(app-store, play-store, g2 등)이 먼저 실행된 후
  * 이 cron이 실행되어 집계합니다.
  */
 export async function POST(request: NextRequest) {
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     // 1. 모든 도구 조회
     const { data: tools, error: toolsError } = await supabase
       .from('tools')
-      .select('id, name, slug, rating_avg, review_count, visit_count, github_stars, product_hunt_upvotes');
+      .select('id, name, slug, rating_avg, review_count');
 
     if (toolsError || !tools?.length) {
       result.errors.push(toolsError?.message || 'No tools found');
@@ -54,49 +54,55 @@ export async function POST(request: NextRequest) {
     // 2. 평점 집계 가중치 로드 (DB → 폴백: 상수)
     const ratingWeights = await loadWeightsByCategory(supabase, 'rating_aggregation');
 
-    // 3. 외부 점수 일괄 조회
+    // 3. 외부 점수 일괄 조회 (평점 관련 소스만)
+    const ratingSources = ['app_store', 'play_store', 'g2', 'trustpilot', 'product_hunt'];
     const { data: externalScores } = await supabase
       .from('tool_external_scores')
-      .select('tool_id, source_key, normalized_score, raw_data');
+      .select('tool_id, source_key, normalized_score, raw_data')
+      .in('source_key', ratingSources);
 
-    // tool_id → source_key → raw_data 매핑
-    const externalMap = new Map<string, Map<string, Record<string, unknown>>>();
+    // tool_id → scores 매핑
+    const externalMap = new Map<string, Array<{ source_key: string; normalized_score: number; raw_data: Record<string, unknown> | null }>>();
     for (const es of externalScores || []) {
       if (!externalMap.has(es.tool_id)) {
-        externalMap.set(es.tool_id, new Map());
+        externalMap.set(es.tool_id, []);
       }
-      externalMap.get(es.tool_id)!.set(es.source_key, es.raw_data || {});
+      externalMap.get(es.tool_id)!.push({
+        source_key: es.source_key,
+        normalized_score: Number(es.normalized_score),
+        raw_data: es.raw_data,
+      });
     }
 
-    // 4. 벤치마크 점수 조회
-    const { data: benchmarks } = await supabase
-      .from('tool_benchmark_scores')
-      .select('tool_id, average_score');
+    // 4. AIPICK 자체 평점 조회 (community_posts에서 rating 타입)
+    const { data: aipickRatings } = await supabase
+      .from('community_posts')
+      .select('tool_id, overall_rating')
+      .eq('post_type', 'rating')
+      .not('overall_rating', 'is', null);
 
-    const benchmarkMap = new Map<string, number>();
-    for (const b of benchmarks || []) {
-      if (b.average_score) {
-        benchmarkMap.set(b.tool_id, Number(b.average_score));
-      }
+    // tool_id → { rating_sum, count }
+    const aipickMap = new Map<string, { sum: number; count: number }>();
+    for (const r of aipickRatings || []) {
+      if (!r.tool_id || !r.overall_rating) continue;
+      const entry = aipickMap.get(r.tool_id) || { sum: 0, count: 0 };
+      entry.sum += Number(r.overall_rating);
+      entry.count++;
+      aipickMap.set(r.tool_id, entry);
     }
 
     // 5. 각 도구별 평점 집계
     for (const tool of tools) {
       try {
-        const toolExternal = externalMap.get(tool.id);
-        const phData = toolExternal?.get('product_hunt') || {};
-        const aaData = toolExternal?.get('artificial_analysis') || {};
+        const toolScores = externalMap.get(tool.id) || [];
+        const ratingData = buildRatingDataFromScores(toolScores);
 
-        const ratingData: ExternalRatingData = {
-          ph_rating: phData.reviewsRating as number ?? null,
-          ph_votes: (phData.votesCount as number) || tool.product_hunt_upvotes || 0,
-          ph_reviews: (phData.reviewsCount as number) || 0,
-          github_stars: tool.github_stars || 0,
-          benchmark_avg: benchmarkMap.get(tool.id) ?? null,
-          aa_quality_index: (aaData.quality_index as number) ?? null,
-          g2_rating: null,  // G2 유료 API — 현재 비활성 (가중치 0)
-          g2_reviews: 0,
-        };
+        // AIPICK 자체 평점 주입
+        const aipickData = aipickMap.get(tool.id);
+        if (aipickData && aipickData.count > 0) {
+          ratingData.aipick_rating = Math.round((aipickData.sum / aipickData.count) * 10) / 10;
+          ratingData.aipick_reviews = aipickData.count;
+        }
 
         const aggregated = aggregateRating(ratingData, ratingWeights);
 
@@ -110,10 +116,10 @@ export async function POST(request: NextRequest) {
           .from('tools')
           .update({
             rating_avg: aggregated.rating_avg,
-            review_count: aggregated.review_count,
-            // visit_count는 popularity_score로 대체
-            // 기존 visit_count가 0인 경우에만 popularity로 채움
-            ...(tool.visit_count === 0 ? { visit_count: aggregated.popularity_score } : {}),
+            review_count: aggregated.total_review_count,
+            rating_sources: aggregated.rating_sources,
+            confidence_level: aggregated.confidence,
+            confidence_source_count: aggregated.rating_sources.length,
             updated_at: new Date().toISOString(),
           })
           .eq('id', tool.id);

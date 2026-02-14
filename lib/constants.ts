@@ -320,22 +320,48 @@ export const EXP_ACTIONS = {
  * 3계층: 실용성 (15%) — pricing은 LLM만, korean은 전체
  * 4계층: AIPICK 자체 (10%) — 전체 (사용자 확보 후 활성화)
  */
+/**
+ * 점수(hybrid_score, 0~100) 4-카테고리 가중치
+ *
+ * 카테고리 1: 사용자 리뷰 (40%) — App Store, Play Store, G2, Trustpilot, PH
+ * 카테고리 2: 인기도 (25%) — Tranco 순위, Open PageRank
+ * 카테고리 3: 커뮤니티 (25%) — PH 업보트, GitHub Stars, HN 멘션
+ * 카테고리 4: 벤치마크 (10%) — LMSYS Arena, HuggingFace (LLM만)
+ */
 export const DEFAULT_SCORING_WEIGHTS = {
-  // 1계층: 기술 품질 (35%) — LLM 전용
-  tier1_arena_elo: 15,           // LMSYS Chatbot Arena Elo
-  tier1_benchmark: 12,           // HuggingFace 벤치마크
-  tier1_artificial_analysis: 8,  // Artificial Analysis 품질 인덱스
-  // 2계층: 커뮤니티 검증 (40%) — 전체
-  tier2_ph_rating: 15,           // Product Hunt 평점
-  tier2_ph_votes: 5,             // Product Hunt 투표수
-  tier2_github: 12,              // GitHub 스타
-  tier2_hn_mentions: 8,          // HackerNews 언급
-  // 3계층: 실용성 (15%)
-  tier3_pricing: 10,             // OpenRouter 가성비 — LLM 전용
-  tier3_korean: 5,               // 한국어 지원 — 전체
-  // 4계층: AIPICK 자체 (10%) — 사용자 확보 후
-  tier4_user_rating: 5,          // AIPICK 사용자 평점
-  tier4_engagement: 5,           // 북마크 + 업보트
+  // 카테고리 가중치 (총합 100)
+  cat_user_reviews: 40,
+  cat_popularity: 25,
+  cat_community: 25,
+  cat_benchmarks: 10,
+  // 사용자 리뷰 서브 가중치 (카테고리 내 비율)
+  review_app_store: 30,
+  review_play_store: 25,
+  review_g2: 20,
+  review_trustpilot: 10,
+  review_product_hunt: 15,
+  // 인기도 서브 가중치
+  pop_tranco: 50,
+  pop_pagerank: 50,
+  // 커뮤니티 서브 가중치
+  comm_ph_upvotes: 35,
+  comm_github: 40,
+  comm_hn_mentions: 25,
+  // 벤치마크 서브 가중치 (LLM만)
+  bench_lmsys_arena: 50,
+  bench_huggingface: 50,
+  // 레거시 호환 (기존 코드가 참조할 수 있음)
+  tier1_arena_elo: 15,
+  tier1_benchmark: 12,
+  tier1_artificial_analysis: 8,
+  tier2_ph_rating: 15,
+  tier2_ph_votes: 5,
+  tier2_github: 12,
+  tier2_hn_mentions: 8,
+  tier3_pricing: 10,
+  tier3_korean: 5,
+  tier4_user_rating: 5,
+  tier4_engagement: 5,
 } as const;
 
 export const TREND_THRESHOLDS = {
@@ -345,8 +371,10 @@ export const TREND_THRESHOLDS = {
 } as const;
 
 export const DATA_SOURCE_KEYS = {
+  // 기존 소스
   GITHUB: 'github',
   PRODUCT_HUNT: 'product_hunt',
+  PRODUCT_HUNT_VOTES: 'product_hunt_votes',
   HUGGINGFACE_LLM: 'huggingface_llm',
   OPENROUTER: 'openrouter',
   ARTIFICIAL_ANALYSIS: 'artificial_analysis',
@@ -355,7 +383,52 @@ export const DATA_SOURCE_KEYS = {
   DISCOVERY_PH: 'discovery_product_hunt',
   DISCOVERY_GITHUB: 'discovery_github',
   DISCOVERY_HN: 'discovery_hackernews',
+  // 신규 소스 (평점 + 점수 재설계)
+  APP_STORE: 'app_store',
+  PLAY_STORE: 'play_store',
+  TRANCO: 'tranco',
+  OPEN_PAGERANK: 'open_pagerank',
+  TRUSTPILOT: 'trustpilot',
+  G2: 'g2',
 } as const;
+
+// ==========================================
+// 신뢰도 등급 시스템
+// ==========================================
+export const CONFIDENCE_THRESHOLDS = {
+  HIGH_MIN_SOURCES: 5,
+  MEDIUM_MIN_SOURCES: 3,
+  LOW_MIN_SOURCES: 1,
+} as const;
+
+export const CONFIDENCE_BADGES = {
+  high: { label: '높음', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+  medium: { label: '보통', color: 'bg-yellow-100 text-yellow-700 border-yellow-200' },
+  low: { label: '낮음', color: 'bg-gray-100 text-gray-600 border-gray-200' },
+  none: { label: '없음', color: '' },
+} as const;
+
+// ==========================================
+// 평점 집계 가중치 (rating_avg 1~5 계산용)
+// 소스: 실제 사용자 별점 플랫폼만 사용
+// ==========================================
+export const DEFAULT_RATING_WEIGHTS = {
+  app_store: 30,
+  play_store: 25,
+  g2: 20,
+  trustpilot: 10,
+  product_hunt: 10,
+  aipick: 5,
+} as const;
+
+export const RATING_MIN_REVIEWS: Record<string, number> = {
+  app_store: 100,
+  play_store: 100,
+  g2: 10,
+  trustpilot: 20,
+  product_hunt: 5,
+  aipick: 5,
+};
 
 // ==========================================
 // 도구 발견 파이프라인 설정

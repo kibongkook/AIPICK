@@ -6,10 +6,11 @@ import { getRankings, getCategories } from '@/lib/supabase/queries';
 import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
 import type { Tool } from '@/types';
 import TrendBadge from '@/components/ranking/TrendBadge';
+import ConfidenceBadge from '@/components/ranking/ConfidenceBadge';
 
 export const metadata: Metadata = {
   title: `AI 서비스 랭킹 | ${SITE_NAME}`,
-  description: '외부 벤치마크 + 사용자 평가 기반 AI 서비스 하이브리드 랭킹 TOP 100.',
+  description: '외부 데이터 기반 객관적 AI 서비스 하이브리드 랭킹 TOP 100.',
 };
 
 interface Props {
@@ -36,7 +37,7 @@ export default async function RankingsPage({ searchParams }: Props) {
           </h1>
         </div>
         <p className="mt-2 text-sm text-gray-500">
-          외부 벤치마크 + 사용자 평가 기반 하이브리드 점수
+          외부 데이터 기반 객관적 하이브리드 점수 (사용자 리뷰 + 인기도 + 커뮤니티 + 벤치마크)
         </p>
       </div>
 
@@ -87,6 +88,8 @@ export default async function RankingsPage({ searchParams }: Props) {
           const cat = categories.find((c) => c.id === primaryCategory?.id);
           const trendDir = tool.trend_direction || 'stable';
           const trendMag = tool.trend_magnitude || 0;
+          const hasRating = tool.rating_avg > 0;
+          const hasScore = (tool.hybrid_score || tool.ranking_score) > 0;
 
           return (
             <Link
@@ -109,7 +112,16 @@ export default async function RankingsPage({ searchParams }: Props) {
                   </div>
                 )}
                 <div className="min-w-0">
-                  <span className="text-sm font-bold text-foreground truncate block">{tool.name}</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-sm font-bold text-foreground truncate">{tool.name}</span>
+                    {tool.confidence_level && tool.confidence_level !== 'none' && (
+                      <ConfidenceBadge
+                        level={tool.confidence_level}
+                        sourceCount={tool.confidence_source_count}
+                        size="sm"
+                      />
+                    )}
+                  </div>
                   <span className="text-[11px] text-gray-400 flex items-center gap-1">
                     <Users className="h-3 w-3" />
                     {formatVisitCount(tool.visit_count)}명
@@ -124,13 +136,25 @@ export default async function RankingsPage({ searchParams }: Props) {
 
               {/* 평점 */}
               <div className="col-span-2 flex items-center justify-center gap-1">
-                <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
-                <span className="text-sm font-semibold">{formatRating(tool.rating_avg)}</span>
+                {hasRating ? (
+                  <>
+                    <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
+                    <span className="text-sm font-semibold">{formatRating(tool.rating_avg)}</span>
+                  </>
+                ) : (
+                  <span className="text-xs text-gray-400">미평가</span>
+                )}
               </div>
 
               {/* 종합 점수 */}
               <div className="col-span-2 hidden sm:block text-center">
-                <span className="text-sm font-bold text-primary">{(tool.hybrid_score || tool.ranking_score) ? (tool.hybrid_score || tool.ranking_score).toFixed(1) : '-'}</span>
+                {hasScore ? (
+                  <span className="text-sm font-bold text-primary">
+                    {(tool.hybrid_score || tool.ranking_score).toFixed(1)}
+                  </span>
+                ) : (
+                  <span className="text-xs text-gray-400">-</span>
+                )}
               </div>
 
               {/* 변동 */}
@@ -151,4 +175,3 @@ function RankBadge({ rank }: { rank: number }) {
   if (rank === 3) return <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-amber-600 text-xs font-bold text-white">3</span>;
   return <span className="text-sm font-medium text-gray-500">{rank}</span>;
 }
-

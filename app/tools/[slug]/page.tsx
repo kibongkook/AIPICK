@@ -278,13 +278,11 @@ export default async function ToolDetailPage({ params }: Props) {
                   <TrendBadge direction={tool.trend_direction} magnitude={tool.trend_magnitude || 0} size="md" />
                 </div>
               )}
-              {tool.hybrid_score > 0 && (
-                <ScoreBreakdown
-                  hybridScore={tool.hybrid_score}
-                  internalScore={tool.internal_score || tool.hybrid_score}
-                  externalScore={tool.external_score || 0}
-                />
-              )}
+              <ScoreBreakdown
+                hybridScore={tool.hybrid_score}
+                confidenceLevel={tool.confidence_level}
+                sourceCount={tool.confidence_source_count}
+              />
             </div>
           )}
 
