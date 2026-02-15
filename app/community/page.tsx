@@ -298,7 +298,6 @@ function CommunityContent() {
           media: data.media || [],
           tags, // 태그 포함
           rating: null,
-          feature_ratings: null,
           parent_id: null,
           like_count: 0,
           comment_count: 0,

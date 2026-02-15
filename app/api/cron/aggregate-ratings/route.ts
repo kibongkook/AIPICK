@@ -74,19 +74,17 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // 4. AIPICK 자체 평점 조회 (community_posts에서 rating 타입)
+    // 4. AIPICK 자체 평점 조회 (tool_ratings 테이블 - 독립 평가 시스템)
     const { data: aipickRatings } = await supabase
-      .from('community_posts')
-      .select('tool_id, overall_rating')
-      .eq('post_type', 'rating')
-      .not('overall_rating', 'is', null);
+      .from('tool_ratings')
+      .select('tool_id, rating');
 
     // tool_id → { rating_sum, count }
     const aipickMap = new Map<string, { sum: number; count: number }>();
     for (const r of aipickRatings || []) {
-      if (!r.tool_id || !r.overall_rating) continue;
+      if (!r.tool_id || !r.rating) continue;
       const entry = aipickMap.get(r.tool_id) || { sum: 0, count: 0 };
-      entry.sum += Number(r.overall_rating);
+      entry.sum += Number(r.rating);
       entry.count++;
       aipickMap.set(r.tool_id, entry);
     }

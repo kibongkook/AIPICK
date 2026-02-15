@@ -96,14 +96,14 @@ export default function CommunityWriteFormV2({ onSubmit, initialPostType, initia
         </button>
         <button
           type="button"
-          onClick={() => setPostType('rating')}
+          onClick={() => setPostType('tip')}
           className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-            postType === 'rating'
+            postType === 'tip'
               ? 'bg-primary text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
           }`}
         >
-          리뷰
+          팁
         </button>
         <button
           type="button"

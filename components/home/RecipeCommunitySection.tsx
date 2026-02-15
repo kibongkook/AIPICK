@@ -78,7 +78,6 @@ export default function RecipeCommunitySection({ recipe, recipeTools }: RecipeCo
           }))
         ],
         rating: null,
-        feature_ratings: null,
         parent_id: null,
         like_count: 0,
         comment_count: 0,

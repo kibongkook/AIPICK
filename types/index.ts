@@ -9,7 +9,7 @@ export type SafetyLevel = 'safe' | 'guided' | 'advanced';
 export type NewsCategory = 'update' | 'launch' | 'industry' | 'pricing' | 'general';
 export type GuideCategory = 'job' | 'education' | 'tip' | 'tutorial';
 export type CommentTargetType = 'tool' | 'news' | 'guide';
-export type CommunityPostType = 'rating' | 'discussion' | 'tip' | 'question';
+export type CommunityPostType = 'discussion' | 'tip' | 'question';
 export type CommunityTargetType = 'tool' | 'news' | 'guide' | 'general';
 export type MediaType = 'image' | 'video';
 export type TrendDirection = 'up' | 'down' | 'stable' | 'new';
@@ -386,7 +386,6 @@ export interface CommunityPost {
   title: string;                      // V2: 제목
   content: string;
   rating: number | null;
-  feature_ratings: FeatureRatings | null;
   parent_id: string | null;
   media: MediaAttachment[];
   like_count: number;

@@ -9,7 +9,8 @@ import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils'
 import Badge from '@/components/ui/Badge';
 import ServiceCard from '@/components/service/ServiceCard';
 import { BookmarkButton, UpvoteButton } from '@/components/service/ToolInteractions';
-import CommunitySection from '@/components/community/CommunitySection';
+import ToolCommunitySection from '@/components/community/ToolCommunitySection';
+import ToolRatingInline from '@/components/review/ToolRatingInline';
 import TrendBadge from '@/components/ranking/TrendBadge';
 import ScoreBreakdown from '@/components/ranking/ScoreBreakdown';
 import ToolShowcaseStrip from '@/components/showcase/ToolShowcaseStrip';
@@ -110,11 +111,11 @@ export default async function ToolDetailPage({ params }: Props) {
                     {category.name}
                   </Link>
                 )}
-                <div className="flex items-center gap-1">
-                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  <span className="font-medium text-gray-700">{formatRating(tool.rating_avg)}</span>
-                  <span>({tool.review_count}개 평가)</span>
-                </div>
+                <ToolRatingInline
+                  toolId={tool.id}
+                  currentAvg={tool.rating_avg}
+                  reviewCount={tool.review_count}
+                />
                 <span>{formatVisitCount(tool.visit_count)} 방문</span>
               </div>
             </div>
@@ -227,7 +228,7 @@ export default async function ToolDetailPage({ params }: Props) {
 
           {/* 커뮤니티 (평가 + 자유글 + 팁 + 질문) */}
           <section className="rounded-xl border border-border bg-white p-6">
-            <CommunitySection targetType="tool" targetId={tool.id} />
+            <ToolCommunitySection toolId={tool.id} />
           </section>
         </div>
 

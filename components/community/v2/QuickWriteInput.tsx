@@ -163,14 +163,14 @@ export default function QuickWriteInput({ onSubmit }: QuickWriteInputProps) {
         </button>
         <button
           type="button"
-          onClick={() => setPostType('rating')}
+          onClick={() => setPostType('tip')}
           className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-            postType === 'rating'
+            postType === 'tip'
               ? 'bg-primary text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
           }`}
         >
-          리뷰
+          팁
         </button>
         <button
           type="button"

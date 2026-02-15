@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Star, Bookmark, Users, BookmarkCheck } from 'lucide-react';
+import { Bookmark, Users, BookmarkCheck } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { useBookmarkList } from '@/hooks/useBookmark';
 import { cn, getAvatarColor } from '@/lib/utils';
@@ -61,8 +61,8 @@ function ProfileContent() {
             legacy.push({
               id: r.id, target_type: 'tool', target_id: r.tool_id,
               user_id: r.user_id, user_name: r.user_name || '사용자',
-              post_type: 'rating', title: r.content.slice(0, 50), content: r.content,
-              rating: r.rating, feature_ratings: r.feature_ratings || null,
+              post_type: 'discussion', title: r.content.slice(0, 50), content: r.content,
+              rating: r.rating,
               parent_id: null, media: [], like_count: r.helpful_count || 0,
               comment_count: 0, bookmark_count: 0, view_count: 0,
               popularity_score: 0, quality_score: 0,
@@ -77,7 +77,7 @@ function ProfileContent() {
               id: c.id, target_type: 'tool', target_id: c.tool_id,
               user_id: c.user_id, user_name: c.user_name || '사용자',
               post_type: 'discussion', title: c.content.slice(0, 50), content: c.content,
-              rating: null, feature_ratings: null,
+              rating: null,
               parent_id: null, media: [], like_count: c.like_count || 0,
               comment_count: 0, bookmark_count: 0, view_count: 0,
               popularity_score: 0, quality_score: 0,
@@ -249,13 +249,6 @@ function ProfileContent() {
                     <span className={cn('inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium', typeConfig?.color || 'bg-gray-100 text-gray-600')}>
                       {typeConfig?.label || post.post_type}
                     </span>
-                    {post.post_type === 'rating' && post.rating && (
-                      <div className="flex gap-0.5">
-                        {[1, 2, 3, 4, 5].map((s) => (
-                          <Star key={s} className={cn('h-3.5 w-3.5', post.rating! >= s ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200')} />
-                        ))}
-                      </div>
-                    )}
                     <span className="text-xs text-gray-400">{new Date(post.created_at).toLocaleDateString('ko-KR')}</span>
                   </div>
                   <p className="text-sm text-gray-700 whitespace-pre-wrap">{post.content}</p>
