@@ -3,11 +3,20 @@
     { "path": "/api/cron/pricing", "schedule": "0 6 * * *" },
     { "path": "/api/cron/trends", "schedule": "30 3 * * *" },
     { "path": "/api/cron/news-fetch", "schedule": "0 */6 * * *" },
-    { "path": "/api/cron/github-stats", "schedule": "0 4 * * 0" },
-    { "path": "/api/cron/artificial-analysis", "schedule": "0 3 * * 0" },
-    { "path": "/api/cron/product-hunt", "schedule": "0 5 * * 0" },
-    { "path": "/api/cron/benchmarks", "schedule": "0 2 * * 1" },
-    { "path": "/api/cron/ranking", "schedule": "0 3 * * 1" },
-    { "path": "/api/cron/category-popularity", "schedule": "0 4 * * 1" }
+
+    { "path": "/api/cron/github-stats", "schedule": "0 1 * * 0" },
+    { "path": "/api/cron/product-hunt", "schedule": "0 2 * * 0" },
+    { "path": "/api/cron/app-store", "schedule": "0 3 * * 0" },
+    { "path": "/api/cron/play-store", "schedule": "30 3 * * 0" },
+    { "path": "/api/cron/trustpilot", "schedule": "0 4 * * 0" },
+    { "path": "/api/cron/g2", "schedule": "30 4 * * 0" },
+    { "path": "/api/cron/tranco", "schedule": "0 5 * * 0" },
+    { "path": "/api/cron/pagerank", "schedule": "30 5 * * 0" },
+    { "path": "/api/cron/artificial-analysis", "schedule": "0 6 * * 0" },
+    { "path": "/api/cron/benchmarks", "schedule": "30 6 * * 0" },
+
+    { "path": "/api/cron/aggregate-ratings", "schedule": "0 1 * * 1" },
+    { "path": "/api/cron/ranking", "schedule": "0 2 * * 1" },
+    { "path": "/api/cron/category-popularity", "schedule": "0 3 * * 1" }
   ]
 }
