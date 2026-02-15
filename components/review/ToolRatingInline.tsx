@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { Pencil } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
 import { formatRating } from '@/lib/utils';
@@ -39,6 +40,7 @@ export default function ToolRatingInline({ toolId, currentAvg, reviewCount }: To
   const [avg, setAvg] = useState(currentAvg);
   const [count, setCount] = useState(reviewCount);
   const [submitting, setSubmitting] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -55,7 +57,8 @@ export default function ToolRatingInline({ toolId, currentAvg, reviewCount }: To
   const handleRate = useCallback(async (rating: number) => {
     if (!user || submitting) return;
     setSubmitting(true);
-    setMyRating(rating); // 즉시 반영
+    setMyRating(rating);
+    setIsEditing(false);
 
     if (useApi) {
       try {
@@ -85,12 +88,38 @@ export default function ToolRatingInline({ toolId, currentAvg, reviewCount }: To
       <span className="font-medium text-gray-700 text-sm">{formatRating(avg)}</span>
       <span className="text-sm text-gray-500">({count}개 평가)</span>
 
-      {/* 내 평가: 항상 보이는 인터랙티브 별 */}
+      {/* 내 평가 */}
       {user && (
         <>
           <span className="text-gray-300 text-sm">|</span>
-          <span className="text-xs text-gray-400">내 평가</span>
-          <StarRating value={myRating || 0} onChange={handleRate} size="sm" />
+          {myRating && !isEditing ? (
+            /* 평가 완료 상태: 읽기 전용 별 + 수정 버튼 */
+            <>
+              <span className="text-xs text-gray-400">내 평가</span>
+              <StarRating value={myRating} readonly size="sm" />
+              <button
+                onClick={() => setIsEditing(true)}
+                className="p-0.5 text-gray-300 hover:text-gray-500 transition-colors"
+                title="평가 수정"
+              >
+                <Pencil className="h-3 w-3" />
+              </button>
+            </>
+          ) : (
+            /* 미평가 or 수정 모드: 인터랙티브 별 */
+            <>
+              <span className="text-xs text-gray-400">{isEditing ? '수정 중' : '내 평가'}</span>
+              <StarRating value={isEditing ? (myRating || 0) : 0} onChange={handleRate} size="sm" />
+              {isEditing && (
+                <button
+                  onClick={() => setIsEditing(false)}
+                  className="text-[10px] text-gray-400 hover:text-gray-600"
+                >
+                  취소
+                </button>
+              )}
+            </>
+          )}
         </>
       )}
     </div>
