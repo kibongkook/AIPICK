@@ -19,7 +19,7 @@ export default function ConfidenceBadge({ level, sourceCount, size = 'sm' }: Con
       className={cn(
         'inline-flex items-center gap-1 rounded-full border font-medium',
         badge.color,
-        size === 'sm' ? 'px-1.5 py-0.5 text-[10px]' : 'px-2 py-1 text-xs'
+        size === 'sm' ? 'px-1.5 py-0.5 text-xs' : 'px-2 py-1 text-xs'
       )}
       title={`신뢰도: ${badge.label} (${sourceCount ?? 0}개 소스)`}
     >

@@ -69,7 +69,7 @@ export default function CompareSelector({ tools, currentSlugs }: CompareSelector
             {tool.logo_url ? (
               <img src={tool.logo_url} alt={tool.name} className="h-6 w-6 rounded object-cover" />
             ) : (
-              <div className={cn('flex h-6 w-6 items-center justify-center rounded text-white text-[10px] font-bold', getAvatarColor(tool.name))}>
+              <div className={cn('flex h-6 w-6 items-center justify-center rounded text-white text-xs font-bold', getAvatarColor(tool.name))}>
                 {tool.name.charAt(0)}
               </div>
             )}
@@ -115,7 +115,7 @@ export default function CompareSelector({ tools, currentSlugs }: CompareSelector
                   {tool.logo_url ? (
                     <img src={tool.logo_url} alt={tool.name} className="h-5 w-5 rounded object-cover" />
                   ) : (
-                    <div className={cn('flex h-5 w-5 items-center justify-center rounded text-white text-[9px] font-bold', getAvatarColor(tool.name))}>
+                    <div className={cn('flex h-5 w-5 items-center justify-center rounded text-white text-xs font-bold', getAvatarColor(tool.name))}>
                       {tool.name.charAt(0)}
                     </div>
                   )}

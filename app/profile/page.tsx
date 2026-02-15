@@ -212,7 +212,7 @@ function ProfileContent() {
                     {/* 하단 정보 */}
                     <div className="flex items-center justify-between text-xs text-gray-400">
                       <div className="flex items-center gap-1">
-                        <div className={cn('h-5 w-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold', avatarColor)}>
+                        <div className={cn('h-5 w-5 rounded-full flex items-center justify-center text-white text-xs font-bold', avatarColor)}>
                           {firstChar}
                         </div>
                         <span>{post.user_name}</span>
@@ -221,7 +221,7 @@ function ProfileContent() {
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <span className={cn('inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium', typeConfig?.color || 'bg-gray-100 text-gray-600')}>
+                        <span className={cn('inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium', typeConfig?.color || 'bg-gray-100 text-gray-600')}>
                           {typeConfig?.label || post.post_type}
                         </span>
                         <span>좋아요 {post.like_count}</span>
@@ -246,7 +246,7 @@ function ProfileContent() {
               return (
                 <div key={post.id} className="rounded-xl border border-border bg-white p-5">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className={cn('inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium', typeConfig?.color || 'bg-gray-100 text-gray-600')}>
+                    <span className={cn('inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium', typeConfig?.color || 'bg-gray-100 text-gray-600')}>
                       {typeConfig?.label || post.post_type}
                     </span>
                     <span className="text-xs text-gray-400">{new Date(post.created_at).toLocaleDateString('ko-KR')}</span>

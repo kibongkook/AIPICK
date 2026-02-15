@@ -38,7 +38,7 @@ export default function RecipeStepCard({ step, isLast }: RecipeStepCardProps) {
               <ArrowRight className="h-3 w-3" />
             </Link>
             {step.alt_tools && step.alt_tools.length > 0 && (
-              <span className="text-[10px] text-gray-400">
+              <span className="text-xs text-gray-400">
                 대안: {step.alt_tools.map(slug => {
                   const nameMap: Record<string, string> = {
                     'claude': 'Claude', 'gemini': 'Gemini', 'chatgpt': 'ChatGPT',
@@ -72,9 +72,9 @@ export default function RecipeStepCard({ step, isLast }: RecipeStepCardProps) {
           {step.prompt_example && (
             <div className="rounded-lg bg-gray-50 border border-gray-100 p-3 mb-3">
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">프롬프트 예시</span>
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">프롬프트 예시</span>
                 <button
-                  className="text-[10px] text-gray-400 hover:text-primary flex items-center gap-0.5 transition-colors"
+                  className="text-xs text-gray-400 hover:text-primary flex items-center gap-0.5 transition-colors"
                   title="복사"
                 >
                   <Copy className="h-3 w-3" />

@@ -48,7 +48,7 @@ export default function AnswerForm({ questionId, onSubmit }: AnswerFormProps) {
         className="w-full px-3 py-2 text-sm border border-border rounded-lg resize-none focus:border-primary focus:outline-none bg-white"
       />
       <div className="flex items-center justify-between mt-2">
-        <span className="text-[11px] text-gray-400">{content.length}자</span>
+        <span className="text-xs text-gray-400">{content.length}자</span>
         <button
           type="submit"
           disabled={!canSubmit}

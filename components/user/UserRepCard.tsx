@@ -62,7 +62,7 @@ export default function UserRepCard({ userId }: UserRepCardProps) {
       {/* EXP 바 */}
       {nextLevel && (
         <div className="mb-4">
-          <div className="flex items-center justify-between text-[11px] text-gray-400 mb-1">
+          <div className="flex items-center justify-between text-xs text-gray-400 mb-1">
             <span>{currentLevel.label}</span>
             <span>{nextLevel.label}까지 {nextLevel.minExp - profile.experience_points} EXP</span>
           </div>
@@ -90,7 +90,7 @@ function StatItem({ icon: Icon, label, count }: { icon: typeof Trophy; label: st
     <div className="text-center">
       <Icon className="h-4 w-4 text-gray-400 mx-auto mb-1" />
       <p className="text-lg font-bold text-foreground">{count}</p>
-      <p className="text-[11px] text-gray-400">{label}</p>
+      <p className="text-xs text-gray-400">{label}</p>
     </div>
   );
 }

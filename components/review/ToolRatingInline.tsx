@@ -113,7 +113,7 @@ export default function ToolRatingInline({ toolId, currentAvg, reviewCount }: To
               {isEditing && (
                 <button
                   onClick={() => setIsEditing(false)}
-                  className="text-[10px] text-gray-400 hover:text-gray-600"
+                  className="text-xs text-gray-400 hover:text-gray-600"
                 >
                   취소
                 </button>

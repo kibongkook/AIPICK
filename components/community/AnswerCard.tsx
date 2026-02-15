@@ -61,7 +61,7 @@ export default function AnswerCard({
       {/* 하단 */}
       <div className="flex items-center justify-between text-xs text-gray-400">
         <div className="flex items-center gap-2">
-          <div className={cn('h-5 w-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold', avatarColor)}>
+          <div className={cn('h-5 w-5 rounded-full flex items-center justify-center text-white text-xs font-bold', avatarColor)}>
             {firstChar}
           </div>
           <span>{answer.user_name}</span>

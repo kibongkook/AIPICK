@@ -63,11 +63,11 @@ export default async function RecipeDetailPage({ params }: PageProps) {
       <div className="mb-8">
         {/* 카테고리 + 난이도 */}
         <div className="flex items-center gap-2 mb-3">
-          <span className={`inline-flex items-center gap-1 rounded-full bg-gradient-to-r ${recipe.color} px-2.5 py-1 text-[10px] font-bold text-white`}>
+          <span className={`inline-flex items-center gap-1 rounded-full bg-gradient-to-r ${recipe.color} px-2.5 py-1 text-xs font-bold text-white`}>
             <DynamicIcon name={categoryConfig.icon} className="h-3 w-3" />
             {categoryConfig.label}
           </span>
-          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${difficulty.color}`}>
+          <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${difficulty.color}`}>
             {difficulty.label}
           </span>
         </div>
@@ -107,7 +107,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
               href={`/tools/${step.tool_slug}`}
               className="inline-flex items-center gap-1.5 rounded-full bg-white border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:border-primary hover:text-primary transition-all"
             >
-              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white text-[9px] font-bold">
+              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white text-xs font-bold">
                 {step.step}
               </span>
               {step.tool_name}
@@ -142,7 +142,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
         <p className="text-sm text-gray-600">{recipe.result_description}</p>
         <div className="mt-3 flex flex-wrap gap-1.5">
           {recipe.tags.map((tag) => (
-            <span key={tag} className="text-[10px] bg-white/80 text-gray-500 px-2 py-0.5 rounded-full">
+            <span key={tag} className="text-xs bg-white/80 text-gray-500 px-2 py-0.5 rounded-full">
               #{tag}
             </span>
           ))}

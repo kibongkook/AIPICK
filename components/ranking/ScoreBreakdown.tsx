@@ -84,7 +84,7 @@ export default function ScoreBreakdown({
           {/* 범례 */}
           <div className="grid grid-cols-2 gap-1">
             {scores.map((s) => (
-              <span key={s.key} className="flex items-center gap-1 text-[11px] text-gray-500">
+              <span key={s.key} className="flex items-center gap-1 text-xs text-gray-500">
                 <span className={cn('h-2 w-2 rounded-full shrink-0', s.color)} />
                 {s.label} {s.value > 0 ? s.value.toFixed(1) : '-'}
               </span>

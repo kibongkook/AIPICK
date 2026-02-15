@@ -126,11 +126,11 @@ export default function PersonaRotation({ tools }: PersonaRotationProps) {
               <h3 className="text-sm font-bold text-foreground">
                 {persona.title}
               </h3>
-              <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full shrink-0 ${style.badge}`}>
+              <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full shrink-0 ${style.badge}`}>
                 추천
               </span>
             </div>
-            <p className="text-[10px] text-gray-500 mt-0.5">
+            <p className="text-xs text-gray-500 mt-0.5">
               {persona.subtitle}
             </p>
           </div>
@@ -153,11 +153,11 @@ export default function PersonaRotation({ tools }: PersonaRotationProps) {
                       className="w-6 h-6 object-contain rounded"
                     />
                   ) : (
-                    <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-400">
+                    <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-400">
                       {tool.name.charAt(0)}
                     </div>
                   )}
-                  <span className="text-[9px] text-gray-600 font-medium truncate w-full text-center">
+                  <span className="text-xs text-gray-600 font-medium truncate w-full text-center">
                     {tool.name}
                   </span>
                 </div>

@@ -33,7 +33,7 @@ export default function NotificationItem({ notification, onClose }: Notification
         <p className={cn('text-xs', !notification.is_read ? 'font-semibold text-foreground' : 'text-gray-600')}>
           {notification.message}
         </p>
-        <p className="text-[11px] text-gray-400 mt-0.5">
+        <p className="text-xs text-gray-400 mt-0.5">
           {formatTimeAgo(notification.created_at)}
         </p>
       </div>

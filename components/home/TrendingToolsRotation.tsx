@@ -92,14 +92,14 @@ export default function TrendingToolsRotation({ tools }: TrendingToolsRotationPr
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-1.5">
               <h3 className="text-sm font-bold text-foreground truncate">{tool.name}</h3>
-              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full shrink-0 bg-red-100 text-red-700">
+              <span className="text-xs font-bold px-1.5 py-0.5 rounded-full shrink-0 bg-red-100 text-red-700">
                 ▲ 급상승
               </span>
             </div>
             {tool.rating_avg > 0 && (
               <div className="flex items-center gap-0.5">
                 <Star className="h-2.5 w-2.5 fill-yellow-400 text-yellow-400" />
-                <span className="text-[10px] text-gray-400">{tool.rating_avg.toFixed(1)}</span>
+                <span className="text-xs text-gray-400">{tool.rating_avg.toFixed(1)}</span>
               </div>
             )}
           </div>
@@ -107,7 +107,7 @@ export default function TrendingToolsRotation({ tools }: TrendingToolsRotationPr
 
         <p className="text-xs text-gray-600 line-clamp-2 mb-2 flex-1">{tool.description}</p>
 
-        <p className="text-[11px] font-semibold text-red-600 flex items-center gap-1">
+        <p className="text-xs font-semibold text-red-600 flex items-center gap-1">
           <TrendingUp className="h-3 w-3 text-red-500 shrink-0" />
           <span className="line-clamp-1">{reason}</span>
         </p>

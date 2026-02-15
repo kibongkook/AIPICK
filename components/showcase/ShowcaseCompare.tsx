@@ -42,7 +42,7 @@ export default function ShowcaseCompare({ tools, toolShowcases }: ShowcaseCompar
           <MessageSquareQuote className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-bold text-foreground">&ldquo;{showcase.prompt_ko}&rdquo;</p>
-            <p className="mt-1 text-[11px] text-gray-400 italic">{showcase.prompt}</p>
+            <p className="mt-1 text-xs text-gray-400 italic">{showcase.prompt}</p>
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@ export default function ShowcaseCompare({ tools, toolShowcases }: ShowcaseCompar
               {tool.logo_url ? (
                 <img src={tool.logo_url} alt={tool.name} className="h-5 w-5 rounded object-cover" />
               ) : (
-                <div className={cn('flex h-5 w-5 items-center justify-center rounded text-white text-[9px] font-bold', getAvatarColor(tool.name))}>
+                <div className={cn('flex h-5 w-5 items-center justify-center rounded text-white text-xs font-bold', getAvatarColor(tool.name))}>
                   {tool.name.charAt(0)}
                 </div>
               )}
@@ -69,7 +69,7 @@ export default function ShowcaseCompare({ tools, toolShowcases }: ShowcaseCompar
                 <img src={item.result_image_url} alt={`${tool.name} 결과`} className="h-full w-full object-cover" />
               </div>
             ) : showcase.media_type === 'code' && item.result_text ? (
-              <pre className="p-3 bg-gray-900 text-[10px] leading-relaxed text-gray-300 whitespace-pre-wrap overflow-x-auto max-h-48">
+              <pre className="p-3 bg-gray-900 text-xs leading-relaxed text-gray-300 whitespace-pre-wrap overflow-x-auto max-h-48">
                 <code>{item.result_text}</code>
               </pre>
             ) : item.result_text ? (
@@ -84,7 +84,7 @@ export default function ShowcaseCompare({ tools, toolShowcases }: ShowcaseCompar
 
             {/* 설명 */}
             <div className="px-3 py-2 border-t border-border">
-              <p className="text-[11px] text-gray-400">{item.result_description || ''}</p>
+              <p className="text-xs text-gray-400">{item.result_description || ''}</p>
             </div>
           </div>
         ))}

@@ -34,7 +34,7 @@ export default function BottomTabBar() {
               href={tab.href}
               aria-current={isActive ? 'page' : undefined}
               className={cn(
-                'flex flex-col items-center gap-0.5 px-3 py-1.5 text-[10px] font-medium transition-colors',
+                'flex flex-col items-center gap-0.5 px-3 py-1.5 text-xs font-medium transition-colors',
                 isActive ? 'text-primary' : 'text-gray-400'
               )}
             >

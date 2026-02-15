@@ -143,11 +143,11 @@ function CommentItem({
           {replies.map((reply) => (
             <div key={reply.id} className="rounded-lg bg-gray-50 p-3">
               <div className="flex items-center gap-2">
-                <div className={cn('flex h-5 w-5 items-center justify-center rounded-full text-white text-[10px] font-bold', getAvatarColor(reply.user_name))}>
+                <div className={cn('flex h-5 w-5 items-center justify-center rounded-full text-white text-xs font-bold', getAvatarColor(reply.user_name))}>
                   {reply.user_name.charAt(0)}
                 </div>
                 <span className="text-xs font-medium text-foreground">{reply.user_name}</span>
-                <span className="text-[10px] text-gray-400">
+                <span className="text-xs text-gray-400">
                   {new Date(reply.created_at).toLocaleDateString('ko-KR')}
                 </span>
               </div>
@@ -155,7 +155,7 @@ function CommentItem({
               <div className="mt-1 flex items-center gap-2">
                 <button
                   onClick={() => onLikeReply(reply.id)}
-                  className="flex items-center gap-1 text-[10px] text-gray-400 hover:text-primary"
+                  className="flex items-center gap-1 text-xs text-gray-400 hover:text-primary"
                 >
                   <ThumbsUp className="h-2.5 w-2.5" />
                   {reply.like_count > 0 && reply.like_count}
@@ -163,7 +163,7 @@ function CommentItem({
                 {currentUserId === reply.user_id && (
                   <button
                     onClick={() => onDeleteReply(reply.id)}
-                    className="text-[10px] text-red-400 hover:text-red-600"
+                    className="text-xs text-red-400 hover:text-red-600"
                   >
                     삭제
                   </button>

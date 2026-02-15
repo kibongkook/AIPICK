@@ -122,7 +122,7 @@ export default async function RankingsPage({ searchParams }: Props) {
                       />
                     )}
                   </div>
-                  <span className="text-[11px] text-gray-400 flex items-center gap-1">
+                  <span className="text-xs text-gray-400 flex items-center gap-1">
                     <Users className="h-3 w-3" />
                     {formatVisitCount(tool.visit_count)}명
                   </span>

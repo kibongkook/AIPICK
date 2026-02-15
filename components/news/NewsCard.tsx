@@ -25,7 +25,7 @@ export default async function NewsCard({ news, compact }: NewsCardProps) {
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium text-foreground line-clamp-2">{news.title}</p>
           <div className="mt-1 flex items-center gap-2 text-xs text-gray-400">
-            <span className={cn('rounded-full px-2 py-0.5 text-[10px] font-medium', categoryConfig.color)}>
+            <span className={cn('rounded-full px-2 py-0.5 text-xs font-medium', categoryConfig.color)}>
               {categoryConfig.label}
             </span>
             <span>{new Date(news.published_at).toLocaleDateString('ko-KR')}</span>

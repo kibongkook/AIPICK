@@ -68,7 +68,7 @@ export default function ServiceCard({ tool, compact = false }: ServiceCardProps)
             <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
             <span className="text-xs font-bold">{formatRating(tool.rating_avg)}</span>
           </div>
-          <span className="text-[10px] text-gray-400">{formatVisitCount(tool.visit_count)}</span>
+          <span className="text-xs text-gray-400">{formatVisitCount(tool.visit_count)}</span>
         </div>
 
         <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-primary shrink-0 transition-colors" />

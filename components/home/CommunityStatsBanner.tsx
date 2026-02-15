@@ -27,7 +27,7 @@ function StatItem({ icon: Icon, label, count }: { icon: typeof MessageSquare; la
       <Icon className="h-4 w-4 text-primary" />
       <div>
         <p className="text-lg font-bold text-foreground">{count}</p>
-        <p className="text-[11px] text-gray-400">{label}</p>
+        <p className="text-xs text-gray-400">{label}</p>
       </div>
     </div>
   );

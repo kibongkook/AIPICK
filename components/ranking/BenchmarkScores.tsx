@@ -30,13 +30,13 @@ export default function BenchmarkScores({ benchmarks }: BenchmarkScoresProps) {
   return (
     <div className="rounded-lg border border-border bg-white p-4">
       <h4 className="text-xs font-bold text-foreground mb-1">AI 벤치마크 점수</h4>
-      <p className="text-[10px] text-gray-400 mb-3">
+      <p className="text-xs text-gray-400 mb-3">
         점수가 높을수록 해당 능력이 뛰어납니다
       </p>
 
       {benchmarks.map((benchmark) => (
         <div key={benchmark.benchmark_source} className="mb-4 last:mb-0">
-          <p className="text-[11px] text-gray-400 mb-2">
+          <p className="text-xs text-gray-400 mb-2">
             {SOURCE_LABELS[benchmark.benchmark_source] || benchmark.benchmark_source}
           </p>
 
@@ -50,14 +50,14 @@ export default function BenchmarkScores({ benchmarks }: BenchmarkScoresProps) {
               <div className="flex items-center justify-between mb-2 px-2 py-1.5 rounded bg-gray-50">
                 <div className="flex items-center gap-1">
                   <span className="text-xs text-gray-600">ELO Rating</span>
-                  <span className="text-[9px] text-gray-400" title="사용자 선호도 순위 (높을수록 인기)">
+                  <span className="text-xs text-gray-400" title="사용자 선호도 순위 (높을수록 인기)">
                     <Info className="h-3 w-3 inline text-gray-300" />
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-sm font-bold text-foreground">{benchmark.elo_rating}</span>
                   {quality && (
-                    <span className={`text-[9px] font-medium ${quality.color}`}>{quality.label}</span>
+                    <span className={`text-xs font-medium ${quality.color}`}>{quality.label}</span>
                   )}
                 </div>
               </div>
@@ -74,14 +74,14 @@ export default function BenchmarkScores({ benchmarks }: BenchmarkScoresProps) {
               <div className="flex items-center justify-between mb-2 px-2 py-1.5 rounded bg-primary/5">
                 <div className="flex items-center gap-1">
                   <span className="text-xs text-gray-600">종합 점수</span>
-                  <span className="text-[9px] text-gray-400" title="모든 벤치마크의 종합 점수">
+                  <span className="text-xs text-gray-400" title="모든 벤치마크의 종합 점수">
                     <Info className="h-3 w-3 inline text-gray-300" />
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-sm font-bold text-primary">{benchmark.overall_score.toFixed(1)}</span>
                   {quality && (
-                    <span className={`text-[9px] font-medium ${quality.color}`}>{quality.label}</span>
+                    <span className={`text-xs font-medium ${quality.color}`}>{quality.label}</span>
                   )}
                 </div>
               </div>
@@ -101,17 +101,17 @@ export default function BenchmarkScores({ benchmarks }: BenchmarkScoresProps) {
                 <div key={key}>
                   <div className="flex items-center justify-between mb-0.5">
                     <div className="flex items-center gap-1">
-                      <span className="text-[11px] text-gray-500">{label}</span>
+                      <span className="text-xs text-gray-500">{label}</span>
                       {exp && (
-                        <span className="text-[9px] text-gray-400" title={exp.description}>
+                        <span className="text-xs text-gray-400" title={exp.description}>
                           <Info className="h-2.5 w-2.5 inline text-gray-300" />
                         </span>
                       )}
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[11px] font-medium text-gray-600">{score.toFixed(1)}</span>
+                      <span className="text-xs font-medium text-gray-600">{score.toFixed(1)}</span>
                       {quality && (
-                        <span className={`text-[9px] font-medium ${quality.color}`}>{quality.label}</span>
+                        <span className={`text-xs font-medium ${quality.color}`}>{quality.label}</span>
                       )}
                     </div>
                   </div>
@@ -122,7 +122,7 @@ export default function BenchmarkScores({ benchmarks }: BenchmarkScoresProps) {
                     />
                   </div>
                   {exp && (
-                    <p className="text-[9px] text-gray-400 mt-0.5">{exp.description}</p>
+                    <p className="text-xs text-gray-400 mt-0.5">{exp.description}</p>
                   )}
                 </div>
               );
@@ -132,17 +132,17 @@ export default function BenchmarkScores({ benchmarks }: BenchmarkScoresProps) {
           {/* 속도 지표 */}
           {(benchmark.speed_ttft_ms || benchmark.speed_tps) && (
             <div className="mt-3 space-y-1 border-t border-border pt-2">
-              <p className="text-[10px] text-gray-400 font-medium">응답 속도</p>
+              <p className="text-xs text-gray-400 font-medium">응답 속도</p>
               <div className="flex gap-3">
                 {benchmark.speed_ttft_ms && (() => {
                   const exp = SPEED_EXPLANATIONS.speed_ttft_ms;
                   const quality = getQualityLabel(benchmark.speed_ttft_ms, exp.goodThreshold, exp.greatThreshold, exp.higherIsBetter);
                   return (
                     <div className="flex items-center gap-1">
-                      <span className="text-[11px] text-gray-500">
+                      <span className="text-xs text-gray-500">
                         첫 응답: {benchmark.speed_ttft_ms}ms
                       </span>
-                      <span className={`text-[9px] font-medium ${quality.color}`}>
+                      <span className={`text-xs font-medium ${quality.color}`}>
                         {quality.label}
                       </span>
                     </div>
@@ -153,17 +153,17 @@ export default function BenchmarkScores({ benchmarks }: BenchmarkScoresProps) {
                   const quality = getQualityLabel(benchmark.speed_tps, exp.goodThreshold, exp.greatThreshold, exp.higherIsBetter);
                   return (
                     <div className="flex items-center gap-1">
-                      <span className="text-[11px] text-gray-500">
+                      <span className="text-xs text-gray-500">
                         생성: {benchmark.speed_tps} tok/s
                       </span>
-                      <span className={`text-[9px] font-medium ${quality.color}`}>
+                      <span className={`text-xs font-medium ${quality.color}`}>
                         {quality.label}
                       </span>
                     </div>
                   );
                 })()}
               </div>
-              <p className="text-[9px] text-gray-300">낮은 응답시간 + 높은 생성속도 = 빠른 AI</p>
+              <p className="text-xs text-gray-300">낮은 응답시간 + 높은 생성속도 = 빠른 AI</p>
             </div>
           )}
         </div>

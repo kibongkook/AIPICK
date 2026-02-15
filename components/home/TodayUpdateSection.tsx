@@ -46,7 +46,7 @@ export default function TodayUpdateSection({ picks }: TodayUpdateSectionProps) {
         <h2 className="text-sm font-extrabold text-foreground flex items-center gap-1.5">
           <Calendar className="h-3.5 w-3.5 text-primary" />
           오늘의 AIPICK
-          <span className="text-[10px] font-normal text-gray-400">{today}</span>
+          <span className="text-xs font-normal text-gray-400">{today}</span>
         </h2>
         {validPicks.length > 1 && (
           <div className="flex items-center gap-1">
@@ -79,12 +79,12 @@ export default function TodayUpdateSection({ picks }: TodayUpdateSectionProps) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-1.5">
               <h3 className="text-sm font-bold text-foreground truncate">{tool.name}</h3>
-              <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full shrink-0 ${config.color}`}>
+              <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full shrink-0 ${config.color}`}>
                 {config.label}
               </span>
             </div>
             {tool.rating_avg > 0 && (
-              <span className="text-[10px] text-gray-400">평점 {tool.rating_avg.toFixed(1)}</span>
+              <span className="text-xs text-gray-400">평점 {tool.rating_avg.toFixed(1)}</span>
             )}
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function TodayUpdateSection({ picks }: TodayUpdateSectionProps) {
         <p className="text-xs text-gray-600 line-clamp-2 mb-2 flex-1">{tool.description}</p>
 
         {/* 추천 이유 */}
-        <p className="text-[11px] text-primary font-medium flex items-center gap-1">
+        <p className="text-xs text-primary font-medium flex items-center gap-1">
           <Star className="h-3 w-3 fill-primary text-primary shrink-0" />
           <span className="line-clamp-1">{pick.reason}</span>
         </p>

@@ -31,7 +31,7 @@ export default function PurposeCategoriesSidebar({ categories, toolsByCategory }
     <div className="rounded-xl border border-border bg-white p-4">
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-sm font-bold text-foreground">목적별 인기 AI</h3>
-        <Link href="/discover" className="text-[11px] text-primary font-medium">전체 →</Link>
+        <Link href="/discover" className="text-xs text-primary font-medium">전체 →</Link>
       </div>
 
       {/* 카테고리 탭 */}
@@ -40,7 +40,7 @@ export default function PurposeCategoriesSidebar({ categories, toolsByCategory }
           <button
             key={cat.slug}
             onClick={() => setActiveSlug(cat.slug)}
-            className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-semibold transition-colors ${
+            className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold transition-colors ${
               activeSlug === cat.slug
                 ? 'bg-primary text-white'
                 : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
@@ -60,7 +60,7 @@ export default function PurposeCategoriesSidebar({ categories, toolsByCategory }
             href={`/tools/${tool.slug}`}
             className="flex items-center gap-2.5 rounded-lg px-2 py-2 hover:bg-primary-light/40 transition-colors"
           >
-            <span className={`flex h-5 w-5 items-center justify-center rounded text-[10px] font-bold text-white shrink-0 ${
+            <span className={`flex h-5 w-5 items-center justify-center rounded text-xs font-bold text-white shrink-0 ${
               i === 0 ? 'bg-yellow-400' :
               i === 1 ? 'bg-gray-400' :
               i === 2 ? 'bg-amber-600' :
@@ -71,7 +71,7 @@ export default function PurposeCategoriesSidebar({ categories, toolsByCategory }
             {tool.logo_url ? (
               <img src={tool.logo_url} alt={tool.name} className="h-6 w-6 rounded object-cover shrink-0" />
             ) : (
-              <div className="h-6 w-6 rounded bg-gray-100 flex items-center justify-center text-[9px] font-bold text-gray-400 shrink-0">
+              <div className="h-6 w-6 rounded bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-400 shrink-0">
                 {tool.name.charAt(0)}
               </div>
             )}
@@ -79,7 +79,7 @@ export default function PurposeCategoriesSidebar({ categories, toolsByCategory }
             {tool.rating_avg > 0 && (
               <div className="flex items-center gap-0.5 shrink-0">
                 <Star className="h-2.5 w-2.5 fill-yellow-400 text-yellow-400" />
-                <span className="text-[10px] font-bold text-foreground">{formatRating(tool.rating_avg)}</span>
+                <span className="text-xs font-bold text-foreground">{formatRating(tool.rating_avg)}</span>
               </div>
             )}
           </Link>
@@ -89,7 +89,7 @@ export default function PurposeCategoriesSidebar({ categories, toolsByCategory }
       {/* 카테고리 전체 보기 링크 */}
       <Link
         href={`/category/${activeSlug}`}
-        className="mt-2 flex items-center justify-center gap-1 rounded-lg bg-gray-50 py-2 text-[11px] font-medium text-primary hover:bg-primary-light/40 transition-colors"
+        className="mt-2 flex items-center justify-center gap-1 rounded-lg bg-gray-50 py-2 text-xs font-medium text-primary hover:bg-primary-light/40 transition-colors"
       >
         전체 보기
         <ArrowRight className="h-3 w-3" />

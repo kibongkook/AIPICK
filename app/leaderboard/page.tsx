@@ -90,7 +90,7 @@ export default function LeaderboardPage() {
                     </div>
                     <div className="text-right shrink-0">
                       <p className="text-lg font-bold text-primary">{user.experience_points}</p>
-                      <p className="text-[11px] text-gray-400">EXP</p>
+                      <p className="text-xs text-gray-400">EXP</p>
                     </div>
                   </div>
                 );

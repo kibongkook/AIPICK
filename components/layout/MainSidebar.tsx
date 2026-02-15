@@ -154,13 +154,13 @@ export default function MainSidebar({ className = '' }: MainSidebarProps) {
                         </div>
 
                         {item.badge && (
-                          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${item.badgeColor || 'bg-gray-100 text-gray-600'}`}>
+                          <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${item.badgeColor || 'bg-gray-100 text-gray-600'}`}>
                             {item.badge}
                           </span>
                         )}
 
                         {item.count !== undefined && (
-                          <span className="text-[10px] text-gray-400">
+                          <span className="text-xs text-gray-400">
                             {item.count}개
                           </span>
                         )}

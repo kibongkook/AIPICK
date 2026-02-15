@@ -67,7 +67,7 @@ export default function LeaderboardWidget() {
               )}>
                 {i + 1}
               </span>
-              <div className={cn('h-6 w-6 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0', avatarColor)}>
+              <div className={cn('h-6 w-6 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0', avatarColor)}>
                 {firstChar}
               </div>
               <div className="flex-1 min-w-0">
@@ -76,7 +76,7 @@ export default function LeaderboardWidget() {
                   <UserLevelBadge level={user.level} />
                 </div>
               </div>
-              <span className="text-[11px] text-gray-400 shrink-0">{user.experience_points} EXP</span>
+              <span className="text-xs text-gray-400 shrink-0">{user.experience_points} EXP</span>
             </div>
           );
         })}

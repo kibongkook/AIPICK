@@ -36,7 +36,7 @@ export default function TrendingQuestionsPlaceholder({ questions }: TrendingQues
                   {q.title || q.content.slice(0, 60)}
                 </h4>
                 <p className="text-xs text-gray-400 mt-1 line-clamp-1">{q.content}</p>
-                <div className="flex items-center gap-3 text-[11px] text-gray-400 mt-2">
+                <div className="flex items-center gap-3 text-xs text-gray-400 mt-2">
                   <span>{q.user_name}</span>
                   {q.comment_count > 0 && <span>답변 {q.comment_count}</span>}
                   {q.like_count > 0 && <span>좋아요 {q.like_count}</span>}

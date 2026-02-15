@@ -29,7 +29,7 @@ export default async function ToolShowcaseStrip({ toolSlug, tool }: ToolShowcase
                   <div className="px-4 py-2.5 border-b border-border bg-gray-50">
                     <div className="flex items-start gap-1.5">
                       <MessageSquareQuote className="h-3 w-3 text-primary shrink-0 mt-0.5" />
-                      <p className="text-[11px] text-gray-600 italic">
+                      <p className="text-xs text-gray-600 italic">
                         &ldquo;{item.showcase.prompt_ko}&rdquo;
                       </p>
                     </div>
@@ -46,7 +46,7 @@ export default async function ToolShowcaseStrip({ toolSlug, tool }: ToolShowcase
                     />
                   </div>
                 ) : mediaType === 'code' && item.result_text ? (
-                  <pre className="p-3 bg-gray-900 text-[10px] leading-relaxed text-gray-300 whitespace-pre-wrap overflow-x-auto max-h-40">
+                  <pre className="p-3 bg-gray-900 text-xs leading-relaxed text-gray-300 whitespace-pre-wrap overflow-x-auto max-h-40">
                     <code>{item.result_text}</code>
                   </pre>
                 ) : item.result_text ? (
@@ -59,7 +59,7 @@ export default async function ToolShowcaseStrip({ toolSlug, tool }: ToolShowcase
 
                 {/* 설명 */}
                 <div className="px-4 py-2 border-t border-border">
-                  <p className="text-[11px] text-gray-400">{item.result_description || ''}</p>
+                  <p className="text-xs text-gray-400">{item.result_description || ''}</p>
                 </div>
               </div>
             );
@@ -80,7 +80,7 @@ export default async function ToolShowcaseStrip({ toolSlug, tool }: ToolShowcase
       <div className="flex items-center gap-2 mb-3">
         <Lightbulb className="h-4 w-4 text-amber-500" />
         <h3 className="text-sm font-bold text-foreground">이런 결과를 만들 수 있어요</h3>
-        <span className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">예시</span>
+        <span className="text-xs text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">예시</span>
       </div>
 
       <div className="rounded-xl border border-border bg-white overflow-hidden">
@@ -89,7 +89,7 @@ export default async function ToolShowcaseStrip({ toolSlug, tool }: ToolShowcase
           <div className="px-4 py-2.5 border-b border-border bg-gray-50">
             <div className="flex items-start gap-1.5">
               <MessageSquareQuote className="h-3 w-3 text-amber-500 shrink-0 mt-0.5" />
-              <p className="text-[11px] text-gray-600 italic">
+              <p className="text-xs text-gray-600 italic">
                 &ldquo;{tool.sample_output_prompt}&rdquo;
               </p>
             </div>
@@ -98,7 +98,7 @@ export default async function ToolShowcaseStrip({ toolSlug, tool }: ToolShowcase
 
         {/* 결과 */}
         {isCode ? (
-          <pre className="p-3 bg-gray-900 text-[10px] leading-relaxed text-gray-300 whitespace-pre-wrap overflow-x-auto max-h-40">
+          <pre className="p-3 bg-gray-900 text-xs leading-relaxed text-gray-300 whitespace-pre-wrap overflow-x-auto max-h-40">
             <code>{tool.sample_output}</code>
           </pre>
         ) : (

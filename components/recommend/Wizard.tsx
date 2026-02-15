@@ -136,7 +136,7 @@ export default function Wizard() {
                 </div>
                 <div>
                   <span className="text-sm font-medium text-foreground block">{cat.name}</span>
-                  <span className="text-[11px] text-gray-400">{cat.description}</span>
+                  <span className="text-xs text-gray-400">{cat.description}</span>
                 </div>
               </button>
             ))}
@@ -167,7 +167,7 @@ export default function Wizard() {
                 </div>
                 <div>
                   <span className="text-sm font-semibold text-foreground block">{useCase.label}</span>
-                  <span className="text-[11px] text-gray-400">{useCase.description}</span>
+                  <span className="text-xs text-gray-400">{useCase.description}</span>
                 </div>
               </button>
             ))}
@@ -324,11 +324,11 @@ function TopResultCard({ result, rank }: { result: RecommendedTool; rank: number
               </div>
             )}
             <h3 className="text-sm font-semibold text-foreground">{tool.name}</h3>
-            <Badge variant={pricingVariant} className="text-[10px]">
+            <Badge variant={pricingVariant} className="text-xs">
               {tool.pricing_type === 'Free' ? '무료' : tool.pricing_type === 'Freemium' ? '부분 무료' : '유료'}
             </Badge>
             {rank === 1 && (
-              <span className="text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">TOP PICK</span>
+              <span className="text-xs font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">TOP PICK</span>
             )}
           </div>
 
@@ -341,7 +341,7 @@ function TopResultCard({ result, rank }: { result: RecommendedTool; rank: number
               {reasons.map((reason, i) => (
                 <span
                   key={i}
-                  className="inline-flex items-center gap-0.5 rounded-full bg-primary/5 px-2 py-0.5 text-[10px] font-medium text-primary"
+                  className="inline-flex items-center gap-0.5 rounded-full bg-primary/5 px-2 py-0.5 text-xs font-medium text-primary"
                 >
                   <Check className="h-2.5 w-2.5" />
                   {reason}
@@ -385,7 +385,7 @@ function CompactResultCard({ result, rank }: { result: RecommendedTool; rank: nu
       className="flex items-center gap-3 rounded-lg border border-border bg-white p-3 hover:shadow-sm transition-shadow"
     >
       {/* 랭크 */}
-      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 text-[10px] font-bold text-gray-500 shrink-0">
+      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 text-xs font-bold text-gray-500 shrink-0">
         {rank}
       </span>
 
@@ -402,12 +402,12 @@ function CompactResultCard({ result, rank }: { result: RecommendedTool; rank: nu
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5">
           <span className="text-sm font-medium text-foreground truncate">{tool.name}</span>
-          <Badge variant={pricingVariant} className="text-[9px] shrink-0">
+          <Badge variant={pricingVariant} className="text-xs shrink-0">
             {tool.pricing_type === 'Free' ? '무료' : tool.pricing_type === 'Freemium' ? '부분무료' : '유료'}
           </Badge>
         </div>
         {reasons[0] && (
-          <span className="text-[11px] text-gray-400 truncate block">{reasons[0]}</span>
+          <span className="text-xs text-gray-400 truncate block">{reasons[0]}</span>
         )}
       </div>
 

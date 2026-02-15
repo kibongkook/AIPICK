@@ -148,7 +148,7 @@ export default function QuestionDetailView({ postId }: QuestionDetailViewProps) 
         {/* 작성자 정보 */}
         <div className="flex items-center justify-between pt-4 border-t border-border">
           <div className="flex items-center gap-2 text-xs text-gray-400">
-            <div className={cn('h-6 w-6 rounded-full flex items-center justify-center text-white text-[11px] font-bold', avatarColor)}>
+            <div className={cn('h-6 w-6 rounded-full flex items-center justify-center text-white text-xs font-bold', avatarColor)}>
               {firstChar}
             </div>
             <span className="font-medium text-foreground">{question.user_name}</span>

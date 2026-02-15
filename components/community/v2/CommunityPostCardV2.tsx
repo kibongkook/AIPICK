@@ -63,7 +63,7 @@ export default function CommunityPostCardV2({
         {/* 글 타입 + 태그 */}
         <div className="flex flex-wrap items-center gap-1.5 mb-3">
           {/* 글 타입 표시 */}
-          <span className={cn('inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium shrink-0', typeConfig?.color || 'bg-gray-100 text-gray-600')}>
+          <span className={cn('inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium shrink-0', typeConfig?.color || 'bg-gray-100 text-gray-600')}>
             {typeConfig?.label || post.post_type}
           </span>
 
@@ -96,7 +96,7 @@ export default function CommunityPostCardV2({
         {/* 하단 정보 */}
         <div className="flex items-center justify-between text-xs text-gray-400">
           <div className="flex items-center gap-1">
-            <div className={cn('h-5 w-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold', avatarColor)}>
+            <div className={cn('h-5 w-5 rounded-full flex items-center justify-center text-white text-xs font-bold', avatarColor)}>
               {firstChar}
             </div>
             <span>{post.user_name}</span>

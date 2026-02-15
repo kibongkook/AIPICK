@@ -157,7 +157,7 @@ export default function SearchBar({
                 <span className="font-medium text-foreground">{s.name}</span>
                 <span className="ml-2 text-xs text-gray-400 truncate">{s.description}</span>
               </div>
-              <span className="text-[10px] text-gray-400 shrink-0">{s.pricing_type}</span>
+              <span className="text-xs text-gray-400 shrink-0">{s.pricing_type}</span>
             </Link>
           ))}
           <div className="border-t border-border px-4 py-2 text-center">

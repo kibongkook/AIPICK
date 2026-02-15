@@ -10,7 +10,7 @@ interface TrendBadgeProps {
 
 export default function TrendBadge({ direction, magnitude, size = 'sm' }: TrendBadgeProps) {
   const iconSize = size === 'sm' ? 'h-3 w-3' : 'h-4 w-4';
-  const textSize = size === 'sm' ? 'text-[11px]' : 'text-xs';
+  const textSize = size === 'sm' ? 'text-xs' : 'text-xs';
   const isHot = magnitude >= TREND_THRESHOLDS.HOT;
 
   if (direction === 'new') {

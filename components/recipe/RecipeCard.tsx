@@ -30,11 +30,11 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
               <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors truncate">
                 {recipe.title}
               </h3>
-              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full shrink-0 ${difficulty.color}`}>
+              <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full shrink-0 ${difficulty.color}`}>
                 {difficulty.label}
               </span>
             </div>
-            <div className="flex items-center gap-3 text-[11px] text-gray-400">
+            <div className="flex items-center gap-3 text-xs text-gray-400">
               <span>{recipe.subtitle}</span>
               <span className="flex items-center gap-1 shrink-0">
                 <Wrench className="h-3 w-3" />AI {recipe.tool_count}개
@@ -55,18 +55,18 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                 <span className={`flex h-4.5 w-4.5 items-center justify-center rounded-full bg-gradient-to-br ${recipe.color} text-white text-[8px] font-bold shrink-0`}>
                   {step.step}
                 </span>
-                <span className="text-[11px] font-bold text-foreground truncate">{step.tool_name}</span>
+                <span className="text-xs font-bold text-foreground truncate">{step.tool_name}</span>
               </div>
 
               {/* 설명 */}
-              <p className="text-[10px] text-gray-500 line-clamp-2 mb-1.5 leading-relaxed">
+              <p className="text-xs text-gray-500 line-clamp-2 mb-1.5 leading-relaxed">
                 {step.action}
               </p>
 
               {/* 프롬프트 예시 */}
               {step.prompt_example && (
                 <div className="rounded bg-white border border-border/50 px-2 py-1 mb-1.5">
-                  <p className="text-[9px] text-gray-400 line-clamp-2 italic">
+                  <p className="text-xs text-gray-400 line-clamp-2 italic">
                     {step.prompt_example}
                   </p>
                 </div>
@@ -75,9 +75,9 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
               {/* 대안 도구 */}
               {step.alt_tools && step.alt_tools.length > 0 && (
                 <div className="flex items-center gap-1 flex-wrap">
-                  <span className="text-[9px] text-gray-400">참고:</span>
+                  <span className="text-xs text-gray-400">참고:</span>
                   {step.alt_tools.slice(0, 3).map((alt) => (
-                    <span key={alt} className="text-[9px] bg-white text-gray-500 px-1 py-0.5 rounded border border-border/50">
+                    <span key={alt} className="text-xs bg-white text-gray-500 px-1 py-0.5 rounded border border-border/50">
                       {alt}
                     </span>
                   ))}
@@ -91,7 +91,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
         <div className="flex items-center justify-between mt-3">
           <div className="flex items-center gap-1.5">
             <Sparkles className="h-3 w-3 text-primary shrink-0" />
-            <span className="text-[11px] text-gray-500 line-clamp-1">
+            <span className="text-xs text-gray-500 line-clamp-1">
               <span className="font-semibold text-foreground">완성:</span> {recipe.result_description}
             </span>
           </div>

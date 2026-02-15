@@ -81,7 +81,7 @@ export default async function EduLevelDetailPage({ params }: Props) {
           <div className="grid gap-4 sm:grid-cols-2">
             {recommendations.filter(r => r.is_killer_pick).map((rec) => (
               <div key={rec.id} className="relative">
-                <div className="absolute -top-1.5 -right-1.5 z-10 rounded-full bg-amber-400 px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">
+                <div className="absolute -top-1.5 -right-1.5 z-10 rounded-full bg-amber-400 px-2 py-0.5 text-xs font-bold text-white shadow-sm">
                   PICK
                 </div>
                 <div className="rounded-xl border-2 border-amber-200 bg-amber-50/30 p-1">

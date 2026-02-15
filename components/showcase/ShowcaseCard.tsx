@@ -76,7 +76,7 @@ export default function ShowcaseCard({
             </div>
             <ToolBadge name={toolName} logoUrl={toolLogoUrl} dark />
           </div>
-          <pre className="p-3 bg-gray-900 text-[10px] leading-relaxed text-gray-300 overflow-x-auto max-h-40">
+          <pre className="p-3 bg-gray-900 text-xs leading-relaxed text-gray-300 overflow-x-auto max-h-40">
             <code>{resultText}</code>
           </pre>
         </div>
@@ -85,14 +85,14 @@ export default function ShowcaseCard({
       {/* 설명 (이미지 타입은 이미 내부에 오버레이) */}
       {mediaType !== 'image' && (
         <div className="px-4 pb-3 pt-2 border-t border-border">
-          <p className="text-[11px] text-gray-400">{resultDescription}</p>
+          <p className="text-xs text-gray-400">{resultDescription}</p>
         </div>
       )}
 
       {/* 이미지 타입 설명 */}
       {mediaType === 'image' && (
         <div className="px-3 py-2.5">
-          <p className="text-[11px] text-gray-500">{resultDescription}</p>
+          <p className="text-xs text-gray-500">{resultDescription}</p>
         </div>
       )}
     </Link>

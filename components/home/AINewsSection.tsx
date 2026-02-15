@@ -104,7 +104,7 @@ export default function AINewsSection() {
                   {item.summary && (
                     <p className="text-xs text-gray-500 line-clamp-1 mt-1">{item.summary}</p>
                   )}
-                  <div className="flex items-center gap-3 mt-2 text-[11px] text-gray-400">
+                  <div className="flex items-center gap-3 mt-2 text-xs text-gray-400">
                     <span className="font-medium text-gray-500">{item.source}</span>
                     <span className="flex items-center gap-0.5">
                       <Clock className="h-2.5 w-2.5" />

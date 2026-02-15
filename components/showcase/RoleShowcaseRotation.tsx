@@ -96,16 +96,16 @@ export default function RoleShowcaseRotation({ jobShowcases, eduShowcases }: Rol
                 {uc.tool?.logo_url ? (
                   <img src={uc.tool.logo_url} alt={uc.tool.name} className="h-6 w-6 rounded object-cover" />
                 ) : (
-                  <div className={cn('flex h-6 w-6 items-center justify-center rounded text-white text-[9px] font-bold', getAvatarColor(uc.tool?.name || uc.tool_slug))}>
+                  <div className={cn('flex h-6 w-6 items-center justify-center rounded text-white text-xs font-bold', getAvatarColor(uc.tool?.name || uc.tool_slug))}>
                     {(uc.tool?.name || uc.tool_slug).charAt(0).toUpperCase()}
                   </div>
                 )}
                 <span className="text-xs font-semibold text-foreground group-hover:text-primary transition-colors">{uc.title}</span>
               </div>
-              <p className="text-[11px] text-gray-500 line-clamp-2 mb-2">{uc.description}</p>
+              <p className="text-xs text-gray-500 line-clamp-2 mb-2">{uc.description}</p>
               <div className="flex items-center gap-1">
                 <Zap className="h-3 w-3 text-amber-500" />
-                <span className="text-[10px] font-semibold text-amber-700">{uc.outcome}</span>
+                <span className="text-xs font-semibold text-amber-700">{uc.outcome}</span>
               </div>
             </Link>
           ))}

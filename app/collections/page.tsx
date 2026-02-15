@@ -73,7 +73,7 @@ export default async function CollectionsPage() {
                   <div className="flex items-center gap-2 min-w-0">
                     <div
                       className={cn(
-                        'flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white',
+                        'flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white',
                         getAvatarColor(collection.user_name)
                       )}
                     >

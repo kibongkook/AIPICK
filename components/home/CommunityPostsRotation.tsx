@@ -94,7 +94,7 @@ export default function CommunityPostsRotation({ posts }: CommunityPostsRotation
         <p className="text-xs text-gray-600 line-clamp-2 mb-2 flex-1">{post.content}</p>
 
         {/* 하단 정보 */}
-        <div className="flex items-center justify-between text-[10px] text-gray-400">
+        <div className="flex items-center justify-between text-xs text-gray-400">
           <div className="flex items-center gap-2">
             <span>{post.user_name || '익명'}</span>
             <span>·</span>

@@ -26,7 +26,7 @@ export default function UseCaseCard({ useCase }: UseCaseCardProps) {
           )}
           <div>
             <h3 className="text-sm font-bold text-foreground">{useCase.title}</h3>
-            <p className="text-[11px] text-gray-400">{tool?.name || useCase.tool_slug}</p>
+            <p className="text-xs text-gray-400">{tool?.name || useCase.tool_slug}</p>
           </div>
         </div>
         <p className="text-xs text-gray-600 leading-relaxed">{useCase.description}</p>
@@ -37,7 +37,7 @@ export default function UseCaseCard({ useCase }: UseCaseCardProps) {
         <div className="mx-4 mb-3 rounded-lg bg-gray-50 px-3 py-2.5 border-l-3 border-primary/30">
           <div className="flex items-start gap-1.5">
             <MessageSquareQuote className="h-3 w-3 text-primary shrink-0 mt-0.5" />
-            <p className="text-[11px] text-gray-600 leading-relaxed italic">
+            <p className="text-xs text-gray-600 leading-relaxed italic">
               &ldquo;{useCase.prompt_example}&rdquo;
             </p>
           </div>
@@ -58,7 +58,7 @@ export default function UseCaseCard({ useCase }: UseCaseCardProps) {
       {/* 결과 텍스트 */}
       {hasText && !hasImage && (
         <div className="mx-4 mb-3 rounded-lg bg-gray-900 p-3">
-          <pre className="text-[10px] leading-relaxed text-gray-300 whitespace-pre-wrap overflow-x-auto max-h-32">
+          <pre className="text-xs leading-relaxed text-gray-300 whitespace-pre-wrap overflow-x-auto max-h-32">
             <code>{useCase.result_text}</code>
           </pre>
         </div>
@@ -73,7 +73,7 @@ export default function UseCaseCard({ useCase }: UseCaseCardProps) {
         {tool && (
           <Link
             href={`/tools/${tool.slug}`}
-            className="shrink-0 flex items-center gap-1 text-[11px] font-medium text-primary hover:underline"
+            className="shrink-0 flex items-center gap-1 text-xs font-medium text-primary hover:underline"
           >
             자세히
             <ArrowRight className="h-3 w-3" />

@@ -14,7 +14,7 @@ export default function UserLevelBadge({ level, size = 'sm' }: UserLevelBadgePro
     <span className={cn(
       'inline-flex items-center rounded-full font-bold',
       config.color,
-      size === 'sm' ? 'px-1.5 py-0.5 text-[10px]' : 'px-2.5 py-1 text-xs'
+      size === 'sm' ? 'px-1.5 py-0.5 text-xs' : 'px-2.5 py-1 text-xs'
     )}>
       {config.label}
     </span>

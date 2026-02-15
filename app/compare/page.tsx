@@ -168,7 +168,7 @@ function ToolAvatar({ tool }: { tool: Tool }) {
     return <img src={tool.logo_url} alt={tool.name} className="h-5 w-5 rounded object-cover shrink-0" />;
   }
   return (
-    <div className="flex h-5 w-5 items-center justify-center rounded bg-gray-200 text-[9px] font-bold text-gray-600 shrink-0">
+    <div className="flex h-5 w-5 items-center justify-center rounded bg-gray-200 text-xs font-bold text-gray-600 shrink-0">
       {tool.name.charAt(0)}
     </div>
   );

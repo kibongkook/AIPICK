@@ -121,7 +121,7 @@ export default function ComparisonView({ tools, benchmarks }: ComparisonViewProp
                 <span
                   key={tag}
                   className={cn(
-                    'rounded-full px-2 py-0.5 text-[11px] font-medium',
+                    'rounded-full px-2 py-0.5 text-xs font-medium',
                     tools.every((t) => t.tags.includes(tag))
                       ? 'bg-primary/10 text-primary'
                       : 'bg-gray-100 text-gray-600'
