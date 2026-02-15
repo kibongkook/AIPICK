@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
-  const { target_type, target_id, post_type, content, rating, feature_ratings, parent_id, media } = body;
+  const { target_type, target_id, post_type, content, rating, parent_id, media } = body;
 
   // 필수 필드 검증
   if (!target_type || !target_id || !post_type || !content) {
@@ -124,13 +124,6 @@ export async function POST(request: NextRequest) {
     content,
     media: media || [],
   };
-
-  if (post_type === 'rating' && !parent_id) {
-    insertData.rating = rating;
-    if (feature_ratings) {
-      insertData.feature_ratings = feature_ratings;
-    }
-  }
 
   if (parent_id) {
     insertData.parent_id = parent_id;
@@ -189,7 +182,6 @@ function mapPost(row: Record<string, unknown>) {
     post_type: row.post_type,
     content: row.content,
     rating: row.rating ?? null,
-    feature_ratings: row.feature_ratings ?? null,
     parent_id: row.parent_id ?? null,
     media: row.media ?? [],
     like_count: row.like_count ?? 0,

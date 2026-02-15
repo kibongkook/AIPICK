@@ -275,16 +275,6 @@ export const COMMUNITY_SORT_OPTIONS = [
 export const COMMUNITY_STORAGE_KEY = 'aipick_community_posts';
 export const COMMUNITY_MEDIA_STORAGE_KEY = 'aipick_community_media';
 
-// ==========================================
-// 기능별 평가 기준
-// ==========================================
-export const FEATURE_RATING_LABELS = {
-  ease_of_use: '사용 편의성',
-  korean_support: '한국어 지원',
-  free_quota: '무료 사용량',
-  feature_variety: '기능 다양성',
-  value_for_money: '가성비',
-} as const;
 
 // ==========================================
 // 사용자 등급제 설정 (신뢰도 기반 차등 평가)

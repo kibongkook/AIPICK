@@ -237,20 +237,6 @@ export interface Review {
   updated_at: string;
 }
 
-// ==========================================
-// 기능별 세부 평가
-// ==========================================
-export interface ToolFeatureRating {
-  id: string;
-  review_id: string;
-  tool_id: string;
-  user_id: string;
-  ease_of_use: number | null;
-  korean_support: number | null;
-  free_quota: number | null;
-  feature_variety: number | null;
-  value_for_money: number | null;
-}
 
 // ==========================================
 // 북마크
@@ -368,13 +354,6 @@ export interface MediaAttachment {
   filename?: string;
 }
 
-export interface FeatureRatings {
-  ease_of_use: number;
-  korean_support: number;
-  free_quota: number;
-  feature_variety: number;
-  value_for_money: number;
-}
 
 export interface CommunityPost {
   id: string;

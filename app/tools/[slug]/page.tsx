@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { Star, ExternalLink, Zap, ThumbsUp, ArrowLeft, Check, X, Info, Lightbulb } from 'lucide-react';
+import { ExternalLink, Zap, ThumbsUp, ArrowLeft, Check, X, Info, Lightbulb } from 'lucide-react';
 import { SITE_NAME, SITE_URL, PRICING_CONFIG } from '@/lib/constants';
 import { getToolBySlug, getCategoryBySlug, getSimilarTools, getCategories, getTools, getToolBenchmarks, getToolExternalScores } from '@/lib/supabase/queries';
 import { getPopularCompareTargets, getCompareUrl } from '@/lib/compare/popular-pairs';
-import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
+import { cn, getAvatarColor, formatVisitCount } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
 import ServiceCard from '@/components/service/ServiceCard';
 import { BookmarkButton, UpvoteButton } from '@/components/service/ToolInteractions';
@@ -251,17 +251,6 @@ export default async function ToolDetailPage({ params }: Props) {
               <div className="flex justify-between">
                 <dt className="text-gray-500">한국어 지원</dt>
                 <dd className="font-medium">{tool.supports_korean ? '지원' : '미지원'}</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-gray-500">평점</dt>
-                <dd className="flex items-center gap-1">
-                  <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
-                  <span className="font-medium">{formatRating(tool.rating_avg)}</span>
-                </dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-gray-500">평가 수</dt>
-                <dd className="font-medium">{tool.review_count.toLocaleString()}개</dd>
               </div>
               <div className="flex justify-between">
                 <dt className="text-gray-500">방문 수</dt>
