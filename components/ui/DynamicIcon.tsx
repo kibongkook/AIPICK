@@ -1,5 +1,5 @@
 import {
-  PenTool, Image, Video, Code, Music, BarChart3, Languages, Sparkles,
+  PenTool, Image, Video, Code, Music, BarChart3, Languages, Sparkles, Lightbulb,
   Layout, Palette, Megaphone, Briefcase, Target,
   Baby, Smile, BookOpen, GraduationCap, School, Users,
   Trophy, TrendingUp, ArrowUp, ArrowDown, Minus,
@@ -19,6 +19,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   BarChart,
   Languages,
   Sparkles,
+  Lightbulb,
   Layout,
   Palette,
   Megaphone,
