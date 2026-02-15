@@ -293,7 +293,7 @@ export function getAIToolDisplay(slug: string): string {
  */
 export function getGoalDisplay(slug: string): string {
   const displayMap: Record<string, string> = {
-    'chat': '대화형 AI',
+    'chat': '아이디어·브레인스토밍',
     'writing': '글쓰기',
     'design': '디자인',
     'video': '영상',

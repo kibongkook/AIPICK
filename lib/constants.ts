@@ -12,7 +12,7 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://aipick.kr';
 // seed.json categories와 동일한 체계
 // ==========================================
 export const TOOL_CATEGORIES = [
-  { name: '대화형 AI', slug: 'chat', icon: 'MessageSquare', description: 'ChatGPT, Claude 등 범용 AI 챗봇', color: 'from-blue-600 to-indigo-600' },
+  { name: '아이디어 · 브레인스토밍', slug: 'chat', icon: 'Lightbulb', description: '생각 정리, 아이디어 발전, AI와 대화', color: 'from-blue-600 to-indigo-600' },
   { name: '글쓰기 · 문서 · 요약', slug: 'writing', icon: 'PenTool', description: '블로그, 보고서, 번역, 요약까지', color: 'from-blue-500 to-blue-600' },
   { name: '디자인 · 이미지', slug: 'design', icon: 'Image', description: '로고, 썸네일, 일러스트 생성', color: 'from-purple-500 to-pink-600' },
   { name: '영상 · 콘텐츠 제작', slug: 'video', icon: 'Video', description: '영상 편집, 자막, 음악까지', color: 'from-red-500 to-orange-600' },
@@ -112,7 +112,7 @@ export interface CategoryUseCase {
 }
 
 export const CATEGORY_USE_CASES: Record<string, CategoryUseCase[]> = {
-  // ── 대화형 AI ──
+  // ── 아이디어 · 브레인스토밍 ──
   // OpenAI 연구: 업무용 30%, 개인용 70%. 주요 용도: 질문·조언(49%), 정보검색(24%), 작업실행(40%)
   chat: [
     { label: '업무에 AI를 활용하고 싶어요', userTypeSlug: 'daily-user', icon: 'Briefcase', description: '보고서 작성, 브레인스토밍, 이메일 초안' },
