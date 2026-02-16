@@ -14,6 +14,7 @@ interface RecipeCarouselProps {
 
 // 상수 정의 (매직 넘버 제거)
 const MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
+const SLIDE_DURATION = 350; // 슬라이드 애니메이션 시간 (ms)
 
 /**
  * 주 번호 기반으로 Featured Recipe 인덱스를 계산
@@ -55,7 +56,8 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
   const [dragOffset, setDragOffset] = useState(0);
   const [startX, setStartX] = useState(0);
   const [hasDragged, setHasDragged] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [skipTransition, setSkipTransition] = useState(false);
+  const isSliding = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // 필터링된 레시피 목록
@@ -99,41 +101,63 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
     )
   );
 
-  const handlePrev = () => {
-    if (isDragging) return;
-
-    if (currentIndex === 0) {
-      // 현재 필터의 첫 번째 레시피 → 이전 필터로 전환
-      const currentFilterIndex = RECIPE_FILTERS.findIndex(f => f.id === selectedFilter);
-      const prevFilterIndex = (currentFilterIndex - 1 + RECIPE_FILTERS.length) % RECIPE_FILTERS.length;
-      const prevFilter = RECIPE_FILTERS[prevFilterIndex];
-
-      // 이전 필터의 레시피 개수 계산
-      const prevFilterRecipes = AI_RECIPES.filter(recipe =>
-        (prevFilter.categories as readonly string[]).includes(recipe.category)
-      );
-
-      setSelectedFilter(prevFilter.id);
-      setCurrentIndex(prevFilterRecipes.length - 1); // 마지막 레시피로 이동
+  /** 인덱스 변경 (필터 경계 처리 포함) */
+  const changeIndex = (direction: 'next' | 'prev') => {
+    if (direction === 'next') {
+      if (currentIndex === filteredRecipes.length - 1) {
+        const idx = RECIPE_FILTERS.findIndex(f => f.id === selectedFilter);
+        const nextFilter = RECIPE_FILTERS[(idx + 1) % RECIPE_FILTERS.length];
+        setSelectedFilter(nextFilter.id);
+        setCurrentIndex(0);
+      } else {
+        setCurrentIndex(prev => prev + 1);
+      }
     } else {
-      setCurrentIndex(prev => prev - 1);
+      if (currentIndex === 0) {
+        const idx = RECIPE_FILTERS.findIndex(f => f.id === selectedFilter);
+        const prevIdx = (idx - 1 + RECIPE_FILTERS.length) % RECIPE_FILTERS.length;
+        const prevFilter = RECIPE_FILTERS[prevIdx];
+        const prevRecipes = AI_RECIPES.filter(r =>
+          (prevFilter.categories as readonly string[]).includes(r.category)
+        );
+        setSelectedFilter(prevFilter.id);
+        setCurrentIndex(prevRecipes.length - 1);
+      } else {
+        setCurrentIndex(prev => prev - 1);
+      }
     }
   };
 
+  /** 슬라이드 애니메이션 → 인덱스 변경 → 위치 리셋 */
+  const slideToDirection = (direction: 'next' | 'prev') => {
+    if (isSliding.current) return;
+    isSliding.current = true;
+
+    const containerWidth = containerRef.current?.offsetWidth || 600;
+    const targetOffset = direction === 'next' ? -containerWidth : containerWidth;
+
+    setDragOffset(targetOffset);
+
+    setTimeout(() => {
+      setSkipTransition(true);
+      changeIndex(direction);
+      setDragOffset(0);
+
+      requestAnimationFrame(() => {
+        setSkipTransition(false);
+        isSliding.current = false;
+      });
+    }, SLIDE_DURATION);
+  };
+
+  const handlePrev = () => {
+    if (isDragging || isSliding.current) return;
+    slideToDirection('prev');
+  };
+
   const handleNext = () => {
-    if (isDragging) return;
-
-    if (currentIndex === filteredRecipes.length - 1) {
-      // 현재 필터의 마지막 레시피 → 다음 필터로 전환
-      const currentFilterIndex = RECIPE_FILTERS.findIndex(f => f.id === selectedFilter);
-      const nextFilterIndex = (currentFilterIndex + 1) % RECIPE_FILTERS.length;
-      const nextFilter = RECIPE_FILTERS[nextFilterIndex];
-
-      setSelectedFilter(nextFilter.id);
-      setCurrentIndex(0); // 첫 번째 레시피로 이동
-    } else {
-      setCurrentIndex(prev => prev + 1);
-    }
+    if (isDragging || isSliding.current) return;
+    slideToDirection('next');
   };
 
   const handleDragStart = (clientX: number) => {
@@ -156,47 +180,24 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
 
   const handleDragEnd = () => {
     if (!isDragging) return;
+
+    const shouldSlideNext = hasDragged && dragOffset < -50;
+    const shouldSlidePrev = hasDragged && dragOffset > 50;
+
     setIsDragging(false);
 
-    // Threshold: 50px 이상 드래그하면 다음/이전으로 이동
-    if (hasDragged) {
-      if (dragOffset < -50) {
-        // 다음으로 드래그
-        setIsAnimating(true);
-        if (currentIndex === filteredRecipes.length - 1) {
-          // 다음 필터로 전환
-          const currentFilterIndex = RECIPE_FILTERS.findIndex(f => f.id === selectedFilter);
-          const nextFilterIndex = (currentFilterIndex + 1) % RECIPE_FILTERS.length;
-          const nextFilter = RECIPE_FILTERS[nextFilterIndex];
-          setSelectedFilter(nextFilter.id);
-          setCurrentIndex(0);
-        } else {
-          setCurrentIndex(prev => prev + 1);
-        }
-        setTimeout(() => setIsAnimating(false), 600);
-      } else if (dragOffset > 50) {
-        // 이전으로 드래그
-        setIsAnimating(true);
-        if (currentIndex === 0) {
-          // 이전 필터로 전환
-          const currentFilterIndex = RECIPE_FILTERS.findIndex(f => f.id === selectedFilter);
-          const prevFilterIndex = (currentFilterIndex - 1 + RECIPE_FILTERS.length) % RECIPE_FILTERS.length;
-          const prevFilter = RECIPE_FILTERS[prevFilterIndex];
-          const prevFilterRecipes = AI_RECIPES.filter(recipe =>
-            (prevFilter.categories as readonly string[]).includes(recipe.category)
-          );
-          setSelectedFilter(prevFilter.id);
-          setCurrentIndex(prevFilterRecipes.length - 1);
-        } else {
-          setCurrentIndex(prev => prev - 1);
-        }
-        setTimeout(() => setIsAnimating(false), 600);
+    // rAF로 transition 활성화 후 애니메이션 실행
+    requestAnimationFrame(() => {
+      if (shouldSlideNext) {
+        slideToDirection('next');
+      } else if (shouldSlidePrev) {
+        slideToDirection('prev');
+      } else {
+        // 임계값 미만: 원래 위치로 스냅백 (transition 적용)
+        setDragOffset(0);
       }
-    }
+    });
 
-    setDragOffset(0);
-
-    // hasDragged 플래그를 약간 지연 후 리셋 (클릭 이벤트 차단 후)
     setTimeout(() => {
       setHasDragged(false);
     }, 100);
@@ -307,7 +308,7 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
             }}
             style={{
               transform: `translateX(calc(-100% + ${dragOffset}px))`,
-              transition: (isDragging || isAnimating) ? 'none' : 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+              transition: (isDragging || skipTransition) ? 'none' : `transform ${SLIDE_DURATION}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
             }}
           >
             {/* 이전 레시피 */}
@@ -359,19 +360,24 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
               <button
                 key={index}
                 onClick={() => {
-                  if (isAnimating || isDragging || index === currentIndex) return;
-                  setIsAnimating(true);
+                  if (isSliding.current || isDragging || index === currentIndex) return;
+                  isSliding.current = true;
 
                   const direction = index > currentIndex ? -1 : 1;
                   const containerWidth = containerRef.current?.offsetWidth || 600;
+
                   setDragOffset(direction * containerWidth);
 
-                  // 약간의 딜레이 후 인덱스 변경
                   setTimeout(() => {
+                    setSkipTransition(true);
                     setCurrentIndex(index);
                     setDragOffset(0);
-                    setTimeout(() => setIsAnimating(false), 600);
-                  }, 50);
+
+                    requestAnimationFrame(() => {
+                      setSkipTransition(false);
+                      isSliding.current = false;
+                    });
+                  }, SLIDE_DURATION);
                 }}
                 className={`h-2 rounded-full transition-all ${
                   index === currentIndex

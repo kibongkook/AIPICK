@@ -26,59 +26,120 @@ const PERSONA_STYLES = {
 } as const;
 
 const DRAG_THRESHOLD = 50;
+const SLIDE_DURATION = 350;
 
-/** 드래그로 넘기기 공통 훅 — 클릭/드래그 확실히 분리 */
-function useSwipe(length: number, setIndex: React.Dispatch<React.SetStateAction<number>>) {
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const hasDragged = useRef(false);
+/** 슬라이드 애니메이션이 포함된 스와이프 캐러셀 훅 */
+function useSlidingSwipe(length: number) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [skipTransition, setSkipTransition] = useState(false);
+  const isSliding = useRef(false);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const hasDraggedRef = useRef(false);
+  const dragOffsetRef = useRef(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const currentIndexRef = useRef(0);
 
-  const onStart = useCallback((clientX: number) => {
-    isDragging.current = true;
-    startX.current = clientX;
-    hasDragged.current = false;
-  }, []);
+  useEffect(() => { currentIndexRef.current = currentIndex; }, [currentIndex]);
 
-  const onMove = useCallback((clientX: number) => {
-    if (!isDragging.current) return;
-    if (Math.abs(clientX - startX.current) > 10) {
-      hasDragged.current = true;
-    }
-  }, []);
+  const slideToDirection = useCallback((direction: 'next' | 'prev') => {
+    if (isSliding.current || length <= 1) return;
+    isSliding.current = true;
+    const cw = containerRef.current?.offsetWidth || 600;
+    setDragOffset(direction === 'next' ? -cw : cw);
+    setTimeout(() => {
+      setSkipTransition(true);
+      setCurrentIndex(prev =>
+        direction === 'next'
+          ? (prev + 1) % length
+          : (prev - 1 + length) % length
+      );
+      setDragOffset(0);
+      requestAnimationFrame(() => {
+        setSkipTransition(false);
+        isSliding.current = false;
+      });
+    }, SLIDE_DURATION);
+  }, [length]);
 
-  const onEnd = useCallback((clientX: number) => {
-    if (!isDragging.current) return;
-    isDragging.current = false;
-    const offset = clientX - startX.current;
-    if (hasDragged.current && Math.abs(offset) > DRAG_THRESHOLD) {
-      if (offset < 0) {
-        setIndex(prev => (prev + 1) % length);
-      } else {
-        setIndex(prev => (prev - 1 + length) % length);
-      }
-    }
-    // hasDragged를 약간 지연 후 리셋 (클릭 이벤트가 먼저 처리되도록)
-    setTimeout(() => { hasDragged.current = false; }, 100);
-  }, [length, setIndex]);
+  const slideToIndex = useCallback((targetIndex: number) => {
+    if (isSliding.current || length <= 1 || targetIndex === currentIndexRef.current) return;
+    isSliding.current = true;
+    const dir = targetIndex > currentIndexRef.current ? -1 : 1;
+    const cw = containerRef.current?.offsetWidth || 600;
+    setDragOffset(dir * cw);
+    setTimeout(() => {
+      setSkipTransition(true);
+      setCurrentIndex(targetIndex);
+      setDragOffset(0);
+      requestAnimationFrame(() => {
+        setSkipTransition(false);
+        isSliding.current = false;
+      });
+    }, SLIDE_DURATION);
+  }, [length]);
+
+  const onStart = (clientX: number) => {
+    if (isSliding.current) return;
+    isDraggingRef.current = true;
+    startXRef.current = clientX;
+    hasDraggedRef.current = false;
+    dragOffsetRef.current = 0;
+    setIsDragging(true);
+    setDragOffset(0);
+  };
+
+  const onMove = (clientX: number) => {
+    if (!isDraggingRef.current) return;
+    const offset = clientX - startXRef.current;
+    dragOffsetRef.current = offset;
+    setDragOffset(offset);
+    if (Math.abs(offset) > 10) hasDraggedRef.current = true;
+  };
+
+  const onEnd = () => {
+    if (!isDraggingRef.current) return;
+    const finalOffset = dragOffsetRef.current;
+    const shouldNext = hasDraggedRef.current && finalOffset < -DRAG_THRESHOLD;
+    const shouldPrev = hasDraggedRef.current && finalOffset > DRAG_THRESHOLD;
+    isDraggingRef.current = false;
+    setIsDragging(false);
+    requestAnimationFrame(() => {
+      if (shouldNext) slideToDirection('next');
+      else if (shouldPrev) slideToDirection('prev');
+      else setDragOffset(0);
+    });
+    setTimeout(() => { hasDraggedRef.current = false; }, 100);
+  };
 
   const handlers = {
     onMouseDown: (e: React.MouseEvent) => { e.preventDefault(); onStart(e.clientX); },
-    onMouseMove: (e: React.MouseEvent) => { if (isDragging.current) e.preventDefault(); onMove(e.clientX); },
-    onMouseUp: (e: React.MouseEvent) => onEnd(e.clientX),
-    onMouseLeave: (e: React.MouseEvent) => { if (isDragging.current) onEnd(e.clientX); },
+    onMouseMove: (e: React.MouseEvent) => { if (isDraggingRef.current) e.preventDefault(); onMove(e.clientX); },
+    onMouseUp: () => onEnd(),
+    onMouseLeave: () => { if (isDraggingRef.current) onEnd(); },
     onTouchStart: (e: React.TouchEvent) => onStart(e.touches[0].clientX),
     onTouchMove: (e: React.TouchEvent) => onMove(e.touches[0].clientX),
-    onTouchEnd: (e: React.TouchEvent) => onEnd(e.changedTouches[0].clientX),
-    // 캡처 단계에서 드래그 후 클릭 차단 (Link 이벤트보다 먼저 실행)
+    onTouchEnd: () => onEnd(),
     onClickCapture: (e: React.MouseEvent) => {
-      if (hasDragged.current) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
+      if (hasDraggedRef.current) { e.preventDefault(); e.stopPropagation(); }
     },
   };
 
-  return handlers;
+  const carouselStyle = {
+    transform: `translateX(calc(-100% + ${dragOffset}px))`,
+    transition: (isDragging || skipTransition) ? 'none' : `transform ${SLIDE_DURATION}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
+  };
+
+  return {
+    currentIndex, setCurrentIndex,
+    prevIndex: (currentIndex - 1 + length) % length,
+    nextIndex: (currentIndex + 1) % length,
+    isDragging, isSliding, containerRef,
+    handlers, carouselStyle,
+    slideToDirection, slideToIndex,
+  };
 }
 
 function getTrendingReason(tool: Tool): string {
@@ -106,21 +167,62 @@ export default function TopRotationBanner({ trendingTools, allTools }: TopRotati
 }
 
 function TrendingSection({ tools }: { tools: Tool[] }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const swipeHandlers = useSwipe(tools.length, setCurrentIndex);
+  const {
+    currentIndex, prevIndex, nextIndex,
+    isDragging, isSliding, containerRef,
+    handlers, carouselStyle, slideToDirection, slideToIndex,
+  } = useSlidingSwipe(tools.length);
 
   useEffect(() => {
     if (tools.length <= 1) return;
-    const interval = setInterval(() => {
-      setCurrentIndex(prev => (prev + 1) % tools.length);
+    const id = setInterval(() => {
+      if (!isSliding.current) slideToDirection('next');
     }, 8000);
-    return () => clearInterval(interval);
-  }, [tools.length]);
+    return () => clearInterval(id);
+  }, [tools.length, slideToDirection]);
 
   if (tools.length === 0) return null;
 
-  const tool = tools[currentIndex];
-  const reason = getTrendingReason(tool);
+  const renderCard = (tool: Tool) => {
+    const reason = getTrendingReason(tool);
+    return (
+      <Link
+        href={`/tools/${tool.slug}`}
+        className="block rounded-lg border border-red-200 bg-gradient-to-r from-red-50/50 to-white p-4 group hover:border-red-400 hover:shadow-md transition-all"
+        draggable={false}
+      >
+        <div className="flex items-center gap-3 mb-3">
+          {tool.logo_url ? (
+            <img src={tool.logo_url} alt={tool.name} className="h-12 w-12 rounded-lg object-cover shadow-sm pointer-events-none" draggable={false} />
+          ) : (
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-red-500 text-white text-xl font-bold shadow-sm">
+              {tool.name.charAt(0)}
+            </div>
+          )}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="text-base font-bold text-foreground group-hover:text-red-600 transition-colors truncate">
+                {tool.name}
+              </h3>
+              <span className="text-xs font-bold px-1.5 py-0.5 rounded-full bg-red-100 text-red-700 shrink-0">
+                ▲ HOT
+              </span>
+            </div>
+            {tool.rating_avg > 0 && (
+              <span className="text-xs text-gray-400">⭐ {tool.rating_avg.toFixed(1)}</span>
+            )}
+          </div>
+        </div>
+
+        <p className="text-sm text-gray-600 line-clamp-1 mb-2">{tool.description}</p>
+
+        <p className="text-xs font-semibold text-red-600 flex items-center gap-1">
+          <TrendingUp className="h-3.5 w-3.5" />
+          {reason}
+        </p>
+      </Link>
+    );
+  };
 
   return (
     <div className="bg-white rounded-xl border border-border p-5 shadow-sm">
@@ -137,7 +239,7 @@ function TrendingSection({ tools }: { tools: Tool[] }) {
             {tools.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setCurrentIndex(i)}
+                onClick={() => slideToIndex(i)}
                 className={`h-1.5 rounded-full transition-all ${
                   i === currentIndex ? 'bg-red-500 w-4' : 'bg-gray-200 w-1.5'
                 }`}
@@ -147,69 +249,95 @@ function TrendingSection({ tools }: { tools: Tool[] }) {
         )}
       </div>
 
-      {/* 도구 카드 - 드래그 가능 */}
-      <div
-        {...swipeHandlers}
-        className="select-none cursor-grab active:cursor-grabbing"
-      >
-        <Link
-          href={`/tools/${tool.slug}`}
-          className="block rounded-lg border border-red-200 bg-gradient-to-r from-red-50/50 to-white p-4 group hover:border-red-400 hover:shadow-md transition-all"
-          draggable={false}
+      {/* 캐러셀 */}
+      <div ref={containerRef} className="overflow-hidden">
+        <div
+          {...handlers}
+          className={`flex select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+          style={carouselStyle}
         >
-          <div className="flex items-center gap-3 mb-3">
-            {tool.logo_url ? (
-              <img src={tool.logo_url} alt={tool.name} className="h-12 w-12 rounded-lg object-cover shadow-sm pointer-events-none" draggable={false} />
-            ) : (
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-red-500 text-white text-xl font-bold shadow-sm">
-                {tool.name.charAt(0)}
-              </div>
-            )}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-base font-bold text-foreground group-hover:text-red-600 transition-colors truncate">
-                  {tool.name}
-                </h3>
-                <span className="text-xs font-bold px-1.5 py-0.5 rounded-full bg-red-100 text-red-700 shrink-0">
-                  ▲ HOT
-                </span>
-              </div>
-              {tool.rating_avg > 0 && (
-                <span className="text-xs text-gray-400">⭐ {tool.rating_avg.toFixed(1)}</span>
-              )}
-            </div>
+          <div key="prev" className="w-full flex-shrink-0 pointer-events-none opacity-50">
+            {renderCard(tools[prevIndex])}
           </div>
-
-          <p className="text-sm text-gray-600 line-clamp-1 mb-2">{tool.description}</p>
-
-          <p className="text-xs font-semibold text-red-600 flex items-center gap-1">
-            <TrendingUp className="h-3.5 w-3.5" />
-            {reason}
-          </p>
-        </Link>
+          <div key="current" className="w-full flex-shrink-0">
+            {renderCard(tools[currentIndex])}
+          </div>
+          <div key="next" className="w-full flex-shrink-0 pointer-events-none opacity-50">
+            {renderCard(tools[nextIndex])}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
 function PersonalizedSection({ allTools }: { allTools: Tool[] }) {
-  const [personaIndex, setPersonaIndex] = useState(0);
-  const swipeHandlers = useSwipe(PERSONA_CARDS.length, setPersonaIndex);
+  const length = PERSONA_CARDS.length;
+  const {
+    currentIndex, prevIndex, nextIndex,
+    isDragging, isSliding, containerRef,
+    handlers, carouselStyle, slideToDirection, slideToIndex,
+  } = useSlidingSwipe(length);
 
   useEffect(() => {
-    if (PERSONA_CARDS.length <= 1) return;
-    const interval = setInterval(() => {
-      setPersonaIndex(prev => (prev + 1) % PERSONA_CARDS.length);
+    if (length <= 1) return;
+    const id = setInterval(() => {
+      if (!isSliding.current) slideToDirection('next');
     }, 10000);
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearInterval(id);
+  }, [length, slideToDirection]);
 
-  const persona = PERSONA_CARDS[personaIndex];
-  const Icon = ICON_MAP[persona.icon as keyof typeof ICON_MAP];
-  const style = PERSONA_STYLES[persona.id as keyof typeof PERSONA_STYLES];
-  const killerTools = persona.killerSlugs
-    .map(slug => allTools.find((t: Tool) => t.slug === slug))
-    .filter((t): t is Tool => t !== undefined);
+  const renderPersonaCard = (idx: number) => {
+    const persona = PERSONA_CARDS[idx];
+    const Icon = ICON_MAP[persona.icon as keyof typeof ICON_MAP];
+    const s = PERSONA_STYLES[persona.id as keyof typeof PERSONA_STYLES];
+    const killerTools = persona.killerSlugs
+      .map(slug => allTools.find((t: Tool) => t.slug === slug))
+      .filter((t): t is Tool => t !== undefined);
+
+    return (
+      <Link
+        href={persona.href}
+        className={`block rounded-lg border p-4 group transition-all hover:shadow-md ${s.border} ${s.bg}`}
+        draggable={false}
+      >
+        <div className="flex items-center gap-3 mb-3">
+          <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center ${s.iconBg}`}>
+            <Icon className={`w-6 h-6 ${s.iconColor}`} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-0.5">
+              <h3 className={`text-base font-bold ${s.accentColor} truncate`}>
+                {persona.title}
+              </h3>
+              <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full ${s.badge} shrink-0`}>
+                추천
+              </span>
+            </div>
+            <p className="text-xs text-gray-600 truncate">{persona.subtitle}</p>
+          </div>
+        </div>
+
+        {killerTools.length > 0 && (
+          <div className="flex gap-2 mb-2 flex-wrap">
+            {killerTools.slice(0, 3).map(tool => (
+              <div key={tool.slug} className="flex items-center gap-1.5 bg-white/80 rounded-md px-2 py-1 border border-gray-100">
+                {tool.logo_url && (
+                  <img src={tool.logo_url} alt={tool.name} className="w-4 h-4 rounded object-contain pointer-events-none" draggable={false} />
+                )}
+                <span className="text-xs text-gray-700 font-medium">{tool.name}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className={`flex items-center justify-between ${s.accentColor} text-sm font-semibold mt-2`}>
+          <span>맞춤 AI 보기</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </div>
+      </Link>
+    );
+  };
 
   return (
     <div className="bg-white rounded-xl border border-border p-5 shadow-sm">
@@ -221,16 +349,16 @@ function PersonalizedSection({ allTools }: { allTools: Tool[] }) {
         </div>
 
         {/* 인디케이터 */}
-        {PERSONA_CARDS.length > 1 && (
+        {length > 1 && (
           <div className="flex items-center gap-1.5">
             {PERSONA_CARDS.map((p, i) => {
               const s = PERSONA_STYLES[p.id as keyof typeof PERSONA_STYLES];
               return (
                 <button
                   key={i}
-                  onClick={() => setPersonaIndex(i)}
+                  onClick={() => slideToIndex(i)}
                   className={`h-1.5 rounded-full transition-all ${
-                    i === personaIndex ? `${s.indicatorActive} w-4` : 'bg-gray-200 w-1.5'
+                    i === currentIndex ? `${s.indicatorActive} w-4` : 'bg-gray-200 w-1.5'
                   }`}
                 />
               );
@@ -239,51 +367,23 @@ function PersonalizedSection({ allTools }: { allTools: Tool[] }) {
         )}
       </div>
 
-      {/* 페르소나 카드 - 드래그 가능 */}
-      <div
-        {...swipeHandlers}
-        className="select-none cursor-grab active:cursor-grabbing"
-      >
-        <Link
-          href={persona.href}
-          className={`block rounded-lg border p-4 group transition-all hover:shadow-md ${style.border} ${style.bg}`}
-          draggable={false}
+      {/* 캐러셀 */}
+      <div ref={containerRef} className="overflow-hidden">
+        <div
+          {...handlers}
+          className={`flex select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+          style={carouselStyle}
         >
-          <div className="flex items-center gap-3 mb-3">
-            <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center ${style.iconBg}`}>
-              <Icon className={`w-6 h-6 ${style.iconColor}`} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-0.5">
-                <h3 className={`text-base font-bold ${style.accentColor} truncate`}>
-                  {persona.title}
-                </h3>
-                <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full ${style.badge} shrink-0`}>
-                  추천
-                </span>
-              </div>
-              <p className="text-xs text-gray-600 truncate">{persona.subtitle}</p>
-            </div>
+          <div key="prev" className="w-full flex-shrink-0 pointer-events-none opacity-50">
+            {renderPersonaCard(prevIndex)}
           </div>
-
-          {killerTools.length > 0 && (
-            <div className="flex gap-2 mb-2 flex-wrap">
-              {killerTools.slice(0, 3).map(tool => (
-                <div key={tool.id} className="flex items-center gap-1.5 bg-white/80 rounded-md px-2 py-1 border border-gray-100">
-                  {tool.logo_url && (
-                    <img src={tool.logo_url} alt={tool.name} className="w-4 h-4 rounded object-contain pointer-events-none" draggable={false} />
-                  )}
-                  <span className="text-xs text-gray-700 font-medium">{tool.name}</span>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <div className={`flex items-center justify-between ${style.accentColor} text-sm font-semibold mt-2`}>
-            <span>맞춤 AI 보기</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <div key="current" className="w-full flex-shrink-0">
+            {renderPersonaCard(currentIndex)}
           </div>
-        </Link>
+          <div key="next" className="w-full flex-shrink-0 pointer-events-none opacity-50">
+            {renderPersonaCard(nextIndex)}
+          </div>
+        </div>
       </div>
     </div>
   );
