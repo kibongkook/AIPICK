@@ -52,7 +52,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
             <div key={step.step} className="rounded-lg bg-gray-50 p-2.5 min-w-0">
               {/* 단계 헤더 */}
               <div className="flex items-center gap-1.5 mb-1.5">
-                <span className={`flex h-4.5 w-4.5 items-center justify-center rounded-full bg-gradient-to-br ${recipe.color} text-white text-[8px] font-bold shrink-0`}>
+                <span className={`flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br ${recipe.color} text-white text-xs font-bold shrink-0`}>
                   {step.step}
                 </span>
                 <span className="text-xs font-bold text-foreground truncate">{step.tool_name}</span>

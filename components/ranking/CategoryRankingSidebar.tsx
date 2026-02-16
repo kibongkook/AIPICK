@@ -90,7 +90,7 @@ export default function CategoryRankingSidebar({ rankings }: CategoryRankingSide
             {tool.logo_url ? (
               <img src={tool.logo_url} alt={tool.name} className="h-5 w-5 rounded object-cover shrink-0" />
             ) : (
-              <div className="h-5 w-5 rounded bg-gray-100 flex items-center justify-center text-[8px] font-bold text-gray-400 shrink-0">
+              <div className="h-5 w-5 rounded bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-400 shrink-0">
                 {tool.name.charAt(0)}
               </div>
             )}

@@ -105,7 +105,7 @@ function ToolBadge({ name, logoUrl, dark }: { name: string; logoUrl?: string | n
       {logoUrl ? (
         <img src={logoUrl} alt={name} className="h-4 w-4 rounded object-cover" />
       ) : (
-        <div className={cn('flex h-4 w-4 items-center justify-center rounded text-[8px] font-bold text-white', getAvatarColor(name))}>
+        <div className={cn('flex h-5 w-5 items-center justify-center rounded text-xs font-bold text-white', getAvatarColor(name))}>
           {name.charAt(0)}
         </div>
       )}
