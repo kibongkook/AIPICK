@@ -254,7 +254,7 @@ function CommunityContent() {
         // localStorage fallback - 클라이언트 사이드 태그 추출
         const { extractTags } = await import('@/lib/community/tag-extractor');
         const autoTitle = data.content.slice(0, 100);
-        const extractedTags = await extractTags(autoTitle, data.content, { minConfidence: 0.5 });
+        const extractedTags = await extractTags(autoTitle, data.content);
 
         // 태그를 CommunityTag 형태로 변환
         const tags = [

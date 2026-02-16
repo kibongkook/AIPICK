@@ -43,9 +43,9 @@ export default function ToolCommunitySection({ toolId, toolSlug, toolName }: Too
 
     if (useApi) {
       try {
-        // 태그 기반 필터: 해당 도구를 언급한 모든 글 표시
+        // 태그 기반 OR 필터: 해당 도구를 언급한 모든 글 표시
         const params = new URLSearchParams({
-          ai: toolSlug,
+          tags: toolSlug,
           sort,
           limit: '50',
         });
@@ -128,8 +128,44 @@ export default function ToolCommunitySection({ toolId, toolSlug, toolName }: Too
       } catch { /* fallback */ }
     }
 
-    // localStorage 폴백
+    // localStorage 폴백 — 자동 태그 추출 포함
     try {
+      const { extractTags } = await import('@/lib/community/tag-extractor');
+      const autoTitle = data.content.slice(0, 100);
+      const extractedTags = await extractTags(autoTitle, data.content);
+
+      const autoTagObjects: CommunityTag[] = extractedTags.map(tag => ({
+        id: `tag-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        tag_type: tag.type,
+        tag_value: tag.value,
+        tag_display: tag.display,
+        tag_normalized: tag.value.toLowerCase(),
+        tag_color: null,
+        tag_icon: null,
+        related_tool_id: tag.related_tool_id || null,
+        related_category_slug: tag.related_category_slug || null,
+        usage_count: 1,
+        created_at: new Date().toISOString(),
+      }));
+
+      // 도구 태그가 자동 추출에 없으면 수동 추가
+      const hasToolTag = autoTagObjects.some(t => t.tag_value === toolSlug);
+      if (!hasToolTag) {
+        autoTagObjects.unshift({
+          id: `tag-${Date.now()}`,
+          tag_type: 'AI_TOOL',
+          tag_value: toolSlug,
+          tag_display: toolName,
+          tag_normalized: toolSlug.toLowerCase(),
+          tag_color: null,
+          tag_icon: null,
+          related_tool_id: toolId,
+          related_category_slug: null,
+          usage_count: 1,
+          created_at: new Date().toISOString(),
+        });
+      }
+
       const stored = localStorage.getItem(COMMUNITY_STORAGE_KEY);
       const allPosts: CommunityPost[] = stored ? JSON.parse(stored) : [];
       const newPost: CommunityPost = {
@@ -139,26 +175,12 @@ export default function ToolCommunitySection({ toolId, toolSlug, toolName }: Too
         user_id: 'local',
         user_name: '사용자',
         post_type: data.post_type || 'discussion',
-        title: data.content.slice(0, 50),
+        title: autoTitle,
         content: data.content,
         rating: null,
         parent_id: null,
         media: data.media || [],
-        tags: [
-          {
-            id: `tag-${Date.now()}`,
-            tag_type: 'AI_TOOL',
-            tag_value: toolSlug,
-            tag_display: toolName,
-            tag_normalized: toolSlug.toLowerCase(),
-            tag_color: null,
-            tag_icon: null,
-            related_tool_id: toolId,
-            related_category_slug: null,
-            usage_count: 1,
-            created_at: new Date().toISOString(),
-          },
-        ],
+        tags: autoTagObjects,
         like_count: 0,
         comment_count: 0,
         bookmark_count: 0,

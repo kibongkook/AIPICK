@@ -132,26 +132,47 @@ export default function RecipeCommunitySection({ recipe }: RecipeCommunitySectio
       } catch { /* fallback */ }
     }
 
-    // localStorage 폴백
+    // localStorage 폴백 — 자동 태그 추출 포함
     try {
-      const stored = localStorage.getItem(COMMUNITY_STORAGE_KEY);
-      const allPosts: CommunityPost[] = stored ? JSON.parse(stored) : [];
+      const { extractTags } = await import('@/lib/community/tag-extractor');
+      const autoTitle = data.content.slice(0, 100);
+      const extractedTags = await extractTags(autoTitle, data.content);
 
-      // 레시피 관련 태그 자동 생성
-      const autoTags: CommunityTag[] = toolSlugs.map(slug => ({
+      const autoTagObjects: CommunityTag[] = extractedTags.map(tag => ({
         id: `tag-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-        tag_type: 'AI_TOOL' as const,
-        tag_value: slug,
-        tag_display: recipe.steps.find(s => s.tool_slug === slug)?.tool_name || slug,
-        tag_normalized: slug.toLowerCase(),
+        tag_type: tag.type,
+        tag_value: tag.value,
+        tag_display: tag.display,
+        tag_normalized: tag.value.toLowerCase(),
         tag_color: null,
         tag_icon: null,
-        related_tool_id: null,
-        related_category_slug: null,
+        related_tool_id: tag.related_tool_id || null,
+        related_category_slug: tag.related_category_slug || null,
         usage_count: 1,
         created_at: new Date().toISOString(),
       }));
 
+      // 레시피 도구 태그가 자동 추출에 없으면 수동 추가
+      for (const slug of toolSlugs) {
+        if (!autoTagObjects.some(t => t.tag_value === slug)) {
+          autoTagObjects.push({
+            id: `tag-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+            tag_type: 'AI_TOOL' as const,
+            tag_value: slug,
+            tag_display: recipe.steps.find(s => s.tool_slug === slug)?.tool_name || slug,
+            tag_normalized: slug.toLowerCase(),
+            tag_color: null,
+            tag_icon: null,
+            related_tool_id: null,
+            related_category_slug: null,
+            usage_count: 1,
+            created_at: new Date().toISOString(),
+          });
+        }
+      }
+
+      const stored = localStorage.getItem(COMMUNITY_STORAGE_KEY);
+      const allPosts: CommunityPost[] = stored ? JSON.parse(stored) : [];
       const newPost: CommunityPost = {
         id: `cp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
         target_type: 'general',
@@ -159,12 +180,12 @@ export default function RecipeCommunitySection({ recipe }: RecipeCommunitySectio
         user_id: 'local',
         user_name: '사용자',
         post_type: data.post_type || 'discussion',
-        title: data.content.slice(0, 50),
+        title: autoTitle,
         content: data.content,
         rating: null,
         parent_id: null,
         media: data.media || [],
-        tags: autoTags,
+        tags: autoTagObjects,
         like_count: 0,
         comment_count: 0,
         bookmark_count: 0,
@@ -295,7 +316,9 @@ export default function RecipeCommunitySection({ recipe }: RecipeCommunitySectio
           </div>
         ) : (
           <div className="rounded-lg border border-border bg-gray-50 py-10 text-center text-sm text-gray-400">
-            이 레시피와 관련된 커뮤니티 글이 아직 없습니다. 첫 번째 글을 작성해보세요!
+            {typeFilter === 'all'
+              ? '아직 관련 커뮤니티 글이 없습니다. 첫 번째 글을 작성해보세요!'
+              : `아직 ${POST_TYPE_FILTERS.find(f => f.value === typeFilter)?.label} 글이 없습니다.`}
           </div>
         )}
       </div>

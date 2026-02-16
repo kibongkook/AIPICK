@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Clock, Wrench, ArrowRight, Target, BookOpen } from 'lucide-react';
+import { ArrowLeft, Clock, Wrench, Target, BookOpen } from 'lucide-react';
 import { AI_RECIPES, getRecipeBySlug } from '@/data/recipes';
 import { RECIPE_CATEGORIES, RECIPE_DIFFICULTY } from '@/lib/constants';
 import DynamicIcon from '@/components/ui/DynamicIcon';
 import RecipeStepCard from '@/components/recipe/RecipeStepCard';
-import RecipeCard from '@/components/recipe/RecipeCard';
+import RelatedRecipeCarousel from '@/components/recipe/RelatedRecipeCarousel';
 import RecipeCommunitySection from '@/components/recipe/RecipeCommunitySection';
 import type { RecipeCategory } from '@/types';
 
@@ -43,8 +43,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
   // 같은 카테고리의 다른 레시피 추천
   const relatedRecipes = AI_RECIPES
-    .filter(r => r.category === recipe.category && r.slug !== recipe.slug)
-    .slice(0, 3);
+    .filter(r => r.category === recipe.category && r.slug !== recipe.slug);
 
   // 사용되는 모든 도구 slug (중복 제거)
   const allToolSlugs = [...new Set(recipe.steps.map(s => s.tool_slug))];
@@ -157,20 +156,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
       {/* 관련 레시피 */}
       {relatedRecipes.length > 0 && (
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-extrabold text-foreground">관련 레시피</h2>
-            <Link href={`/recipes?category=${recipe.category}`} className="text-xs font-medium text-primary hover:text-primary-hover flex items-center gap-0.5">
-              더 보기
-              <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {relatedRecipes.map((r) => (
-              <RecipeCard key={r.slug} recipe={r} />
-            ))}
-          </div>
-        </div>
+        <RelatedRecipeCarousel recipes={relatedRecipes} categorySlug={recipe.category} />
       )}
     </div>
   );
