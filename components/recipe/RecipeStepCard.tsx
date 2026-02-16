@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Lightbulb, ArrowRight, Copy } from 'lucide-react';
 import type { RecipeStep } from '@/types';
@@ -74,6 +76,11 @@ export default function RecipeStepCard({ step, isLast }: RecipeStepCardProps) {
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">프롬프트 예시</span>
                 <button
+                  onClick={() => {
+                    if (step.prompt_example) {
+                      navigator.clipboard.writeText(step.prompt_example);
+                    }
+                  }}
                   className="text-xs text-gray-400 hover:text-primary flex items-center gap-0.5 transition-colors"
                   title="복사"
                 >

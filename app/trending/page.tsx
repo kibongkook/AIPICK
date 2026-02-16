@@ -73,10 +73,8 @@ export default async function TrendingPage() {
                   <span className="text-sm font-semibold text-foreground block truncate">
                     {tool.name}
                   </span>
-                  <span className="text-xs text-gray-400 block truncate">
-                    {tool.description.length > 50
-                      ? `${tool.description.slice(0, 50)}...`
-                      : tool.description}
+                  <span className="text-xs text-gray-400 block truncate line-clamp-1">
+                    {tool.description}
                   </span>
                 </div>
 
@@ -135,7 +133,7 @@ function RankBadge({ rank }: { rank: number }) {
       rank === 1
         ? 'bg-yellow-400'
         : rank === 2
-          ? 'bg-gray-300'
+          ? 'bg-gray-400'
           : 'bg-amber-600';
 
     return (

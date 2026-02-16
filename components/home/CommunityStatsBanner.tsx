@@ -1,4 +1,4 @@
-import { MessageSquare, Users, TrendingUp } from 'lucide-react';
+import { MessageSquare, MessageCircle, Users } from 'lucide-react';
 
 interface CommunityStatsBannerProps {
   questionCount: number;
@@ -14,7 +14,7 @@ export default function CommunityStatsBanner({ questionCount, answerCount, activ
     <div className="rounded-xl bg-gradient-to-r from-primary/5 to-purple-50 border border-primary/10 p-4">
       <div className="flex items-center justify-center gap-6 sm:gap-10">
         <StatItem icon={MessageSquare} label="이번 주 질문" count={questionCount} />
-        <StatItem icon={TrendingUp} label="이번 주 답변" count={answerCount} />
+        <StatItem icon={MessageCircle} label="이번 주 답변" count={answerCount} />
         <StatItem icon={Users} label="활동 사용자" count={activeUsers} />
       </div>
     </div>

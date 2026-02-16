@@ -47,7 +47,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
         </div>
 
         {/* 단계별 가로 배치 */}
-        <div className={`grid gap-2.5 mt-3 ${recipe.steps.length <= 3 ? `grid-cols-${recipe.steps.length}` : 'grid-cols-3'}`} style={{ gridTemplateColumns: `repeat(${Math.min(recipe.steps.length, 4)}, 1fr)` }}>
+        <div className="grid gap-2.5 mt-3" style={{ gridTemplateColumns: `repeat(${Math.min(recipe.steps.length, 4)}, 1fr)` }}>
           {recipe.steps.slice(0, 4).map((step) => (
             <div key={step.step} className="rounded-lg bg-gray-50 p-2.5 min-w-0">
               {/* 단계 헤더 */}

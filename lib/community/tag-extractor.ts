@@ -251,7 +251,7 @@ export function extractGoals(text: string, preprocessed: string[]): ExtractedTag
       type: 'GOAL',
       value: goalSlug,
       display: getGoalDisplay(goalSlug),
-      confidence: Math.min(0.9, score * 0.15),
+      confidence: Math.min(0.9, score * 0.25),
       related_category_slug: goalSlug,
     }));
 }
@@ -294,7 +294,7 @@ export function extractFeatures(text: string, preprocessed: string[]): Extracted
       type: 'FEATURE',
       value: featureSlug,
       display: getFeatureDisplay(featureSlug),
-      confidence: Math.min(0.8, score * 0.15),
+      confidence: Math.min(0.8, score * 0.25),
     }));
 }
 
@@ -306,8 +306,10 @@ export function extractKeywords(preprocessed: string[]): ExtractedTag[] {
   const freq: Record<string, number> = {};
 
   for (const word of preprocessed) {
-    // 한글 2~6글자 (범위 확대)
-    if (!/^[가-힣]{2,6}$/.test(word)) continue;
+    // 한글 2~6글자 또는 영문 2~10글자
+    const isKorean = /^[가-힣]{2,6}$/.test(word);
+    const isEnglish = /^[a-z]{2,10}$/.test(word);
+    if (!isKorean && !isEnglish) continue;
 
     // 불용어 제거
     if (STOP_WORDS.has(word)) continue;
@@ -323,7 +325,7 @@ export function extractKeywords(preprocessed: string[]): ExtractedTag[] {
       type: 'KEYWORD',
       value: word,
       display: word,
-      confidence: Math.min(0.7, count * 0.12),
+      confidence: Math.min(0.7, count * 0.2),
     }));
 }
 

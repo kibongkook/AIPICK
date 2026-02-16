@@ -10,7 +10,6 @@ import type { Tool } from '@/types';
 import { PERSONA_CARDS } from '@/lib/constants';
 
 interface TopRotationBannerProps {
-  dailyPicks: any[];
   trendingTools: Tool[];
   allTools: Tool[];
 }

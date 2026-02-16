@@ -100,12 +100,13 @@ export default function QuickWriteInput({ onSubmit }: QuickWriteInputProps) {
   };
 
   const handleAddTag = () => {
-    const trimmed = tagInput.trim();
-    if (!trimmed) return;
+    const trimmed = tagInput.trim().replace(/[^가-힣a-zA-Z0-9\-_]/g, '');
+    if (!trimmed || trimmed.length < 2 || trimmed.length > 20) return;
     if (tags.includes(trimmed)) {
       setTagInput('');
       return;
     }
+    if (tags.length >= 10) return;
 
     setTags([...tags, trimmed]);
     setTagInput('');

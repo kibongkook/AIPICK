@@ -1,17 +1,9 @@
-import Link from 'next/link';
-import {
-  ArrowRight, MessageSquare, BookOpen, ChevronLeft, ChevronRight,
-} from 'lucide-react';
-import {
-  MAIN_EDITOR_PICKS_COUNT,
-} from '@/lib/constants';
 import type { CommunityPost } from '@/types';
 
 import {
-  getEditorPicks,
   getTools,
   getRecentCommunityPosts,
-  getDailyPicks, getCommunityStats,
+  getCommunityStats,
   getTrendingTools,
 } from '@/lib/supabase/queries';
 
@@ -21,13 +13,11 @@ import RecipeCarousel from '@/components/home/RecipeCarousel';
 
 export default async function Home() {
   const [
-    editorPicks, trendingTools,
-    communityPosts, dailyPicks, communityStats,
+    trendingTools,
+    communityPosts, communityStats,
   ] = await Promise.all([
-    getEditorPicks(MAIN_EDITOR_PICKS_COUNT),
     getTrendingTools(4),
     getRecentCommunityPosts(4),
-    getDailyPicks(8),
     getCommunityStats(),
   ]);
 
@@ -50,7 +40,6 @@ export default async function Home() {
 
           {/* 3. 상단 로테이션 배너 (오늘의 PICK, 급상승, 당신에게 맞는 AI) */}
           <TopRotationBanner
-            dailyPicks={dailyPicks}
             trendingTools={trendingTools}
             allTools={allTools}
           />
