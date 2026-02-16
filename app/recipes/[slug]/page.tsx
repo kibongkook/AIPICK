@@ -6,6 +6,7 @@ import { RECIPE_CATEGORIES, RECIPE_DIFFICULTY } from '@/lib/constants';
 import DynamicIcon from '@/components/ui/DynamicIcon';
 import RecipeStepCard from '@/components/recipe/RecipeStepCard';
 import RecipeCard from '@/components/recipe/RecipeCard';
+import RecipeCommunitySection from '@/components/recipe/RecipeCommunitySection';
 import type { RecipeCategory } from '@/types';
 
 interface PageProps {
@@ -147,6 +148,11 @@ export default async function RecipeDetailPage({ params }: PageProps) {
             </span>
           ))}
         </div>
+      </div>
+
+      {/* 커뮤니티 */}
+      <div className="mb-12">
+        <RecipeCommunitySection recipe={recipe} />
       </div>
 
       {/* 관련 레시피 */}

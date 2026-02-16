@@ -228,7 +228,7 @@ export default async function ToolDetailPage({ params }: Props) {
 
           {/* 커뮤니티 (평가 + 자유글 + 팁 + 질문) */}
           <section className="rounded-xl border border-border bg-white p-6">
-            <ToolCommunitySection toolId={tool.id} />
+            <ToolCommunitySection toolId={tool.id} toolSlug={tool.slug} toolName={tool.name} />
           </section>
         </div>
 

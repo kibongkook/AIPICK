@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
   const targetType = searchParams.get('target_type');
   const targetId = searchParams.get('target_id');
   const postType = searchParams.get('post_type');
+  const tags = searchParams.get('tags'); // 쉼표 구분 다중 태그 OR 필터
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -87,6 +88,33 @@ export async function GET(request: NextRequest) {
 
       if (postIds && postIds.length > 0) {
         query = query.in('id', postIds.map(p => p.post_id));
+      } else {
+        return NextResponse.json({ posts: [], total: 0 });
+      }
+    }
+  }
+
+  // 다중 태그 OR 필터 (레시피 등에서 여러 태그 한 번에 검색)
+  if (tags) {
+    const tagValues = tags.split(',').map(t => t.trim().toLowerCase()).filter(Boolean);
+    if (tagValues.length > 0) {
+      const { data: matchingTags } = await supabase
+        .from('community_tags')
+        .select('id')
+        .in('tag_normalized', tagValues);
+
+      if (matchingTags && matchingTags.length > 0) {
+        const { data: postIds } = await supabase
+          .from('community_post_tags')
+          .select('post_id')
+          .in('tag_id', matchingTags.map(t => t.id));
+
+        if (postIds && postIds.length > 0) {
+          const uniquePostIds = [...new Set(postIds.map(p => p.post_id))];
+          query = query.in('id', uniquePostIds);
+        } else {
+          return NextResponse.json({ posts: [], total: 0 });
+        }
       } else {
         return NextResponse.json({ posts: [], total: 0 });
       }

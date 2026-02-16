@@ -94,11 +94,17 @@ public/            → 정적 파일 (아이콘, manifest 등)
 - 안전 등급: safe(안전) / guided(지도 필요) / advanced(고급)
 
 ### 커뮤니티 기능
-- 리뷰 + 기능별 세부 평가 (5개 기준: 사용 편의성, 한국어 지원, 무료 사용량, 기능 다양성, 가성비)
-- 댓글 (도구별 + 뉴스별)
-- 컬렉션 (사용자 큐레이션 공유)
-- 업보트/다운보트
-- 가이드/팁 (사용자 작성)
+- 통합 커뮤니티: 하나의 글 풀 + 태그 기반 위치별 필터링
+- 글 타입: 일반(discussion), 팁(tip), 질문(question)
+- 태그 4종: GOAL(목적), AI_TOOL(서비스명), FEATURE(기능), KEYWORD(키워드)
+- 도구 페이지 → ai=toolSlug 태그 필터, 레시피 페이지 → tags=도구+키워드 OR 필터
+- 태그 클릭 시 /community?tag=xxx 로 이동
+- 댓글, 업보트/다운보트, 북마크
+
+### AI 레시피 규칙
+- 모든 레시피는 반드시 `icon` 필드를 포함해야 함 (Lucide 아이콘명)
+- 레시피에서 사용하는 아이콘은 `components/ui/DynamicIcon.tsx`의 ICON_MAP에 반드시 등록
+- 새 아이콘 추가 시: lucide-react import + ICON_MAP 엔트리 모두 추가
 
 ## 환경변수
 - `NEXT_PUBLIC_SUPABASE_URL` - Supabase 프로젝트 URL

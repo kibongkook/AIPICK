@@ -6,6 +6,13 @@ import {
   MessageSquare, Zap, BarChart, Presentation, Rocket,
   Heart, User, Building, Clapperboard, Headphones, Terminal,
   Globe, FileText, Search, Layers, MessageCircle,
+  // 레시피 아이콘 추가분
+  Smartphone, ShoppingBag, Film, Mic, Mail,
+  Instagram, Newspaper, CreditCard, Youtube, Monitor,
+  Paintbrush, Wand2, MonitorPlay, Puzzle,
+  Grid2x2, ClipboardList, Sheet, GitCompare,
+  Map, Utensils, Dumbbell, Calendar, PieChart,
+  Frame, FileSignature,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -51,6 +58,32 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Search,
   Layers,
   MessageCircle,
+  // 레시피 아이콘
+  Smartphone,
+  ShoppingBag,
+  Film,
+  Mic,
+  Mail,
+  Instagram,
+  Newspaper,
+  CreditCard,
+  Youtube,
+  Monitor,
+  Paintbrush,
+  Wand2,
+  MonitorPlay,
+  Puzzle,
+  Grid: Grid2x2,
+  ClipboardList,
+  Sheet,
+  GitCompare,
+  Map,
+  Utensils,
+  Dumbbell,
+  Calendar,
+  PieChart,
+  Frame,
+  FileSignature,
 };
 
 interface DynamicIconProps {
