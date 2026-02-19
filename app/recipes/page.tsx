@@ -18,9 +18,18 @@ interface PageProps {
 export default async function RecipesPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const category = params.category || 'all';
-  const recipes = category === 'all'
+
+  // 난이도 순서: 쉬움 → 보통 → 어려움, 같은 난이도 내에서 tool_count 적은 순
+  const DIFFICULTY_ORDER: Record<string, number> = { easy: 0, medium: 1, hard: 2 };
+  const filtered = category === 'all'
     ? AI_RECIPES
     : AI_RECIPES.filter(r => r.category === category);
+  const recipes = [...filtered].sort((a, b) => {
+    const diffA = DIFFICULTY_ORDER[a.difficulty] ?? 1;
+    const diffB = DIFFICULTY_ORDER[b.difficulty] ?? 1;
+    if (diffA !== diffB) return diffA - diffB;
+    return a.tool_count - b.tool_count;
+  });
 
   const categoryLabel = category !== 'all' && category in RECIPE_CATEGORIES
     ? RECIPE_CATEGORIES[category as RecipeCategory].label
@@ -55,7 +64,7 @@ export default async function RecipesPage({ searchParams }: PageProps) {
 
       {/* 레시피 그리드 */}
       {recipes.length > 0 ? (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4">
           {recipes.map((recipe) => (
             <RecipeCard key={recipe.slug} recipe={recipe} />
           ))}

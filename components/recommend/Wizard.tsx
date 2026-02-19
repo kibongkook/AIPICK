@@ -88,7 +88,7 @@ export default function Wizard() {
   const selectedCategory = PURPOSE_CATEGORIES.find((c) => c.slug === state.purpose);
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-6xl">
       {/* 프로그레스 바 */}
       {step !== 'result' && (
         <div className="mb-8">
@@ -119,7 +119,7 @@ export default function Wizard() {
           title="지금 뭐 하려고 하세요?"
           subtitle="목적을 선택하면 바로 다음으로 넘어갑니다"
         >
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {PURPOSE_CATEGORIES.map((cat) => (
               <button
                 key={cat.slug}
