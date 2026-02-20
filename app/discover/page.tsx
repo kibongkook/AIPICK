@@ -37,7 +37,7 @@ export default async function DiscoverPage() {
   return (
     <div className="min-h-screen">
       {/* 헤더 */}
-      <div className="mx-auto max-w-7xl px-4 pb-4 pt-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
         <div className="mb-8">
           <div className="mb-1 flex items-center gap-2">
             <Target className="h-7 w-7 text-primary" />

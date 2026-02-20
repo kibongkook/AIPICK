@@ -2,7 +2,7 @@
 
 > 모든 UI 구현 시 이 문서를 기준으로 삼는다.
 > 새 컴포넌트 또는 기능 추가 시 이 문서를 먼저 참고하고, 이 문서에 없는 패턴을 도입할 경우 여기에 추가한다.
-> 최종 수정일: 2026-02-20
+> 최종 수정일: 2026-02-20 (필터 탭 표준 + 페이지 패딩 규칙 확정)
 
 ---
 
@@ -130,13 +130,13 @@ building         bg-violet-50  border-violet-100
 ### 3.2 페이지 패딩
 
 ```tsx
-// 표준 페이지 래퍼
-px-4 sm:px-6 lg:px-8
-
-// 상하 패딩
-pt-6 pb-10  (컨텐츠 시작)
-py-8        (일반 섹션)
+// 표준 페이지 래퍼 (모든 섹션 페이지 동일)
+<div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 ```
+
+- **`py-8` (상단 32px, 하단 32px)**: 모든 섹션 페이지 표준 (rankings, recipes, news, discover 등)
+- `py-10`, `py-6`, `pt-8 pb-4` 등 변형 사용 금지
+- **예외 — discover**: 헤더가 별도 컨테이너이므로 `pt-8`만 사용 (pb는 생략 — mb-8이 gap을 담당)
 
 ### 3.3 페이지 헤더 표준 패턴
 
@@ -347,8 +347,9 @@ Paid:     bg-gray-100    text-gray-600     px-2.5 py-0.5
 
 | 크기 | 클래스 | 사용처 |
 |------|--------|--------|
-| Small | `px-3 py-1.5 text-sm` | 탭, 필터 버튼 |
-| Medium | `px-4 py-2 text-sm` | 일반 버튼 |
+| XSmall | `px-3 py-1 text-xs` | 정렬 옵션 칩 (discover 내부 sort) |
+| Small | `px-3 py-1.5 text-sm` | 보조 버튼, 인라인 액션 |
+| **Medium** | **`px-4 py-2 text-sm`** | **카테고리/필터 탭 (표준)**, 일반 버튼 |
 | Large | `px-6 py-3 text-base` | CTA 버튼 |
 | Full | `w-full py-2.5 text-sm` | 카드 내 CTA |
 
@@ -364,17 +365,17 @@ className="rounded-xl border border-gray-200 py-2.5 text-sm font-semibold text-f
 // Ghost (텍스트)
 className="text-sm font-medium text-primary hover:underline"
 
-// 탭/필터 (활성)
-className="rounded-full bg-primary px-3 py-1.5 text-sm font-medium text-white shadow-sm"
+// 카테고리/필터 탭 (활성) ← 모든 섹션 페이지 표준
+className="shrink-0 rounded-full bg-primary px-4 py-2 text-sm font-medium text-white transition-colors"
 
-// 탭/필터 (비활성)
-className="rounded-full bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-200"
+// 카테고리/필터 탭 (비활성)
+className="shrink-0 rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
 
-// 정렬 옵션 칩 (활성)
-className="rounded-full border border-primary bg-primary/5 px-3 py-1 text-xs font-medium text-primary"
+// 정렬 옵션 칩 (활성) ← discover 2차 정렬 전용 (작은 크기 유지)
+className="shrink-0 rounded-full border border-primary bg-primary/5 px-3 py-1 text-xs font-medium text-primary"
 
 // 정렬 옵션 칩 (비활성)
-className="rounded-full border border-gray-200 px-3 py-1 text-xs font-medium text-gray-500 hover:border-gray-300"
+className="shrink-0 rounded-full border border-gray-200 px-3 py-1 text-xs font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
 ```
 
 ---
@@ -530,13 +531,28 @@ px-4 sm:px-6 lg:px-8
 
 ## 15. 체크리스트 — 새 컴포넌트 추가 시
 
+**타이포그래피**
 - [ ] 폰트 사이즈는 `text-xs` ~ `text-2xl` 표준 계층만 사용
 - [ ] 임의 픽셀값(`text-[10px]`, `text-[13px]`) 사용 안 함
+
+**레이아웃**
+- [ ] 섹션 페이지 컨테이너: `mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8` (py-8 고정)
+- [ ] `py-10`, `py-6`, `pt-8 pb-4` 등 변형 사용 금지
+- [ ] 최대 너비: 용도에 맞는 `max-w-*` + `mx-auto` + `px-4 sm:px-6 lg:px-8`
+- [ ] 페이지 헤더: `mb-8` 감싸기 + `mb-1 flex items-center gap-2` + `h-7 w-7` 아이콘 + `text-2xl font-extrabold sm:text-3xl` h1 + `text-sm text-gray-500` 부제목
+
+**필터/탭**
+- [ ] 카테고리 필터 탭: `shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors` (Medium 크기)
+- [ ] 활성 탭: `bg-primary text-white` / 비활성 탭: `bg-gray-100 text-gray-600 hover:bg-gray-200`
+- [ ] 탭 컨테이너: `flex flex-wrap gap-2 mb-6`
+
+**카드**
 - [ ] 카드 기본 구조: `rounded-xl border border-border bg-white` 또는 `rounded-2xl border border-gray-100 bg-white`
 - [ ] 가격 배지: `PRICING_BADGE` 레코드에서 꺼내 쓰기 (직접 스타일 재정의 금지)
 - [ ] hover 상태에 반드시 `transition-*` 포함
-- [ ] 최대 너비: 용도에 맞는 `max-w-*` + `mx-auto` + `px-4 sm:px-6 lg:px-8`
-- [ ] 스크롤 숨김 필요 시: inline style 대신 `.scrollbar-hide` 클래스 사용
 - [ ] 카드 hover 애니메이션 필요 시: `.card-hover` 글로벌 클래스 활용
+
+**기타**
+- [ ] 스크롤 숨김 필요 시: inline style 대신 `.scrollbar-hide` 클래스 사용
 - [ ] 아이콘 크기는 섹션 8 표에서 선택
 - [ ] 빈 상태는 섹션 14 패턴 준수
