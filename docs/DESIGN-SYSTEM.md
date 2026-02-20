@@ -2,7 +2,7 @@
 
 > 모든 UI 구현 시 이 문서를 기준으로 삼는다.
 > 새 컴포넌트 또는 기능 추가 시 이 문서를 먼저 참고하고, 이 문서에 없는 패턴을 도입할 경우 여기에 추가한다.
-> 최종 수정일: 2026-02-20 (필터 탭 표준 + 페이지 패딩 규칙 확정)
+> 최종 수정일: 2026-02-20 (필터 탭 표준 + 페이지 패딩 + sticky 바 max-w-7xl 정렬 + 하드코딩 제거 규칙)
 
 ---
 
@@ -208,17 +208,31 @@ building         bg-violet-50  border-violet-100
 - 컨테이너: `flex flex-wrap gap-2 mb-6`
 - `shrink-0` 필수 (flex-wrap 환경에서 탭이 찌그러지지 않도록)
 
-**예외:**
-- `/discover`: 카테고리 탭 수가 많고 + 정렬 옵션 행이 추가되어 sticky 바 안에 `overflow-x-auto scrollbar-hide` 사용
-
 ### 3.5 Sticky 필터바
 
 ```tsx
-className="sticky top-14 z-20 border-b border-gray-100 bg-white/95 backdrop-blur-sm"
+{/* 외부 wrapper — 전체 너비 */}
+<div className="sticky top-14 z-20 border-b border-gray-100 bg-white/95 backdrop-blur-sm">
+  {/* 내부 wrapper — 카드 콘텐츠와 가로 정렬 맞춤 */}
+  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    {/* 카테고리 탭 */}
+    <div className="flex flex-wrap gap-2 pt-3 pb-2">
+      ...
+    </div>
+    {/* 정렬 옵션 (2차 행, 선택적) */}
+    <div className="flex items-center gap-2 pb-3">
+      ...
+    </div>
+  </div>
+</div>
 ```
+
+**규칙:**
 - `top-14`: 헤더(56px) 바로 아래
 - `z-20`: 카드 위, 모달 아래
 - `backdrop-blur-sm`: 스크롤 시 배경 블러
+- **내부 콘텐츠는 반드시 `mx-auto max-w-7xl px-4 sm:px-6 lg:px-8` 래퍼로 감싸야 한다** → 아래 카드 목록과 가로 기준선 일치
+- 카테고리 탭 컨테이너: `flex flex-wrap gap-2` (overflow-x-auto 사용 금지 — 화면 축소 시 wrap으로 처리)
 - 현재 적용: `/discover` 만 (카드가 많아 스크롤 중에도 필터 접근 필요)
 
 ---
@@ -551,6 +565,16 @@ px-4 sm:px-6 lg:px-8
 - [ ] 가격 배지: `PRICING_BADGE` 레코드에서 꺼내 쓰기 (직접 스타일 재정의 금지)
 - [ ] hover 상태에 반드시 `transition-*` 포함
 - [ ] 카드 hover 애니메이션 필요 시: `.card-hover` 글로벌 클래스 활용
+
+**Sticky 필터바**
+- [ ] 외부 div: `sticky top-14 z-20 border-b border-gray-100 bg-white/95 backdrop-blur-sm`
+- [ ] 내부 래퍼: `mx-auto max-w-7xl px-4 sm:px-6 lg:px-8` 필수 (카드 목록과 가로 정렬)
+- [ ] 탭 컨테이너: `flex flex-wrap gap-2` (`overflow-x-auto` 사용 금지)
+
+**하드코딩 금지**
+- [ ] 매직 넘버는 `lib/constants.ts`에 상수로 정의 (`MIN_SAMPLE_OUTPUT_LENGTH`, `HOT_NEWS_COUNT` 등)
+- [ ] 페이지/컴포넌트에서 공통으로 쓰는 데이터 배열(`CATEGORY_TABS`, `SORT_OPTIONS` 등)은 constants로 이동
+- [ ] 특정 URL 쿼리 키 문자열(`'weekly-best'` 등)도 constants에 정의
 
 **기타**
 - [ ] 스크롤 숨김 필요 시: inline style 대신 `.scrollbar-hide` 클래스 사용

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Target } from 'lucide-react';
-import { SITE_NAME } from '@/lib/constants';
+import { SITE_NAME, MIN_SAMPLE_OUTPUT_LENGTH } from '@/lib/constants';
 import { getTools } from '@/lib/supabase/queries';
 import OutputGallery from '@/components/discover/OutputGallery';
 import type { GalleryItem } from '@/components/discover/GalleryCard';
@@ -16,7 +16,7 @@ export default async function DiscoverPage() {
 
   // sample_output이 있는 도구만 GalleryItem 형태로 변환
   const galleryItems: GalleryItem[] = tools
-    .filter((t) => t.sample_output && t.sample_output.length > 30)
+    .filter((t) => t.sample_output && t.sample_output.length > MIN_SAMPLE_OUTPUT_LENGTH)
     .map((t) => {
       const primaryCat =
         t.categories?.find((c) => c.is_primary) ?? t.categories?.[0];

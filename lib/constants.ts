@@ -226,6 +226,52 @@ export const NEWS_CATEGORIES = {
   general: { label: '일반', color: 'bg-gray-100 text-gray-600' },
 } as const;
 
+export const NEWS_WEEKLY_BEST_KEY = 'weekly-best';
+
+export const NEWS_FILTER_TABS: { key: string | null; label: string }[] = [
+  { key: null, label: '전체' },
+  { key: NEWS_WEEKLY_BEST_KEY, label: '주간 베스트' },
+  { key: 'update', label: '업데이트' },
+  { key: 'launch', label: '신규 출시' },
+  { key: 'industry', label: '업계 동향' },
+  { key: 'pricing', label: '가격 변경' },
+];
+
+/** 주간 베스트 뉴스 최대 노출 수 */
+export const HOT_NEWS_COUNT = 20;
+
+// ==========================================
+// AI 찾기 (Discover) 설정
+// ==========================================
+
+/** sample_output이 의미 있는 길이인지 판별하는 최소 문자 수 */
+export const MIN_SAMPLE_OUTPUT_LENGTH = 30;
+
+export const DISCOVER_CATEGORY_TABS = [
+  { slug: '', label: '전체', emoji: '' },
+  { slug: 'chat', label: '아이디어', emoji: '💡' },
+  { slug: 'writing', label: '글쓰기', emoji: '✍️' },
+  { slug: 'design', label: '이미지', emoji: '🎨' },
+  { slug: 'coding', label: '코드', emoji: '💻' },
+  { slug: 'video', label: '영상', emoji: '🎬' },
+  { slug: 'music', label: '음악', emoji: '🎵' },
+  { slug: 'data', label: '데이터', emoji: '📊' },
+  { slug: 'presentation', label: '발표', emoji: '📑' },
+  { slug: 'marketing', label: '마케팅', emoji: '📢' },
+  { slug: 'translation', label: '번역', emoji: '🌍' },
+  { slug: 'automation', label: '자동화', emoji: '⚡' },
+  { slug: 'building', label: '서비스', emoji: '🚀' },
+] as const;
+
+export const DISCOVER_SORT_OPTIONS = [
+  { key: 'recommended', label: '추천순' },
+  { key: 'free', label: '💸 무료부터' },
+  { key: 'quality', label: '⭐ 고품질' },
+  { key: 'rich', label: '📄 풍부한 내용' },
+] as const;
+
+export type DiscoverSortKey = typeof DISCOVER_SORT_OPTIONS[number]['key'];
+
 // ==========================================
 // 페이지네이션 / UI
 // ==========================================

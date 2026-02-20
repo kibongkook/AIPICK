@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Newspaper } from 'lucide-react';
-import { SITE_NAME, NEWS_CATEGORIES } from '@/lib/constants';
+import { SITE_NAME, NEWS_CATEGORIES, NEWS_WEEKLY_BEST_KEY, NEWS_FILTER_TABS, HOT_NEWS_COUNT } from '@/lib/constants';
 import { getNews, getHotNews } from '@/lib/supabase/queries';
 import type { NewsCategory } from '@/types';
 import NewsCard from '@/components/news/NewsCard';
@@ -14,25 +14,14 @@ interface Props {
   searchParams: Promise<{ category?: string }>;
 }
 
-const WEEKLY_BEST_KEY = 'weekly-best';
-
-const NEWS_FILTER_TABS: { key: string | null; label: string }[] = [
-  { key: null, label: '전체' },
-  { key: WEEKLY_BEST_KEY, label: '주간 베스트' },
-  { key: 'update', label: '업데이트' },
-  { key: 'launch', label: '신규 출시' },
-  { key: 'industry', label: '업계 동향' },
-  { key: 'pricing', label: '가격 변경' },
-];
-
 export default async function NewsPage({ searchParams }: Props) {
   const { category } = await searchParams;
-  const isWeeklyBest = category === WEEKLY_BEST_KEY;
+  const isWeeklyBest = category === NEWS_WEEKLY_BEST_KEY;
   const validCategory = !isWeeklyBest && category && category in NEWS_CATEGORIES
     ? category as NewsCategory
     : undefined;
 
-  const news = isWeeklyBest ? await getHotNews(20) : await getNews(undefined, validCategory);
+  const news = isWeeklyBest ? await getHotNews(HOT_NEWS_COUNT) : await getNews(undefined, validCategory);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -50,7 +39,7 @@ export default async function NewsPage({ searchParams }: Props) {
         {NEWS_FILTER_TABS.map(({ key, label }) => {
           const isActive = key === null
             ? !validCategory && !isWeeklyBest
-            : key === WEEKLY_BEST_KEY
+            : key === NEWS_WEEKLY_BEST_KEY
               ? isWeeklyBest
               : validCategory === key;
           return (
