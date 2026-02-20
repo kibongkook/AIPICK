@@ -39,11 +39,11 @@ export default async function RecipesPage({ searchParams }: PageProps) {
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 헤더 */}
       <div className="mb-8">
-        <div className="flex items-center gap-2 mb-2">
-          <BookOpen className="h-6 w-6 text-primary" />
-          <h1 className="text-2xl font-extrabold text-foreground">AI 레시피</h1>
+        <div className="mb-1 flex items-center gap-2">
+          <BookOpen className="h-7 w-7 text-primary" />
+          <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">AI 레시피</h1>
         </div>
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-gray-500">
           여러 AI를 조합해서 원하는 결과물을 만드는 단계별 가이드
         </p>
       </div>

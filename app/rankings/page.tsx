@@ -4,6 +4,7 @@ import { Trophy, Star, Users } from 'lucide-react';
 import { SITE_NAME, SIDEBAR_CATEGORY_RANKINGS } from '@/lib/constants';
 import { getRankings, getCategories } from '@/lib/supabase/queries';
 import { cn, getAvatarColor, formatRating, formatVisitCount } from '@/lib/utils';
+import { getToolShortDescription } from '@/lib/tool-descriptions';
 import type { Tool } from '@/types';
 import TrendBadge from '@/components/ranking/TrendBadge';
 import ConfidenceBadge from '@/components/ranking/ConfidenceBadge';
@@ -30,19 +31,19 @@ export default async function RankingsPage({ searchParams }: Props) {
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 헤더 */}
       <div className="mb-8">
-        <div className="flex items-center gap-3">
+        <div className="mb-1 flex items-center gap-2">
           <Trophy className="h-7 w-7 text-yellow-500" />
           <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">
             AI 서비스 랭킹
           </h1>
         </div>
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="text-sm text-gray-500">
           외부 데이터 기반 객관적 하이브리드 점수 (사용자 리뷰 + 인기도 + 커뮤니티 + 벤치마크)
         </p>
       </div>
 
       {/* 카테고리 탭 필터 */}
-      <div className="mb-6 flex gap-2 overflow-x-auto pb-2">
+      <div className="mb-6 flex flex-wrap gap-2">
         <Link
           href="/rankings"
           className={cn(
@@ -75,9 +76,10 @@ export default async function RankingsPage({ searchParams }: Props) {
         {/* 테이블 헤더 */}
         <div className="grid grid-cols-12 gap-2 border-b border-border bg-gray-50/80 px-4 py-3 text-xs font-semibold text-gray-500 sm:px-6">
           <div className="col-span-1 text-center">#</div>
-          <div className="col-span-5 sm:col-span-4">서비스</div>
-          <div className="col-span-2 hidden sm:block text-center">카테고리</div>
-          <div className="col-span-2 text-center">평점</div>
+          <div className="col-span-7 sm:col-span-3 lg:col-span-2">서비스</div>
+          <div className="col-span-2 hidden lg:block text-center">카테고리</div>
+          <div className="col-span-3 hidden sm:block">설명</div>
+          <div className="col-span-2 sm:col-span-2 lg:col-span-1 text-center">평점</div>
           <div className="col-span-2 hidden sm:block text-center">점수</div>
           <div className="col-span-2 sm:col-span-1 text-center">변동</div>
         </div>
@@ -103,7 +105,7 @@ export default async function RankingsPage({ searchParams }: Props) {
               </div>
 
               {/* 서비스명 */}
-              <div className="col-span-5 sm:col-span-4 flex items-center gap-3 min-w-0">
+              <div className="col-span-7 sm:col-span-3 lg:col-span-2 flex items-center gap-3 min-w-0">
                 {tool.logo_url ? (
                   <img src={tool.logo_url} alt={tool.name} className="h-9 w-9 rounded-xl object-cover shrink-0 ring-1 ring-border" />
                 ) : (
@@ -130,12 +132,19 @@ export default async function RankingsPage({ searchParams }: Props) {
               </div>
 
               {/* 카테고리 */}
-              <div className="col-span-2 hidden sm:flex justify-center">
-                <span className="text-xs text-gray-500 rounded-full bg-gray-50 px-2 py-0.5">{cat?.name || '-'}</span>
+              <div className="col-span-2 hidden lg:flex justify-center">
+                <span className="text-xs text-gray-500 rounded-full bg-gray-50 px-2 py-0.5 truncate">{cat?.name || '-'}</span>
+              </div>
+
+              {/* 설명 */}
+              <div className="col-span-3 hidden sm:block min-w-0">
+                <span className="text-xs text-gray-500 line-clamp-1">
+                  {getToolShortDescription(tool.slug, cat?.name)}
+                </span>
               </div>
 
               {/* 평점 */}
-              <div className="col-span-2 flex items-center justify-center gap-1">
+              <div className="col-span-2 lg:col-span-1 flex items-center justify-center gap-1">
                 {hasRating ? (
                   <>
                     <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />

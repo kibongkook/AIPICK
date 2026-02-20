@@ -25,10 +25,10 @@ export default function RecipeCategoryFilter() {
       <button
         onClick={() => handleFilter('all')}
         className={cn(
-          'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-all',
+          'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors',
           current === 'all'
-            ? 'bg-primary text-white shadow-sm'
-            : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+            ? 'bg-primary text-white'
+            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
         )}
       >
         전체
@@ -38,10 +38,10 @@ export default function RecipeCategoryFilter() {
           key={key}
           onClick={() => handleFilter(key)}
           className={cn(
-            'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-all',
+            'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors',
             current === key
-              ? 'bg-primary text-white shadow-sm'
-              : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+              ? 'bg-primary text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
           )}
         >
           <DynamicIcon name={config.icon} className="h-3 w-3" />
