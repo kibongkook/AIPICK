@@ -605,6 +605,15 @@ export const RECIPE_DIFFICULTY = {
   hard: { label: '어려움', color: 'bg-red-100 text-red-700' },
 } as const;
 
+/** v2 난이도 — 5단계 (아주 쉬움 ~ 전문가) */
+export const RECIPE_DIFFICULTY_V2 = {
+  'very-easy': { label: '아주 쉬움', color: 'bg-blue-100 text-blue-700', stars: 1 },
+  'easy':      { label: '쉬움',     color: 'bg-emerald-100 text-emerald-700', stars: 2 },
+  'medium':    { label: '보통',     color: 'bg-amber-100 text-amber-700', stars: 3 },
+  'hard':      { label: '어려움',   color: 'bg-red-100 text-red-700', stars: 4 },
+  'expert':    { label: '전문가',   color: 'bg-purple-100 text-purple-700', stars: 5 },
+} as const;
+
 // ==========================================
 // 알림 시스템
 // ==========================================

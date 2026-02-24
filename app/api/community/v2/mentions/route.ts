@@ -18,10 +18,11 @@ export async function GET(request: NextRequest) {
     const { createClient } = await import('@/lib/supabase/server');
     const supabase = await createClient();
 
+    const safeQuery = query.replace(/[%_\\]/g, (c: string) => `\\${c}`);
     const { data } = await supabase
       .from('tools')
       .select('id, name, slug')
-      .or(`name.ilike.%${query}%,slug.ilike.%${query}%`)
+      .or(`name.ilike.%${safeQuery}%,slug.ilike.%${safeQuery}%`)
       .order('visit_count', { ascending: false })
       .limit(8);
 

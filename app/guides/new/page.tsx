@@ -76,17 +76,22 @@ export default function NewGuidePage() {
     router.push('/guides');
   };
 
-  // 간단한 마크다운 렌더링
+  // HTML 특수문자 이스케이핑 (XSS 방지)
+  const escapeHtml = (str: string) =>
+    str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+
+  // 간단한 마크다운 렌더링 (XSS-safe)
   const renderMarkdown = (md: string) => {
     return md
       .split('\n')
       .map((line) => {
-        if (line.startsWith('### ')) return `<h3 class="text-base font-bold mt-4 mb-2">${line.slice(4)}</h3>`;
-        if (line.startsWith('## ')) return `<h2 class="text-lg font-bold mt-5 mb-2">${line.slice(3)}</h2>`;
-        if (line.startsWith('# ')) return `<h1 class="text-xl font-bold mt-6 mb-3">${line.slice(2)}</h1>`;
-        if (line.startsWith('- ')) return `<li class="ml-4 list-disc text-sm text-gray-700">${line.slice(2)}</li>`;
+        const safe = escapeHtml(line);
+        if (line.startsWith('### ')) return `<h3 class="text-base font-bold mt-4 mb-2">${escapeHtml(line.slice(4))}</h3>`;
+        if (line.startsWith('## ')) return `<h2 class="text-lg font-bold mt-5 mb-2">${escapeHtml(line.slice(3))}</h2>`;
+        if (line.startsWith('# ')) return `<h1 class="text-xl font-bold mt-6 mb-3">${escapeHtml(line.slice(2))}</h1>`;
+        if (line.startsWith('- ')) return `<li class="ml-4 list-disc text-sm text-gray-700">${escapeHtml(line.slice(2))}</li>`;
         if (line.trim() === '') return '<br/>';
-        return `<p class="text-sm text-gray-700 leading-relaxed">${line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`;
+        return `<p class="text-sm text-gray-700 leading-relaxed">${safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`;
       })
       .join('');
   };

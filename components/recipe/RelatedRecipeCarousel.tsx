@@ -4,10 +4,10 @@ import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight, ArrowRight, BookOpen } from 'lucide-react';
 import RecipeCard from './RecipeCard';
-import type { AIRecipe } from '@/types';
+import type { AnyRecipe } from '@/types';
 
 interface RelatedRecipeCarouselProps {
-  recipes: AIRecipe[];
+  recipes: AnyRecipe[];
   categorySlug: string;
 }
 

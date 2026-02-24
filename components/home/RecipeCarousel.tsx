@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { BookOpen, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
-import { AI_RECIPES } from '@/data/recipes';
+import { ALL_RECIPES } from '@/data/recipes';
+import { toRecipeV2 } from '@/lib/recipe-adapter';
 import RecipeCard from '@/components/recipe/RecipeCard';
 import RecipeCommunitySection from './RecipeCommunitySection';
 import type { CommunityPost } from '@/types';
@@ -61,7 +62,7 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
   const containerRef = useRef<HTMLDivElement>(null);
 
   // 필터링된 레시피 목록
-  const filteredRecipes = AI_RECIPES.filter(recipe => {
+  const filteredRecipes = ALL_RECIPES.filter(recipe => {
     const filterConfig = RECIPE_FILTERS.find(f => f.id === selectedFilter);
     return (filterConfig?.categories as readonly string[]).includes(recipe.category);
   });
@@ -93,12 +94,10 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
   const nextRecipe = filteredRecipes[nextIndex];
 
   // 현재 레시피에서 사용하는 도구 목록 추출
+  const currentV2 = toRecipeV2(currentRecipe);
+  const allSteps = currentV2.options.flatMap(opt => opt.steps);
   const recipeTools = Array.from(
-    new Set(
-      currentRecipe.steps
-        .map(step => step.tool_slug)
-        .concat(currentRecipe.steps.flatMap(step => step.alt_tools || []))
-    )
+    new Set(allSteps.map(step => step.tool_slug))
   );
 
   /** 인덱스 변경 (필터 경계 처리 포함) */
@@ -117,7 +116,7 @@ export default function RecipeCarousel({ communityPosts: initialPosts }: RecipeC
         const idx = RECIPE_FILTERS.findIndex(f => f.id === selectedFilter);
         const prevIdx = (idx - 1 + RECIPE_FILTERS.length) % RECIPE_FILTERS.length;
         const prevFilter = RECIPE_FILTERS[prevIdx];
-        const prevRecipes = AI_RECIPES.filter(r =>
+        const prevRecipes = ALL_RECIPES.filter(r =>
           (prevFilter.categories as readonly string[]).includes(r.category)
         );
         setSelectedFilter(prevFilter.id);

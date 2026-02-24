@@ -8,7 +8,7 @@ function getAdminEmails(): string[] {
 export function isAdminEmail(email: string | undefined | null): boolean {
   if (!email) return false;
   const admins = getAdminEmails();
-  // 관리자 목록이 비어있으면 모든 인증 사용자를 허용 (개발 편의)
-  if (admins.length === 0) return true;
+  // 관리자 목록이 비어있으면 관리자 없음 (ADMIN_EMAILS 환경변수 필수)
+  if (admins.length === 0) return false;
   return admins.includes(email.toLowerCase());
 }

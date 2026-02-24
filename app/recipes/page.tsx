@@ -1,6 +1,8 @@
 import { Suspense } from 'react';
 import { BookOpen } from 'lucide-react';
-import { AI_RECIPES } from '@/data/recipes';
+import { ALL_RECIPES } from '@/data/recipes';
+import { toRecipeV2 } from '@/lib/recipe-adapter';
+import { getMinDifficulty } from '@/lib/recipe-adapter';
 import RecipeCard from '@/components/recipe/RecipeCard';
 import RecipeCategoryFilter from '@/components/recipe/RecipeCategoryFilter';
 import { RECIPE_CATEGORIES } from '@/lib/constants';
@@ -19,16 +21,19 @@ export default async function RecipesPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const category = params.category || 'all';
 
-  // 난이도 순서: 쉬움 → 보통 → 어려움, 같은 난이도 내에서 tool_count 적은 순
-  const DIFFICULTY_ORDER: Record<string, number> = { easy: 0, medium: 1, hard: 2 };
   const filtered = category === 'all'
-    ? AI_RECIPES
-    : AI_RECIPES.filter(r => r.category === category);
+    ? ALL_RECIPES
+    : ALL_RECIPES.filter(r => r.category === category);
+
+  // 난이도 순서: 최소 난이도 오름차순, 같으면 옵션 수 많은 것 우선
   const recipes = [...filtered].sort((a, b) => {
-    const diffA = DIFFICULTY_ORDER[a.difficulty] ?? 1;
-    const diffB = DIFFICULTY_ORDER[b.difficulty] ?? 1;
+    const v2A = toRecipeV2(a);
+    const v2B = toRecipeV2(b);
+    const diffA = getMinDifficulty(v2A);
+    const diffB = getMinDifficulty(v2B);
     if (diffA !== diffB) return diffA - diffB;
-    return a.tool_count - b.tool_count;
+    // 멀티옵션 레시피를 위로
+    return v2B.options.length - v2A.options.length;
   });
 
   const categoryLabel = category !== 'all' && category in RECIPE_CATEGORIES

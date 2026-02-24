@@ -617,7 +617,17 @@ export interface DailyPick {
 // ==========================================
 // AI 레시피 (워크플로우 가이드)
 // ==========================================
+
+/** v1 난이도 (하위 호환) */
 export type RecipeDifficulty = 'easy' | 'medium' | 'hard';
+
+/** v2 난이도 — 5단계 */
+export type RecipeDifficultyV2 =
+  | 'very-easy'   // 아주 쉬움 — 클릭 몇 번으로 완성
+  | 'easy'        // 쉬움 — 기본 프롬프트 입력 수준
+  | 'medium'      // 보통 — 여러 도구 조합
+  | 'hard'        // 어려움 — 세밀한 설정 + 반복 작업
+  | 'expert';     // 전문가 — 외부 도구 연동 + 고급 기법
 
 export type RecipeCategory =
   | 'music' | 'video' | 'image' | 'marketing' | 'presentation'
@@ -625,6 +635,7 @@ export type RecipeCategory =
   | 'brand' | 'comic' | '3d'
   | 'writing' | 'design' | 'audio' | 'coding' | 'business' | 'data' | 'personal';
 
+/** v1 단계 (하위 호환) */
 export interface RecipeStep {
   step: number;
   title: string;
@@ -636,6 +647,36 @@ export interface RecipeStep {
   tip?: string;              // 핵심 팁
 }
 
+/** v2 단계 — 소요시간 + 선택적 단계 추가 */
+export interface RecipeStepV2 {
+  step: number;
+  title: string;
+  tool_slug: string;
+  tool_name: string;
+  action: string;
+  prompt_example?: string;
+  tip?: string;
+  estimated_time?: string;   // 이 단계의 예상 소요 시간
+  optional?: boolean;        // 건너뛰어도 되는 선택적 단계
+}
+
+/** 멀티옵션 레시피의 하나의 경로 */
+export interface RecipeOption {
+  option_id: string;           // "direct", "gpt-suno" 등
+  title: string;               // "Suno에서 바로 만들기"
+  subtitle: string;            // "프롬프트 한 줄이면 3분 안에 노래 완성"
+  difficulty: RecipeDifficultyV2;
+  estimated_time: string;
+  tool_count: number;
+  steps: RecipeStepV2[];
+  pros: string[];              // 장점 목록 (최소 2개)
+  cons: string[];              // 단점 목록 (최소 1개)
+  best_for: string;            // 추천 대상
+  quality_rating: 1 | 2 | 3 | 4 | 5;
+  customization_rating: 1 | 2 | 3 | 4 | 5;
+}
+
+/** v1 레시피 (하위 호환) */
 export interface AIRecipe {
   slug: string;
   title: string;
@@ -649,6 +690,31 @@ export interface AIRecipe {
   tags: string[];
   icon: string;              // Lucide icon name
   color: string;             // gradient class
+}
+
+/** v2 멀티옵션 레시피 */
+export interface AIRecipeV2 {
+  slug: string;
+  title: string;
+  subtitle: string;
+  category: RecipeCategory;
+  difficulty_range: {
+    min: RecipeDifficultyV2;
+    max: RecipeDifficultyV2;
+  };
+  result_description: string;
+  tags: string[];
+  icon: string;
+  color: string;
+  options: RecipeOption[];   // 쉬운 순 → 어려운 순 정렬
+}
+
+/** v1 또는 v2 레시피 유니온 타입 */
+export type AnyRecipe = AIRecipe | AIRecipeV2;
+
+/** v2 레시피인지 타입 가드 */
+export function isRecipeV2(recipe: AnyRecipe): recipe is AIRecipeV2 {
+  return 'options' in recipe && Array.isArray((recipe as AIRecipeV2).options);
 }
 
 // ==========================================

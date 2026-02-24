@@ -121,9 +121,10 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // 키워드 검색
+  // 키워드 검색 (PostgREST 특수문자 이스케이핑)
   if (keyword) {
-    query = query.or(`title.ilike.%${keyword}%,content.ilike.%${keyword}%`);
+    const safeKeyword = keyword.replace(/[%_\\]/g, (c) => `\\${c}`);
+    query = query.or(`title.ilike.%${safeKeyword}%,content.ilike.%${safeKeyword}%`);
   }
 
   // 정렬

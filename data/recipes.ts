@@ -1,8 +1,10 @@
-import type { AIRecipe } from '@/types';
+import type { AIRecipe, AnyRecipe } from '@/types';
+import { AI_RECIPES_V2 } from './recipes-v2';
 
 /**
- * AI 레시피 시드 데이터
+ * AI 레시피 시드 데이터 (v1)
  * tool_slug는 AIPICK에 등록된 도구의 slug와 매칭됨
+ * v2 확장된 레시피는 recipes-v2.ts에 정의되며, 같은 slug는 v2가 우선됨
  */
 export const AI_RECIPES: AIRecipe[] = [
   // ==========================================
@@ -2125,11 +2127,24 @@ export const AI_RECIPES: AIRecipe[] = [
   },
 ];
 
+/** v2가 존재하는 slug 세트 */
+const V2_SLUGS = new Set(AI_RECIPES_V2.map(r => r.slug));
+
 /**
- * slug로 레시피 찾기
+ * 통합 레시피 목록: v2 레시피 + v1 중 v2에 없는 것
+ * 페이지에서는 이 목록을 사용
  */
-export function getRecipeBySlug(slug: string): AIRecipe | undefined {
-  return AI_RECIPES.find(r => r.slug === slug);
+export const ALL_RECIPES: AnyRecipe[] = [
+  ...AI_RECIPES_V2,
+  ...AI_RECIPES.filter(r => !V2_SLUGS.has(r.slug)),
+];
+
+/**
+ * slug로 레시피 찾기 (v2 우선, 없으면 v1)
+ */
+export function getRecipeBySlug(slug: string): AnyRecipe | undefined {
+  return AI_RECIPES_V2.find(r => r.slug === slug)
+    ?? AI_RECIPES.find(r => r.slug === slug);
 }
 
 /**

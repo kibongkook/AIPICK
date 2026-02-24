@@ -6,22 +6,24 @@ import CommunityPostCardV2 from '@/components/community/v2/CommunityPostCardV2';
 import QuickWriteInput from '@/components/community/v2/QuickWriteInput';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
 import { COMMUNITY_STORAGE_KEY } from '@/lib/constants';
-import type { CommunityPost, AIRecipe, CommunityTag } from '@/types';
+import { toRecipeV2 } from '@/lib/recipe-adapter';
+import type { CommunityPost, AnyRecipe, CommunityTag } from '@/types';
 
 const useApi = isSupabaseConfigured();
 
 interface RecipeCommunitySectionProps {
-  recipe: AIRecipe;
+  recipe: AnyRecipe;
   recipeTools: string[];
 }
 
-export default function RecipeCommunitySection({ recipe, recipeTools }: RecipeCommunitySectionProps) {
+export default function RecipeCommunitySection({ recipe: raw, recipeTools }: RecipeCommunitySectionProps) {
+  const recipe = useMemo(() => toRecipeV2(raw), [raw]);
   const [posts, setPosts] = useState<CommunityPost[]>([]);
   const [loading, setLoading] = useState(true);
 
   // 레시피에서 관련 태그 값 추출 (도구 slug + 대체 도구 + 레시피 태그) — OR 필터
   const relatedTagValues = useMemo(() => {
-    const toolSlugs = [...new Set(recipe.steps.map(s => s.tool_slug))];
+    const toolSlugs = [...new Set(recipe.options.flatMap(opt => opt.steps.map(s => s.tool_slug)))];
     const recipeTags = recipe.tags || [];
     return [...toolSlugs, ...recipeTools, ...recipeTags]
       .map(t => t.toLowerCase())
@@ -82,7 +84,7 @@ export default function RecipeCommunitySection({ recipe, recipeTools }: RecipeCo
   useEffect(() => { fetchPosts(); }, [fetchPosts]);
 
   const handleQuickPost = useCallback(async (data: { content: string; post_type?: string; tags?: string[]; media?: any[] }) => {
-    const toolSlugs = [...new Set(recipe.steps.map(s => s.tool_slug))];
+    const toolSlugs = [...new Set(recipe.options.flatMap(opt => opt.steps.map(s => s.tool_slug)))];
     const manualTags = [...(data.tags || []), ...toolSlugs];
 
     if (useApi) {
@@ -131,7 +133,7 @@ export default function RecipeCommunitySection({ recipe, recipeTools }: RecipeCo
             id: `tag-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
             tag_type: 'AI_TOOL' as const,
             tag_value: slug,
-            tag_display: recipe.steps.find(s => s.tool_slug === slug)?.tool_name || slug,
+            tag_display: recipe.options.flatMap(o => o.steps).find(s => s.tool_slug === slug)?.tool_name || slug,
             tag_normalized: slug.toLowerCase(),
             tag_color: null,
             tag_icon: null,

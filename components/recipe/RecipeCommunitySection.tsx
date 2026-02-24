@@ -8,7 +8,8 @@ import { COMMUNITY_POST_TYPES, COMMUNITY_STORAGE_KEY } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import QuickWriteInput from '@/components/community/v2/QuickWriteInput';
 import CommunityPostCardV2 from '@/components/community/v2/CommunityPostCardV2';
-import type { CommunityPost, CommunityPostType, CommunityTag, MediaAttachment, AIRecipe } from '@/types';
+import { toRecipeV2 } from '@/lib/recipe-adapter';
+import type { CommunityPost, CommunityPostType, CommunityTag, MediaAttachment, AnyRecipe } from '@/types';
 
 const useApi = isSupabaseConfigured();
 
@@ -25,11 +26,12 @@ const SORT_OPTIONS = [
 ];
 
 interface RecipeCommunitySectionProps {
-  recipe: AIRecipe;
+  recipe: AnyRecipe;
 }
 
-export default function RecipeCommunitySection({ recipe }: RecipeCommunitySectionProps) {
+export default function RecipeCommunitySection({ recipe: raw }: RecipeCommunitySectionProps) {
   const router = useRouter();
+  const recipe = useMemo(() => toRecipeV2(raw), [raw]);
   const [posts, setPosts] = useState<CommunityPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [typeFilter, setTypeFilter] = useState<CommunityPostType | 'all'>('all');
@@ -37,7 +39,7 @@ export default function RecipeCommunitySection({ recipe }: RecipeCommunitySectio
 
   // 레시피에서 관련 태그 값 추출 (도구 slug + 레시피 태그)
   const relatedTagValues = useMemo(() => {
-    const toolSlugs = [...new Set(recipe.steps.map(s => s.tool_slug))];
+    const toolSlugs = [...new Set(recipe.options.flatMap(opt => opt.steps.map(s => s.tool_slug)))];
     const recipeTags = recipe.tags || [];
     return [...toolSlugs, ...recipeTags].map(t => t.toLowerCase());
   }, [recipe]);
@@ -110,7 +112,7 @@ export default function RecipeCommunitySection({ recipe }: RecipeCommunitySectio
     post_type?: CommunityPostType;
   }) => {
     // 레시피의 도구 slug들을 수동 태그로 추가
-    const toolSlugs = [...new Set(recipe.steps.map(s => s.tool_slug))];
+    const toolSlugs = [...new Set(recipe.options.flatMap(opt => opt.steps.map(s => s.tool_slug)))];
     const manualTags = [...(data.tags || []), ...toolSlugs];
 
     if (useApi) {
@@ -159,7 +161,7 @@ export default function RecipeCommunitySection({ recipe }: RecipeCommunitySectio
             id: `tag-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
             tag_type: 'AI_TOOL' as const,
             tag_value: slug,
-            tag_display: recipe.steps.find(s => s.tool_slug === slug)?.tool_name || slug,
+            tag_display: recipe.options.flatMap(o => o.steps).find(s => s.tool_slug === slug)?.tool_name || slug,
             tag_normalized: slug.toLowerCase(),
             tag_color: null,
             tag_icon: null,

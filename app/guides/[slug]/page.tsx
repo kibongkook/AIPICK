@@ -76,9 +76,20 @@ function markdownToHtml(md: string): string {
   return htmlLines.join('\n');
 }
 
-/** Apply inline formatting: **bold** */
+/** HTML 특수문자 이스케이핑 */
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+/** Apply inline formatting: **bold** (XSS-safe) */
 function applyInline(text: string): string {
-  return text.replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>');
+  const escaped = escapeHtml(text);
+  return escaped.replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>');
 }
 
 interface Props {

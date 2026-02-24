@@ -81,6 +81,7 @@ export function delay(ms: number): Promise<void> {
  */
 export function verifyCronAuth(authHeader: string | null): boolean {
   const cronSecret = process.env.CRON_SECRET;
-  if (!cronSecret) return true;
+  // CRON_SECRET 미설정 시 차단 (배포 환경에서 반드시 설정 필요)
+  if (!cronSecret) return false;
   return authHeader === `Bearer ${cronSecret}`;
 }
