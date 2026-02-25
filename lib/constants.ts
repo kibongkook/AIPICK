@@ -228,6 +228,35 @@ export const NEWS_CATEGORIES = {
 
 export const NEWS_WEEKLY_BEST_KEY = 'weekly-best';
 
+// ==========================================
+// AI 서비스 변경 이력 (Tool Updates)
+// ==========================================
+export const TOOL_UPDATE_TYPES = {
+  feature:     { label: '새 기능',       icon: 'Sparkles',   color: 'bg-blue-100 text-blue-700' },
+  model:       { label: '모델 업데이트', icon: 'Brain',      color: 'bg-purple-100 text-purple-700' },
+  pricing:     { label: '가격 변경',     icon: 'DollarSign', color: 'bg-orange-100 text-orange-700' },
+  improvement: { label: '개선',          icon: 'TrendingUp', color: 'bg-emerald-100 text-emerald-700' },
+  api:         { label: 'API 변경',      icon: 'Code',       color: 'bg-gray-100 text-gray-700' },
+  other:       { label: '기타',          icon: 'Info',       color: 'bg-gray-100 text-gray-600' },
+} as const;
+
+export const UPDATE_IMPACT = {
+  major: { label: '주요 업데이트', color: 'text-orange-600' },
+  minor: { label: '소규모 업데이트', color: 'text-gray-500' },
+} as const;
+
+export const TOOL_UPDATE_FILTER_TABS: { key: string | null; label: string }[] = [
+  { key: null, label: '전체' },
+  { key: 'feature', label: '새 기능' },
+  { key: 'model', label: '모델 업데이트' },
+  { key: 'pricing', label: '가격 변경' },
+  { key: 'improvement', label: '개선' },
+  { key: 'api', label: 'API' },
+];
+
+/** 도구 상세 페이지 타임라인 기본 표시 수 */
+export const TOOL_UPDATES_PREVIEW_COUNT = 3;
+
 export const NEWS_FILTER_TABS: { key: string | null; label: string }[] = [
   { key: null, label: '전체' },
   { key: NEWS_WEEKLY_BEST_KEY, label: '주간 베스트' },

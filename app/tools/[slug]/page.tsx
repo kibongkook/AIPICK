@@ -3,7 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ExternalLink, Zap, ThumbsUp, ArrowLeft, Check, X, Info, Lightbulb } from 'lucide-react';
 import { SITE_NAME, SITE_URL, PRICING_CONFIG } from '@/lib/constants';
-import { getToolBySlug, getCategoryBySlug, getSimilarTools, getCategories, getTools, getToolBenchmarks, getToolExternalScores } from '@/lib/supabase/queries';
+import { getToolBySlug, getCategoryBySlug, getSimilarTools, getCategories, getTools, getToolBenchmarks, getToolExternalScores, getToolUpdates } from '@/lib/supabase/queries';
 import { getPopularCompareTargets, getCompareUrl } from '@/lib/compare/popular-pairs';
 import { cn, getAvatarColor, formatVisitCount } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
@@ -18,6 +18,7 @@ import BenchmarkScores from '@/components/ranking/BenchmarkScores';
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import LogoImage from '@/components/ui/LogoImage';
 import MobileStickyBar from '@/components/service/MobileStickyBar';
+import ToolUpdateTimeline from '@/components/tool-updates/ToolUpdateTimeline';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -51,9 +52,10 @@ export default async function ToolDetailPage({ params }: Props) {
   const categories = await getCategories();
   const primaryCategory = tool.categories?.find(c => c.is_primary) || tool.categories?.[0];
   const category = categories.find((c) => c.id === primaryCategory?.id);
-  const [similarTools, benchmarks] = await Promise.all([
+  const [similarTools, benchmarks, toolUpdates] = await Promise.all([
     getSimilarTools(tool, 3),
     tool.has_benchmark_data ? getToolBenchmarks(tool.id) : Promise.resolve([]),
+    getToolUpdates(tool.id),
   ]);
   const pricingStyle = PRICING_CONFIG[tool.pricing_type];
   const pricingVariant = tool.pricing_type === 'Free' ? 'free' : tool.pricing_type === 'Freemium' ? 'freemium' : 'paid';
@@ -224,6 +226,11 @@ export default async function ToolDetailPage({ params }: Props) {
                 ))}
               </ol>
             </section>
+          )}
+
+          {/* 업데이트 이력 */}
+          {toolUpdates.length > 0 && (
+            <ToolUpdateTimeline updates={toolUpdates} />
           )}
 
           {/* 커뮤니티 (평가 + 자유글 + 팁 + 질문) */}

@@ -6,6 +6,8 @@ import {
   MessageSquare, Zap, BarChart, Presentation, Rocket,
   Heart, User, Building, Clapperboard, Headphones, Terminal,
   Globe, FileText, Search, Layers, MessageCircle,
+  // tool_updates 아이콘
+  Brain, DollarSign, Info,
   // 레시피 아이콘 추가분
   Smartphone, ShoppingBag, Film, Mic, Mail,
   Instagram, Newspaper, CreditCard, Youtube, Monitor,
@@ -58,6 +60,10 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Search,
   Layers,
   MessageCircle,
+  // tool_updates 아이콘
+  Brain,
+  DollarSign,
+  Info,
   // 레시피 아이콘
   Smartphone,
   ShoppingBag,

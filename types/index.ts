@@ -14,6 +14,8 @@ export type CommunityTargetType = 'tool' | 'news' | 'guide' | 'general';
 export type MediaType = 'image' | 'video';
 export type TrendDirection = 'up' | 'down' | 'stable' | 'new';
 export type ConfidenceLevel = 'high' | 'medium' | 'low' | 'none';
+export type ToolUpdateType = 'feature' | 'model' | 'pricing' | 'improvement' | 'api' | 'other';
+export type UpdateImpact = 'major' | 'minor';
 
 // ==========================================
 // 통일 카테고리 (12개) — seed.json categories와 동일
@@ -311,6 +313,26 @@ export interface News {
   view_count: number;
   published_at: string;
   created_at: string;
+}
+
+// ==========================================
+// AI 서비스 변경 이력 (Tool Updates)
+// ==========================================
+export interface ToolUpdate {
+  id: string;
+  tool_id: string;
+  update_type: ToolUpdateType;
+  title: string;
+  description: string | null;
+  source_url: string | null;
+  image_url: string | null;
+  version: string | null;
+  impact: UpdateImpact;
+  announced_at: string;
+  created_at: string;
+  updated_at: string;
+  // 조인 시 포함
+  tool?: Pick<Tool, 'name' | 'slug' | 'logo_url'>;
 }
 
 // ==========================================

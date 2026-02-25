@@ -10,7 +10,7 @@ import type {
   News, Guide, NewsCategory, PurposeSlug, UserTypeSlug,
   ToolBenchmarkScore, ToolExternalScore, ToolPricingData, CategoryPopularity, ScoringWeight,
   CategoryShowcase, ToolShowcase, RoleShowcase, RoleUseCaseShowcase,
-  DailyPick, CommunityPost,
+  DailyPick, CommunityPost, ToolUpdate, ToolUpdateType,
 } from '@/types';
 import { HERO_KEYWORDS } from '@/lib/constants';
 import seedData from '@/data/seed.json';
@@ -81,6 +81,7 @@ const seed = {
   guides: seedRaw.guides as Guide[] | undefined,
   collections: seedRaw.collections as SeedCollection[] | undefined,
   tool_benchmark_scores: seedRaw.tool_benchmark_scores as ToolBenchmarkScore[] | undefined,
+  tool_updates: seedRaw.tool_updates as ToolUpdate[] | undefined,
   category_showcases: seedRaw.category_showcases as CategoryShowcase[] | undefined,
   tool_showcases: seedRaw.tool_showcases as ToolShowcase[] | undefined,
   role_showcases: seedRaw.role_showcases as RoleShowcase[] | undefined,
@@ -1487,6 +1488,77 @@ export async function getTrendingQuestions(limit = 5): Promise<CommunityPost[]> 
     if (data?.length) return data as CommunityPost[];
   }
   return [];
+}
+
+// ==========================================
+// AI 서비스 변경 이력 (Tool Updates)
+// ==========================================
+
+/** 특정 도구의 업데이트 이력 */
+export async function getToolUpdates(toolId: string, limit = 10): Promise<ToolUpdate[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tool_updates')
+      .select('*')
+      .eq('tool_id', toolId)
+      .order('announced_at', { ascending: false })
+      .limit(limit);
+    if (data?.length) return data as ToolUpdate[];
+  }
+  return (seed.tool_updates || [])
+    .filter(u => u.tool_id === toolId)
+    .sort((a, b) => new Date(b.announced_at).getTime() - new Date(a.announced_at).getTime())
+    .slice(0, limit);
+}
+
+/** 전체 최신 업데이트 (크로스 도구) */
+export async function getRecentUpdates(limit = 20): Promise<ToolUpdate[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tool_updates')
+      .select('*, tool:tools(name, slug, logo_url)')
+      .order('announced_at', { ascending: false })
+      .limit(limit);
+    if (data?.length) return data as ToolUpdate[];
+  }
+  // seed fallback: tool 정보 수동 조인
+  const updates = [...(seed.tool_updates || [])]
+    .sort((a, b) => new Date(b.announced_at).getTime() - new Date(a.announced_at).getTime())
+    .slice(0, limit);
+  return updates.map(u => {
+    const tool = seed.tools.find(t => t.id === u.tool_id);
+    return {
+      ...u,
+      tool: tool ? { name: tool.name, slug: tool.slug, logo_url: tool.logo_url } : undefined,
+    };
+  });
+}
+
+/** 타입별 필터 업데이트 */
+export async function getRecentUpdatesByType(type: ToolUpdateType, limit = 20): Promise<ToolUpdate[]> {
+  const supabase = await db();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tool_updates')
+      .select('*, tool:tools(name, slug, logo_url)')
+      .eq('update_type', type)
+      .order('announced_at', { ascending: false })
+      .limit(limit);
+    if (data?.length) return data as ToolUpdate[];
+  }
+  const updates = [...(seed.tool_updates || [])]
+    .filter(u => u.update_type === type)
+    .sort((a, b) => new Date(b.announced_at).getTime() - new Date(a.announced_at).getTime())
+    .slice(0, limit);
+  return updates.map(u => {
+    const tool = seed.tools.find(t => t.id === u.tool_id);
+    return {
+      ...u,
+      tool: tool ? { name: tool.name, slug: tool.slug, logo_url: tool.logo_url } : undefined,
+    };
+  });
 }
 
 // ==========================================
