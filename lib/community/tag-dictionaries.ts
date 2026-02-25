@@ -816,6 +816,60 @@ export const AI_TOOL_ALIASES: Record<string, string[]> = {
   'craft': [
     'craft docs', 'craft ai',
   ],
+
+  // ─── 2026년 2월 신규 서비스 ───
+  'seedance': [
+    'seedance', 'seedance 2.0', 'seedance2', 'seed dance',
+    '시댄스', '씨댄스', 'bytedance video', 'jimeng', '즉몽',
+  ],
+  'deepseek': [
+    'deepseek', 'deep seek', 'deep-seek',
+    '딥시크', '딥씩', 'deepseek-r1', 'deepseek r1', 'deepseek v3',
+  ],
+  'manus-ai': [
+    'manus', 'manus ai', 'manus-ai',
+    '마누스', '매너스',
+  ],
+  'perplexity-comet': [
+    'comet', 'perplexity comet', 'comet browser',
+    '코멧', '코멧 브라우저', '퍼플렉시티 코멧',
+  ],
+  'trae-ai': [
+    'trae', 'trae ai', 'trae ide', 'trae-ai',
+    '트래', '트래 ai',
+  ],
+  'cline': [
+    'cline', 'cline ai', 'cline bot',
+    '클라인',
+  ],
+  'recraft-ai': [
+    'recraft', 'recraft ai', 'recraft-ai', 'recraft v3',
+    '리크래프트',
+  ],
+  'hailuo-ai': [
+    'hailuo', 'hailuo ai', 'hailuo-ai', 'minimax', 'minimax video',
+    '하이루오', '하이루오 ai', '미니맥스',
+  ],
+  'tavus': [
+    'tavus', 'tavus ai', 'tavus phoenix', 'phoenix-4',
+    '타부스', '타버스',
+  ],
+  'mistral-ocr': [
+    'mistral ocr', 'mistral-ocr', 'mistral ocr 3',
+    '미스트랄 ocr',
+  ],
+  'kiro': [
+    'kiro', 'kiro ai', 'kiro ide', 'aws kiro',
+    '키로',
+  ],
+  'qwen': [
+    'qwen', 'qwen ai', 'qwen 3.5', 'qwen3.5', 'qwen-3.5',
+    '큐원', '큐웬', '통의천문', 'tongyi',
+  ],
+  'doubao': [
+    'doubao', 'doubao ai', 'doubao 2.0', '豆包', 'doubaos',
+    '더우바오', '도우바오',
+  ],
 };
 
 // ==========================================
