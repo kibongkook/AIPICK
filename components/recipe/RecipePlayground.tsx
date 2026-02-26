@@ -54,7 +54,7 @@ export default function RecipePlayground({
   parentExecStatus,
   onDecrement,
 }: RecipePlaygroundProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const [prompt, setPrompt] = useState(step.prompt_example || '');
   const [isLoading, setIsLoading] = useState(false);
   const [resultText, setResultText] = useState('');
@@ -282,7 +282,7 @@ export default function RecipePlayground({
   }
 
   return (
-    <div className="mt-3">
+    <div className="mb-3">
       {/* 결제 모달 */}
       {showPayment && (
         <PaymentCheckout
@@ -294,85 +294,94 @@ export default function RecipePlayground({
         />
       )}
 
-      {/* 토글 헤더 */}
+      {/* 메인 패널 */}
       {!showPayment && (
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full flex items-center justify-between rounded-lg border border-primary/20 bg-primary/5 px-3 py-2.5 text-left hover:bg-primary/10 transition-colors"
-        >
-          <div className="flex items-center gap-2">
-            <Zap className="h-4 w-4 text-primary" />
-            <span className="text-xs font-semibold text-primary">AIPICK에서 바로 실행</span>
-            <ExecutionCounter
-              remaining={execStatus.remaining_free}
-              loading={execStatus.loading}
-              compact
-            />
-          </div>
-          {isExpanded ? (
-            <ChevronUp className="h-4 w-4 text-primary" />
-          ) : (
-            <ChevronDown className="h-4 w-4 text-primary" />
-          )}
-        </button>
-      )}
+        <div className="rounded-xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 overflow-hidden shadow-sm">
+          {/* 헤더 토글 */}
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-primary/10 transition-colors"
+          >
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary shadow-sm">
+                <Zap className="h-3.5 w-3.5 text-white" />
+              </div>
+              <div>
+                <span className="text-sm font-bold text-primary">AIPICK에서 바로 실행해보기</span>
+                <span className="ml-2 text-xs text-primary/60">— 프롬프트 수정 후 즉시 체험</span>
+              </div>
+              <ExecutionCounter
+                remaining={execStatus.remaining_free}
+                loading={execStatus.loading}
+                compact
+              />
+            </div>
+            {isExpanded ? (
+              <ChevronUp className="h-4 w-4 text-primary/60" />
+            ) : (
+              <ChevronDown className="h-4 w-4 text-primary/60" />
+            )}
+          </button>
 
-      {/* 펼쳐진 패널 */}
-      {isExpanded && !showPayment && (
-        <div className="mt-2 rounded-lg border border-primary/20 bg-primary/5 p-3">
-          {/* 프롬프트 편집 영역 */}
-          <div className="mb-2">
-            <label className="text-xs font-medium text-gray-500 mb-1 block">
-              프롬프트 수정 후 실행하세요
-            </label>
-            <textarea
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-primary/30 leading-relaxed"
-              rows={Math.min(8, Math.max(3, (prompt.match(/\n/g) || []).length + 2))}
-              placeholder="프롬프트를 입력하세요..."
-            />
-          </div>
+          {/* 펼쳐진 내용 */}
+          {isExpanded && (
+            <div className="px-4 pb-4 border-t border-primary/10">
+              {/* 프롬프트 편집 */}
+              <div className="mt-3 mb-3">
+                <textarea
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  className="w-full rounded-lg border border-primary/20 bg-white px-3 py-2.5 text-sm text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-primary/30 leading-relaxed shadow-sm"
+                  rows={Math.min(8, Math.max(3, (prompt.match(/\n/g) || []).length + 2))}
+                  placeholder="프롬프트를 입력하세요..."
+                />
+              </div>
 
-          {/* 실행 버튼 + 횟수 */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => {
-                if (!isFree) { setShowPayment(true); return; }
-                handleExecute();
-              }}
-              disabled={isLoading || !prompt.trim()}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-white bg-primary hover:bg-primary/90 disabled:opacity-50 transition-colors"
-            >
-              {isLoading ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" />
-              ) : (
-                <Play className="h-3.5 w-3.5" />
+              {/* 실행 버튼 */}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => {
+                    if (!isFree) { setShowPayment(true); return; }
+                    handleExecute();
+                  }}
+                  disabled={isLoading || !prompt.trim()}
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-primary/90 disabled:opacity-50 transition-all shadow-sm hover:shadow-md active:scale-95"
+                >
+                  {isLoading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Play className="h-4 w-4 fill-white" />
+                  )}
+                  {isLoading ? '실행 중...' : isFree ? '무료로 실행하기' : `₩${EXECUTION_PRICE_KRW.toLocaleString()} 결제 후 실행`}
+                </button>
+                <ExecutionCounter remaining={execStatus.remaining_free} loading={execStatus.loading} />
+              </div>
+
+              {/* 결과 표시 */}
+              {hasResult && (
+                <div className="mt-3">
+                  <PlaygroundResult
+                    type={executionType}
+                    text={resultText || undefined}
+                    imageDataUrl={resultImageUrl || undefined}
+                    imageMimeType={resultImageMime}
+                    isStreaming={isLoading}
+                    onRetry={handleRetry}
+                    onUseNext={onUseNext}
+                    hasNextStep={hasNextStep}
+                  />
+                </div>
               )}
-              {isLoading ? '실행 중...' : isFree ? '무료 실행하기' : `₩${EXECUTION_PRICE_KRW.toLocaleString()} 결제 후 실행`}
-            </button>
-            <ExecutionCounter remaining={execStatus.remaining_free} loading={execStatus.loading} />
-          </div>
-
-          {/* 결과 표시 */}
-          {hasResult && (
-            <PlaygroundResult
-              type={executionType}
-              text={resultText || undefined}
-              imageDataUrl={resultImageUrl || undefined}
-              imageMimeType={resultImageMime}
-              isStreaming={isLoading}
-              onRetry={handleRetry}
-              onUseNext={onUseNext}
-              hasNextStep={hasNextStep}
-            />
-          )}
-          {isLoading && !hasResult && executionType === 'text' && (
-            <PlaygroundResult
-              type="text"
-              text={resultText}
-              isStreaming
-            />
+              {isLoading && !hasResult && executionType === 'text' && (
+                <div className="mt-3">
+                  <PlaygroundResult
+                    type="text"
+                    text={resultText}
+                    isStreaming
+                  />
+                </div>
+              )}
+            </div>
           )}
         </div>
       )}

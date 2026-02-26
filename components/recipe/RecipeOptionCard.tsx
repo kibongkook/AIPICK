@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { Clock, Wrench, ChevronDown } from 'lucide-react';
 import DifficultyBadge from '@/components/ui/DifficultyBadge';
 import RatingBar from '@/components/ui/RatingBar';
@@ -33,8 +34,20 @@ export default function RecipeOptionCard({
   parentExecStatus,
   onDecrement,
 }: RecipeOptionCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // 옵션 선택 시 카드 상단으로 스크롤 (헤더 높이 56px + 여백 8px 보정)
+  useEffect(() => {
+    if (isSelected && cardRef.current) {
+      const HEADER_OFFSET = 64;
+      const top = cardRef.current.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+      window.scrollTo({ top, behavior: 'instant' });
+    }
+  }, [isSelected]);
+
   return (
     <div
+      ref={cardRef}
       className={`rounded-xl border-2 transition-all w-full overflow-hidden ${
         isSelected
           ? 'border-primary shadow-md'

@@ -129,13 +129,28 @@ export default function RecipeStepCard({
             )}
           </div>
 
+          {/* AI 플레이그라운드 — 상단 배치로 즉시 체험 유도 */}
+          {showPlayground && (
+            <RecipePlayground
+              step={step}
+              recipeSlug={recipeSlug}
+              recipeCategory={recipeCategory}
+              previousResult={previousResult}
+              onResult={onResult}
+              hasNextStep={hasNextStep}
+              onUseNext={onUseNext}
+              parentExecStatus={parentExecStatus}
+              onDecrement={onDecrement}
+            />
+          )}
+
           {/* 설명 */}
-          <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+          <p className="text-sm text-gray-600 mb-3 leading-relaxed mt-3">
             {step.action}
           </p>
 
-          {/* 프롬프트 예시 */}
-          {step.prompt_example && (
+          {/* 프롬프트 예시 (플레이그라운드 없을 때만 표시) */}
+          {!showPlayground && step.prompt_example && (
             <div className="rounded-lg bg-gray-50 border border-gray-100 p-3 mb-3">
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">프롬프트 예시</span>
@@ -163,21 +178,6 @@ export default function RecipeStepCard({
               <Lightbulb className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
               <p className="text-xs text-amber-700 leading-relaxed">{step.tip}</p>
             </div>
-          )}
-
-          {/* AI 플레이그라운드 (실행 가능한 도구 + recipeSlug가 있을 때만) */}
-          {showPlayground && (
-            <RecipePlayground
-              step={step}
-              recipeSlug={recipeSlug}
-              recipeCategory={recipeCategory}
-              previousResult={previousResult}
-              onResult={onResult}
-              hasNextStep={hasNextStep}
-              onUseNext={onUseNext}
-              parentExecStatus={parentExecStatus}
-              onDecrement={onDecrement}
-            />
           )}
         </div>
       </div>
