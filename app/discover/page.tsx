@@ -35,27 +35,25 @@ export default async function DiscoverPage() {
     });
 
   return (
-    <div className="min-h-screen">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 헤더 */}
-      <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <div className="mb-1 flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
-            <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">
-              AI로 이런 게 가능해요
-            </h1>
-          </div>
-          <p className="text-sm text-gray-500">
-            결과물을 보고 마음에 드는 AI를 찾아보세요
-          </p>
+      <div className="mb-4">
+        <div className="mb-1 flex items-center gap-2">
+          <Target className="h-7 w-7 text-primary" />
+          <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">
+            AI로 이런 게 가능해요
+          </h1>
         </div>
+        <p className="text-sm text-gray-500">
+          결과물을 보고 마음에 드는 AI를 찾아보세요
+        </p>
       </div>
 
       {/* 결과물 갤러리 */}
       <OutputGallery items={galleryItems} />
 
       {/* 하단 보조 탐색 */}
-      <div className="mt-8 border-t border-gray-100 px-4 py-10">
+      <div className="mt-8 border-t border-gray-100 py-10">
         <p className="mb-4 text-center text-sm text-gray-400">
           더 구체적으로 찾고 싶다면
         </p>

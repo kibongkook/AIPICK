@@ -3,6 +3,7 @@ import DifficultyBadge from '@/components/ui/DifficultyBadge';
 import RatingBar from '@/components/ui/RatingBar';
 import RecipeProsCons from './RecipeProsCons';
 import RecipeStepCard from './RecipeStepCard';
+import type { ExecutionStatusLocal } from './RecipePlayground';
 import type { RecipeOption } from '@/types';
 
 interface RecipeOptionCardProps {
@@ -11,6 +12,12 @@ interface RecipeOptionCardProps {
   isSelected: boolean;
   onSelect: () => void;
   color: string;
+  recipeSlug?: string;
+  recipeCategory?: string;
+  stepResults?: Record<string, string>;
+  onStepResult?: (optionIdx: number, stepNum: number, result: string) => void;
+  parentExecStatus?: ExecutionStatusLocal;
+  onDecrement?: () => void;
 }
 
 export default function RecipeOptionCard({
@@ -19,6 +26,12 @@ export default function RecipeOptionCard({
   isSelected,
   onSelect,
   color,
+  recipeSlug,
+  recipeCategory,
+  stepResults,
+  onStepResult,
+  parentExecStatus,
+  onDecrement,
 }: RecipeOptionCardProps) {
   return (
     <div
@@ -92,13 +105,28 @@ export default function RecipeOptionCard({
           {/* 단계별 가이드 */}
           <h4 className="text-sm font-bold text-foreground mb-4">단계별 가이드</h4>
           <div>
-            {option.steps.map((step, i) => (
-              <RecipeStepCard
-                key={step.step}
-                step={step}
-                isLast={i === option.steps.length - 1}
-              />
-            ))}
+            {option.steps.map((step, i) => {
+              const prevStep = i > 0 ? option.steps[i - 1] : null;
+              const previousResult = prevStep
+                ? stepResults?.[`${index}-${prevStep.step}`]
+                : undefined;
+
+              return (
+                <RecipeStepCard
+                  key={step.step}
+                  step={step}
+                  isLast={i === option.steps.length - 1}
+                  recipeSlug={recipeSlug}
+                  recipeCategory={recipeCategory}
+                  previousResult={previousResult}
+                  onResult={(result) => onStepResult?.(index, step.step, result)}
+                  hasNextStep={i < option.steps.length - 1}
+                  onUseNext={(value) => onStepResult?.(index, step.step, value)}
+                  parentExecStatus={parentExecStatus}
+                  onDecrement={onDecrement}
+                />
+              );
+            })}
           </div>
         </div>
       )}

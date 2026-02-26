@@ -1,4 +1,4 @@
-import type { PricingType } from '@/types';
+import type { PricingType, ExecutionConfig } from '@/types';
 
 // ==========================================
 // 사이트 메타 정보
@@ -814,3 +814,107 @@ export const FEED_TABS = [
   { id: 'trending', label: '급상승', icon: 'TrendingUp' },
   { id: 'personalized', label: '당신에게 맞는 AI', icon: 'Target' },
 ] as const;
+
+// ==========================================
+// 레시피 플레이그라운드
+// ==========================================
+
+/** 일일 무료 실행 횟수 */
+export const DAILY_FREE_EXECUTIONS = 3;
+
+/** 건당 유료 실행 가격 (원) */
+export const EXECUTION_PRICE_KRW = 1000;
+
+/** 프롬프트 입력 최대 길이 */
+export const MAX_PROMPT_LENGTH = 2000;
+
+/** 실행 타임아웃 (ms) */
+export const EXECUTION_TIMEOUT_MS = 30_000;
+
+/** Rate Limit */
+export const EXECUTION_RATE_LIMIT = {
+  perMinutePerUser: 5,
+  perMinutePerIP: 10,
+} as const;
+
+/** 결제 관련 상수 */
+export const PAYMENT_CONFIG = {
+  currency: 'KRW',
+  minAmount: 1000,
+  provider: 'tosspayments',
+  orderIdPrefix: 'AIPICK-EXEC',
+} as const;
+
+/**
+ * 실행 가능한 도구 → AI 모델 매핑
+ * 모든 도구는 Gemini 2.0 Flash로 라우팅됨 (무료)
+ * 실패 시 Groq 폴백
+ */
+export const EXECUTABLE_TOOLS: Record<string, ExecutionConfig> = {
+  // 텍스트 생성 (Phase 1)
+  'chatgpt':    { type: 'text',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'claude':     { type: 'text',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'gemini':     { type: 'text',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'perplexity': { type: 'text',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'wrtn':       { type: 'text',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'jasper':     { type: 'text',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'copy-ai':    { type: 'text',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'grammarly':  { type: 'text',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'notion-ai':  { type: 'text',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'deepl':      { type: 'text',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+
+  // 코드 생성 (Phase 1)
+  'cursor':     { type: 'code',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'replit':     { type: 'code',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'github-copilot': { type: 'code', provider: 'gemini', model: 'gemini-2.0-flash',
+                      fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+  'v0':         { type: 'code',  provider: 'gemini', model: 'gemini-2.0-flash',
+                  fallback: { provider: 'groq', model: 'llama-3.3-70b-versatile' } },
+
+  // 이미지 생성 (Phase 2)
+  'dall-e-3':         { type: 'image', provider: 'gemini', model: 'gemini-2.0-flash-exp-image-generation' },
+  'midjourney':       { type: 'image', provider: 'gemini', model: 'gemini-2.0-flash-exp-image-generation' },
+  'stable-diffusion': { type: 'image', provider: 'gemini', model: 'gemini-2.0-flash-exp-image-generation' },
+  'ideogram':         { type: 'image', provider: 'gemini', model: 'gemini-2.0-flash-exp-image-generation' },
+  'leonardo-ai':      { type: 'image', provider: 'gemini', model: 'gemini-2.0-flash-exp-image-generation' },
+  'flux':             { type: 'image', provider: 'gemini', model: 'gemini-2.0-flash-exp-image-generation' },
+  'canva-ai':         { type: 'image', provider: 'gemini', model: 'gemini-2.0-flash-exp-image-generation' },
+};
+
+/**
+ * 도구 카테고리별 기본 대안 (alt_tools가 없는 경우 UI에서 자동 표시)
+ */
+export const DEFAULT_ALT_TOOLS: Record<string, string[]> = {
+  // 텍스트 LLM
+  'chatgpt':    ['gemini', 'perplexity', 'mistral', 'deepseek'],
+  'claude':     ['chatgpt', 'gemini', 'perplexity', 'mistral'],
+  'perplexity': ['chatgpt', 'claude', 'gemini', 'deepseek'],
+  'gemini':     ['chatgpt', 'claude', 'perplexity', 'mistral'],
+  'wrtn':       ['chatgpt', 'gemini', 'claude'],
+  // 이미지 생성
+  'midjourney':       ['dall-e-3', 'gemini', 'mistral', 'ideogram'],
+  'dall-e-3':         ['midjourney', 'gemini', 'stable-diffusion', 'ideogram'],
+  'stable-diffusion': ['midjourney', 'dall-e-3', 'ideogram', 'flux'],
+  'ideogram':         ['midjourney', 'dall-e-3', 'gemini', 'leonardo-ai'],
+  'leonardo-ai':      ['midjourney', 'dall-e-3', 'ideogram', 'stable-diffusion'],
+  // 영상 생성
+  'runway-ml':  ['kling-ai', 'pika', 'chatgpt', 'gemini'],
+  'kling-ai':   ['runway-ml', 'pika', 'chatgpt', 'gemini'],
+  'pika':       ['runway-ml', 'kling-ai', 'chatgpt'],
+  // 코드
+  'cursor':          ['github-copilot', 'claude', 'chatgpt', 'deepseek'],
+  'github-copilot':  ['cursor', 'claude', 'chatgpt', 'deepseek'],
+  'v0':              ['cursor', 'claude', 'chatgpt', 'deepseek'],
+};

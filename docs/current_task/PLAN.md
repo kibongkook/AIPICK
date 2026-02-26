@@ -1,39 +1,51 @@
-# PLAN: AI 서비스 변경 이력 시스템 (tool_updates)
+# PLAN: AI 레시피 플레이그라운드 + 결제 시스템 구현
 
 ## 목표
-AIPICK에 등록된 229개 AI 서비스의 변경사항(신기능, 가격 변경, 모델 업데이트 등)을 추적하고, 사용자에게 타임라인 형태로 보여주는 시스템 구축.
+AIPICK AI 레시피 시스템에 실행 기능 추가:
+- Phase 1: 텍스트/코드 생성 (Gemini API, 무료 일 3회)
+- Phase 2: 이미지 생성 + 토스페이먼츠 결제 (건당 ₩1,000)
+- Recipe Data: alt_tools/기본 대안 로직 추가
 
-## 아키텍처 설계
+## 구현 전략
 
-### 수정/생성 파일 목록
+### API 접근 방식
+- Gemini API: 직접 fetch REST (SDK 미설치, 의존성 최소화)
+- Groq API: fetch REST (폴백)
+- TossPayments: 프론트엔드 script 로더 + 백엔드 REST API
 
-#### 신규 파일 (6개)
+### 핵심 파일 목록
+
+#### 신규 생성
 | 파일 | 목적 |
 |------|------|
-| `supabase/migrations/020_tool_updates.sql` | DB 스키마 |
-| `components/tool-updates/ToolUpdateTimeline.tsx` | 타임라인 UI |
-| `app/updates/page.tsx` | 전체 업데이트 피드 `/updates` |
-| `app/api/admin/tool-updates/route.ts` | 어드민 CRUD API |
-| `app/api/cron/tool-updates-fetch/route.ts` | 자동 수집 Cron |
-| `app/admin/tool-updates/page.tsx` | 어드민 관리 페이지 |
+| supabase/migrations/021_recipe_playground.sql | DB 스키마 |
+| lib/ai/providers.ts | Gemini + Groq REST 호출 |
+| lib/ai/system-prompts.ts | 카테고리별 시스템 프롬프트 |
+| app/api/recipe/execute/route.ts | 텍스트/코드 실행 API (SSE 스트리밍) |
+| app/api/recipe/execute-image/route.ts | 이미지 생성 API |
+| app/api/recipe/status/route.ts | 남은 무료 횟수 조회 |
+| app/api/recipe/history/route.ts | 실행 이력 조회 |
+| app/api/recipe/payment/create/route.ts | 결제 주문 생성 |
+| app/api/recipe/payment/confirm/route.ts | 결제 승인 |
+| app/api/recipe/payment/webhook/route.ts | 토스 웹훅 |
+| components/recipe/RecipePlayground.tsx | 실행 패널 메인 |
+| components/recipe/PlaygroundResult.tsx | 결과 렌더러 |
+| components/recipe/PlaygroundTextResult.tsx | 텍스트 스트리밍 결과 |
+| components/recipe/PlaygroundImageResult.tsx | 이미지 결과 |
+| components/recipe/ExecutionCounter.tsx | 남은 횟수 표시 |
+| components/recipe/PaymentCheckout.tsx | 결제 위젯 |
+| hooks/useExecution.ts | 실행 상태 관리 훅 |
 
-#### 수정 파일 (5개)
-| 파일 | 변경 |
-|------|------|
-| `types/index.ts` | ToolUpdate 타입 추가 |
-| `lib/constants.ts` | TOOL_UPDATE_TYPES, UPDATE_IMPACT 상수 |
-| `lib/supabase/queries.ts` | 쿼리 함수 3개 추가 |
-| `app/tools/[slug]/page.tsx` | 타임라인 삽입 |
-| `data/seed.json` | tool_updates 시드 데이터 |
-
-### 데이터 흐름
-- tool_updates 테이블 → tools FK 연결
-- Supabase 우선 → seed.json 폴백 패턴
-- update_type 6종: feature, model, pricing, improvement, api, other
-- impact 2단계: major, minor
+#### 수정
+| 파일 | 변경 내용 |
+|------|----------|
+| types/index.ts | ExecutionType 등 타입 추가, RecipeStepV2에 alt_tools/execution 필드 추가 |
+| lib/constants.ts | DAILY_FREE_EXECUTIONS, EXECUTABLE_TOOLS 등 추가 |
+| components/recipe/RecipeStepCard.tsx | nameMap 확장 + 기본 alt_tools 로직 + RecipePlayground 삽입 |
+| components/recipe/RecipeOptionSelector.tsx | stepResults 상태 관리 추가 |
+| app/profile/page.tsx | 결제 내역 탭 추가 |
 
 ## 구현 순서
-1. Phase 1: 데이터 레이어 (types → constants → SQL → seed → queries)
-2. Phase 2: API 레이어 (admin CRUD, cron job)
-3. Phase 3: UI 레이어 (timeline, detail page, feed page, admin page)
-4. Phase 4: 검증 (npm run build)
+Phase 1: types → constants → DB → AI providers → APIs → Components → RecipeStepCard
+Phase 2: 이미지 API → 결제 APIs → PaymentCheckout → PlaygroundImageResult
+Data: RecipeStepCard 기본 alt_tools 로직 (nameMap + DEFAULT_ALT_TOOLS)

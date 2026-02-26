@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Bookmark, Users, BookmarkCheck } from 'lucide-react';
+import { Bookmark, Users, BookmarkCheck, CreditCard } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { useBookmarkList } from '@/hooks/useBookmark';
 import { cn, getAvatarColor } from '@/lib/utils';
@@ -10,6 +10,25 @@ import ServiceCard from '@/components/service/ServiceCard';
 import { COMMUNITY_STORAGE_KEY, COMMUNITY_POST_TYPES } from '@/lib/constants';
 import type { Tool, CommunityPost } from '@/types';
 import Link from 'next/link';
+
+interface PaymentRecord {
+  order_id: string;
+  payment_key: string | null;
+  amount: number;
+  order_name: string | null;
+  method: string | null;
+  status: string;
+  confirmed_at: string | null;
+  cancelled_at: string | null;
+  created_at: string;
+}
+
+const PAYMENT_STATUS_LABEL: Record<string, { label: string; color: string }> = {
+  pending:   { label: '결제 대기', color: 'bg-yellow-100 text-yellow-700' },
+  confirmed: { label: '결제 완료', color: 'bg-green-100 text-green-700' },
+  cancelled: { label: '취소',     color: 'bg-gray-100 text-gray-500' },
+  refunded:  { label: '환불',     color: 'bg-red-100 text-red-600' },
+};
 
 export default function ProfilePage() {
   return (
@@ -24,10 +43,12 @@ export default function ProfilePage() {
 function ProfileContent() {
   const { user, signOut } = useAuth();
   const { bookmarkedIds } = useBookmarkList();
-  const [tab, setTab] = useState<'bookmarks' | 'community' | 'saved-posts'>('bookmarks');
+  const [tab, setTab] = useState<'bookmarks' | 'community' | 'saved-posts' | 'payments'>('bookmarks');
   const [bookmarkedTools, setBookmarkedTools] = useState<Tool[]>([]);
   const [myPosts, setMyPosts] = useState<CommunityPost[]>([]);
   const [savedPosts, setSavedPosts] = useState<CommunityPost[]>([]);
+  const [payments, setPayments] = useState<PaymentRecord[]>([]);
+  const [paymentsLoading, setPaymentsLoading] = useState(false);
 
   useEffect(() => {
     if (bookmarkedIds.length === 0) {
@@ -97,6 +118,17 @@ function ProfileContent() {
     loadSavedPosts();
   }, [user, tab]);
 
+  // 결제 내역 로드
+  useEffect(() => {
+    if (tab !== 'payments' || !user) return;
+    setPaymentsLoading(true);
+    fetch('/api/recipe/payment/list')
+      .then((res) => res.ok ? res.json() : { payments: [] })
+      .then((data) => setPayments(data.payments ?? []))
+      .catch(() => setPayments([]))
+      .finally(() => setPaymentsLoading(false));
+  }, [tab, user]);
+
   const loadSavedPosts = () => {
     try {
       const bookmarksKey = 'aipick_user_bookmarks';
@@ -116,9 +148,10 @@ function ProfileContent() {
   if (!user) return null;
 
   const tabs = [
-    { id: 'bookmarks' as const, label: '북마크', icon: Bookmark, count: bookmarkedTools.length },
+    { id: 'bookmarks' as const,   label: '북마크',   icon: Bookmark,     count: bookmarkedTools.length },
     { id: 'saved-posts' as const, label: '저장한 글', icon: BookmarkCheck, count: savedPosts.length },
-    { id: 'community' as const, label: '내 글', icon: Users, count: myPosts.length },
+    { id: 'community' as const,   label: '내 글',    icon: Users,         count: myPosts.length },
+    { id: 'payments' as const,    label: '결제 내역', icon: CreditCard,   count: 0 },
   ];
 
   return (
@@ -138,13 +171,13 @@ function ProfileContent() {
       </div>
 
       {/* 탭 */}
-      <div className="flex gap-1 border-b border-border mb-6">
+      <div className="flex gap-1 border-b border-border mb-6 overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
             className={cn(
-              'flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium border-b-2 transition-colors',
+              'flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap',
               tab === t.id
                 ? 'border-primary text-primary'
                 : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -261,6 +294,49 @@ function ProfileContent() {
           </div>
         ) : (
           <EmptyState icon={Users} message="작성한 커뮤니티 글이 없습니다" />
+        )
+      )}
+
+      {tab === 'payments' && (
+        paymentsLoading ? (
+          <div className="py-12 text-center text-sm text-gray-400">불러오는 중...</div>
+        ) : payments.length > 0 ? (
+          <div className="space-y-3">
+            {payments.map((p) => {
+              const statusInfo = PAYMENT_STATUS_LABEL[p.status] ?? { label: p.status, color: 'bg-gray-100 text-gray-500' };
+              const date = p.confirmed_at || p.created_at;
+              return (
+                <div key={p.order_id} className="rounded-xl border border-border bg-white p-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-foreground truncate">
+                        {p.order_name || 'AIPICK AI 레시피 실행'}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-0.5">
+                        {new Date(date).toLocaleDateString('ko-KR', {
+                          year: 'numeric', month: 'long', day: 'numeric',
+                          hour: '2-digit', minute: '2-digit',
+                        })}
+                      </p>
+                      {p.method && (
+                        <p className="text-xs text-gray-400 mt-0.5">{p.method}</p>
+                      )}
+                    </div>
+                    <div className="flex flex-col items-end gap-1.5 shrink-0">
+                      <span className="text-sm font-bold text-foreground">
+                        ₩{p.amount.toLocaleString()}
+                      </span>
+                      <span className={cn('inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium', statusInfo.color)}>
+                        {statusInfo.label}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <EmptyState icon={CreditCard} message="결제 내역이 없습니다" />
         )
       )}
     </div>

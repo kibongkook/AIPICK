@@ -1,21 +1,44 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Lightbulb, BookOpen, ArrowUp } from 'lucide-react';
 import RecipeOptionCard from './RecipeOptionCard';
 import RecipeStepCard from './RecipeStepCard';
 import RecipeComparisonTable from './RecipeComparisonTable';
 import RecipeGrowthPath from './RecipeGrowthPath';
+import { useExecutionStatus } from '@/hooks/useExecution';
+import type { ExecutionStatusLocal } from './RecipePlayground';
 import type { RecipeOption } from '@/types';
 
 interface RecipeOptionSelectorProps {
   options: RecipeOption[];
   color: string;
+  recipeSlug?: string;
+  recipeCategory?: string;
 }
 
-export default function RecipeOptionSelector({ options, color }: RecipeOptionSelectorProps) {
+export default function RecipeOptionSelector({
+  options,
+  color,
+  recipeSlug,
+  recipeCategory,
+}: RecipeOptionSelectorProps) {
   const [selectedIdx, setSelectedIdx] = useState(0);
+  const [stepResults, setStepResults] = useState<Record<string, string>>({});
   const selected = options[selectedIdx];
+
+  // 실행 상태를 한 번만 fetch — 모든 하위 RecipePlayground가 공유
+  const { status, decrement } = useExecutionStatus();
+  const sharedExecStatus: ExecutionStatusLocal = {
+    daily_free_used: status.daily_free_used,
+    remaining_free:  status.remaining_free,
+    logged_in:       status.logged_in,
+    loading:         status.loading,
+  };
+
+  const handleStepResult = useCallback((optionIdx: number, stepNum: number, result: string) => {
+    setStepResults((prev) => ({ ...prev, [`${optionIdx}-${stepNum}`]: result }));
+  }, []);
 
   // 단일 옵션(v1 변환 레시피)이면 기존 방식으로 표시
   if (options.length === 1 && !options[0].pros.length) {
@@ -26,13 +49,28 @@ export default function RecipeOptionSelector({ options, color }: RecipeOptionSel
           단계별 가이드
         </h2>
         <div>
-          {selected.steps.map((step, i) => (
-            <RecipeStepCard
-              key={step.step}
-              step={step}
-              isLast={i === selected.steps.length - 1}
-            />
-          ))}
+          {selected.steps.map((step, i) => {
+            const prevStep = i > 0 ? selected.steps[i - 1] : null;
+            const previousResult = prevStep
+              ? stepResults[`0-${prevStep.step}`]
+              : undefined;
+
+            return (
+              <RecipeStepCard
+                key={step.step}
+                step={step}
+                isLast={i === selected.steps.length - 1}
+                recipeSlug={recipeSlug}
+                recipeCategory={recipeCategory}
+                previousResult={previousResult}
+                onResult={(result) => handleStepResult(0, step.step, result)}
+                hasNextStep={i < selected.steps.length - 1}
+                onUseNext={(value) => handleStepResult(0, step.step, value)}
+                parentExecStatus={sharedExecStatus}
+                onDecrement={decrement}
+              />
+            );
+          })}
         </div>
       </div>
     );
@@ -60,6 +98,12 @@ export default function RecipeOptionSelector({ options, color }: RecipeOptionSel
                 isSelected={idx === selectedIdx}
                 onSelect={() => setSelectedIdx(idx === selectedIdx ? -1 : idx)}
                 color={color}
+                recipeSlug={recipeSlug}
+                recipeCategory={recipeCategory}
+                stepResults={stepResults}
+                onStepResult={handleStepResult}
+                parentExecStatus={sharedExecStatus}
+                onDecrement={decrement}
               />
 
               {/* 다음 옵션 유도 (확장된 카드 바로 아래) */}

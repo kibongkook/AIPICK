@@ -675,11 +675,18 @@ export interface RecipeStepV2 {
   title: string;
   tool_slug: string;
   tool_name: string;
+  alt_tools?: string[];      // 대안 도구 slug 목록 (v1 호환)
   action: string;
   prompt_example?: string;
   tip?: string;
   estimated_time?: string;   // 이 단계의 예상 소요 시간
   optional?: boolean;        // 건너뛰어도 되는 선택적 단계
+
+  // 플레이그라운드 관련 (신규)
+  execution_type?: ExecutionType;  // 실행 유형 (없으면 EXECUTABLE_TOOLS에서 자동 결정)
+  system_prompt?: string;          // AI 시스템 프롬프트 (없으면 카테고리 기본값 사용)
+  result_format?: string;          // 기대 결과 형식 설명
+  use_previous?: boolean;          // 이전 단계 결과를 입력에 포함할지
 }
 
 /** 멀티옵션 레시피의 하나의 경로 */
@@ -876,4 +883,67 @@ export interface ProvocationFilters {
   category?: ProvocationCategory;
   keyword?: string;
   sort?: 'latest' | 'popular' | 'votes';
+}
+
+// ==========================================
+// 레시피 플레이그라운드
+// ==========================================
+export type ExecutionType = 'text' | 'image' | 'code';
+export type ExecutionStatus = 'success' | 'error' | 'cancelled';
+export type PaymentStatus = 'pending' | 'confirmed' | 'cancelled' | 'refunded';
+export type PaymentMethod = 'card' | 'kakaopay' | 'naverpay' | 'tosspay';
+
+export interface UserExecution {
+  user_id: string;
+  daily_free_used: number;
+  daily_reset_date: string;
+  total_free_used: number;
+  total_paid_used: number;
+  total_paid_amount: number;
+  updated_at: string;
+}
+
+export interface RecipeExecution {
+  id: string;
+  user_id: string;
+  recipe_slug: string;
+  option_id: string | null;
+  step_number: number;
+  tool_slug: string;
+  execution_type: ExecutionType;
+  provider: string;
+  model: string;
+  is_free: boolean;
+  paid_amount: number;
+  payment_id: string | null;
+  input_tokens: number | null;
+  output_tokens: number | null;
+  status: ExecutionStatus;
+  error_message: string | null;
+  created_at: string;
+}
+
+export interface Payment {
+  id: string;
+  user_id: string;
+  payment_key: string | null;
+  order_id: string;
+  amount: number;
+  status: PaymentStatus;
+  execution_id: string | null;
+  method: PaymentMethod | null;
+  receipt_url: string | null;
+  created_at: string;
+  confirmed_at: string | null;
+  cancelled_at: string | null;
+}
+
+export interface ExecutionConfig {
+  type: ExecutionType;
+  provider: string;
+  model: string;
+  fallback?: {
+    provider: string;
+    model: string;
+  };
 }

@@ -145,7 +145,12 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
       {/* 멀티옵션 단계별 가이드 */}
       <div className="mb-12">
-        <RecipeOptionSelector options={recipe.options} color={recipe.color} />
+        <RecipeOptionSelector
+          options={recipe.options}
+          color={recipe.color}
+          recipeSlug={recipe.slug}
+          recipeCategory={recipe.category}
+        />
       </div>
 
       {/* 완성 결과 */}

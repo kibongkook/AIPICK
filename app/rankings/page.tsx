@@ -30,7 +30,7 @@ export default async function RankingsPage({ searchParams }: Props) {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 헤더 */}
-      <div className="mb-8">
+      <div className="mb-4">
         <div className="mb-1 flex items-center gap-2">
           <Trophy className="h-7 w-7 text-yellow-500" />
           <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">

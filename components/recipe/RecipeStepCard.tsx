@@ -2,14 +2,97 @@
 
 import Link from 'next/link';
 import { Lightbulb, ArrowRight, Copy } from 'lucide-react';
-import type { RecipeStep } from '@/types';
+import { DEFAULT_ALT_TOOLS, EXECUTABLE_TOOLS } from '@/lib/constants';
+import RecipePlayground from './RecipePlayground';
+import type { ExecutionStatusLocal } from './RecipePlayground';
+import type { RecipeStep, RecipeStepV2 } from '@/types';
+
+type AnyStep = RecipeStep | RecipeStepV2;
+
+const NAME_MAP: Record<string, string> = {
+  'chatgpt': 'ChatGPT',
+  'claude': 'Claude',
+  'gemini': 'Gemini',
+  'perplexity': 'Perplexity',
+  'mistral': 'Mistral',
+  'deepseek': 'DeepSeek',
+  'grok': 'Grok',
+  'meta-ai': 'Meta AI',
+  'copilot': 'Copilot',
+  'poe': 'Poe',
+  'midjourney': 'Midjourney',
+  'dall-e-3': 'DALL·E 3',
+  'leonardo-ai': 'Leonardo AI',
+  'ideogram': 'Ideogram',
+  'stable-diffusion': 'Stable Diffusion',
+  'flux': 'Flux',
+  'runway-ml': 'Runway',
+  'kling-ai': 'Kling',
+  'pika': 'Pika',
+  'invideo-ai': 'InVideo AI',
+  'fliki': 'Fliki',
+  'elevenlabs': 'ElevenLabs',
+  'typecast': 'Typecast',
+  'suno-ai': 'Suno',
+  'udio': 'Udio',
+  'canva-ai': 'Canva AI',
+  'beautiful-ai': 'Beautiful.ai',
+  'slidesai': 'SlidesAI',
+  'gamma': 'Gamma',
+  'jasper': 'Jasper',
+  'copy-ai': 'Copy.ai',
+  'grammarly': 'Grammarly',
+  'quillbot': 'QuillBot',
+  'wordtune': 'Wordtune',
+  'heygen': 'HeyGen',
+  'synthesia': 'Synthesia',
+  'd-id': 'D-ID',
+  'remove-bg': 'Remove.bg',
+  'clipdrop': 'ClipDrop',
+  'photoroom': 'Photoroom',
+  'google-notebooklm': 'NotebookLM',
+  'capcut': 'CapCut',
+  'vrew': 'Vrew',
+  'descript': 'Descript',
+  'make': 'Make',
+  'zapier-ai': 'Zapier',
+  'you-com': 'You.com',
+  'wrtn': '뤼튼',
+};
 
 interface RecipeStepCardProps {
-  step: RecipeStep;
+  step: AnyStep;
   isLast: boolean;
+  recipeSlug?: string;
+  recipeCategory?: string;
+  previousResult?: string;
+  onResult?: (result: string) => void;
+  hasNextStep?: boolean;
+  onUseNext?: (value: string) => void;
+  parentExecStatus?: ExecutionStatusLocal;
+  onDecrement?: () => void;
 }
 
-export default function RecipeStepCard({ step, isLast }: RecipeStepCardProps) {
+export default function RecipeStepCard({
+  step,
+  isLast,
+  recipeSlug,
+  recipeCategory,
+  previousResult,
+  onResult,
+  hasNextStep = false,
+  onUseNext,
+  parentExecStatus,
+  onDecrement,
+}: RecipeStepCardProps) {
+  // alt_tools: 스텝에 정의된 것 우선, 없으면 DEFAULT_ALT_TOOLS에서 조회
+  const altToolSlugs =
+    ('alt_tools' in step && step.alt_tools && step.alt_tools.length > 0)
+      ? step.alt_tools
+      : DEFAULT_ALT_TOOLS[step.tool_slug] ?? [];
+
+  const showPlayground = !!recipeSlug && step.tool_slug in EXECUTABLE_TOOLS;
+
   return (
     <div className="relative">
       {/* 연결선 */}
@@ -39,28 +122,9 @@ export default function RecipeStepCard({ step, isLast }: RecipeStepCardProps) {
               {step.tool_name}
               <ArrowRight className="h-3 w-3" />
             </Link>
-            {step.alt_tools && step.alt_tools.length > 0 && (
+            {altToolSlugs.length > 0 && (
               <span className="text-xs text-gray-400">
-                대안: {step.alt_tools.map(slug => {
-                  const nameMap: Record<string, string> = {
-                    'claude': 'Claude', 'gemini': 'Gemini', 'chatgpt': 'ChatGPT',
-                    'midjourney': 'Midjourney', 'dall-e-3': 'DALL·E 3', 'leonardo-ai': 'Leonardo AI',
-                    'runway-ml': 'Runway', 'kling-ai': 'Kling', 'pika': 'Pika',
-                    'elevenlabs': 'ElevenLabs', 'typecast': 'Typecast', 'capcut': 'CapCut',
-                    'vrew': 'Vrew', 'suno-ai': 'Suno', 'udio': 'Udio',
-                    'canva-ai': 'Canva AI', 'perplexity': 'Perplexity', 'you-com': 'You.com',
-                    'beautiful-ai': 'Beautiful.ai', 'slidesai': 'SlidesAI',
-                    'ideogram': 'Ideogram', 'jasper': 'Jasper', 'copy-ai': 'Copy.ai',
-                    'grammarly': 'Grammarly', 'quillbot': 'QuillBot', 'wordtune': 'Wordtune',
-                    'heygen': 'HeyGen', 'synthesia': 'Synthesia', 'd-id': 'D-ID',
-                    'remove-bg': 'Remove.bg', 'clipdrop': 'ClipDrop', 'photoroom': 'Photoroom',
-                    'stable-diffusion': 'Stable Diffusion', 'flux': 'Flux',
-                    'google-notebooklm': 'NotebookLM', 'invideo-ai': 'InVideo AI',
-                    'fliki': 'Fliki', 'make': 'Make', 'zapier-ai': 'Zapier',
-                    'gamma': 'Gamma', 'wrtn': '뤼튼', 'descript': 'Descript',
-                  };
-                  return nameMap[slug] || slug;
-                }).join(', ')}
+                대안: {altToolSlugs.map((slug) => NAME_MAP[slug] || slug).join(', ')}
               </span>
             )}
           </div>
@@ -99,6 +163,21 @@ export default function RecipeStepCard({ step, isLast }: RecipeStepCardProps) {
               <Lightbulb className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
               <p className="text-xs text-amber-700 leading-relaxed">{step.tip}</p>
             </div>
+          )}
+
+          {/* AI 플레이그라운드 (실행 가능한 도구 + recipeSlug가 있을 때만) */}
+          {showPlayground && (
+            <RecipePlayground
+              step={step}
+              recipeSlug={recipeSlug}
+              recipeCategory={recipeCategory}
+              previousResult={previousResult}
+              onResult={onResult}
+              hasNextStep={hasNextStep}
+              onUseNext={onUseNext}
+              parentExecStatus={parentExecStatus}
+              onDecrement={onDecrement}
+            />
           )}
         </div>
       </div>
