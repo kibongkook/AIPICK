@@ -296,19 +296,19 @@ export default function RecipePlayground({
 
       {/* 메인 패널 */}
       {!showPayment && (
-        <div className="rounded-xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 overflow-hidden shadow-sm">
+        <div className="rounded-xl border border-orange-200 bg-white overflow-hidden shadow-sm">
           {/* 헤더 토글 */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-primary/10 transition-colors"
+            className="w-full flex items-center justify-between px-4 py-3 text-left bg-orange-50 hover:bg-orange-100/70 transition-colors border-b border-orange-100"
           >
             <div className="flex items-center gap-2">
               <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary shadow-sm">
                 <Zap className="h-3.5 w-3.5 text-white" />
               </div>
               <div>
-                <span className="text-sm font-bold text-primary">AIPICK에서 바로 실행해보기</span>
-                <span className="ml-2 text-xs text-primary/60">— 프롬프트 수정 후 즉시 체험</span>
+                <span className="text-sm font-bold text-gray-900">AIPICK에서 바로 실행해보기</span>
+                <span className="ml-2 text-xs text-gray-400">— 프롬프트 수정 후 즉시 체험</span>
               </div>
               <ExecutionCounter
                 remaining={execStatus.remaining_free}
@@ -317,21 +317,21 @@ export default function RecipePlayground({
               />
             </div>
             {isExpanded ? (
-              <ChevronUp className="h-4 w-4 text-primary/60" />
+              <ChevronUp className="h-4 w-4 text-gray-400" />
             ) : (
-              <ChevronDown className="h-4 w-4 text-primary/60" />
+              <ChevronDown className="h-4 w-4 text-gray-400" />
             )}
           </button>
 
           {/* 펼쳐진 내용 */}
           {isExpanded && (
-            <div className="px-4 pb-4 border-t border-primary/10">
+            <div className="px-4 pb-4 pt-3">
               {/* 프롬프트 편집 */}
-              <div className="mt-3 mb-3">
+              <div className="mb-3">
                 <textarea
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
-                  className="w-full rounded-lg border border-primary/20 bg-white px-3 py-2.5 text-sm text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-primary/30 leading-relaxed shadow-sm"
+                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-orange-300 leading-relaxed shadow-sm"
                   rows={Math.min(8, Math.max(3, (prompt.match(/\n/g) || []).length + 2))}
                   placeholder="프롬프트를 입력하세요..."
                 />
@@ -345,7 +345,7 @@ export default function RecipePlayground({
                     handleExecute();
                   }}
                   disabled={isLoading || !prompt.trim()}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-primary/90 disabled:opacity-50 transition-all shadow-sm hover:shadow-md active:scale-95"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold text-white bg-accent-warm hover:bg-[#EA6B10] disabled:opacity-50 transition-all [box-shadow:0_4px_16px_rgba(249,115,22,0.35)] hover:[box-shadow:0_6px_24px_rgba(249,115,22,0.45)] hover:-translate-y-0.5 active:scale-95"
                 >
                   {isLoading ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
