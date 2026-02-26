@@ -2,7 +2,7 @@
 
 > 모든 UI 구현 시 이 문서를 기준으로 삼는다.
 > 새 컴포넌트 또는 기능 추가 시 이 문서를 먼저 참고하고, 이 문서에 없는 패턴을 도입할 경우 여기에 추가한다.
-> 최종 수정일: 2026-02-20 (필터 탭 표준 + 페이지 패딩 + sticky 바 max-w-7xl 정렬 + 하드코딩 제거 규칙)
+> 최종 수정일: 2026-02-26 (accent-warm CTA 사용처 규칙 추가)
 
 ---
 
@@ -83,13 +83,28 @@ Pretendard Variable → Pretendard → -apple-system → sans-serif
 --foreground:          #0B1120
 ```
 
-### 2.2 Tailwind 사용 규칙
+### 2.2 색상 사용처 규칙 (언제 어떤 색을 쓰나)
+
+| 색상 토큰 | hex | 사용처 | 금지 |
+|-----------|-----|--------|------|
+| `primary` | `#4F46E5` | 브랜드 전반 — 네비, 링크, 배지, 아이콘, 필터 탭 활성 | **실행/결제 CTA 버튼에 사용 금지** |
+| `accent` | `#06D6A0` | 성공 상태, 무료 강조, 완료 배지 | CTA 버튼 단독 사용 지양 (가독성 낮음) |
+| `accent-warm` | `#F97316` | **실행/결제 CTA 버튼 전용** — RecipePlayground 실행 버튼 등 | 일반 UI 요소에 사용 금지 |
+| `gray-*` | — | 비활성 텍스트, 보조 UI, 구분선 | — |
+
+**핵심 원칙: CTA 버튼 색상은 같은 패널 내 다른 요소와 절대 겹치지 않아야 한다.**
+- 패널이 `primary` 색상을 쓰면 → 버튼은 `accent-warm`
+- 패널이 중립 회색이면 → 버튼은 `primary` 또는 `accent-warm`
+- 버튼과 같은 색상을 패널 배경/테두리/텍스트에 동시 사용 금지
+
+### 2.3 Tailwind 사용 규칙
 
 - **primary** 계열: `bg-primary`, `text-primary`, `border-primary` 사용 → CSS 변수 자동 참조
 - **gray** 계열: `gray-100 / 200 / 300 / 400 / 500 / 600` 범위 사용
 - **임의 색상 hex 값** (`bg-[#4F46E5]` 등) 금지 — 반드시 변수/클래스 사용
+- **`accent-warm` (`#F97316`)**: `bg-accent-warm`, `hover:bg-[#EA6B10]` 사용 (hover hex는 예외 허용)
 
-### 2.3 카테고리 배경 (GalleryCard, CategoryBadge 등)
+### 2.4 카테고리 배경 (GalleryCard, CategoryBadge 등)
 
 ```
 chat / writing   bg-blue-50    border-blue-100
@@ -370,8 +385,17 @@ Paid:     bg-gray-100    text-gray-600     px-2.5 py-0.5
 ### 7.2 변형
 
 ```tsx
-// Primary (CTA)
+// Primary (일반 CTA)
 className="rounded-xl bg-primary py-2.5 text-sm font-semibold text-white hover:bg-primary/90"
+
+// Execution CTA (실행/결제 버튼 전용 — RecipePlayground 등)
+// accent-warm(#F97316 오렌지)을 사용해 primary 패널과 대비를 만든다
+className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold text-white
+           bg-accent-warm hover:bg-[#EA6B10]
+           [box-shadow:0_4px_16px_rgba(249,115,22,0.35)]
+           hover:[box-shadow:0_6px_24px_rgba(249,115,22,0.45)]
+           hover:-translate-y-0.5 active:scale-95 transition-all disabled:opacity-50"
+// ↑ 패널 배경/테두리/아이콘에 primary 색상을 쓸 경우 반드시 이 버튼 스타일 사용
 
 // Secondary (테두리)
 className="rounded-xl border border-gray-200 py-2.5 text-sm font-semibold text-foreground hover:bg-gray-50"
@@ -570,6 +594,11 @@ px-4 sm:px-6 lg:px-8
 - [ ] 외부 div: `sticky top-14 z-20 border-b border-gray-100 bg-white/95 backdrop-blur-sm`
 - [ ] 내부 래퍼: `mx-auto max-w-7xl px-4 sm:px-6 lg:px-8` 필수 (카드 목록과 가로 정렬)
 - [ ] 탭 컨테이너: `flex flex-wrap gap-2` (`overflow-x-auto` 사용 금지)
+
+**색상 대비 (CTA 버튼)**
+- [ ] 실행/결제 CTA 버튼은 `bg-accent-warm` (오렌지) 사용 — `bg-primary`(인디고) 사용 금지
+- [ ] 패널 내에서 버튼 색상과 동일한 색상을 배경/테두리/텍스트에 동시 사용하지 않음
+- [ ] 버튼에 glow shadow + `hover:-translate-y-0.5` + `active:scale-95` 포함
 
 **하드코딩 금지**
 - [ ] 매직 넘버는 `lib/constants.ts`에 상수로 정의 (`MIN_SAMPLE_OUTPUT_LENGTH`, `HOT_NEWS_COUNT` 등)
