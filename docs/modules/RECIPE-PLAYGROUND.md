@@ -147,24 +147,153 @@ NEXT_PUBLIC_TOSS_PAYMENTS_CLIENT_KEY=... # 클라이언트 사이드용
 
 ---
 
-## 4. 지원 가능한 AI 작업 유형
+## 4. 범용 AI 서비스 역량 비교 (2026.02 기준)
 
-### 4-1. Tier별 분류
+> 레시피 플레이그라운드에서 어떤 AI 서비스를 대안으로 노출하고, 어떤 서비스의 API를 백엔드에서 호출할지 결정하기 위한 기초 자료.
+
+### 4-1. 종합 비교표
+
+| 서비스 | 텍스트 | 이미지생성 | 이미지이해 | 영상생성 | 음성 | 웹검색 | 코드 | 에이전트 | 무료 |
+|--------|-------|-----------|-----------|---------|------|--------|------|---------|------|
+| **ChatGPT** | O | O | O | O (Sora 2) | O | O | O | O | 부분 |
+| **Gemini** | O | O | O | O (Veo 3) | O | O | O | O | 대부분 |
+| **Claude** | O | X | O | X | X | O | O | O | 부분 |
+| **Perplexity** | O | X | O | X | O | O | O | O | 부분 |
+| **Copilot** | O | O | O | X | O | O | O | O | 부분 |
+| **Grok** | O | O | O | O | O | O | O | X | 부분 |
+| **Mistral** | O | O | O | X | O | O | O | X | 대부분 |
+| **DeepSeek** | O | X | O (제한적) | X | X | O | O | X | 무료 |
+| **Meta AI** | O | O | O | X | 제한 | O | O | X | 무료 |
+| **Poe** | O | O | O | O | X | X | O | X | 부분 |
+
+### 4-2. 서비스별 기능 상세
+
+#### ChatGPT (OpenAI)
+- **텍스트**: GPT-5.2 (Instant/Thinking), Memory, Study Mode
+- **이미지 생성**: DALL-E 3 통합
+- **영상 생성**: Sora 2 통합 (Plus 월 4~8분)
+- **음성**: Voice Mode (웹/모바일/Windows)
+- **코드**: Code Interpreter, Codex (에이전트 코딩)
+- **에이전트**: Agent Mode (웹 탐색, 양식 작성)
+- **검색**: 실시간 웹 검색, Deep Research
+- **파일**: 20개 파일 동시 업로드
+- **가격**: 무료 / Plus $20 / Pro $200
+
+#### Google Gemini
+- **텍스트**: Gemini 3, 2.5 Flash/Pro, Deep Think
+- **이미지 생성**: Imagen 4, Gemini Flash Image
+- **영상 생성**: Veo 3 (8초, 사운드 포함)
+- **음성**: Gemini Live
+- **코드**: 코드 생성/설명
+- **에이전트**: Auto Browse (예약, 티켓 등 자동)
+- **검색**: Google 검색 통합
+- **연동**: Drive, Docs, Sheets, Slides, Meet, Gmail, Photos
+- **학습**: Guided Learning
+- **가격**: 무료 / AI Pro $19.99 / Ultra $149.99
+- **API 무료 한도**: 텍스트 1,000~1,600 RPD, 이미지 500건/일
+
+#### Claude (Anthropic)
+- **텍스트**: Opus 4.6, Sonnet 4.6, Haiku 4.5 (200K~1M 컨텍스트)
+- **이미지 이해**: 이미지 업로드 분석 (문서, 그래프)
+- **코드**: SWE-bench 77.2% (업계 1위)
+- **에이전트**: Computer Use (GUI 조작), Claude Code (CLI), Claude Cowork (GUI)
+- **검색**: 실시간 웹 브라우징
+- **추론**: Extended Thinking
+- **가격**: 무료 / Pro $20 / Max $100
+
+#### Perplexity
+- **텍스트**: GPT-5.2, Claude Opus 4 등 다중 모델
+- **검색**: 핵심 기능 — 출처 기반 답변 (모든 답변에 소스 링크)
+- **리서치**: Deep Research (반복 검색 + 보고서)
+- **금융**: 실시간 주가/기업 분석
+- **어시스턴트**: 앱 간 작업 수행
+- **파일**: PDF, Word 업로드 분석
+- **브라우저**: Comet (무료)
+- **가격**: 무료 / Pro $20 / Max $200
+
+#### Microsoft Copilot
+- **텍스트**: GPT-5.2 기반
+- **이미지 생성**: DALL-E 3 기반 Image Creator
+- **Office 통합**: Word, Excel, PowerPoint, Outlook, Teams (핵심 강점)
+- **코드**: GitHub Copilot
+- **에이전트**: 자율 에이전트 (영업, 경비, SharePoint)
+- **가격**: 무료 채팅 + M365 Copilot (기업 구독)
+
+#### Grok (xAI)
+- **텍스트**: Grok 4.20, 추론 모델
+- **이미지 생성**: Grok Imagine 1.0
+- **영상 생성**: 10초, 720p, 오디오 포함
+- **음성**: Grok Voice (저지연, 다국어)
+- **검색**: 실시간 웹 + X(트위터) 데이터
+- **Tesla**: 차량 내 음성 AI
+- **가격**: X 무료(제한) / Premium $8 / SuperGrok $30
+
+#### Mistral Le Chat
+- **텍스트**: Magistral (추론), ~1000 단어/초 (Flash Answers)
+- **이미지 생성/편집**: Black Forest Labs 파트너십
+- **이미지 이해**: Pixtral (12B/Large), Le Chat에서 무료 사용 가능
+- **음성**: Voxtral (저지연 음성 인식)
+- **코드**: Codestral
+- **검색**: 실시간 웹 검색
+- **리서치**: Deep Research
+- **가격**: 무료 / Pro $14.99
+
+#### DeepSeek
+- **텍스트**: V3 (범용), R1 (추론 특화)
+- **코드**: V4 (1조 파라미터, 코딩 특화)
+- **이미지 이해**: VL2 (비전-언어, 제한적 통합)
+- **검색**: 실시간 웹 검색
+- **가격**: 완전 무료 (웹/앱), API 매우 저렴
+
+#### Meta AI (Llama 4)
+- **텍스트**: Llama 4 Scout/Maverick/Behemoth
+- **이미지 생성**: Imagine (Meta AI 내장)
+- **이미지/영상 이해**: 네이티브 멀티모달 입력
+- **다국어**: 100개+ 언어
+- **메신저**: WhatsApp, Instagram, Messenger, Oculus 통합
+- **오픈소스**: 가중치 공개 (로컬 실행 가능)
+- **가격**: 완전 무료
+
+#### Poe (Quora)
+- **멀티모델**: GPT-5.2, Claude, Gemini, Llama 전체 접근 (핵심 강점)
+- **이미지 생성**: FLUX, Ideogram, Stable Diffusion
+- **이미지 이해**: GPT-4, Claude, Gemini 비전 모델 접근
+- **영상 생성**: Veo 2, Runway, Hailuo
+- **커스텀 봇**: 코딩 없이 봇 생성 + 수익화
+- **가격**: 무료(제한) / $5/월 (10,000 포인트/일)
+
+### 4-3. AIPICK 플레이그라운드 관점 정리
+
+| 용도 | 백엔드 API (AIPICK 실행용) | 사용자 노출 (레시피 대안 표시) |
+|------|-------------------------|----------------------------|
+| **텍스트 생성** | Gemini (무료) + Groq (폴백) | ChatGPT, Gemini, Claude, Perplexity, Mistral, DeepSeek |
+| **이미지 생성** | Gemini Flash Image (무료) | ChatGPT (DALL-E), Gemini (Imagen), Midjourney, Copilot, Grok, Mistral |
+| **코드 생성** | Gemini (무료) + Cerebras (폴백) | ChatGPT, Claude, Gemini, DeepSeek, Cursor, GitHub Copilot |
+| **영상 생성** | 미지원 (외부 이동) | ChatGPT (Sora), Gemini (Veo), Grok, Runway, Kling |
+| **음성 합성** | Phase 4 (유료 API) | ElevenLabs, ChatGPT Voice, Gemini Live |
+
+---
+
+## 5. 지원 가능한 AI 작업 유형
+
+### 5-1. Tier별 분류 (수정 반영)
 
 | Tier | 설명 | 해당 작업 | API Provider |
 |------|------|----------|-------------|
 | **Tier 1** | 무료 API 직접 실행 | 텍스트 생성, 이미지 생성, 코드 생성, 번역, 요약 | Gemini, Groq, Cerebras |
-| **Tier 2** | 유료 API 필요 (Phase 3+) | 음성 합성, 고급 이미지 편집 | ElevenLabs, Replicate |
-| **Tier 3** | 공개 API 없음 (외부 이동) | 음악 생성, 프레젠테이션, 영상 생성, 노코드 | Suno, Gamma, Runway |
+| **Tier 2** | 유료 API 필요 (Phase 3+) | 영상 생성, 음성 합성, 고급 이미지 편집 | OpenAI (Sora), Google (Veo), ElevenLabs |
+| **Tier 3** | 공개 API 없음 (외부 이동) | 음악 생성, 프레젠테이션, 노코드 | Suno, Gamma, Canva |
 
-### 4-2. Phase별 지원 범위
+> **변경사항**: 영상 생성을 Tier 3 → Tier 2로 이동. ChatGPT (Sora 2), Gemini (Veo 3) 모두 영상 생성 API를 제공하므로 Phase 3+에서 유료 API 연동 가능.
+
+### 5-2. Phase별 지원 범위 (수정 반영)
 
 | Phase | 지원 작업 | API Provider | 비용 |
 |-------|----------|-------------|------|
-| **Phase 1** (MVP) | 텍스트 생성 | Gemini 2.5 Flash + Groq | $0 |
-| **Phase 2** | 이미지 생성 + 결제 | Gemini Flash Image | $0 |
-| **Phase 3** | 고급 모델 (선택) | OpenAI, Anthropic | 유료 |
-| **Phase 4** | 음성 합성, 코드 실행 | ElevenLabs, 샌드박스 | 유료 |
+| **Phase 1** (MVP) | 텍스트 생성, 코드 생성 | Gemini 2.5 Flash + Groq | $0 |
+| **Phase 2** | 이미지 생성 + 결제 시스템 | Gemini Flash Image | $0 |
+| **Phase 3** | 고급 모델 + 영상 생성 | OpenAI (GPT/Sora), Anthropic, Google (Veo) | 유료 |
+| **Phase 4** | 음성 합성, 코드 실행, BYOK | ElevenLabs, 샌드박스, 사용자 API 키 | 유료 |
 
 ---
 
