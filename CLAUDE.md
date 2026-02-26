@@ -128,12 +128,14 @@ npm run lint        # ESLint 린트 검사 (설정되어 있는 경우)
 | `components/`, `app/` 폴더의 UI/페이지 파일을 수정·생성할 때 | `docs/rules/frontend.md` |
 | 인증·권한·환경변수·입력검증 관련 코드를 수정할 때 | `docs/rules/security.md` |
 | 패키지 설치(`npm install`), `tsconfig.json`, `next.config.ts` 수정 시 | `docs/rules/dependency.md` |
+| 빌드 에러, Supabase 에러, 레이아웃 깨짐, 배포 실패 등 에러 발생 시 | `docs/rules/troubleshooting.md` |
 
 ### 규칙 파일 목록
 - **[Backend 규칙](docs/rules/backend.md)** — API route 구조, Supabase 패턴, 에러 처리, 인증, 쿼리 중앙화
 - **[Frontend 규칙](docs/rules/frontend.md)** — Server/Client Component, import 순서, Tailwind 컨벤션, 페이지 구조
 - **[Security 규칙](docs/rules/security.md)** — 환경변수 분류, 인증 계층, 입력 검증, XSS/Injection 방어
 - **[Dependency 규칙](docs/rules/dependency.md)** — 패키지 설치 규칙, TypeScript 설정, 빌드/배포 체크리스트
+- **[Troubleshooting 규칙](docs/rules/troubleshooting.md)** — 빌드/Supabase/레이아웃/인증/배포 에러 대응
 
 ---
 
