@@ -114,19 +114,23 @@ export default function RecipeStepCard({
           </div>
 
           {/* 도구 정보 */}
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex flex-wrap items-center gap-1.5 mb-3">
             <Link
               href={`/tools/${step.tool_slug}`}
               className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary hover:bg-primary/20 transition-colors"
             >
-              {step.tool_name}
+              {NAME_MAP[step.tool_slug] || step.tool_name}
               <ArrowRight className="h-3 w-3" />
             </Link>
-            {altToolSlugs.length > 0 && (
-              <span className="text-xs text-gray-400">
-                대안: {altToolSlugs.map((slug) => NAME_MAP[slug] || slug).join(', ')}
-              </span>
-            )}
+            {altToolSlugs.map((slug) => (
+              <Link
+                key={slug}
+                href={`/tools/${slug}`}
+                className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-500 hover:bg-gray-200 transition-colors"
+              >
+                {NAME_MAP[slug] || slug}
+              </Link>
+            ))}
           </div>
 
           {/* AI 플레이그라운드 — 상단 배치로 즉시 체험 유도 */}
