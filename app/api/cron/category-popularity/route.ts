@@ -13,8 +13,7 @@ interface ToolAggregateRow {
   category_id: string;
   visit_count: number;
   review_count: number;
-  hybrid_score: number;
-  ranking_score: number;
+  rating_avg: number;
 }
 
 interface CategoryAggregation {
@@ -74,7 +73,7 @@ export async function POST(request: NextRequest) {
     // 2. 모든 도구의 집계에 필요한 데이터를 한 번에 조회
     const { data: tools, error: toolsError } = await supabase
       .from('tools')
-      .select('category_id, visit_count, review_count, hybrid_score, ranking_score');
+      .select('category_id, visit_count, review_count, rating_avg');
 
     if (toolsError) {
       return NextResponse.json({ error: toolsError.message }, { status: 500 });
@@ -112,7 +111,7 @@ export async function POST(request: NextRequest) {
       agg.total_reviews += tool.review_count;
       agg.tool_count += 1;
 
-      const effectiveScore = tool.hybrid_score > 0 ? tool.hybrid_score : tool.ranking_score;
+      const effectiveScore = tool.rating_avg || 0;
       scoreSums.set(cat.slug, (scoreSums.get(cat.slug) || 0) + effectiveScore);
     }
 

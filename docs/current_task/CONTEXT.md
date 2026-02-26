@@ -1,20 +1,17 @@
-# CONTEXT: tool_updates 시스템 설계 배경
+# 왜 2축 평가 시스템으로 전환하는가
 
-## 선택한 접근 방식
-별도 `tool_updates` 테이블로 분리, tools FK 연결
+## 현재 문제
+- ranking_score(레거시): 방문수+평점+리뷰+북마크가 섞여 의미 모호
+- hybrid_score(신규): 리뷰+인기도+커뮤니티+벤치마크가 뒤섞여 "이 점수가 뭘 뜻하는지" 사용자가 이해 불가
+- 두 점수가 코드 전반에 `hybrid_score || ranking_score` 패턴으로 혼용
 
-## 대안과 비교
-| 방식 | 장점 | 단점 | 선택 |
-|------|------|------|------|
-| news 테이블에 통합 | 단일 테이블 | 데이터 성격 불일치, 구조화 어려움 | X |
-| **별도 tool_updates 테이블** | 구조화된 데이터, 도구별 타임라인 | 테이블 추가 | **O** |
+## 새 접근
+- **성능 지표**: "객관적으로 얼마나 잘하나?" — LMSYS Arena Elo, HuggingFace 등 벤치마크
+- **사용자 평점**: "실제로 써보니 어떤가?" — App Store, Play Store, G2 등 리뷰 집계
+- 두 축을 분리하여 랭킹 페이지에서 탭으로 전환 가능하게
 
-## 참고해야 할 기존 코드
-| 파일 경로 | 참고 이유 |
-|----------|----------|
-| `lib/supabase/queries.ts` | getNews 등 Supabase→seed 폴백 패턴 |
-| `app/api/admin/news/route.ts` | Admin CRUD 패턴 |
-| `app/api/cron/news-fetch/route.ts` | Cron Job 인증/추적 패턴 |
-| `lib/constants.ts` | NEWS_CATEGORIES 상수 패턴 |
-| `types/index.ts` | News interface 타입 패턴 |
-| `app/news/page.tsx` | 뉴스 피드 UI 패턴 |
+## 참고 기존 코드
+- `lib/scoring/hybrid.ts` — 삭제 대상 (4카테고리 가중합 로직)
+- `lib/pipeline/rating-aggregator.ts` — 유지 (rating_avg 집계에 사용)
+- `lib/constants.ts:395-429` — DEFAULT_SCORING_WEIGHTS 중 hybrid 관련 키 삭제
+- `lib/supabase/queries.ts:433` — 현재 `.order('hybrid_score')` → `.order('rating_avg')` 전환

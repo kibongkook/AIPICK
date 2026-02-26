@@ -91,6 +91,7 @@ export interface Tool {
   review_count: number;
   visit_count: number;
   upvote_count: number;
+  /** UI 노출에서는 미사용. 내부 정렬/폴백용으로 유지 */
   ranking_score: number;
   weekly_visit_delta: number;
   prev_ranking: number | null;
@@ -100,8 +101,11 @@ export interface Tool {
   pros: string[];
   cons: string[];
   usage_tips: string[];
+  /** @deprecated 2축 평가 시스템 전환으로 미사용. DB 컬럼은 유지 */
   hybrid_score: number;
+  /** @deprecated 2축 평가 시스템 전환으로 미사용 */
   external_score: number;
+  /** @deprecated 2축 평가 시스템 전환으로 미사용 */
   internal_score: number;
   trend_direction: TrendDirection;
   trend_magnitude: number;

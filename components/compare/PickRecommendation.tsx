@@ -26,19 +26,19 @@ export default function PickRecommendation({ tools }: PickRecommendationProps) {
 function generateAnalysis(a: Tool, b: Tool): string[] {
   const lines: string[] = [];
 
-  // 전반적 비교
-  const aScore = a.hybrid_score || a.ranking_score;
-  const bScore = b.hybrid_score || b.ranking_score;
-  const leader = aScore > bScore ? a : b;
-  const follower = aScore > bScore ? b : a;
+  // 사용자 평점 비교
+  const aRating = a.rating_avg || 0;
+  const bRating = b.rating_avg || 0;
 
-  if (Math.abs(aScore - bScore) > 5) {
+  if (aRating > 0 && bRating > 0 && Math.abs(aRating - bRating) >= 0.3) {
+    const leader = aRating > bRating ? a : b;
+    const follower = aRating > bRating ? b : a;
     lines.push(
-      `종합 점수 기준, ${leader.name}(${aScore.toFixed(1)}점)이 ${follower.name}(${bScore.toFixed(1)}점)보다 높은 평가를 받고 있습니다.`
+      `사용자 평점 기준, ${leader.name}(★${Math.max(aRating, bRating).toFixed(1)})이 ${follower.name}(★${Math.min(aRating, bRating).toFixed(1)})보다 높은 평가를 받고 있습니다.`
     );
-  } else {
+  } else if (aRating > 0 && bRating > 0) {
     lines.push(
-      `${a.name}(${aScore.toFixed(1)}점)과 ${b.name}(${bScore.toFixed(1)}점)은 비슷한 수준의 종합 평가를 받고 있습니다.`
+      `${a.name}(★${aRating.toFixed(1)})과 ${b.name}(★${bRating.toFixed(1)})은 비슷한 수준의 사용자 평가를 받고 있습니다.`
     );
   }
 

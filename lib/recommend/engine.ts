@@ -71,10 +71,9 @@ const CATEGORY_RELATED_SCORE = 8;
 // Korean support (0-10)
 // Quality signal (0-20)
 
-const QUALITY_HYBRID_WEIGHT = 10;
-const QUALITY_RATING_WEIGHT = 5;
-const QUALITY_REVIEW_WEIGHT = 3;
-const QUALITY_EDITOR_PICK_BONUS = 2;
+const QUALITY_RATING_WEIGHT = 12;
+const QUALITY_REVIEW_WEIGHT = 5;
+const QUALITY_EDITOR_PICK_BONUS = 3;
 const REVIEW_COUNT_NORMALIZE_CAP = 100;
 const HIGH_RATING_THRESHOLD = 4.0;
 
@@ -227,14 +226,13 @@ function scoreKoreanSupport(
 // ==========================================
 
 function scoreQualitySignal(tool: Tool): number {
-  const hybridContribution = (tool.hybrid_score / 100) * QUALITY_HYBRID_WEIGHT;
   const ratingContribution = (tool.rating_avg / 5) * QUALITY_RATING_WEIGHT;
   const reviewContribution =
     Math.min(tool.review_count / REVIEW_COUNT_NORMALIZE_CAP, 1) * QUALITY_REVIEW_WEIGHT;
   const editorPickBonus = tool.is_editor_pick ? QUALITY_EDITOR_PICK_BONUS : 0;
 
   return Math.min(
-    hybridContribution + ratingContribution + reviewContribution + editorPickBonus,
+    ratingContribution + reviewContribution + editorPickBonus,
     20,
   );
 }

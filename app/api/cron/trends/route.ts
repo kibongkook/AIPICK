@@ -6,8 +6,7 @@ import { createClient } from '@/lib/supabase/server';
 interface ToolForTrend {
   id: string;
   name: string;
-  hybrid_score: number;
-  ranking_score: number;
+  rating_avg: number;
   created_at: string;
   visit_count: number;
   review_count: number;
@@ -25,7 +24,7 @@ type TrendDirection = 'up' | 'down' | 'stable' | 'new';
  * POST /api/cron/trends - 일별 트렌드 계산 및 스냅샷 저장
  *
  * 알고리즘:
- * 1. 모든 도구의 hybrid_score(또는 ranking_score) 기준 현재 순위 산정
+ * 1. 모든 도구의 rating_avg(사용자 평점) 기준 현재 순위 산정
  * 2. 7일 전 trend_snapshots와 비교하여 순위 변동 계산
  * 3. tools 테이블의 trend_direction / trend_magnitude 업데이트
  * 4. 오늘의 trend_snapshot 저장 (upsert)
@@ -45,10 +44,10 @@ export async function POST(request: NextRequest) {
   const supabase = await createClient();
 
   try {
-    // 1. 모든 도구 조회 (hybrid_score 우선, fallback ranking_score)
+    // 1. 모든 도구 조회 (rating_avg 기준 순위 산정)
     const { data: tools, error: toolsError } = await supabase
       .from('tools')
-      .select('id, name, hybrid_score, ranking_score, created_at, visit_count, review_count, upvote_count');
+      .select('id, name, rating_avg, created_at, visit_count, review_count, upvote_count');
 
     if (toolsError || !tools?.length) {
       return NextResponse.json(
@@ -57,11 +56,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. hybrid_score (fallback ranking_score) 기준 내림차순 정렬 후 현재 순위 부여
+    // 2. 사용자 평점 기준 내림차순 정렬 후 현재 순위 부여
     const sortedTools = (tools as ToolForTrend[])
       .map((t) => ({
         ...t,
-        effectiveScore: t.hybrid_score > 0 ? t.hybrid_score : t.ranking_score,
+        effectiveScore: t.rating_avg || 0,
       }))
       .sort((a, b) => b.effectiveScore - a.effectiveScore);
 
@@ -100,7 +99,6 @@ export async function POST(request: NextRequest) {
       review_count: number;
       bookmark_count: number;
       upvote_count: number;
-      external_score: number;
     }> = [];
 
     for (const tool of sortedTools) {
@@ -154,7 +152,6 @@ export async function POST(request: NextRequest) {
         review_count: tool.review_count,
         bookmark_count: 0, // 별도 쿼리 없이 기본값
         upvote_count: tool.upvote_count,
-        external_score: 0,
       });
     }
 

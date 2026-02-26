@@ -23,15 +23,7 @@ export default function ComparisonView({ tools, benchmarks }: ComparisonViewProp
       </div>
 
       {/* 점수 비교 */}
-      <CompareSection title="종합 점수">
-        <CompareRow
-          label="하이브리드 점수"
-          values={tools.map((t) => ({
-            value: (t.hybrid_score || t.ranking_score).toFixed(1),
-            raw: t.hybrid_score || t.ranking_score,
-          }))}
-          higherIsBetter
-        />
+      <CompareSection title="평가">
         <CompareRow
           label="사용자 평점"
           values={tools.map((t) => ({

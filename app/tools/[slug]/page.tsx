@@ -12,7 +12,7 @@ import { BookmarkButton, UpvoteButton } from '@/components/service/ToolInteracti
 import ToolCommunitySection from '@/components/community/ToolCommunitySection';
 import ToolRatingInline from '@/components/review/ToolRatingInline';
 import TrendBadge from '@/components/ranking/TrendBadge';
-import ScoreBreakdown from '@/components/ranking/ScoreBreakdown';
+import ConfidenceBadge from '@/components/ranking/ConfidenceBadge';
 import ToolShowcaseStrip from '@/components/showcase/ToolShowcaseStrip';
 import BenchmarkScores from '@/components/ranking/BenchmarkScores';
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
@@ -148,9 +148,9 @@ export default async function ToolDetailPage({ params }: Props) {
                 <Info className="h-5 w-5 text-primary" />
                 서비스 소개
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-gray-700">
+              <div className="mt-3 text-sm leading-relaxed text-gray-700 whitespace-pre-line">
                 {tool.long_description}
-              </p>
+              </div>
             </section>
           )}
 
@@ -161,9 +161,9 @@ export default async function ToolDetailPage({ params }: Props) {
                 <Zap className="h-5 w-5" />
                 무료로 어디까지?
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-emerald-700">
+              <div className="mt-3 text-sm leading-relaxed text-emerald-700 whitespace-pre-line">
                 {tool.free_quota_detail}
-              </p>
+              </div>
               {tool.monthly_price && (
                 <p className="mt-3 text-xs text-emerald-600">
                   유료 플랜: 월 ${tool.monthly_price}부터
@@ -275,11 +275,13 @@ export default async function ToolDetailPage({ params }: Props) {
                   <TrendBadge direction={tool.trend_direction} magnitude={tool.trend_magnitude || 0} size="md" />
                 </div>
               )}
-              <ScoreBreakdown
-                hybridScore={tool.hybrid_score}
-                confidenceLevel={tool.confidence_level}
-                sourceCount={tool.confidence_source_count}
-              />
+              {/* 신뢰도 배지 (평점 소스 수 기반) */}
+              {tool.confidence_level && tool.confidence_level !== 'none' && (
+                <div className="rounded-xl border border-border bg-white p-5 flex items-center justify-between">
+                  <span className="text-sm font-semibold text-foreground">평점 신뢰도</span>
+                  <ConfidenceBadge level={tool.confidence_level} sourceCount={tool.confidence_source_count} size="md" />
+                </div>
+              )}
             </div>
           )}
 

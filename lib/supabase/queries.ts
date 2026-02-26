@@ -81,6 +81,7 @@ const seed = {
   guides: seedRaw.guides as Guide[] | undefined,
   collections: seedRaw.collections as SeedCollection[] | undefined,
   tool_benchmark_scores: seedRaw.tool_benchmark_scores as ToolBenchmarkScore[] | undefined,
+  tool_external_scores: seedRaw.tool_external_scores as ToolExternalScore[] | undefined,
   tool_updates: seedRaw.tool_updates as ToolUpdate[] | undefined,
   category_showcases: seedRaw.category_showcases as CategoryShowcase[] | undefined,
   tool_showcases: seedRaw.tool_showcases as ToolShowcase[] | undefined,
@@ -407,7 +408,6 @@ export async function getTopToolsByCategorySlug(slug: string, limit = 4): Promis
 export async function getRankings(categorySlug?: string): Promise<(Tool & { ranking: number })[]> {
   const supabase = await db();
   if (supabase) {
-    // TODO: Update to use tool_categories for multi-category support
     let query = supabase.from('tools').select('*');
 
     if (categorySlug) {
@@ -417,7 +417,6 @@ export async function getRankings(categorySlug?: string): Promise<(Tool & { rank
         .eq('slug', categorySlug)
         .single();
       if (cat) {
-        // Use tool_categories for filtering
         const { data: toolIds } = await supabase
           .from('tool_categories')
           .select('tool_id')
@@ -430,7 +429,8 @@ export async function getRankings(categorySlug?: string): Promise<(Tool & { rank
       }
     }
 
-    const { data } = await query.order('hybrid_score', { ascending: false });
+    // 사용자 평점 기준 정렬 (2축 평가 시스템)
+    const { data } = await query.order('rating_avg', { ascending: false });
     if (data?.length) {
       return data.map((tool: Tool, index: number) => ({ ...tool, ranking: index + 1 }));
     }
@@ -441,13 +441,11 @@ export async function getRankings(categorySlug?: string): Promise<(Tool & { rank
   if (categorySlug) {
     const cat = seed.categories.find((c) => c.slug === categorySlug);
     if (cat && seed.tool_categories) {
-      // Use tool_categories
       const toolIds = seed.tool_categories
         .filter(tc => tc.category_id === cat.id)
         .map(tc => tc.tool_id);
       tools = tools.filter((t) => toolIds.includes(t.id));
     } else if (cat) {
-      // Fallback to legacy category_id
       tools = tools.filter((t) => (t as any).category_id === cat.id);
     }
   }
@@ -456,22 +454,118 @@ export async function getRankings(categorySlug?: string): Promise<(Tool & { rank
 
   return toolsWithCategories
     .sort((a, b) => {
-      const scoreA = (a.hybrid_score || a.ranking_score || 0);
-      const scoreB = (b.hybrid_score || b.ranking_score || 0);
-      if (scoreA !== scoreB) return scoreB - scoreA;
-
-      // hybrid_score가 0이면 rating_avg로 정렬
+      // 사용자 평점 기준 정렬
       const ratingA = a.rating_avg || 0;
       const ratingB = b.rating_avg || 0;
       if (ratingA !== ratingB) return ratingB - ratingA;
 
-      // rating도 같으면 visit_count로 정렬
+      // 평점 같으면 리뷰 수로
+      const reviewA = a.review_count || 0;
+      const reviewB = b.review_count || 0;
+      if (reviewA !== reviewB) return reviewB - reviewA;
+
+      // 리뷰도 같으면 방문수
       const visitA = a.visit_count || 0;
       const visitB = b.visit_count || 0;
       if (visitA !== visitB) return visitB - visitA;
 
-      // 모두 같으면 이름순
       return a.name.localeCompare(b.name);
+    })
+    .map((tool, index) => ({ ...tool, ranking: index + 1 }));
+}
+
+/** 벤치마크 기준 랭킹 (성능순 탭) — LLM 도구만 */
+export async function getRankingsByBenchmark(categorySlug?: string): Promise<(Tool & { ranking: number; elo_rating: number | null; overall_score: number | null; speed_tps: number | null })[]> {
+  const supabase = await db();
+
+  // 벤치마크 데이터가 있는 도구만 조회
+  let tools: Tool[] = [];
+
+  if (supabase) {
+    let query = supabase.from('tools').select('*').eq('has_benchmark_data', true);
+
+    if (categorySlug) {
+      const { data: cat } = await supabase
+        .from('categories')
+        .select('id')
+        .eq('slug', categorySlug)
+        .single();
+      if (cat) {
+        const { data: toolIds } = await supabase
+          .from('tool_categories')
+          .select('tool_id')
+          .eq('category_id', cat.id);
+        if (toolIds?.length) {
+          query = query.in('id', toolIds.map(tc => tc.tool_id));
+        }
+      }
+    }
+
+    const { data } = await query;
+    if (data?.length) tools = data as Tool[];
+  }
+
+  // Seed fallback
+  if (!tools.length) {
+    let seedTools = seed.tools.filter(t => t.has_benchmark_data);
+    if (categorySlug) {
+      const cat = seed.categories.find(c => c.slug === categorySlug);
+      if (cat && seed.tool_categories) {
+        const toolIds = seed.tool_categories
+          .filter(tc => tc.category_id === cat.id)
+          .map(tc => tc.tool_id);
+        seedTools = seedTools.filter(t => toolIds.includes(t.id));
+      }
+    }
+    tools = attachCategoriesToTools(seedTools);
+  }
+
+  // 벤치마크 데이터 조인
+  const toolIds = tools.map(t => t.id);
+  let benchmarkScores: typeof seed.tool_benchmark_scores = [];
+
+  if (supabase && toolIds.length) {
+    const { data: dbBenchmarks } = await supabase
+      .from('tool_benchmark_scores')
+      .select('*')
+      .in('tool_id', toolIds);
+    if (dbBenchmarks?.length) {
+      benchmarkScores = dbBenchmarks;
+    }
+  }
+
+  // Supabase에 없으면 seed 폴백
+  if (!benchmarkScores.length) {
+    benchmarkScores = (seed.tool_benchmark_scores || []).filter(b => toolIds.includes(b.tool_id));
+  }
+
+  // tool_id → benchmarks 매핑 (O(n) 조회를 위해 Map 사용)
+  const benchmarkMap = new Map<string, typeof benchmarkScores>();
+  for (const b of benchmarkScores) {
+    if (!benchmarkMap.has(b.tool_id)) benchmarkMap.set(b.tool_id, []);
+    benchmarkMap.get(b.tool_id)!.push(b);
+  }
+
+  const toolsWithBenchmarks = tools.map(tool => {
+    const benchmarks = benchmarkMap.get(tool.id) || [];
+    const bestBenchmark = benchmarks.sort((a, b) => (b.elo_rating || 0) - (a.elo_rating || 0))[0];
+    return {
+      ...tool,
+      elo_rating: bestBenchmark?.elo_rating ?? null,
+      overall_score: bestBenchmark?.overall_score ?? null,
+      speed_tps: bestBenchmark?.speed_tps ?? null,
+    };
+  });
+
+  // Elo 기준 정렬
+  return toolsWithBenchmarks
+    .sort((a, b) => {
+      const eloA = a.elo_rating || 0;
+      const eloB = b.elo_rating || 0;
+      if (eloA !== eloB) return eloB - eloA;
+      const scoreA = a.overall_score || 0;
+      const scoreB = b.overall_score || 0;
+      return scoreB - scoreA;
     })
     .map((tool, index) => ({ ...tool, ranking: index + 1 }));
 }
@@ -1257,7 +1351,8 @@ export async function getToolExternalScores(toolId: string): Promise<ToolExterna
       .eq('tool_id', toolId);
     if (data?.length) return data as ToolExternalScore[];
   }
-  return [];
+  // Seed fallback
+  return (seed.tool_external_scores || []).filter((s) => s.tool_id === toolId);
 }
 
 /**

@@ -385,47 +385,17 @@ export const EXP_ACTIONS = {
  * 4계층: AIPICK 자체 (10%) — 전체 (사용자 확보 후 활성화)
  */
 /**
- * 점수(hybrid_score, 0~100) 4-카테고리 가중치
- *
- * 카테고리 1: 사용자 리뷰 (40%) — App Store, Play Store, G2, Trustpilot, PH
- * 카테고리 2: 인기도 (25%) — Tranco 순위, Open PageRank
- * 카테고리 3: 커뮤니티 (25%) — PH 업보트, GitHub Stars, HN 멘션
- * 카테고리 4: 벤치마크 (10%) — LMSYS Arena, HuggingFace (LLM만)
+ * 평점 집계용 가중치 (rating-aggregator에서 DB 가중치 로드 시 폴백으로 사용)
+ * 2축 평가 시스템 전환 후 hybrid_score 관련 가중치는 제거됨
  */
 export const DEFAULT_SCORING_WEIGHTS = {
-  // 카테고리 가중치 (총합 100)
-  cat_user_reviews: 40,
-  cat_popularity: 25,
-  cat_community: 25,
-  cat_benchmarks: 10,
-  // 사용자 리뷰 서브 가중치 (카테고리 내 비율)
-  review_app_store: 30,
-  review_play_store: 25,
-  review_g2: 20,
-  review_trustpilot: 10,
-  review_product_hunt: 15,
-  // 인기도 서브 가중치
-  pop_tranco: 50,
-  pop_pagerank: 50,
-  // 커뮤니티 서브 가중치
-  comm_ph_upvotes: 35,
-  comm_github: 40,
-  comm_hn_mentions: 25,
-  // 벤치마크 서브 가중치 (LLM만)
-  bench_lmsys_arena: 50,
-  bench_huggingface: 50,
-  // 레거시 호환 (기존 코드가 참조할 수 있음)
-  tier1_arena_elo: 15,
-  tier1_benchmark: 12,
-  tier1_artificial_analysis: 8,
-  tier2_ph_rating: 15,
-  tier2_ph_votes: 5,
-  tier2_github: 12,
-  tier2_hn_mentions: 8,
-  tier3_pricing: 10,
-  tier3_korean: 5,
-  tier4_user_rating: 5,
-  tier4_engagement: 5,
+  // 평점 집계 가중치 (rating_agg_* 키와 매핑)
+  rating_agg_app_store: 30,
+  rating_agg_play_store: 25,
+  rating_agg_g2: 20,
+  rating_agg_trustpilot: 10,
+  rating_agg_product_hunt: 10,
+  rating_agg_aipick: 5,
 } as const;
 
 export const TREND_THRESHOLDS = {

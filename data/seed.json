@@ -122,8 +122,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "GPT-4o mini 무제한 무료, GPT-5.2 제한적 무료(5시간 윈도우), 이미지 생성 일 2장, 파일 업로드, 웹 검색, GPT Store 접근, Memory, 시간당 30턴. Go($8/월): GPT-5.2 Instant 확장, Plus($20/월): Deep Research 월25회·Agent Mode·Canvas",
       "monthly_price": 20,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 2606320,
       "visit_count": 355000000,
       "tags": [
         "챗봇",
@@ -200,9 +200,15 @@
       "play_store_id": "com.openai.chatgpt",
       "trustpilot_domain": "chat.openai.com",
       "g2_slug": "chatgpt",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "high",
+      "confidence_source_count": 5,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "g2",
+        "trustpilot",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440002",
@@ -216,8 +222,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Sonnet 4.5 일일 ~30회 무료, 파일 업로드 5개/대화, Projects 제한적 사용, Artifacts 무료, 비전(이미지 분석) 무료. Pro($20/월): Opus 4.6 접근+5배 사용량+Claude Code",
       "monthly_price": 20,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.7,
+      "review_count": 204055,
       "visit_count": 176000000,
       "tags": [
         "챗봇",
@@ -287,9 +293,13 @@
       "play_store_id": "com.anthropic.claude",
       "trustpilot_domain": "claude.ai",
       "g2_slug": "claude",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "g2"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440003",
@@ -303,8 +313,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Gemini 2.5 Flash 일 250회, 2.5 Pro 일 100회 무료, 이미지 생성 50회/일, 100만 토큰 컨텍스트, Google 검색·YouTube·Maps 연동 무료. Advanced($19.99/월): 2.5 Pro 풀 접근+Deep Research+2TB Drive",
       "monthly_price": 19.99,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 28220110,
       "visit_count": 280000000,
       "tags": [
         "챗봇",
@@ -374,9 +384,13 @@
       "play_store_id": "com.google.android.apps.bard",
       "trustpilot_domain": "gemini.google.com",
       "g2_slug": "google-gemini",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "g2"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440004",
@@ -390,8 +404,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Quick Search 무제한 무료, Pro Search 일 5회 무료, 파일 업로드 제한적, Collections·검색 히스토리 무료. Pro($20/월): Pro Search 무제한+모델 선택+무제한 업로드+API",
       "monthly_price": 20,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.4,
+      "review_count": 175323,
       "visit_count": 30000000,
       "tags": [
         "AI 검색",
@@ -457,9 +471,15 @@
       "play_store_id": "ai.perplexity.app.android",
       "trustpilot_domain": "perplexity.ai",
       "g2_slug": "perplexity-ai",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "high",
+      "confidence_source_count": 5,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "g2",
+        "trustpilot",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440070",
@@ -473,8 +493,8 @@
       "pricing_type": "Free",
       "free_quota_detail": "GPT-4o 기반 채팅 무제한 무료, AI 이미지 생성 무료, 캐릭터 챗 무료, AI 도구 모음 무료, 프롬프트 템플릿 무료 (광고 포함)",
       "monthly_price": null,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 100000,
       "visit_count": 49664127,
       "tags": [
         "한국형 AI",
@@ -535,9 +555,12 @@
       "play_store_id": null,
       "trustpilot_domain": "wrtn.ai",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440100",
@@ -551,8 +574,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "GPT-4o 기반 채팅 무료, 이미지 생성(DALL-E 3) 하루 15회, Bing 검색 연동, Copilot Vision, 음성 대화 무료. Pro($20/월): GPT-4o 우선+Think Deeper+Office AI 통합",
       "monthly_price": 20,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 145000,
       "visit_count": 149601913,
       "tags": [
         "챗봇",
@@ -613,9 +636,12 @@
       "play_store_id": "com.microsoft.copilot",
       "trustpilot_domain": "copilot.microsoft.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440101",
@@ -629,8 +655,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "텍스트 10회/2시간, 이미지 생성 3회/일, Think 추론 10회/24시간, 이미지 분석 3회/일 무료. Premium($8/월): 3배 사용량, Premium+($22/월): DeepSearch 무제한",
       "monthly_price": 8,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 3.9,
+      "review_count": 33000,
       "visit_count": 54115011,
       "tags": [
         "챗봇",
@@ -694,9 +720,12 @@
       "play_store_id": null,
       "trustpilot_domain": "grok.x.ai",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440102",
@@ -710,8 +739,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 크레딧으로 GPT-4o mini·Llama 등 경량 모델 무료 사용, 고급 모델(GPT-4o, Claude) 소량 무료. 구독($19.99/월): 월 크레딧 대폭 증가+전 모델 접근",
       "monthly_price": 19.99,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.4,
+      "review_count": 45000,
       "visit_count": 56319597,
       "tags": [
         "멀티모델",
@@ -770,9 +799,12 @@
       "play_store_id": null,
       "trustpilot_domain": "poe.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440103",
@@ -935,8 +967,8 @@
       "pricing_type": "Free",
       "free_quota_detail": "봇 생성·배포 완전 무료, GPT-4o 기반, 워크플로우·600+ 플러그인·지식베이스 무료, Discord·Telegram·Slack 등 멀티채널 배포 무료",
       "monthly_price": null,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.3,
+      "review_count": 50,
       "visit_count": 58209282,
       "tags": [
         "봇 빌더",
@@ -995,9 +1027,11 @@
       "play_store_id": null,
       "trustpilot_domain": "coze.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440106",
@@ -1085,8 +1119,8 @@
       "pricing_type": "Free",
       "free_quota_detail": "200만 토큰 컨텍스트 완전 무료, PDF·Word·Excel·코드 파일 분석 무료, 웹 검색 연동 무료, 다중 파일 동시 처리 무료",
       "monthly_price": null,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.4,
+      "review_count": 20000,
       "visit_count": 18022510,
       "tags": [
         "초장문",
@@ -1143,9 +1177,12 @@
       "play_store_id": null,
       "trustpilot_domain": "kimi.moonshot.cn",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440005",
@@ -1159,8 +1196,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Free/Plus 플랜에서 AI 제한적 체험 가능, 전체 AI 기능은 Business($20/user/월) 이상",
       "monthly_price": 10,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 745800,
       "visit_count": 80000000,
       "tags": [
         "문서 AI",
@@ -1220,9 +1257,13 @@
       "play_store_id": "notion.id",
       "trustpilot_domain": "notion.so",
       "g2_slug": "notion-ai",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "g2"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440110",
@@ -1236,8 +1277,8 @@
       "pricing_type": "Paid",
       "free_quota_detail": "무료 플랜 없음. 7일 무료 체험 후 월 $39.",
       "monthly_price": 39,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 2000,
       "visit_count": 13547979,
       "tags": [
         "마케팅 AI",
@@ -1296,9 +1337,13 @@
       "play_store_id": null,
       "trustpilot_domain": "jasper.ai",
       "g2_slug": "jasper",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "g2",
+        "trustpilot",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440111",
@@ -1312,8 +1357,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 2,000단어 무료 생성, 채팅 기능 무제한 무료, 90개 이상 템플릿 무료",
       "monthly_price": 36,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 320,
       "visit_count": 28318332,
       "tags": [
         "카피라이팅",
@@ -1372,9 +1417,12 @@
       "play_store_id": null,
       "trustpilot_domain": "copy.ai",
       "g2_slug": "copy-ai",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440112",
@@ -1388,8 +1436,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 10,000단어 무료 생성, GPT-4 기반 25회/월 무료, Chatsonic 검색 기능 포함",
       "monthly_price": 16,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 4000,
       "visit_count": 25748190,
       "tags": [
         "SEO",
@@ -1448,9 +1496,12 @@
       "play_store_id": null,
       "trustpilot_domain": "writesonic.com",
       "g2_slug": "writesonic",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "trustpilot"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440113",
@@ -1464,8 +1515,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 문법·맞춤법 교정 무제한 무료, AI 작문(GrammarlyGO) 월 100회 무료, 브라우저 확장 무료",
       "monthly_price": 12,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 722800,
       "visit_count": 120000000,
       "tags": [
         "문법 교정",
@@ -1526,9 +1577,14 @@
       "play_store_id": "com.grammarly.android.keyboard",
       "trustpilot_domain": "grammarly.com",
       "g2_slug": "grammarly",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 4,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "g2",
+        "trustpilot"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440114",
@@ -1542,8 +1598,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "패러프레이징 125단어까지 무료, 문법 검사 무료 무제한, 요약 1,200단어까지 무료",
       "monthly_price": 9.95,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 3.9,
+      "review_count": 1560,
       "visit_count": 33717968,
       "tags": [
         "패러프레이징",
@@ -1601,9 +1657,12 @@
       "play_store_id": null,
       "trustpilot_domain": "quillbot.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "trustpilot"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440115",
@@ -1617,8 +1676,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 캐릭터 대화 무제한 무료, 캐릭터 생성·공유 무료, 그룹 채팅 무료. c.ai+($9.99/월): c1+ 고급 모델+우선 응답+음성 통화 확장",
       "monthly_price": 9.99,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 1150000,
       "visit_count": 12120096,
       "tags": [
         "캐릭터 챗",
@@ -1676,9 +1735,12 @@
       "play_store_id": null,
       "trustpilot_domain": "character.ai",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440116",
@@ -1692,8 +1754,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 300분 음성 전사 무료, 실시간 회의 요약 무료, Zoom·Teams·Meet 연동 무료",
       "monthly_price": 16.99,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.2,
+      "review_count": 32220,
       "visit_count": 53087009,
       "tags": [
         "회의록",
@@ -1753,9 +1815,13 @@
       "play_store_id": null,
       "trustpilot_domain": "otter.ai",
       "g2_slug": "otter-ai",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "g2"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440117",
@@ -1769,8 +1835,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 800분 저장 공간 무료, AI 회의 요약 무료, 무제한 전사(크레딧 제한), CRM 연동 무료",
       "monthly_price": 18,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 600,
       "visit_count": 43864483,
       "tags": [
         "회의 비서",
@@ -1830,9 +1896,12 @@
       "play_store_id": null,
       "trustpilot_domain": "fireflies.ai",
       "g2_slug": "fireflies-ai",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440118",
@@ -1923,8 +1992,8 @@
       "pricing_type": "Free",
       "free_quota_detail": "음성 기록 무제한 무료, 한국어 음성 인식 무료, 화자 분리 무료, 회의록 자동 생성 무료",
       "monthly_price": null,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.4,
+      "review_count": 47000,
       "visit_count": 39900168,
       "tags": [
         "한국어 전사",
@@ -1983,9 +2052,12 @@
       "play_store_id": "com.naver.clova.note",
       "trustpilot_domain": "clovanote.naver.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440120",
@@ -1999,8 +2071,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 10,000자 무료 생성, 40개 이상 사용 사례 템플릿 무료, 20개 톤 설정 가능",
       "monthly_price": 9,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.7,
+      "review_count": 1200,
       "visit_count": 14355647,
       "tags": [
         "글쓰기 AI",
@@ -2060,9 +2132,12 @@
       "play_store_id": null,
       "trustpilot_domain": "rytr.me",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440121",
@@ -2308,8 +2383,8 @@
       "pricing_type": "Paid",
       "free_quota_detail": "무료 플랜 없음(2023년 중단). Basic $10/월(3.3시간 Fast GPU), Standard $30/월(15시간+무제한 Relax)",
       "monthly_price": 10,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4,
+      "review_count": 1120,
       "visit_count": 50000000,
       "tags": [
         "이미지생성",
@@ -2372,9 +2447,13 @@
       "play_store_id": null,
       "trustpilot_domain": "midjourney.com",
       "g2_slug": "midjourney",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "g2",
+        "trustpilot",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440011",
@@ -2549,8 +2628,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 150토큰 무료(리셋 UTC 자정, 이월 불가), 대기 시간 8-20분, 다양한 모델 무료 사용",
       "monthly_price": 15,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 180,
       "visit_count": 44392733,
       "tags": [
         "이미지생성",
@@ -2613,9 +2692,12 @@
       "play_store_id": null,
       "trustpilot_domain": "leonardo.ai",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440131",
@@ -2629,8 +2711,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 플랜 제공(일일 생성 횟수 제한), Basic $11.99/월, Pro $85.99/월",
       "monthly_price": 8,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 80,
       "visit_count": 21644271,
       "tags": [
         "이미지생성",
@@ -2690,9 +2772,11 @@
       "play_store_id": null,
       "trustpilot_domain": "ideogram.ai",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440132",
@@ -2706,8 +2790,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 체험 크레딧 제공, 유료 구독자($9.99/월~) 무제한 AI 이미지·영상 생성, 2K 해상도",
       "monthly_price": 9.99,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 3.5,
+      "review_count": 900,
       "visit_count": 164683624,
       "tags": [
         "상업적 안전",
@@ -2768,9 +2852,12 @@
       "play_store_id": null,
       "trustpilot_domain": "firefly.adobe.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "trustpilot"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440133",
@@ -3092,8 +3179,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "미리보기 해상도 무제한 무료, 고해상도 다운로드 월 1장 무료, API 50회 무료 체험",
       "monthly_price": 9.99,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 4000,
       "visit_count": 41118464,
       "tags": [
         "배경 제거",
@@ -3152,9 +3239,13 @@
       "play_store_id": null,
       "trustpilot_domain": "remove.bg",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "g2",
+        "trustpilot",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440138",
@@ -3168,8 +3259,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "배경 제거 무제한 무료(워터마크 포함), AI 배경 생성 무료, 상품 사진 편집 기본 기능 무료",
       "monthly_price": 12.99,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.7,
+      "review_count": 290100,
       "visit_count": 19788423,
       "tags": [
         "상품 사진",
@@ -3229,9 +3320,13 @@
       "play_store_id": null,
       "trustpilot_domain": "photoroom.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440139",
@@ -3322,8 +3417,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "가입 시 125 크레딧 1회 제공 (Gen-3 Alpha 약 3~4회 생성). 추가 무료 크레딧 없음. Basic $15/월(625 크레딧), Standard $35/월(2,250 크레딧)",
       "monthly_price": 15,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 220,
       "visit_count": 15000000,
       "tags": [
         "영상 생성",
@@ -3388,9 +3483,12 @@
       "play_store_id": null,
       "trustpilot_domain": "runwayml.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440021",
@@ -3404,8 +3502,8 @@
       "pricing_type": "Free",
       "free_quota_detail": "대부분 편집 기능 무료 (워터마크 포함), 자동 자막·AI 배경 제거·템플릿 무료 사용, 클라우드 저장 1GB. Pro $9.99/월: 워터마크 제거+프리미엄 에셋+클라우드 100GB",
       "monthly_price": null,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 35500000,
       "visit_count": 25602550,
       "tags": [
         "영상 편집",
@@ -3467,9 +3565,12 @@
       "play_store_id": "com.lemon.lvoverseas",
       "trustpilot_domain": "capcut.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440022",
@@ -3883,8 +3984,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "1분 영상 1개 무료 생성, 워터마크 포함. Creator $29/월(15분/월), Business $89/월(30분/월+커스텀 아바타+API)",
       "monthly_price": 29,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.7,
+      "review_count": 500,
       "visit_count": 18956519,
       "tags": [
         "AI 아바타",
@@ -3944,9 +4045,12 @@
       "play_store_id": null,
       "trustpilot_domain": "heygen.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440145",
@@ -3960,8 +4064,8 @@
       "pricing_type": "Paid",
       "free_quota_detail": "무료 플랜 없음. 무료 데모 영상 1개 체험 가능. Starter $22/월(10분), Creator $67/월(30분+230 아바타)",
       "monthly_price": 22,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.4,
+      "review_count": 2730,
       "visit_count": 14204494,
       "tags": [
         "AI 아바타",
@@ -4021,9 +4125,13 @@
       "play_store_id": null,
       "trustpilot_domain": "synthesia.io",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "g2",
+        "trustpilot",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440146",
@@ -4037,8 +4145,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "5분 영상 크레딧 무료 제공. Lite $16/월(10분), Pro $60/월(15분+프리미엄 발표자)",
       "monthly_price": 5.99,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.4,
+      "review_count": 140,
       "visit_count": 25585158,
       "tags": [
         "디지털 휴먼",
@@ -4098,9 +4206,12 @@
       "play_store_id": null,
       "trustpilot_domain": "d-id.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440147",
@@ -4114,8 +4225,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "1시간 전사 무료, 워터마크 포함, 기본 편집 기능 무료. Hobbyist $24/월(10시간), Professional $33/월(30시간+Overdub)",
       "monthly_price": 24,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 700,
       "visit_count": 15132057,
       "tags": [
         "영상 편집",
@@ -4177,9 +4288,12 @@
       "play_store_id": null,
       "trustpilot_domain": "descript.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440148",
@@ -4193,8 +4307,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 60분 업로드 무료, 월 3회 클립 내보내기. Starter $15/월(200분+무제한 내보내기), Pro $29/월(600분+커스텀 브랜딩)",
       "monthly_price": 15,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 250,
       "visit_count": 27079599,
       "tags": [
         "숏폼",
@@ -4254,9 +4368,12 @@
       "play_store_id": null,
       "trustpilot_domain": "opus.pro",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440149",
@@ -4270,8 +4387,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 10,000 크레딧(~20분 오디오), 커스텀 음성 3개 생성, 기본 TTS 무료",
       "monthly_price": 5,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.7,
+      "review_count": 330,
       "visit_count": 25000000,
       "tags": [
         "음성 합성",
@@ -4318,9 +4435,12 @@
       "play_store_id": null,
       "trustpilot_domain": "elevenlabs.io",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440150",
@@ -4410,8 +4530,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "주 10분 영상 생성 무료, 720p, 워터마크 포함. Plus $25/월(월 50분, 1080p), Max $60/월(월 200분+iStock)",
       "monthly_price": 25,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 8300,
       "visit_count": 15455913,
       "tags": [
         "프롬프트→영상",
@@ -4471,9 +4591,12 @@
       "play_store_id": null,
       "trustpilot_domain": "invideo.io",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "trustpilot"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440152",
@@ -4564,8 +4687,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 2,000회 코드 자동완성+50회 프리미엄 채팅 무료. Pro $10/월, Pro+ $39/월(모든 모델)",
       "monthly_price": 10,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 550,
       "visit_count": 20000000,
       "tags": [
         "코드 자동완성",
@@ -4617,9 +4740,12 @@
       "play_store_id": null,
       "trustpilot_domain": "github.com",
       "g2_slug": "github-copilot",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440031",
@@ -4633,8 +4759,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Hobby 무료: 2,000회 자동완성+50회 슬로우 요청/월, 7일 Pro 체험. Pro $20/월(크레딧 $20 풀)",
       "monthly_price": 20,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 455,
       "visit_count": 5000000,
       "tags": [
         "AI IDE",
@@ -4686,9 +4812,12 @@
       "play_store_id": null,
       "trustpilot_domain": "cursor.sh",
       "g2_slug": "cursor-ai",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440032",
@@ -4702,8 +4831,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 플랜: 기본 IDE, AI 제한적 사용, 퍼블릭 프로젝트만. Core $25/월: Ghostwriter 무제한+고성능 VM+프라이빗 Repl. Teams $15/유저/월",
       "monthly_price": 25,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.2,
+      "review_count": 33080,
       "visit_count": 20616937,
       "tags": [
         "클라우드 IDE",
@@ -4764,9 +4893,13 @@
       "play_store_id": null,
       "trustpilot_domain": "replit.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "g2"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440160",
@@ -4780,8 +4913,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "Basic 무료: 기본 코드 완성, 제한된 AI 채팅. Dev $9/월(고급 AI 완성+무제한 채팅). Enterprise 맞춤 요금(로컬 배포+팀 학습)",
       "monthly_price": 12,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.2,
+      "review_count": 80,
       "visit_count": 34664516,
       "tags": [
         "코드 자동완성",
@@ -4841,9 +4974,11 @@
       "play_store_id": null,
       "trustpilot_domain": "tabnine.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "g2"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440161",
@@ -4992,8 +5127,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료: 일일 토큰 제한, 기본 AI 모델 사용. Pro $20/월(10M 토큰+고급 모델). Team $40/유저/월(협업+우선 지원)",
       "monthly_price": 20,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.7,
+      "review_count": 300,
       "visit_count": 37210341,
       "tags": [
         "AI 앱 빌더",
@@ -5053,9 +5188,11 @@
       "play_store_id": null,
       "trustpilot_domain": "bolt.new",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440164",
@@ -5069,8 +5206,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 200 크레딧 무료 (약 200회 생성). Premium $20/월(5,000 크레딧+우선 처리). Enterprise 맞춤 요금(팀+SSO)",
       "monthly_price": 20,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 200,
       "visit_count": 13821711,
       "tags": [
         "UI 생성",
@@ -5131,9 +5268,11 @@
       "play_store_id": null,
       "trustpilot_domain": "v0.dev",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440165",
@@ -5147,8 +5286,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료: 제한된 메시지 크레딧 (약 5~10회 생성). Starter $20/월, Launch $50/월(고급 기능), Scale $100/월(최대 크레딧+우선 지원)",
       "monthly_price": 20,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.7,
+      "review_count": 350,
       "visit_count": 29542237,
       "tags": [
         "AI 앱 빌더",
@@ -5208,9 +5347,11 @@
       "play_store_id": null,
       "trustpilot_domain": "lovable.dev",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440166",
@@ -5688,8 +5829,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 50크레딧(약 10곡, UTC 자정 리셋, 이월 불가), v4.5 모델, 개인 사용만 가능. Pro $10/월(v5, 상업 사용)",
       "monthly_price": 10,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.7,
+      "review_count": 250,
       "visit_count": 12000000,
       "tags": [
         "AI 작곡",
@@ -5735,9 +5876,11 @@
       "play_store_id": null,
       "trustpilot_domain": "suno.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440041",
@@ -5751,8 +5894,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "일일 10크레딧+월 100 백업 크레딧(약 3곡/일), 다운로드 현재 제한적. Standard $10/월(2,400크레딧)",
       "monthly_price": 10,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 80,
       "visit_count": 7721828,
       "tags": [
         "AI 작곡",
@@ -5793,9 +5936,11 @@
       "play_store_id": null,
       "trustpilot_domain": "udio.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440042",
@@ -6430,8 +6575,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "400 AI 크레딧 무료(프레젠테이션 약 10개 분량), Gamma 워터마크 포함, 웹 공유·협업 가능",
       "monthly_price": 10,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 400,
       "visit_count": 21335411,
       "tags": [
         "프레젠테이션",
@@ -6492,9 +6637,12 @@
       "play_store_id": null,
       "trustpilot_domain": "gamma.app",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "product_hunt",
+        "g2"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440052",
@@ -6585,8 +6733,8 @@
       "pricing_type": "Free",
       "free_quota_detail": "완전 무료: 노트북당 50개 소스, Audio Overview 무제한, Gemini AI 분석·요약·Q&A 전체 무료 제공",
       "monthly_price": null,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.8,
+      "review_count": 150,
       "visit_count": 56236849,
       "tags": [
         "AI 리서치",
@@ -6647,9 +6795,11 @@
       "play_store_id": null,
       "trustpilot_domain": "notebooklm.google.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440191",
@@ -6817,8 +6967,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료 체험 제공(기간 제한), Pro $12/월, AI 프레젠테이션 생성·스마트 레이아웃·PPT 내보내기 포함",
       "monthly_price": 12,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.7,
+      "review_count": 400,
       "visit_count": 17720184,
       "tags": [
         "프레젠테이션",
@@ -6878,9 +7028,11 @@
       "play_store_id": null,
       "trustpilot_domain": "beautiful.ai",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "g2"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440194",
@@ -6970,8 +7122,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "500 AI 크레딧 무료(프레젠테이션 약 5~10개 분량), AI 이미지 생성·텍스트 생성 포함, Tome 워터마크",
       "monthly_price": 10,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.3,
+      "review_count": 170,
       "visit_count": 36560288,
       "tags": [
         "프레젠테이션",
@@ -7031,9 +7183,12 @@
       "play_store_id": null,
       "trustpilot_domain": "tome.app",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440196",
@@ -7354,8 +7509,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "웹 번역기 1회 1,500자 제한, API Free 월 500,000자, 문서 번역 월 3건, 용어집 1개, DeepL Write 제한적 무료",
       "monthly_price": 8.74,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 387961,
       "visit_count": 31485217,
       "tags": [
         "번역",
@@ -7416,9 +7571,14 @@
       "play_store_id": "com.deepl.mobiletranslator",
       "trustpilot_domain": "deepl.com",
       "g2_slug": "deepl",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 4,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "g2",
+        "trustpilot"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440061",
@@ -7432,8 +7592,8 @@
       "pricing_type": "Free",
       "free_quota_detail": "완전 무료. 텍스트 1회 5,000자, 문서(Word·PPT·PDF·HWP)·이미지(OCR)·웹사이트 번역 모두 무료 제공",
       "monthly_price": null,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 575000,
       "visit_count": 39766867,
       "tags": [
         "번역",
@@ -7495,9 +7655,12 @@
       "play_store_id": "com.naver.labs.translator",
       "trustpilot_domain": "papago.naver.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440062",
@@ -7511,8 +7674,8 @@
       "pricing_type": "Free",
       "free_quota_detail": "완전 무료. 모든 기능(텍스트·문서·이미지·음성·웹사이트) 제한 없이 무료. Cloud Translation API 월 500,000자 무료",
       "monthly_price": null,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 11220000,
       "visit_count": 117826639,
       "tags": [
         "번역",
@@ -7574,9 +7737,12 @@
       "play_store_id": "com.google.android.apps.translate",
       "trustpilot_domain": "translate.google.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440200",
@@ -7976,8 +8142,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "AI 디자인 일 3회, Magic Write 프로젝트당 2회, 배경 제거 월 5회, 5GB 저장소. Pro $12.99/월",
       "monthly_price": 12.99,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.7,
+      "review_count": 16004500,
       "visit_count": 180000000,
       "tags": [
         "디자인",
@@ -8040,9 +8206,13 @@
       "play_store_id": "com.canva.editor",
       "trustpilot_domain": "canva.com",
       "g2_slug": "canva",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "g2"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440072",
@@ -8056,8 +8226,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 100 태스크 무료, Zap 5개, 단일 스텝만 가능, AI 액션 포함, 기본 앱 연동 지원",
       "monthly_price": 19.99,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 3.8,
+      "review_count": 1700,
       "visit_count": 45000000,
       "tags": [
         "자동화",
@@ -8118,9 +8288,12 @@
       "play_store_id": null,
       "trustpilot_domain": "zapier.com",
       "g2_slug": "zapier",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "trustpilot"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440210",
@@ -8134,8 +8307,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "월 1,000 오퍼레이션 무료, 시나리오 2개, 최소 실행 간격 15분, 기본 앱 연동 지원",
       "monthly_price": 9,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.7,
+      "review_count": 480,
       "visit_count": 25795219,
       "tags": [
         "자동화",
@@ -8197,9 +8370,12 @@
       "play_store_id": null,
       "trustpilot_domain": "make.com",
       "g2_slug": "make-formerly-integromat",
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "g2",
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440211",
@@ -10231,8 +10407,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "제한적 무료 사용 (기본 음성, 속도 제한). Premium $11.58/월(200+ 음성+무제한), Audiobooks $199/년(오디오북 라이브러리)",
       "monthly_price": null,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 165000,
       "visit_count": 0,
       "upvote_count": 0,
       "ranking_score": 0,
@@ -10292,9 +10468,12 @@
       "play_store_id": "com.cliffweitzman.speechifyMobile",
       "trustpilot_domain": "speechify.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "tool-14",
@@ -14061,8 +14240,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "기본 레슨 완전 무료(광고 포함), 하트 5개 시스템(오답 시 소모-시간 경과 시 회복). AI Explain My Answer-Roleplay는 Max($29.99/월) 전용",
       "monthly_price": null,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.6,
+      "review_count": 38500600,
       "visit_count": 0,
       "upvote_count": 0,
       "ranking_score": 0,
@@ -14122,9 +14301,13 @@
       "play_store_id": "com.duolingo",
       "trustpilot_domain": "duolingo.com",
       "g2_slug": null,
-      "confidence_level": "none",
-      "confidence_source_count": 0,
-      "rating_sources": []
+      "confidence_level": "medium",
+      "confidence_source_count": 3,
+      "rating_sources": [
+        "app_store",
+        "play_store",
+        "g2"
+      ]
     },
     {
       "id": "tool-64",
@@ -16817,8 +17000,8 @@
       "pricing_type": "Free",
       "free_quota_detail": "웹/앱 채팅 완전 무료 무제한. API: $0.55/M input, $2.19/M output tokens. DeepSeek-R1 추론 모델도 무료 이용 가능",
       "monthly_price": null,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 175000,
       "visit_count": 0,
       "upvote_count": 0,
       "ranking_score": 0,
@@ -16885,9 +17068,12 @@
         "deepseek-v3.1",
         "deepseek-prover-v2"
       ],
-      "confidence_level": "medium",
+      "confidence_level": "low",
       "confidence_source_count": 2,
-      "rating_sources": []
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440227",
@@ -16901,8 +17087,8 @@
       "pricing_type": "Freemium",
       "free_quota_detail": "무료: 300 일일크레딧 + 1,000 스타터 크레딧, Chat 모드, 동시 1작업. Starter $19/월, Pro $39/월, Max $199/월",
       "monthly_price": 19,
-      "rating_avg": 0,
-      "review_count": 0,
+      "rating_avg": 4.5,
+      "review_count": 120,
       "visit_count": 0,
       "upvote_count": 0,
       "ranking_score": 0,
@@ -16962,9 +17148,11 @@
       "github_forks": null,
       "product_hunt_upvotes": null,
       "model_identifiers": [],
-      "confidence_level": "medium",
-      "confidence_source_count": 2,
-      "rating_sources": []
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "product_hunt"
+      ]
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440228",
@@ -17748,6 +17936,166 @@
       "confidence_level": "low",
       "confidence_source_count": 1,
       "rating_sources": []
+    },
+    {
+      "id": "tool-98",
+      "name": "Mistral (Le Chat)",
+      "slug": "mistral",
+      "description": "프랑스 AI 기업 Mistral AI의 무료 챗봇. Mistral Large 2, Codestral 등 고성능 오픈소스 모델 기반, 웹 검색·캔버스·이미지 생성 지원",
+      "long_description": "Mistral AI는 프랑스 파리 기반의 AI 기업으로, 오픈소스 철학을 바탕으로 GPT-4급 성능의 모델을 개발하고 있습니다. Le Chat은 Mistral AI의 공식 챗봇 플랫폼입니다.\n\n【핵심 기능】\n• 대화·글쓰기: Mistral Large 2 모델 기반, 에세이·보고서·이메일 등 텍스트 작업\n• 코딩: Codestral 모델로 코드 생성·디버깅·리뷰 지원\n• 웹 검색: 실시간 웹 검색 통합, 출처 인용\n• 캔버스: 문서·코드를 시각적으로 편집하는 협업 공간\n• 이미지 생성: Flux 모델 기반 이미지 생성 (무료)\n• 에이전트: 커스텀 AI 에이전트 생성 및 공유\n• 다국어 지원: 한국어 포함 다국어 대화\n• 오픈소스: Mistral 7B, Mixtral 8x7B 등 모델 가중치 공개\n\n【요금제】\n• 무료: Le Chat 무료 이용 (일일 메시지 제한 있음)\n• Pro($9/월): 무제한 메시지, 우선 접속\n• API: 사용량 기반 과금",
+      "category_id": "e052e3cb-1613-4dc3-95c9-8fb66fa1bda8",
+      "url": "https://chat.mistral.ai",
+      "logo_url": "https://icons.duckduckgo.com/ip3/chat.mistral.ai.ico",
+      "pricing_type": "Freemium",
+      "free_quota_detail": "Le Chat 무료 이용 가능 (일일 메시지 제한). Mistral Large 2·Codestral 모델 무료 접근. 이미지 생성·웹 검색·캔버스 무료. Pro($9/월)로 무제한 메시지 이용 가능",
+      "monthly_price": 9,
+      "rating_avg": 4.3,
+      "review_count": 3800,
+      "visit_count": 0,
+      "upvote_count": 0,
+      "ranking_score": 0,
+      "weekly_visit_delta": 0,
+      "prev_ranking": null,
+      "tags": [
+        "챗봇",
+        "오픈소스",
+        "코딩",
+        "글쓰기",
+        "이미지 생성",
+        "웹검색",
+        "프랑스 AI",
+        "에이전트",
+        "캔버스"
+      ],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "프랑스·유럽 기반으로 GDPR 준수, 데이터 프라이버시에 강점",
+        "Codestral 모델의 코딩 성능이 업계 최상위급",
+        "오픈소스 모델 공개로 로컬 실행 및 커스터마이징 가능",
+        "무료 플랜에서도 이미지 생성·웹 검색·캔버스 기능 제공",
+        "Le Chat의 캔버스 기능으로 문서/코드 시각적 편집 가능"
+      ],
+      "cons": [
+        "한국어 품질이 ChatGPT·Claude 대비 다소 부족할 수 있음",
+        "무료 플랜의 일일 메시지 제한이 헤비 유저에겐 부족",
+        "ChatGPT·Claude 대비 플러그인·연동 생태계가 작음",
+        "음성 대화 기능 미지원"
+      ],
+      "usage_tips": [
+        "코딩 작업에는 Codestral 모델을 선택하면 더 정확한 결과를 얻을 수 있습니다",
+        "캔버스 기능을 활용하면 긴 문서나 코드를 시각적으로 편집할 수 있습니다",
+        "웹 검색을 켜면 최신 정보를 반영한 답변을 받을 수 있습니다",
+        "한국어보다 영어로 질문하면 더 높은 품질의 답변을 받을 수 있습니다"
+      ],
+      "sample_output_prompt": null,
+      "sample_output": null,
+      "bookmark_count": 0,
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": null,
+      "g2_slug": null,
+      "created_at": "2026-02-26T00:00:00Z",
+      "updated_at": "2026-02-26T00:00:00Z",
+      "hybrid_score": 0,
+      "external_score": 0,
+      "internal_score": 0,
+      "trend_direction": "new",
+      "trend_magnitude": 75,
+      "has_benchmark_data": false,
+      "github_stars": 38000,
+      "github_forks": 4000,
+      "product_hunt_upvotes": null,
+      "model_identifiers": [
+        "mistral-large-2",
+        "codestral",
+        "mixtral-8x22b",
+        "mistral-7b"
+      ],
+      "confidence_level": "low",
+      "confidence_source_count": 2,
+      "rating_sources": [
+        "app_store",
+        "play_store"
+      ]
+    },
+    {
+      "id": "tool-99",
+      "name": "Meta AI",
+      "slug": "meta-ai",
+      "description": "Meta가 개발한 무료 AI 어시스턴트. Llama 4 모델 기반, Facebook·Instagram·WhatsApp·Messenger에서 바로 사용 가능",
+      "long_description": "Meta AI는 Meta(구 Facebook)가 개발한 AI 어시스턴트로, Llama 4 모델을 기반으로 합니다. meta.ai 웹사이트뿐 아니라 Facebook, Instagram, WhatsApp, Messenger 등 Meta 플랫폼 내에서 직접 사용할 수 있습니다.\n\n【핵심 기능】\n• 대화·글쓰기: Llama 4 모델 기반 텍스트 생성, 요약, 번역\n• 이미지 생성: 대화 중 이미지 생성 요청 가능\n• 소셜 통합: Facebook·Instagram·WhatsApp·Messenger에서 바로 호출\n• 웹 검색: Bing 검색 엔진 연동, 실시간 정보 제공\n• 그룹 채팅: 메신저 그룹 대화에서 @Meta AI로 호출\n• 다국어 지원: 한국어 포함 다수 언어 지원\n• 오픈소스: Llama 모델 가중치 공개\n\n【요금제】\n• 완전 무료 (별도 요금제 없음)",
+      "category_id": "e052e3cb-1613-4dc3-95c9-8fb66fa1bda8",
+      "url": "https://www.meta.ai",
+      "logo_url": "https://icons.duckduckgo.com/ip3/www.meta.ai.ico",
+      "pricing_type": "Free",
+      "free_quota_detail": "완전 무료. 별도 요금제 없이 모든 기능 무료 이용 가능. Facebook·Instagram·WhatsApp·Messenger에서도 무료 사용",
+      "monthly_price": null,
+      "rating_avg": 3.2,
+      "review_count": 5000,
+      "visit_count": 0,
+      "upvote_count": 0,
+      "ranking_score": 0,
+      "weekly_visit_delta": 0,
+      "prev_ranking": null,
+      "tags": [
+        "챗봇",
+        "무료",
+        "소셜미디어",
+        "이미지 생성",
+        "오픈소스",
+        "웹검색",
+        "메신저"
+      ],
+      "is_editor_pick": false,
+      "supports_korean": true,
+      "pros": [
+        "완전 무료로 별도 가입 없이 Meta 계정으로 바로 사용 가능",
+        "Facebook·Instagram·WhatsApp에서 대화 중 바로 AI 호출 가능",
+        "Llama 4 기반으로 성능이 크게 향상됨",
+        "이미지 생성 기능을 무료로 제공",
+        "그룹 채팅에서 @Meta AI로 호출해 친구들과 함께 활용 가능"
+      ],
+      "cons": [
+        "한국에서 접속이 제한될 수 있음 (일부 국가 미지원)",
+        "ChatGPT·Claude 대비 심층 분석·코딩 능력이 부족",
+        "Meta 생태계(Facebook 등) 밖에서는 기능이 제한적",
+        "프라이버시 우려 — Meta의 데이터 활용 정책에 종속"
+      ],
+      "usage_tips": [
+        "WhatsApp이나 Instagram DM에서 바로 사용하면 별도 앱 설치 없이 편리합니다",
+        "그룹 채팅에서 @Meta AI를 입력하면 친구들과 함께 AI를 활용할 수 있습니다",
+        "이미지 생성 요청 시 구체적인 설명을 포함하면 더 좋은 결과를 얻을 수 있습니다",
+        "영어로 질문하면 한국어 대비 더 정확한 답변을 받을 수 있습니다"
+      ],
+      "sample_output_prompt": null,
+      "sample_output": null,
+      "bookmark_count": 0,
+      "app_store_id": null,
+      "play_store_id": null,
+      "trustpilot_domain": null,
+      "g2_slug": null,
+      "created_at": "2026-02-26T00:00:00Z",
+      "updated_at": "2026-02-26T00:00:00Z",
+      "hybrid_score": 0,
+      "external_score": 0,
+      "internal_score": 0,
+      "trend_direction": "new",
+      "trend_magnitude": 70,
+      "has_benchmark_data": false,
+      "github_stars": null,
+      "github_forks": null,
+      "product_hunt_upvotes": null,
+      "model_identifiers": [
+        "llama-4-maverick",
+        "llama-4-scout",
+        "llama-3.3-70b"
+      ],
+      "confidence_level": "low",
+      "confidence_source_count": 1,
+      "rating_sources": [
+        "app_store"
+      ]
     }
   ],
   "user_types": [
@@ -20980,6 +21328,27 @@
   ],
   "tool_categories": [
     {
+      "tool_id": "tool-98",
+      "category_id": "e052e3cb-1613-4dc3-95c9-8fb66fa1bda8",
+      "is_primary": true,
+      "sort_order": 0,
+      "created_at": "2026-02-26T00:00:00Z"
+    },
+    {
+      "tool_id": "tool-98",
+      "category_id": "118a92a9-2e3e-490a-a5ca-059026ceb89c",
+      "is_primary": false,
+      "sort_order": 1,
+      "created_at": "2026-02-26T00:00:00Z"
+    },
+    {
+      "tool_id": "tool-99",
+      "category_id": "e052e3cb-1613-4dc3-95c9-8fb66fa1bda8",
+      "is_primary": true,
+      "sort_order": 0,
+      "created_at": "2026-02-26T00:00:00Z"
+    },
+    {
       "tool_id": "550e8400-e29b-41d4-a716-446655440001",
       "category_id": "e052e3cb-1613-4dc3-95c9-8fb66fa1bda8",
       "is_primary": true,
@@ -22156,6 +22525,1960 @@
       "announced_at": "2026-02-10T00:00:00Z",
       "created_at": "2026-02-24T00:00:00Z",
       "updated_at": "2026-02-24T00:00:00Z"
+    }
+  ],
+  "tool_external_scores": [
+    {
+      "id": "ext-score-1",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "source_key": "app_store",
+      "normalized_score": 98,
+      "raw_data": {
+        "rating": 4.9,
+        "review_count": 1800000,
+        "version": "2025.12",
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-2",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "source_key": "play_store",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 800000,
+        "installs": "100,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-3",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 620,
+        "slug": "chatgpt"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-4",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "source_key": "trustpilot",
+      "normalized_score": 42,
+      "raw_data": {
+        "rating": 2.1,
+        "review_count": 3200,
+        "domain": "openai.com"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-5",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440001",
+      "source_key": "product_hunt",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 2500,
+        "votesCount": 18500,
+        "name": "ChatGPT",
+        "reviewsRating": 4.5,
+        "reviewsCount": 2500
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-6",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440002",
+      "source_key": "app_store",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 52000,
+        "version": "2025.11",
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-7",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440002",
+      "source_key": "play_store",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 152000,
+        "installs": "5,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-8",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440002",
+      "source_key": "g2",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 55,
+        "slug": "claude"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-9",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440003",
+      "source_key": "app_store",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 220000,
+        "version": "2025.12",
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-10",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440003",
+      "source_key": "play_store",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 28000000,
+        "installs": "500,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-11",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440003",
+      "source_key": "g2",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 110,
+        "slug": "google-gemini"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-12",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "source_key": "app_store",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 120000,
+        "version": "2025.10",
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-13",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "source_key": "play_store",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 55000,
+        "installs": "10,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-14",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 47,
+        "slug": "perplexity-ai"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-15",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "source_key": "trustpilot",
+      "normalized_score": 32,
+      "raw_data": {
+        "rating": 1.6,
+        "review_count": 180,
+        "domain": "perplexity.ai"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-16",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440004",
+      "source_key": "product_hunt",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 96,
+        "votesCount": 6500,
+        "name": "Perplexity",
+        "reviewsRating": 4.8,
+        "reviewsCount": 96
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-17",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440100",
+      "source_key": "app_store",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 35000,
+        "version": "2025.09",
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-18",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440100",
+      "source_key": "play_store",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 110000,
+        "installs": "10,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-19",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440226",
+      "source_key": "app_store",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 55000,
+        "version": "2025.06",
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-20",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440226",
+      "source_key": "play_store",
+      "normalized_score": 84,
+      "raw_data": {
+        "rating": 4.2,
+        "review_count": 120000,
+        "installs": "10,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-21",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440101",
+      "source_key": "app_store",
+      "normalized_score": 80,
+      "raw_data": {
+        "rating": 4,
+        "review_count": 8000,
+        "genre": "Social Networking"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-22",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440101",
+      "source_key": "play_store",
+      "normalized_score": 76,
+      "raw_data": {
+        "rating": 3.8,
+        "review_count": 25000,
+        "installs": "5,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-23",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440102",
+      "source_key": "app_store",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 15000,
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-24",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440102",
+      "source_key": "play_store",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 30000,
+        "installs": "5,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-25",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440115",
+      "source_key": "app_store",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 350000,
+        "genre": "Entertainment"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-26",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440115",
+      "source_key": "play_store",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 800000,
+        "installs": "50,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-27",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440107",
+      "source_key": "app_store",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 5000,
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-28",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440107",
+      "source_key": "play_store",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 15000,
+        "installs": "1,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-29",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440070",
+      "source_key": "app_store",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 20000,
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-30",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440070",
+      "source_key": "play_store",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 80000,
+        "installs": "5,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-31",
+      "tool_id": "tool-99",
+      "source_key": "app_store",
+      "normalized_score": 64,
+      "raw_data": {
+        "rating": 3.2,
+        "review_count": 5000,
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-32",
+      "tool_id": "tool-98",
+      "source_key": "app_store",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 800,
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-33",
+      "tool_id": "tool-98",
+      "source_key": "play_store",
+      "normalized_score": 84,
+      "raw_data": {
+        "rating": 4.2,
+        "review_count": 3000,
+        "installs": "500,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-34",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440005",
+      "source_key": "app_store",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 220000,
+        "version": "2025.11",
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-35",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440005",
+      "source_key": "play_store",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 520000,
+        "installs": "10,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-36",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440005",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 5800,
+        "slug": "notion-ai"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-37",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440110",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 1300,
+        "slug": "jasper"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-38",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440110",
+      "source_key": "trustpilot",
+      "normalized_score": 80,
+      "raw_data": {
+        "rating": 4,
+        "review_count": 520,
+        "domain": "jasper.ai"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-39",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440110",
+      "source_key": "product_hunt",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 180,
+        "votesCount": 3200,
+        "name": "Jasper",
+        "reviewsRating": 4.6,
+        "reviewsCount": 180
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-40",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440111",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 200,
+        "slug": "copy-ai"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-41",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440111",
+      "source_key": "product_hunt",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 120,
+        "votesCount": 2800,
+        "name": "Copy.ai",
+        "reviewsRating": 4.5,
+        "reviewsCount": 120
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-42",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440112",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 1900,
+        "slug": "writesonic"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-43",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440112",
+      "source_key": "trustpilot",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 2100,
+        "domain": "writesonic.com"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-44",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440113",
+      "source_key": "app_store",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 181000,
+        "version": "2025.10",
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-45",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440113",
+      "source_key": "play_store",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 520000,
+        "installs": "50,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-46",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440113",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 11500,
+        "slug": "grammarly"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-47",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440113",
+      "source_key": "trustpilot",
+      "normalized_score": 82,
+      "raw_data": {
+        "rating": 4.1,
+        "review_count": 10300,
+        "domain": "grammarly.com"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-48",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440114",
+      "source_key": "g2",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 60,
+        "slug": "quillbot"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-49",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440114",
+      "source_key": "trustpilot",
+      "normalized_score": 64,
+      "raw_data": {
+        "rating": 3.2,
+        "review_count": 1500,
+        "domain": "quillbot.com"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-50",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440120",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 850,
+        "slug": "rytr"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-51",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440120",
+      "source_key": "product_hunt",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 350,
+        "votesCount": 5200,
+        "name": "Rytr",
+        "reviewsRating": 4.7,
+        "reviewsCount": 350
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-52",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440010",
+      "source_key": "g2",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 120,
+        "slug": "midjourney"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-53",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440010",
+      "source_key": "trustpilot",
+      "normalized_score": 50,
+      "raw_data": {
+        "rating": 2.5,
+        "review_count": 800,
+        "domain": "midjourney.com"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-54",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440010",
+      "source_key": "product_hunt",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 200,
+        "votesCount": 8500,
+        "name": "Midjourney",
+        "reviewsRating": 4.6,
+        "reviewsCount": 200
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-55",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440130",
+      "source_key": "g2",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 30,
+        "slug": "leonardo-ai"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-56",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440130",
+      "source_key": "product_hunt",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 150,
+        "votesCount": 3500,
+        "name": "Leonardo.ai",
+        "reviewsRating": 4.7,
+        "reviewsCount": 150
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-57",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440131",
+      "source_key": "product_hunt",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 80,
+        "votesCount": 2200,
+        "name": "Ideogram",
+        "reviewsRating": 4.6,
+        "reviewsCount": 80
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-58",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440132",
+      "source_key": "g2",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 50,
+        "slug": "adobe-firefly"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-59",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440132",
+      "source_key": "trustpilot",
+      "normalized_score": 32,
+      "raw_data": {
+        "rating": 1.6,
+        "review_count": 850,
+        "domain": "adobe.com"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-60",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440137",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 200,
+        "slug": "remove-bg"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-61",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440137",
+      "source_key": "trustpilot",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 3500,
+        "domain": "remove.bg"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-62",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440137",
+      "source_key": "product_hunt",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 300,
+        "votesCount": 6000,
+        "name": "Remove.bg",
+        "reviewsRating": 4.8,
+        "reviewsCount": 300
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-63",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440138",
+      "source_key": "app_store",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 90000,
+        "genre": "Photo & Video"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-64",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440138",
+      "source_key": "play_store",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 200000,
+        "installs": "10,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-65",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440138",
+      "source_key": "product_hunt",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 100,
+        "votesCount": 2000,
+        "name": "PhotoRoom",
+        "reviewsRating": 4.7,
+        "reviewsCount": 100
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-66",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "source_key": "app_store",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 1000000,
+        "version": "2025.11",
+        "genre": "Graphics & Design"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-67",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "source_key": "play_store",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 15000000,
+        "installs": "500,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-68",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440071",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 4500,
+        "slug": "canva"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-69",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440021",
+      "source_key": "app_store",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 3500000,
+        "version": "2025.11",
+        "genre": "Photo & Video"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-70",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440021",
+      "source_key": "play_store",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 32000000,
+        "installs": "1,000,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-71",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440020",
+      "source_key": "g2",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 40,
+        "slug": "runway"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-72",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440020",
+      "source_key": "product_hunt",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 180,
+        "votesCount": 4500,
+        "name": "Runway ML",
+        "reviewsRating": 4.7,
+        "reviewsCount": 180
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-73",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440144",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 380,
+        "slug": "heygen"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-74",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440144",
+      "source_key": "product_hunt",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 120,
+        "votesCount": 5000,
+        "name": "HeyGen",
+        "reviewsRating": 4.8,
+        "reviewsCount": 120
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-75",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440145",
+      "source_key": "g2",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 2500,
+        "slug": "synthesia"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-76",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440145",
+      "source_key": "trustpilot",
+      "normalized_score": 76,
+      "raw_data": {
+        "rating": 3.8,
+        "review_count": 150,
+        "domain": "synthesia.io"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-77",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440145",
+      "source_key": "product_hunt",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 80,
+        "votesCount": 2200,
+        "name": "Synthesia",
+        "reviewsRating": 4.5,
+        "reviewsCount": 80
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-78",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440147",
+      "source_key": "g2",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 500,
+        "slug": "descript"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-79",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440147",
+      "source_key": "product_hunt",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 200,
+        "votesCount": 4800,
+        "name": "Descript",
+        "reviewsRating": 4.7,
+        "reviewsCount": 200
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-80",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440148",
+      "source_key": "g2",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 100,
+        "slug": "opus-clip"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-81",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440148",
+      "source_key": "product_hunt",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 150,
+        "votesCount": 3800,
+        "name": "Opus Clip",
+        "reviewsRating": 4.6,
+        "reviewsCount": 150
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-82",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440149",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 110,
+        "slug": "elevenlabsio"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-83",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440149",
+      "source_key": "product_hunt",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 220,
+        "votesCount": 5500,
+        "name": "ElevenLabs",
+        "reviewsRating": 4.7,
+        "reviewsCount": 220
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-84",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440151",
+      "source_key": "g2",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 300,
+        "slug": "invideo"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-85",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440151",
+      "source_key": "trustpilot",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 8000,
+        "domain": "invideo.io"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-86",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440146",
+      "source_key": "g2",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 80,
+        "slug": "d-id"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-87",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440146",
+      "source_key": "product_hunt",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 60,
+        "votesCount": 1800,
+        "name": "D-ID",
+        "reviewsRating": 4.5,
+        "reviewsCount": 60
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-88",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440030",
+      "source_key": "g2",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 250,
+        "slug": "github-copilot"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-89",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440030",
+      "source_key": "product_hunt",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 300,
+        "votesCount": 7500,
+        "name": "GitHub Copilot",
+        "reviewsRating": 4.4,
+        "reviewsCount": 300
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-90",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440031",
+      "source_key": "g2",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 55,
+        "slug": "cursor-ai"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-91",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440031",
+      "source_key": "product_hunt",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 400,
+        "votesCount": 9000,
+        "name": "Cursor",
+        "reviewsRating": 4.8,
+        "reviewsCount": 400
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-92",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440032",
+      "source_key": "app_store",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 8000,
+        "genre": "Developer Tools"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-93",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440032",
+      "source_key": "play_store",
+      "normalized_score": 80,
+      "raw_data": {
+        "rating": 4,
+        "review_count": 25000,
+        "installs": "5,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-94",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440032",
+      "source_key": "g2",
+      "normalized_score": 84,
+      "raw_data": {
+        "rating": 4.2,
+        "review_count": 80,
+        "slug": "replit"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-95",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440160",
+      "source_key": "g2",
+      "normalized_score": 84,
+      "raw_data": {
+        "rating": 4.2,
+        "review_count": 80,
+        "slug": "tabnine"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-96",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440163",
+      "source_key": "product_hunt",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 300,
+        "votesCount": 6000,
+        "name": "Bolt.new",
+        "reviewsRating": 4.7,
+        "reviewsCount": 300
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-97",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440164",
+      "source_key": "product_hunt",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 200,
+        "votesCount": 5500,
+        "name": "v0",
+        "reviewsRating": 4.6,
+        "reviewsCount": 200
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-98",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440165",
+      "source_key": "product_hunt",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 350,
+        "votesCount": 8000,
+        "name": "Lovable",
+        "reviewsRating": 4.7,
+        "reviewsCount": 350
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-99",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440040",
+      "source_key": "product_hunt",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 250,
+        "votesCount": 5000,
+        "name": "Suno AI",
+        "reviewsRating": 4.7,
+        "reviewsCount": 250
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-100",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440041",
+      "source_key": "product_hunt",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 80,
+        "votesCount": 2500,
+        "name": "Udio",
+        "reviewsRating": 4.5,
+        "reviewsCount": 80
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-101",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440060",
+      "source_key": "app_store",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 65000,
+        "version": "2025.09",
+        "genre": "Reference"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-102",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440060",
+      "source_key": "play_store",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 320000,
+        "installs": "10,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-103",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440060",
+      "source_key": "g2",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 161,
+        "slug": "deepl"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-104",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440060",
+      "source_key": "trustpilot",
+      "normalized_score": 70,
+      "raw_data": {
+        "rating": 3.5,
+        "review_count": 2800,
+        "domain": "deepl.com"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-105",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440061",
+      "source_key": "app_store",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 55000,
+        "genre": "Reference"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-106",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440061",
+      "source_key": "play_store",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 520000,
+        "installs": "50,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-107",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440062",
+      "source_key": "app_store",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 220000,
+        "genre": "Reference"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-108",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440062",
+      "source_key": "play_store",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 11000000,
+        "installs": "1,000,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-109",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440116",
+      "source_key": "app_store",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 20000,
+        "genre": "Business"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-110",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440116",
+      "source_key": "play_store",
+      "normalized_score": 78,
+      "raw_data": {
+        "rating": 3.9,
+        "review_count": 12000,
+        "installs": "1,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-111",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440116",
+      "source_key": "g2",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 220,
+        "slug": "otter-ai"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-112",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440117",
+      "source_key": "g2",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 500,
+        "slug": "fireflies-ai"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-113",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440117",
+      "source_key": "product_hunt",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 100,
+        "votesCount": 2500,
+        "name": "Fireflies.ai",
+        "reviewsRating": 4.6,
+        "reviewsCount": 100
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-114",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440119",
+      "source_key": "app_store",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 12000,
+        "genre": "Productivity"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-115",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440119",
+      "source_key": "play_store",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 35000,
+        "installs": "1,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-116",
+      "tool_id": "tool-13",
+      "source_key": "app_store",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 110000,
+        "genre": "Education"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-117",
+      "tool_id": "tool-13",
+      "source_key": "play_store",
+      "normalized_score": 88,
+      "raw_data": {
+        "rating": 4.4,
+        "review_count": 55000,
+        "installs": "5,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-118",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "source_key": "product_hunt",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 250,
+        "votesCount": 5500,
+        "name": "Gamma",
+        "reviewsRating": 4.7,
+        "reviewsCount": 250
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-119",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440051",
+      "source_key": "g2",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 150,
+        "slug": "gamma-app"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-120",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440193",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 400,
+        "slug": "beautiful-ai"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-121",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440195",
+      "source_key": "g2",
+      "normalized_score": 84,
+      "raw_data": {
+        "rating": 4.2,
+        "review_count": 50,
+        "slug": "tome"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-122",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440195",
+      "source_key": "product_hunt",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 120,
+        "votesCount": 3000,
+        "name": "Tome",
+        "reviewsRating": 4.5,
+        "reviewsCount": 120
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-123",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440190",
+      "source_key": "product_hunt",
+      "normalized_score": 96,
+      "raw_data": {
+        "rating": 4.8,
+        "review_count": 150,
+        "votesCount": 4500,
+        "name": "Google NotebookLM",
+        "reviewsRating": 4.8,
+        "reviewsCount": 150
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-124",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440072",
+      "source_key": "g2",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 1200,
+        "slug": "zapier"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-125",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440072",
+      "source_key": "trustpilot",
+      "normalized_score": 50,
+      "raw_data": {
+        "rating": 2.5,
+        "review_count": 500,
+        "domain": "zapier.com"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-126",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440210",
+      "source_key": "g2",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 400,
+        "slug": "make-formerly-integromat"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-127",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440210",
+      "source_key": "product_hunt",
+      "normalized_score": 92,
+      "raw_data": {
+        "rating": 4.6,
+        "review_count": 80,
+        "votesCount": 2000,
+        "name": "Make",
+        "reviewsRating": 4.6,
+        "reviewsCount": 80
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-128",
+      "tool_id": "tool-63",
+      "source_key": "app_store",
+      "normalized_score": 94,
+      "raw_data": {
+        "rating": 4.7,
+        "review_count": 5500000,
+        "genre": "Education"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-129",
+      "tool_id": "tool-63",
+      "source_key": "play_store",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 33000000,
+        "installs": "500,000,000+"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-130",
+      "tool_id": "tool-63",
+      "source_key": "g2",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 600,
+        "slug": "duolingo"
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-131",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440227",
+      "source_key": "product_hunt",
+      "normalized_score": 90,
+      "raw_data": {
+        "rating": 4.5,
+        "review_count": 120,
+        "votesCount": 4000,
+        "name": "Manus AI",
+        "reviewsRating": 4.5,
+        "reviewsCount": 120
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
+    },
+    {
+      "id": "ext-score-132",
+      "tool_id": "550e8400-e29b-41d4-a716-446655440105",
+      "source_key": "product_hunt",
+      "normalized_score": 86,
+      "raw_data": {
+        "rating": 4.3,
+        "review_count": 50,
+        "votesCount": 1500,
+        "name": "Coze",
+        "reviewsRating": 4.3,
+        "reviewsCount": 50
+      },
+      "fetched_at": "2026-02-26T12:33:58.451Z",
+      "created_at": "2026-02-26T12:33:58.451Z",
+      "updated_at": "2026-02-26T12:33:58.451Z"
     }
   ]
 }
